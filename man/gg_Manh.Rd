@@ -13,8 +13,10 @@ gg_Manh(
   lines = F,
   facet = T,
   models = c("GLM", "MLM", "CMLM", "MLMM", "SUPER", "FarmCPU", "Blink"),
-  colors = c("darkgreen", "darkgoldenrod3", "darkgreen", "darkgoldenrod3", "darkgreen",
-    "darkgoldenrod3", "darkgreen")
+  colors1 = c("darkgreen", "darkgoldenrod3", "darkgreen", "darkgoldenrod3",
+    "darkgreen", "darkgoldenrod3", "darkgreen"),
+  colors2 = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
+    "darkgoldenrod2")
 )
 }
 \arguments{
@@ -32,7 +34,9 @@ gg_Manh(
 
 \item{models}{Models to read.}
 
-\item{colors}{Colors for each chromosome}
+\item{colors1}{Colors for each chromosome}
+
+\item{colors2}{Colors for each model}
 }
 \value{
 A manhattan plot.
