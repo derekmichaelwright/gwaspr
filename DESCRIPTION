@@ -1,0 +1,12 @@
+Package: gwaspr
+Title: GWAS plots with R
+Version: 0.0.0.9000
+Authors@R: 
+    person("Derek", "Wright", , "derek.wright@usask.ca", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Produce plots with GWAS data.
+Depends: R (>= 3.4.2), tidyverse, ggbeeswarm, ggpubr, ggrepel
+License: <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
