@@ -1,4 +1,4 @@
-#' top_Markers
+#' list_Markers
 #'
 #' Finds the markers with the highest association on each chromosome.
 #' @param x data.
@@ -8,19 +8,19 @@
 #' @return Table of top results.
 #' @export
 
-top_Markers <- function(x, 
-                  chroms = 1:7, 
-                  n = 1, 
+list_Markers <- function(x,
+                  chroms = 1:7,
+                  n = 1,
                   threshold_filter = T) {
   #
   threshold <- -log10(0.05 / (nrow(x)) )
   #
   x <- x %>% filter(Chromosome %in% chroms) %>%
     group_by(Chromosome) %>%
-    top_n(., n = n, -log10(P.value)) %>% 
-    mutate(NegLog10 = round(-log10(P.value),2)) %>% 
+    top_n(., n = n, -log10(P.value)) %>%
+    mutate(NegLog10 = round(-log10(P.value),2)) %>%
     arrange(Chromosome, rev(NegLog10)) %>%
-    as.data.frame() %>% 
+    as.data.frame() %>%
     select(SNP, CHR=Chromosome, POS=Position, NegLog10)
   #
   if(threshold_filter == T) { x <- x %>% filter(NegLog10 > threshold) }
