@@ -8,7 +8,8 @@
 #' @param labels Labels to be used for markers.
 #' @param lines Logical value of whether or not to include vertical lines with markers.
 #' @param models Models to read.
-#' @param colors Colors for each chromosome
+#' @param colors1 Colors for each chromosome
+#' @param colors2 Colors for each model
 #' @return A manhattan plot.
 #' @export
 
@@ -20,8 +21,9 @@ gg_Manh <- function(folder = NULL,
                    lines = F,
                    facet = T,
                    models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
-                   colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
-                              "darkgreen","darkgoldenrod3","darkgreen")) {
+                   colors1 = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
+                              "darkgreen","darkgoldenrod3","darkgreen"),
+                   colors2 = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2")) {
   #
   fnames <- grep(paste0(trait,".GWAS.Results"), list.files(folder))
   fnames <- list.files(folder)[fnames]
@@ -40,6 +42,7 @@ gg_Manh <- function(folder = NULL,
   xx <- xx %>% filter(Model %in% models) %>%
     mutate(Model = factor(Model, levels = models)) %>%
     arrange(desc(Model))
+  #
   threshold <- -log10(0.05 / nrow(xi))
   x1 <- xx %>% filter(negLog10 < threshold)
   x2 <- xx %>% filter(negLog10 > threshold)
