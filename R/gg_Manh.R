@@ -38,7 +38,8 @@ gg_Manh <- function(folder = NULL,
     xx <- bind_rows(xx, xi)
   }
   xx <- xx %>% filter(Model %in% models) %>%
-    mutate(Model = factor(Model, levels = models))
+    mutate(Model = factor(Model, levels = models)) %>%
+    arrange(desc(Model))
   threshold <- -log10(0.05 / nrow(xi))
   x1 <- xx %>% filter(negLog10 < threshold)
   x2 <- xx %>% filter(negLog10 > threshold)
