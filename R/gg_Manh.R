@@ -12,19 +12,17 @@
 #' @return A manhattan plot.
 #' @export
 
-gg_Manh <- function(folder = NULL, 
-                   trait = NULL, 
-                   subtitle = NULL, 
-                   markers = NULL, 
-                   labels = markers, 
+gg_Manh <- function(folder = NULL,
+                   trait = NULL,
+                   subtitle = NULL,
+                   markers = NULL,
+                   labels = markers,
                    lines = F,
                    facet = T,
                    models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
                    colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
                               "darkgreen","darkgoldenrod3","darkgreen")) {
   #
-  dir.create()
-  dir.create()
   fnames <- grep(paste0(trait,".GWAS.Results"), list.files(folder))
   fnames <- list.files(folder)[fnames]
   xx <- NULL
@@ -45,10 +43,10 @@ gg_Manh <- function(folder = NULL,
   x1 <- xx %>% filter(negLog10 < threshold)
   x2 <- xx %>% filter(negLog10 > threshold)
   # Man plot
-  mp1 <- ggplot(x1, aes(x = Position / 1000000, y = -log10(P.value))) 
+  mp1 <- ggplot(x1, aes(x = Position / 1000000, y = -log10(P.value)))
   if(!is.null(markers) & lines == T) {
-    mp1 <- mp1 + 
-      geom_vline(data = xx %>% filter(SNP %in% markers), 
+    mp1 <- mp1 +
+      geom_vline(data = xx %>% filter(SNP %in% markers),
                  aes(xintercept = Position / 1000000), alpha = 0.5)
   }
   if(facet == T) {
@@ -69,8 +67,8 @@ gg_Manh <- function(folder = NULL,
                                    aes(label = Label), size = 2)
     }
     # QQ plot
-    mp2 <- ggplot(x1, aes(y = negLog10, x = negLog10_exp)) + 
-      geom_point(pch = 1, color = colors[1], alpha = 0.8) + 
+    mp2 <- ggplot(x1, aes(y = negLog10, x = negLog10_exp)) +
+      geom_point(pch = 1, color = colors[1], alpha = 0.8) +
       geom_point(data = x2, pch = 21, color = "black", fill = "darkred", alpha = 0.8) +
       geom_hline(yintercept = threshold) + geom_abline() +
       facet_grid(Model ~ "QQ", scales = "free_y") +
@@ -96,8 +94,8 @@ gg_Manh <- function(folder = NULL,
                                    aes(label = Label), size = 2)
     }
     # QQ plot
-    mp2 <- ggplot(x1, aes(y = negLog10, x = negLog10_exp)) + 
-      geom_point(pch = 1, aes(color = Model)) + 
+    mp2 <- ggplot(x1, aes(y = negLog10, x = negLog10_exp)) +
+      geom_point(pch = 1, aes(color = Model)) +
       geom_point(data = x2, aes(color = Model)) +
       geom_hline(yintercept = threshold) + geom_abline() +
       facet_grid(. ~ "QQ", scales = "free_y") +
