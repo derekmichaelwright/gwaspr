@@ -14,7 +14,8 @@ gg_GWAS_Summary(
   g.range = 3e+06,
   rowread = 2000,
   plotly = F,
-  plotly_filename
+  plotly_filename = "GWAS_Summary.html",
+  caption = paste0("Threshold = ", threshold, "\\nSuggestive = ", threshold2)
 )
 }
 \arguments{

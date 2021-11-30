@@ -7,7 +7,7 @@
 list_GWAS_Results(
   folder,
   file,
-  threshold = 6.7,
+  threshold = 6,
   threshold2 = NULL,
   g.range = 3e+06,
   rowread = 2000

@@ -10,9 +10,9 @@
 #' @return A table of significant GWAS results.
 #' @export
 
-list_GWAS_Results <- function(folder, file, 
-                              threshold = 6.7, threshold2 = NULL,
-                              g.range = 3000000, 
+list_GWAS_Results <- function(folder, file,
+                              threshold = 6, threshold2 = NULL,
+                              g.range = 3000000,
                               rowread = 2000) {
   #
   trait <- substr(file, gregexpr("GAPIT.", file)[[1]][1]+6,

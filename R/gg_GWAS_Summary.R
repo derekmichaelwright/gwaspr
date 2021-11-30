@@ -23,21 +23,22 @@
 #threshold2 <- 5
 #g.range<- 3000000
 #rowread <- 2000
-#myG <- read.csv("C:/gitfolder/gwas_tutorial/myG_hmp.csv")
 
-gg_GWAS_Summary <- function(folder, files, #myG,
+gg_GWAS_Summary <- function(folder, files,
                             threshold, threshold2 = NULL,
                             markers = NULL, hlines = F,
-                            g.range = 3000000, 
-                            rowread = 2000, 
+                            g.range = 3000000,
+                            rowread = 2000,
                             plotly = F,
-                            plotly_filename) {
+                            plotly_filename = "GWAS_Summary.html",
+                            caption = paste0("Threshold = ", threshold,
+                                             "\nSuggestive = ", threshold2)) {
   #
   myP <- NULL
   #
-  i<-files[1]
+  #i<-files[1]
   for(i in files) {
-    myP <- bind_rows(myP, list_GWAS_Results(folder = folder, file = i, 
+    myP <- bind_rows(myP, list_GWAS_Results(folder = folder, file = i,
                                             threshold = threshold, threshold2 = threshold2)) #%>% dropNAcol())
   }
   #
@@ -45,20 +46,21 @@ gg_GWAS_Summary <- function(folder, files, #myG,
   myColors <- c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2")
   myP <- myP %>% filter(!is.na(SNP)) %>%
     arrange(Chromosome, Position, P.value, Trait) %>%
-    mutate(#Chromosome = factor(Chromosome, levels = 1:7),
-           Model = factor(Model, levels = myModels))
+    mutate(Model = factor(Model, levels = myModels))
   #
   x1 <- myP %>% filter(`-log10(p)` > threshold)
   x2 <- myP %>% filter(`-log10(p)` < threshold)
   #
-  mp <- ggplot(x1, aes(x = Position / 100000000, y = Trait)) + 
+  myG <- read.csv(paste0(folder, files[1])) %>% mutate(Trait = myP$Trait[1])
+  mp <- ggplot(x1, aes(x = Position / 100000000, y = Trait)) +
+    geom_blank(data = myG) +
     #geom_vline(data = myGM, alpha = 0.5, color = "red",
     #           aes(xintercept = Position / 100000000)) +
-    #geom_point(data = x2, shape = 22,
-    #           size = 1, color = "black", alpha = 0.5,
-    #           aes(fill = Threshold)) +
+    geom_point(data = x2,
+               size = 1, color = "black", alpha = 0.5,
+               aes(shape = Model, fill = Model)) +
     geom_point(size = 2, color = "black", alpha = 0.5,
-               aes(shape = Model, fill = Model)) + 
+               aes(shape = Model, fill = Model)) +
     #geom_hline(yintercept = hlines, alpha = 0.7) +
     facet_grid(. ~ Chromosome, drop = F, scales = "free_x", space = "free_x") +
     scale_fill_manual(values = myColors) +
@@ -66,13 +68,14 @@ gg_GWAS_Summary <- function(folder, files, #myG,
     #scale_y_discrete(drop = F) +
     theme_gwaspr(legend.position = "bottom") +
     guides(shape = guide_legend(override.aes = list(size = 4))) +
-    labs(y = NULL, x = "100 Mbp")
+    labs(y = NULL, x = "100 Mbp", caption = caption)
   #
+  mp
   if(plotly == T) {
     mpp <- plotly::ggplotly(mp)
     htmlwidgets::saveWidget(plotly::as_widget(mp),
                             plotly_filename,
-                            knitrOptions = list(fig.width = 10, fig.height = 10), 
+                            knitrOptions = list(fig.width = 10, fig.height = 10),
                             selfcontained = T)
   }
   mp
