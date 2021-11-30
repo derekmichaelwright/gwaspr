@@ -6,39 +6,44 @@
 \usage{
 gg_GWAS_Summary(
   folder,
-  files,
+  traits,
   threshold,
   threshold2 = NULL,
+  models = c("GLM", "MLM", "CMLM", "MLMM", "SUPER", "FarmCPU", "Blink"),
+  colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
+    "darkgoldenrod2"),
   markers = NULL,
-  hlines = F,
-  g.range = 3e+06,
-  rowread = 2000,
-  plotly = F,
-  plotly_filename = "GWAS_Summary.html",
-  caption = paste0("Threshold = ", threshold, "\\nSuggestive = ", threshold2)
+  hlines = NULL,
+  title = NULL,
+  caption = paste0("Threshold = ", threshold, "\\nSuggestive = ", threshold2),
+  rowread = 2000
 )
 }
 \arguments{
 \item{folder}{Folder containing GWAS results.}
 
-\item{markers}{Markers to be labelled.}
+\item{traits}{The traits to read.}
 
-\item{trait}{The trait to read.}
+\item{threshold}{Significant threshold.}
 
-\item{subtitle}{A subtitle for the plot.}
-
-\item{labels}{Labels to be used for markers.}
-
-\item{lines}{Logical value of whether or not to include vertical lines with markers.}
+\item{threshold2}{Suggestive threshold.}
 
 \item{models}{Models to read.}
 
-\item{colors1}{Colors for each chromosome}
+\item{colors}{Colors for each model.}
 
-\item{colors2}{Colors for each model}
+\item{markers}{Markers to be labelled with a vertical red line.}
+
+\item{hlines}{Locations for horizontal lines. e.g., hlines = c(1.5,2.5).}
+
+\item{title}{A title for the plot.}
+
+\item{caption}{A caption for the plot.}
+
+\item{rowread}{Number of rows to read for each GWAS results file.}
 }
 \value{
-A manhattan plot.
+A GWAS summary plot.
 }
 \description{
 Creates a summary GWAS plot of significant associations.

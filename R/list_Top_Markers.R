@@ -1,4 +1,4 @@
-#' list_Markers
+#' list_Top_Markers
 #'
 #' Finds the markers with the highest association on each chromosome.
 #' @param x data.
@@ -8,10 +8,7 @@
 #' @return Table of top results.
 #' @export
 
-list_Markers <- function(x,
-                  chroms = 1:7,
-                  n = 1,
-                  threshold_filter = T) {
+list_Top_Markers <- function(x, chroms = 1:7, n = 1, threshold_filter = T) {
   #
   threshold <- -log10(0.05 / (nrow(x)) )
   #

@@ -1,9 +1,12 @@
-#' gg_Manh_Zoom
+#' gg_Manhattan_Zoom
 #'
-#' Removes columns without any values.
+#' Creates a manhattan plot zoomed in to a particular region.
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
-#' @param subtitle A subtitle for the plot.
+#' @param chr Chromosome to plot.
+#' @param start Start position on chromosome.
+#' @param end End position on chromosome.
+#' @param title A title for the plot.
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
 #' @param lines Logical value of whether or not to include vertical lines with markers.
@@ -12,13 +15,12 @@
 #' @return A manhattan plot.
 #' @export
 
-gg_Manh_Zoom <- function(folder = "Results_Add/", 
-                        trait = "Testa_Pattern",
-                        chr = 1, start = 100000, end = 1000000,
-                        markers = NULL, labels = markers, lines = F,
-                        models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"), 
-                        colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
-                                   "darkgreen", "darkgoldenrod3","darkgreen")) {
+gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
+                         title = trait,
+                         markers = NULL, labels = markers, lines = F,
+                         models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"), 
+                         colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
+                                    "darkgreen", "darkgoldenrod3","darkgreen")) {
   fnames <- grep(paste0(trait,".GWAS.Results"), list.files(folder))
   fnames <- list.files(folder)[fnames]
   xx <- NULL
@@ -45,13 +47,12 @@ gg_Manh_Zoom <- function(folder = "Results_Add/",
       geom_vline(data = xx %>% filter(SNP %in% markers), 
                  aes(xintercept = Position / 1000000), alpha = 0.5)
   }
+  if(lines == T) { mp <- mp + geom_line() }
   mp <- mp +
     geom_hline(yintercept = threshold, alpha = 0.6) +
     geom_point(aes(color = factor(Chromosome)), pch = 1, alpha = 0.8) +
-    geom_line() +
     geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = "darkred", alpha = 0.8) +
     facet_grid(Model ~ Chromosome, scales = "free") +
-    #scale_x_continuous(breaks = seq(100, 700, by = 100)) +
     scale_color_manual(values = colors) +
     theme_gwaspr(legend.position = "none",
                  axis.text.x = element_text(angle = 90, hjust = 0.5)) +

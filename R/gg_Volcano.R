@@ -1,18 +1,16 @@
-#' gg_Vol
+#' gg_Volcano
 #'
 #' Creates a volcano plot.
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
-#' @param subtitle A subtitle for the plot.
+#' @param title A title for the plot.
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
 #' @param models Models to read.
 #' @return A volcano plot.
 #' @export
 
-gg_Vol <- function(folder, 
-                   trait, 
-                   subtitle = NULL,
+gg_Volcano <- function(folder, trait, title = trait,
                    markers = NULL, 
                    labels = markers,
                    models = c("GLM","MLM","MLMM","CMLM","SUPER","FarmCPU","Blink")) {

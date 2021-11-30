@@ -1,30 +1,29 @@
-#' gg_Manh
+#' gg_Manhattan
 #'
 #' Creates a manhattan plot.
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
-#' @param subtitle A subtitle for the plot.
+#' @param title A title for the plot.
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
-#' @param lines Logical value of whether or not to include vertical lines with markers.
+#' @param lines Logical, value of whether or not to include vertical lines with markers.
+#' @param facet Logical, whether or not to produce a facetted or multi-model plot.
+#' @param qq Logical, whether or not to add a QQ plot
+#' @param pmax A max value for the y-axis.
 #' @param models Models to read.
-#' @param colors1 Colors for each chromosome
-#' @param colors2 Colors for each model
+#' @param colors1 Colors for each chromosome.
+#' @param colors2 Colors for each model.
 #' @return A manhattan plot.
 #' @export
 
-gg_Manh <- function(folder = NULL,
-                    trait = NULL,
-                    subtitle = NULL,
-                    markers = NULL,
-                    labels = markers,
-                    lines = F,
-                    facet = T,
-                    pmax = NULL,
-                    models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
-                    colors1 = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
-                                "darkgreen","darkgoldenrod3","darkgreen"),
-                    colors2 = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2")) {
+gg_Manhattan <- function(folder, trait, title = trait,
+                         markers = NULL, labels = markers,
+                         lines = F, facet = T, qq = T, pmax = NULL, 
+                         models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
+                         colors1 = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
+                                     "darkgreen","darkgoldenrod3","darkgreen"),
+                         colors2 = c("darkgreen", "darkred", "darkorange3", 
+                                     "steelblue", "darkorchid4", "darkgoldenrod2")) {
   #
   fnames <- grep(paste0(trait,".GWAS.Results"), list.files(folder))
   fnames <- list.files(folder)[fnames]
@@ -65,7 +64,7 @@ gg_Manh <- function(folder = NULL,
       scale_color_manual(values = colors) +
       theme_gwaspr(legend.position = "none",
                    axis.text.x = element_text(angle = 90, hjust = 0.5)) +
-      labs(title = paste(trait, subtitle), y = "-log10(p)", x = "Mbp")
+      labs(title = title, y = "-log10(p)", x = "Mbp")
     if(!is.null(markers)) {
       xx <- xx %>% mutate(Label = ifelse(SNP %in% markers, SNP, NA),
                           Label = plyr::mapvalues(Label, markers, labels))
@@ -80,8 +79,9 @@ gg_Manh <- function(folder = NULL,
       facet_grid(Model ~ "QQ", scales = "free_y") +
       theme_gwaspr() +
       labs(title = "", y = NULL, x = "Expected")
-    # Append and save plots
-    mp <- ggpubr::ggarrange(mp1, mp2, ncol = 2, widths = c(4,1))
+    # Append plots
+    if(qq == T) { mp <- ggpubr::ggarrange(mp1, mp2, ncol = 2, widths = c(4,1))
+    } else { mp <- mp1 }
   } else {
     mp1 <- mp1 +
       geom_hline(yintercept = threshold) +
@@ -91,7 +91,7 @@ gg_Manh <- function(folder = NULL,
       scale_x_continuous(breaks = seq(100, 700, by = 100)) +
       scale_color_manual(values = colors2) +
       theme_gwaspr(axis.text.x = element_text(angle = 90, hjust = 0.5)) +
-      labs(title = paste(trait, subtitle), y = "-log10(p)", x = "Mbp")
+      labs(title = title, y = "-log10(p)", x = "Mbp")
     if(!is.null(markers)) {
       xx <- xx %>% mutate(Label = ifelse(SNP %in% markers, SNP, NA),
                           Label = plyr::mapvalues(Label, markers, labels))
@@ -107,9 +107,10 @@ gg_Manh <- function(folder = NULL,
       scale_color_manual(values = colors2) +
       theme_gwaspr() +
       labs(title = "", y = NULL, x = "Expected")
-    # Append and save plots
-    mp <- ggpubr::ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
-                            legend = "bottom", common.legend = T)
+    # Append plots
+    if(qq == T) { mp <- ggpubr::ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
+                                          legend = "bottom", common.legend = T)
+    } else { mp <- mp1 }
   }
   mp
 }

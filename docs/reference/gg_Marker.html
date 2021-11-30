@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>gg_Manh — gg_Marker • gwaspr</title>
+<title>gg_Marker — gg_Marker • gwaspr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="gg_Manh — gg_Marker" />
-<meta property="og:description" content="Removes columns without any values." />
+<meta property="og:title" content="gg_Marker — gg_Marker" />
+<meta property="og:description" content="Creates a marker plot with myG and myY objects." />
 
 
 
@@ -103,16 +103,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>gg_Manh</h1>
+    <h1>gg_Marker</h1>
     
     <div class="hidden name"><code>gg_Marker.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Removes columns without any values.</p>
+    <p>Creates a marker plot with myG and myY objects.</p>
     </div>
 
     <pre class="usage"><span class='fu'>gg_Marker</span><span class='op'>(</span>
+  <span class='va'>myG</span>,
+  <span class='va'>myY</span>,
   <span class='va'>trait</span>,
   <span class='va'>marker</span>,
   marker2 <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -126,14 +128,42 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>myG</th>
+      <td><p>GWAS genotype object. Note:</p></td>
+    </tr>
+    <tr>
+      <th>myY</th>
+      <td><p>GWAS phenotype object.</p></td>
+    </tr>
+    <tr>
       <th>trait</th>
-      <td><p>.</p></td>
+      <td><p>Trait to plot.</p></td>
+    </tr>
+    <tr>
+      <th>marker</th>
+      <td><p>Marker to plot.</p></td>
+    </tr>
+    <tr>
+      <th>marker2</th>
+      <td><p>Second marker to plot.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Type of plot to make.</p></td>
+    </tr>
+    <tr>
+      <th>points</th>
+      <td><p>Logical, whether or not to plot points</p></td>
+    </tr>
+    <tr>
+      <th>colors</th>
+      <td><p>Color palette.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Plot.</p>
+    <p>Marker plot.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

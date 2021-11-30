@@ -5,7 +5,7 @@
 #' @return List of traits with GWAS results.
 #' @export
 
-list_Traits <- function(folder = "C:/gitfolder/gwas_tutorial/Results", fullfilename = F) {
+list_Traits <- function(folder) {
   #
   fnames <- grep(".GWAS.Results", list.files(folder))
   fnames <- list.files(folder)[fnames]

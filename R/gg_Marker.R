@@ -1,16 +1,18 @@
-#' gg_Manh
+#' gg_Marker
 #'
-#' Removes columns without any values.
-#' @param trait .
-#' @param marker
-#' @param marker2
-#' @param type
-#' @param points
-#' @param colors
-#' @return Plot.
+#' Creates a marker plot with myG and myY objects.
+#' @param myG GWAS genotype object. Note: 
+#' @param myY GWAS phenotype object.
+#' @param trait Trait to plot.
+#' @param marker Marker to plot.
+#' @param marker2 Second marker to plot.
+#' @param type Type of plot to make.
+#' @param points Logical, whether or not to plot points
+#' @param colors Color palette.
+#' @return Marker plot.
 #' @export
 
-gg_Marker <- function(trait, marker, marker2 = NULL, 
+gg_Marker <- function(myG, myY, trait, marker, marker2 = NULL, 
                       type = "bar", points = T,
                       colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
                                  "darkslategray", "maroon4", "purple4", "darkblue")) {

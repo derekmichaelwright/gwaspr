@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>gg_GWAS_Summary — gg_GWAS_Summary • gwaspr</title>
+<title>gg_Volcano — gg_Volcano • gwaspr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="gg_GWAS_Summary — gg_GWAS_Summary" />
-<meta property="og:description" content="Creates a summary GWAS plot of significant associations." />
+<meta property="og:title" content="gg_Volcano — gg_Volcano" />
+<meta property="og:description" content="Creates a volcano plot." />
 
 
 
@@ -103,28 +103,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>gg_GWAS_Summary</h1>
+    <h1>gg_Volcano</h1>
     
-    <div class="hidden name"><code>gg_GWAS_Summary.Rd</code></div>
+    <div class="hidden name"><code>gg_Volcano.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Creates a summary GWAS plot of significant associations.</p>
+    <p>Creates a volcano plot.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gg_GWAS_Summary</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>gg_Volcano</span><span class='op'>(</span>
   <span class='va'>folder</span>,
-  <span class='va'>traits</span>,
-  <span class='va'>threshold</span>,
-  threshold2 <span class='op'>=</span> <span class='cn'>NULL</span>,
-  models <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GLM"</span>, <span class='st'>"MLM"</span>, <span class='st'>"CMLM"</span>, <span class='st'>"MLMM"</span>, <span class='st'>"SUPER"</span>, <span class='st'>"FarmCPU"</span>, <span class='st'>"Blink"</span><span class='op'>)</span>,
-  colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"darkgreen"</span>, <span class='st'>"darkred"</span>, <span class='st'>"darkorange3"</span>, <span class='st'>"steelblue"</span>, <span class='st'>"darkorchid4"</span>,
-    <span class='st'>"darkgoldenrod2"</span><span class='op'>)</span>,
+  <span class='va'>trait</span>,
+  title <span class='op'>=</span> <span class='va'>trait</span>,
   markers <span class='op'>=</span> <span class='cn'>NULL</span>,
-  hlines <span class='op'>=</span> <span class='cn'>NULL</span>,
-  title <span class='op'>=</span> <span class='cn'>NULL</span>,
-  caption <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Threshold = "</span>, <span class='va'>threshold</span>, <span class='st'>"\nSuggestive = "</span>, <span class='va'>threshold2</span><span class='op'>)</span>,
-  rowread <span class='op'>=</span> <span class='fl'>2000</span>
+  labels <span class='op'>=</span> <span class='va'>markers</span>,
+  models <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GLM"</span>, <span class='st'>"MLM"</span>, <span class='st'>"MLMM"</span>, <span class='st'>"CMLM"</span>, <span class='st'>"SUPER"</span>, <span class='st'>"FarmCPU"</span>, <span class='st'>"Blink"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -135,50 +129,30 @@
       <td><p>Folder containing GWAS results.</p></td>
     </tr>
     <tr>
-      <th>traits</th>
-      <td><p>The traits to read.</p></td>
-    </tr>
-    <tr>
-      <th>threshold</th>
-      <td><p>Significant threshold.</p></td>
-    </tr>
-    <tr>
-      <th>threshold2</th>
-      <td><p>Suggestive threshold.</p></td>
-    </tr>
-    <tr>
-      <th>models</th>
-      <td><p>Models to read.</p></td>
-    </tr>
-    <tr>
-      <th>colors</th>
-      <td><p>Colors for each model.</p></td>
-    </tr>
-    <tr>
-      <th>markers</th>
-      <td><p>Markers to be labelled with a vertical red line.</p></td>
-    </tr>
-    <tr>
-      <th>hlines</th>
-      <td><p>Locations for horizontal lines. e.g., hlines = c(1.5,2.5).</p></td>
+      <th>trait</th>
+      <td><p>The trait to read.</p></td>
     </tr>
     <tr>
       <th>title</th>
       <td><p>A title for the plot.</p></td>
     </tr>
     <tr>
-      <th>caption</th>
-      <td><p>A caption for the plot.</p></td>
+      <th>markers</th>
+      <td><p>Markers to be labelled.</p></td>
     </tr>
     <tr>
-      <th>rowread</th>
-      <td><p>Number of rows to read for each GWAS results file.</p></td>
+      <th>labels</th>
+      <td><p>Labels to be used for markers.</p></td>
+    </tr>
+    <tr>
+      <th>models</th>
+      <td><p>Models to read.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A GWAS summary plot.</p>
+    <p>A volcano plot.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

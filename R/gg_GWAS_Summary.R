@@ -2,82 +2,89 @@
 #'
 #' Creates a summary GWAS plot of significant associations.
 #' @param folder Folder containing GWAS results.
-#' @param trait The trait to read.
-#' @param subtitle A subtitle for the plot.
-#' @param markers Markers to be labelled.
-#' @param labels Labels to be used for markers.
-#' @param lines Logical value of whether or not to include vertical lines with markers.
+#' @param traits The traits to read.
+#' @param threshold Significant threshold.
+#' @param threshold2 Suggestive threshold.
 #' @param models Models to read.
-#' @param colors1 Colors for each chromosome
-#' @param colors2 Colors for each model
-#' @return A manhattan plot.
+#' @param colors Colors for each model.
+#' @param markers Markers to be labelled with a vertical red line.
+#' @param hlines Locations for horizontal lines. e.g., hlines = c(1.5,2.5).
+#' @param title A title for the plot.
+#' @param caption A caption for the plot.
+#' @param rowread Number of rows to read for each GWAS results file.
+#' @return A GWAS summary plot.
 #' @export
 
-#setwd("C:/gitfolder/gwas_tutorial")
-#library(gwaspr)
-#library(tidyverse)
-#folder <- "Results/"
-#files <- list_Results(folder)
-#files <- files[!grepl("GLM", files)]
-#threshold <- 6.7
-#threshold2 <- 5
-#g.range<- 3000000
-#rowread <- 2000
-
-gg_GWAS_Summary <- function(folder, files,
+gg_GWAS_Summary <- function(folder, traits, 
                             threshold, threshold2 = NULL,
-                            markers = NULL, hlines = F,
-                            g.range = 3000000,
-                            rowread = 2000,
-                            plotly = F,
-                            plotly_filename = "GWAS_Summary.html",
-                            caption = paste0("Threshold = ", threshold,
-                                             "\nSuggestive = ", threshold2)) {
+                            models =  c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
+                            colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2"),
+                            markers = NULL, hlines = NULL,
+                            title = NULL,
+                            caption = paste0("Threshold = ", threshold, "\nSuggestive = ", threshold2),
+                            rowread = 2000
+                            ) {
+  #
+  files <- list_Results(folder)
+  files <- files[grepl(paste(models,collapse="|"), files)]
   #
   myP <- NULL
   #
   #i<-files[1]
   for(i in files) {
-    myPi <- list_GWAS_Results(folder = folder, file = i,
+    myPi <- table_GWAS_Results(folder = folder, file = i,
                              threshold = threshold, threshold2 = threshold2)
     if(nrow(myPi)>0) { myP <- bind_rows(myP, myPi) }
   }
   #
-  myModels <- c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink")
-  myColors <- c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2")
   myP <- myP %>% filter(!is.na(SNP)) %>%
     arrange(Chromosome, Position, P.value, Trait) %>%
-    mutate(Model = factor(Model, levels = myModels))
+    mutate(Model = factor(Model, levels = models))
   #
   x1 <- myP %>% filter(`-log10(p)` > threshold)
   x2 <- myP %>% filter(`-log10(p)` < threshold)
   #
   myG <- read.csv(paste0(folder, files[1])) %>% mutate(Trait = myP$Trait[1])
+  #
   mp <- ggplot(x1, aes(x = Position / 100000000, y = Trait)) +
-    geom_blank(data = myG) +
-    #geom_vline(data = myGM, alpha = 0.5, color = "red",
-    #           aes(xintercept = Position / 100000000)) +
+    geom_blank(data = myG)
+  if(!is.null(markers)) {
+    myGM <- myG %>% filter(SNP == markers)
+    mp <- mp + geom_vline(data = myGM, alpha = 0.5, color = "red",
+                          aes(xintercept = Position / 100000000))
+  }
+  if(!is.null(hlines)) {
+    mp <- mp + geom_hline(yintercept = hlines, alpha = 0.7)
+  }
+  mp <- mp +
     geom_point(data = x2,
                size = 1, color = "black", alpha = 0.5,
                aes(shape = Model, fill = Model)) +
     geom_point(size = 2, color = "black", alpha = 0.5,
                aes(shape = Model, fill = Model)) +
-    #geom_hline(yintercept = hlines, alpha = 0.7) +
     facet_grid(. ~ Chromosome, drop = F, scales = "free_x", space = "free_x") +
-    scale_fill_manual(values = myColors) +
+    scale_fill_manual(values = colors) +
     scale_shape_manual(values = c(21:26)) +
     #scale_y_discrete(drop = F) +
     theme_gwaspr(legend.position = "bottom") +
     guides(shape = guide_legend(override.aes = list(size = 4))) +
-    labs(y = NULL, x = "100 Mbp", caption = caption)
+    labs(title = title, y = NULL, x = "100 Mbp", caption = caption)
   #
   mp
-  if(plotly == T) {
-    mpp <- plotly::ggplotly(mp)
-    htmlwidgets::saveWidget(plotly::as_widget(mp),
-                            plotly_filename,
-                            knitrOptions = list(fig.width = 10, fig.height = 10),
-                            selfcontained = T)
-  }
-  mp
 }
+
+#setwd("C:/gitfolder/gwas_tutorial")
+#library(gwaspr)
+#folder <- "Results/"
+#files <- list_Results(folder)
+#files <- files[!grepl("GLM", files)]
+#traits <- unique(gsub("GAPIT.|GLM.|MLM.|CMLM.|MLMM.|SUPER.|FarmCPU.|Blink.|.GWAS.Results.csv", "", files))
+#models <- c("MLM","MLMM","FarmCPU","Blink")
+#threshold <- 6.7
+#threshold2 <- 5
+#markers <- "Lcu.2RBY.Chr6p12212845"
+#title <- NULL
+#hlines <- c(1.5,2.5)
+#rowread <- 2000
+#colors <- c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2")
+#caption = paste0("Threshold = ", threshold, "\nSuggestive = ", threshold2)

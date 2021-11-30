@@ -2,9 +2,11 @@
 % Please edit documentation in R/gg_Marker.R
 \name{gg_Marker}
 \alias{gg_Marker}
-\title{gg_Manh}
+\title{gg_Marker}
 \usage{
 gg_Marker(
+  myG,
+  myY,
   trait,
   marker,
   marker2 = NULL,
@@ -15,11 +17,25 @@ gg_Marker(
 )
 }
 \arguments{
-\item{trait}{.}
+\item{myG}{GWAS genotype object. Note:}
+
+\item{myY}{GWAS phenotype object.}
+
+\item{trait}{Trait to plot.}
+
+\item{marker}{Marker to plot.}
+
+\item{marker2}{Second marker to plot.}
+
+\item{type}{Type of plot to make.}
+
+\item{points}{Logical, whether or not to plot points}
+
+\item{colors}{Color palette.}
 }
 \value{
-Plot.
+Marker plot.
 }
 \description{
-Removes columns without any values.
+Creates a marker plot with myG and myY objects.
 }

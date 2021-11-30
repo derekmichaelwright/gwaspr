@@ -1,18 +1,16 @@
-#' list_GWAS_Results
+#' table_GWAS_Results
 #'
 #' Create a table of significant GWAS results.
 #' @param folder Folder containing GWAS results.
 #' @param file The file to read.
 #' @param threshold Significant threshold.
 #' @param threshold2 Suggestive threshold.
-#' @param g.range Range around peak association.
 #' @param rowread Number of rows to read.
 #' @return A table of significant GWAS results.
 #' @export
 
-list_GWAS_Results <- function(folder, file,
+table_GWAS_Results <- function(folder, file,
                               threshold = 6, threshold2 = NULL,
-                              g.range = 3000000,
                               rowread = 2000) {
   #
   trait <- substr(file, gregexpr("GAPIT.", file)[[1]][1]+6,
