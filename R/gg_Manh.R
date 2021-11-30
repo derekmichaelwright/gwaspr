@@ -14,16 +14,17 @@
 #' @export
 
 gg_Manh <- function(folder = NULL,
-                   trait = NULL,
-                   subtitle = NULL,
-                   markers = NULL,
-                   labels = markers,
-                   lines = F,
-                   facet = T,
-                   models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
-                   colors1 = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
-                              "darkgreen","darkgoldenrod3","darkgreen"),
-                   colors2 = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2")) {
+                    trait = NULL,
+                    subtitle = NULL,
+                    markers = NULL,
+                    labels = markers,
+                    lines = F,
+                    facet = T,
+                    pmax = NULL,
+                    models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
+                    colors1 = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
+                                "darkgreen","darkgoldenrod3","darkgreen"),
+                    colors2 = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2")) {
   #
   fnames <- grep(paste0(trait,".GWAS.Results"), list.files(folder))
   fnames <- list.files(folder)[fnames]
@@ -35,8 +36,8 @@ gg_Manh <- function(folder = NULL,
     if(sum(colnames(xi)=="nobs")>0) { xi <- select(xi, -nobs) }
     xi <- xi %>%
       mutate(Model = mod,
-             negLog10     = -log10(P.value),
-             negLog10_exp = -log10((rank(P.value, ties.method="first")-.5)/nrow(.)))
+             `-log10(p)`     = -log10(P.value),
+             `-log10(p)_exp` = -log10((rank(P.value, ties.method="first")-.5)/nrow(.)))
     xx <- bind_rows(xx, xi)
   }
   xx <- xx %>% filter(Model %in% models) %>%
@@ -44,8 +45,9 @@ gg_Manh <- function(folder = NULL,
     arrange(desc(Model))
   #
   threshold <- -log10(0.05 / nrow(xi))
-  x1 <- xx %>% filter(negLog10 < threshold)
-  x2 <- xx %>% filter(negLog10 > threshold)
+  if(!is.null(pmax)) { xx <- xx %>% mutate(`-log10(p)` = ifelse(`-log10(p)`>10, 10, `-log10(p)`)) }
+  x1 <- xx %>% filter(`-log10(p)` < threshold)
+  x2 <- xx %>% filter(`-log10(p)` > threshold)
   # Man plot
   mp1 <- ggplot(x1, aes(x = Position / 1000000, y = -log10(P.value)))
   if(!is.null(markers) & lines == T) {
@@ -71,7 +73,7 @@ gg_Manh <- function(folder = NULL,
                                    aes(label = Label), size = 2)
     }
     # QQ plot
-    mp2 <- ggplot(x1, aes(y = negLog10, x = negLog10_exp)) +
+    mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
       geom_point(pch = 1, color = colors[1], alpha = 0.8) +
       geom_point(data = x2, pch = 21, color = "black", fill = "darkred", alpha = 0.8) +
       geom_hline(yintercept = threshold) + geom_abline() +
@@ -81,7 +83,6 @@ gg_Manh <- function(folder = NULL,
     # Append and save plots
     mp <- ggpubr::ggarrange(mp1, mp2, ncol = 2, widths = c(4,1))
   } else {
-    colors2 <- c("darkred", "darkorange3", "steelblue", "darkgreen", "darkorchid4", "darkgoldenrod2")
     mp1 <- mp1 +
       geom_hline(yintercept = threshold) +
       geom_point(size = 0.1, aes(color = Model), pch = 1) +
@@ -98,7 +99,7 @@ gg_Manh <- function(folder = NULL,
                                    aes(label = Label), size = 2)
     }
     # QQ plot
-    mp2 <- ggplot(x1, aes(y = negLog10, x = negLog10_exp)) +
+    mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
       geom_point(pch = 1, aes(color = Model)) +
       geom_point(data = x2, aes(color = Model)) +
       geom_hline(yintercept = threshold) + geom_abline() +
