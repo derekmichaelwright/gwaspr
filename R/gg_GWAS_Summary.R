@@ -40,7 +40,7 @@ gg_GWAS_Summary <- function(folder, files,
   for(i in files) {
     myPi <- list_GWAS_Results(folder = folder, file = i,
                              threshold = threshold, threshold2 = threshold2)
-    if(nrow(myP)>0) { myP <- bind_rows(myP, myPi) }
+    if(nrow(myPi)>0) { myP <- bind_rows(myP, myPi) }
   }
   #
   myModels <- c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink")
