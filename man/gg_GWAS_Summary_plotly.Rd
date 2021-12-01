@@ -6,19 +6,19 @@
 \usage{
 gg_GWAS_Summary_plotly(
   mp,
+  filename = "GWAS_Summary.html",
   width = 10,
-  height = 8,
-  filename = "GWAS_Summary.html"
+  height = 8
 )
 }
 \arguments{
 \item{mp}{Plot from gg_GWAS_Summary.}
 
+\item{filename}{Filename for plot.}
+
 \item{width}{Plot width.}
 
 \item{height}{Plot height.}
-
-\item{filename}{Filename for plot.}
 }
 \value{
 A plotly summary GWAS plot.

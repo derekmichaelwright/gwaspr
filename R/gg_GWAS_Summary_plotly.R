@@ -8,11 +8,10 @@
 #' @return A plotly summary GWAS plot.
 #' @export
 
-gg_GWAS_Summary_plotly <- function(mp, width = 10, height = 8,
-                                   filename = "GWAS_Summary.html") {
+gg_GWAS_Summary_plotly <- function(mp, filename = "GWAS_Summary.html", width = 10, height = 8 ) {
   #
   mpp <- plotly::ggplotly(mp)
-  htmlwidgets::saveWidget(plotly::as_widget(mp),
+  htmlwidgets::saveWidget(plotly::as_widget(mpp),
                           filename,
                           knitrOptions = list(fig.width = width, fig.height = height),
                           selfcontained = T)
