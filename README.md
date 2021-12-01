@@ -16,6 +16,10 @@ gwaspr R Package
 devtools::install_github("derekmichaelwright/gwaspr")
 ```
 
+# Dependancies
+
+`tidyverse`, `ggpubr`, `ggrepel`, `ggtext`, `plotly`, `htmlwidgets`
+
 # GWAS Tutorial
 
 <https://dblogr.com/academic/gwas_tutorial>

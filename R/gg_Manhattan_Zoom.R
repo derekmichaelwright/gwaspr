@@ -18,7 +18,7 @@
 gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
                          title = trait,
                          markers = NULL, labels = markers, lines = F,
-                         models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"), 
+                         models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
                          colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
                                     "darkgreen", "darkgoldenrod3","darkgreen")) {
   fnames <- grep(paste0(trait,".GWAS.Results"), list.files(folder))
@@ -43,8 +43,8 @@ gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
   # Man plot
   mp <- ggplot(xx, aes(x = Position / 1000000, y = -log10(P.value)))
   if(!is.null(markers) & lines == T) {
-    mp <- mp + 
-      geom_vline(data = xx %>% filter(SNP %in% markers), 
+    mp <- mp +
+      geom_vline(data = xx %>% filter(SNP %in% markers),
                  aes(xintercept = Position / 1000000), alpha = 0.5)
   }
   if(lines == T) { mp <- mp + geom_line() }
@@ -55,8 +55,9 @@ gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
     facet_grid(Model ~ Chromosome, scales = "free") +
     scale_color_manual(values = colors) +
     theme_gwaspr(legend.position = "none",
-                 axis.text.x = element_text(angle = 90, hjust = 0.5)) +
-    labs(title = trait, y = "-log10(p)", x = "Mbp")
+                 axis.text.x = element_text(angle = 90, hjust = 0.5),
+                 axis.title.y = element_markdown()) +
+    labs(title = trait, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
   if(!is.null(markers)) {
     xx <- xx %>% mutate(Label = ifelse(SNP %in% markers, SNP, NA),
                         Label = plyr::mapvalues(Label, markers, labels))

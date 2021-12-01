@@ -18,11 +18,11 @@
 
 gg_Manhattan <- function(folder, trait, title = trait,
                          markers = NULL, labels = markers,
-                         lines = F, facet = T, qq = T, pmax = NULL, 
+                         lines = F, facet = T, qq = T, pmax = NULL,
                          models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
                          colors1 = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
                                      "darkgreen","darkgoldenrod3","darkgreen"),
-                         colors2 = c("darkgreen", "darkred", "darkorange3", 
+                         colors2 = c("darkgreen", "darkred", "darkorange3",
                                      "steelblue", "darkorchid4", "darkgoldenrod2")) {
   #
   fnames <- grep(paste0(trait,".GWAS.Results"), list.files(folder))
@@ -63,8 +63,9 @@ gg_Manhattan <- function(folder, trait, title = trait,
       scale_x_continuous(breaks = seq(100, 700, by = 100)) +
       scale_color_manual(values = colors) +
       theme_gwaspr(legend.position = "none",
-                   axis.text.x = element_text(angle = 90, hjust = 0.5)) +
-      labs(title = title, y = "-log10(p)", x = "Mbp")
+                   axis.text.x = element_text(angle = 90, hjust = 0.5),
+                   axis.title.y = element_markdown()) +
+      labs(title = title, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
     if(!is.null(markers)) {
       xx <- xx %>% mutate(Label = ifelse(SNP %in% markers, SNP, NA),
                           Label = plyr::mapvalues(Label, markers, labels))
@@ -90,8 +91,9 @@ gg_Manhattan <- function(folder, trait, title = trait,
       facet_grid(. ~ Chromosome, scales = "free") +
       scale_x_continuous(breaks = seq(100, 700, by = 100)) +
       scale_color_manual(values = colors2) +
-      theme_gwaspr(axis.text.x = element_text(angle = 90, hjust = 0.5)) +
-      labs(title = title, y = "-log10(p)", x = "Mbp")
+      theme_gwaspr(axis.text.x = element_text(angle = 90, hjust = 0.5),
+                   axis.title.y = element_markdown()) +
+      labs(title = title, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
     if(!is.null(markers)) {
       xx <- xx %>% mutate(Label = ifelse(SNP %in% markers, SNP, NA),
                           Label = plyr::mapvalues(Label, markers, labels))
