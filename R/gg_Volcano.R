@@ -11,9 +11,8 @@
 #' @export
 
 gg_Volcano <- function(folder, trait, title = trait,
-                   markers = NULL,
-                   labels = markers,
-                   models = c("GLM","MLM","MLMM","CMLM","SUPER","FarmCPU","Blink")) {
+                       markers = NULL, labels = markers,
+                       models = c("GLM","MLM","MLMM","CMLM","SUPER","FarmCPU","Blink")) {
   fnames <- grep(paste0(trait,".GWAS.Results"), list.files(folder))
   fnames <- list.files(folder)[fnames]
   xx <- NULL
@@ -47,5 +46,5 @@ gg_Volcano <- function(folder, trait, title = trait,
     scale_shape_manual(name = "Chr", values = c(1:7)) +
     guides(color = F) +
     theme_gwaspr(axis.title.y = element_markdown()) +
-    labs(title = paste(trait, subtitle, sep = " | "), y = "-log<sub>10</sub>(*p*)")
+    labs(title = title, y = "-log<sub>10</sub>(*p*)")
 }
