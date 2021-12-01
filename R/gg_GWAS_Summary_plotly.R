@@ -10,10 +10,10 @@
 
 gg_GWAS_Summary_plotly <- function(mp, filename = "GWAS_Summary.html", width = 10, height = 8 ) {
   #
-  mpp <- plotly::ggplotly(mp)
-  htmlwidgets::saveWidget(plotly::as_widget(mpp),
-                          filename,
-                          knitrOptions = list(fig.width = width, fig.height = height),
-                          selfcontained = T)
+  mpp <- ggplotly(mp)
+  saveWidget(as_widget(mpp),
+             filename,
+             knitrOptions = list(fig.width = width, fig.height = height),
+             selfcontained = T)
   mpp
 }
