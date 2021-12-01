@@ -61,7 +61,7 @@ gg_Manhattan <- function(folder, trait, title = trait,
       geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = "darkred", alpha = 0.8) +
       facet_grid(Model ~ Chromosome, scales = "free") +
       scale_x_continuous(breaks = seq(100, 700, by = 100)) +
-      scale_color_manual(values = colors) +
+      scale_color_manual(values = colors1) +
       theme_gwaspr(legend.position = "none",
                    axis.text.x = element_text(angle = 90, hjust = 0.5),
                    axis.title.y = element_markdown()) +
