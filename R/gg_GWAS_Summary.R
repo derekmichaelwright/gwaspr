@@ -26,6 +26,7 @@ gg_GWAS_Summary <- function(folder, traits,
                             ) {
   #
   files <- list_Result_Files(folder)
+  files <- files[grepl(paste(traits,collapse="|"), files)]
   files <- files[grepl(paste(models,collapse="|"), files)]
   #
   myP <- NULL
