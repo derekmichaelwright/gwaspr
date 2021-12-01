@@ -74,7 +74,7 @@ gg_Manhattan <- function(folder, trait, title = trait,
     }
     # QQ plot
     mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
-      geom_point(pch = 1, color = colors[1], alpha = 0.8) +
+      geom_point(pch = 1, color = colors1[1], alpha = 0.8) +
       geom_point(data = x2, pch = 21, color = "black", fill = "darkred", alpha = 0.8) +
       geom_hline(yintercept = threshold) + geom_abline() +
       facet_grid(Model ~ "QQ", scales = "free_y") +
