@@ -46,7 +46,9 @@ gg_GWAS_Summary <- function(folder, traits,
   x1 <- myP %>% filter(`-log10(p)` > threshold)
   x2 <- myP %>% filter(`-log10(p)` < threshold)
   #
-  myG <- read.csv(paste0(folder, files[1])) %>% mutate(Trait = myP$Trait[1])
+  myG <- read.csv(paste0(folder, files[1])) %>%
+    mutate(Trait = myP$Trait[1],
+           Trait = factor(Trait, levels = traits))
   #
   mp <- ggplot(x1, aes(x = Position / 100000000, y = Trait)) +
     geom_blank(data = myG)
