@@ -53,7 +53,7 @@ gg_GWAS_Summary <- function(folder, traits,
   mp <- ggplot(x1, aes(x = Position / 100000000, y = Trait)) +
     geom_blank(data = myG)
   if(!is.null(markers)) {
-    myGM <- myG %>% filter(SNP == markers)
+    myGM <- myG %>% filter(SNP %in% markers)
     mp <- mp + geom_vline(data = myGM, alpha = 0.5, color = "red",
                           aes(xintercept = Position / 100000000))
   }
