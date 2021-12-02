@@ -41,14 +41,14 @@ gg_GWAS_Summary <- function(folder, traits,
   myP <- myP %>% filter(!is.na(SNP)) %>%
     arrange(Chromosome, Position, P.value, Trait) %>%
     mutate(Model = factor(Model, levels = models),
-           Trait = factor(Trait, levels = traits))
+           Trait = factor(Trait, levels = rev(traits)))
   #
   x1 <- myP %>% filter(`-log10(p)` > threshold)
   x2 <- myP %>% filter(`-log10(p)` < threshold)
   #
   myG <- read.csv(paste0(folder, files[1])) %>%
     mutate(Trait = myP$Trait[1],
-           Trait = factor(Trait, levels = traits))
+           Trait = factor(Trait, levels = rev(traits)))
   #
   mp <- ggplot(x1, aes(x = Position / 100000000, y = Trait)) +
     geom_blank(data = myG)
@@ -69,7 +69,7 @@ gg_GWAS_Summary <- function(folder, traits,
     facet_grid(. ~ Chromosome, drop = F, scales = "free_x", space = "free_x") +
     scale_fill_manual(values = colors) +
     scale_shape_manual(values = c(21:26)) +
-    scale_y_discrete(drop = F, limits = rev) +
+    scale_y_discrete(drop = F) +
     theme_gwaspr(legend.position = "bottom") +
     guides(shape = guide_legend(override.aes = list(size = 4))) +
     labs(title = title, y = NULL, x = "100 Mbp", caption = caption)
