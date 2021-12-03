@@ -24,12 +24,11 @@ table_GWAS_Results <- function(folder, file,
   if(sum(colnames(output)=="nobs")>0) { output <- select(output, -nobs) }
   #
   if(!is.null(threshold2)) {
-    output <- output %>% filter(-log10(P.value) >= threshold2)
-  } else{ output <- output %>% filter(-log10(P.value) > threshold) }
+    output <- output %>% filter(`-log10(p)` >= threshold2)
+  } else{ output <- output %>% filter(`-log10(p)` > threshold) }
   #
   output <- output %>%
-    mutate(`-log10(p)` = -log10(P.value),
-           Model = model,
+    mutate(Model = model,
            Trait = trait,
            Threshold = ifelse(`-log10(p)` < threshold, "Suggestive", "Significant"))
   output

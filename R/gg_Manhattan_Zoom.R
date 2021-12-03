@@ -41,7 +41,7 @@ gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
   x1 <- xx %>% filter(negLog10 < threshold)
   x2 <- xx %>% filter(negLog10 > threshold)
   # Man plot
-  mp <- ggplot(xx, aes(x = Position / 1000000, y = -log10(P.value)))
+  mp <- ggplot(xx, aes(x = Position / 1000000, y = `-log10(p)`))
   if(!is.null(markers) & lines == T) {
     mp <- mp +
       geom_vline(data = xx %>% filter(SNP %in% markers),

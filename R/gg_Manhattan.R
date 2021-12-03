@@ -44,11 +44,13 @@ gg_Manhattan <- function(folder, trait, title = trait,
     arrange(desc(Model))
   #
   threshold <- -log10(0.05 / nrow(xi))
-  if(!is.null(pmax)) { xx <- xx %>% mutate(`-log10(p)` = ifelse(`-log10(p)`>10, 10, `-log10(p)`)) }
+  if(!is.null(pmax)) {
+    xx <- xx %>% mutate(`-log10(p)` = ifelse(`-log10(p)` > pmax, pmax, `-log10(p)`))
+  }
   x1 <- xx %>% filter(`-log10(p)` < threshold)
   x2 <- xx %>% filter(`-log10(p)` > threshold)
   # Man plot
-  mp1 <- ggplot(x1, aes(x = Position / 1000000, y = -log10(P.value)))
+  mp1 <- ggplot(x1, aes(x = Position / 1000000, y = `-log10(p)`))
   if(!is.null(markers) & lines == T) {
     mp1 <- mp1 +
       geom_vline(data = xx %>% filter(SNP %in% markers),

@@ -23,9 +23,9 @@ gg_Volcano <- function(folder, trait, title = trait,
     if(sum(colnames(xi)=="nobs")>0) { xi <- select(xi, -nobs) }
     xi <- xi %>%
       mutate(Model = mod,
-             negLog10     = -log10(P.value),
-             negLog10_exp = -log10((rank(P.value, ties.method="first")-.5)/nrow(.)),
-             Sig = ifelse(negLog10 > -log10(0.05/nrow(.)), "Significant", "Non-Significant"))
+             `-log10(p)`     = -log10(P.value),
+             `-log10(p)_exp` = -log10((rank(P.value, ties.method="first")-.5)/nrow(.)),
+             Sig = ifelse(`-log10(p)` > -log10(0.05/nrow(.)), "Significant", "Non-Significant"))
     xx <- bind_rows(xx, xi)
   }
   xx <- xx %>% filter(Model %in% models) %>%
@@ -35,7 +35,7 @@ gg_Volcano <- function(folder, trait, title = trait,
     mutate(SNP = plyr::mapvalues(SNP, markers, labels))
   threshold <- -log10(0.05/nrow(xi))
   # Volcano plot
-  ggplot(xx, aes(x = effect, y = -log10(P.value))) +
+  ggplot(xx, aes(x = effect, y = `-log10(p)`)) +
     geom_hline(yintercept = threshold) +
     geom_point(aes(color = Sig, shape = factor(Chromosome))) +
     geom_point(data = xm, aes(shape = factor(Chromosome)), color = "darkred") +
