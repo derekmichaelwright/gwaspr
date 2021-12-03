@@ -18,11 +18,12 @@ devtools::install_github("derekmichaelwright/gwaspr")
 
 # Dependancies
 
-`tidyverse`, `ggpubr`, `ggrepel`, `ggtext`, `plotly`, `htmlwidgets`
+`tidyverse`, `ggpubr`, `ggbeeswarm`, `ggrepel`, `ggtext`, `plotly`,
+`htmlwidgets`
 
 # GWAS Tutorial
 
-<https://dblogr.com/academic/gwas_tutorial>
+<https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html>
 
 ------------------------------------------------------------------------
 
