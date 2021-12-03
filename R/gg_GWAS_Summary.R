@@ -15,7 +15,7 @@
 #' @return A GWAS summary plot.
 #' @export
 
-gg_GWAS_Summary <- function(folder, traits,
+gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
                             threshold, threshold2 = NULL,
                             models =  c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
                             colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2"),

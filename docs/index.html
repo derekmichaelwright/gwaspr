@@ -22,7 +22,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
     
     <a class="navbar-brand me-2" href="index.html">gwaspr</a>
 
@@ -62,7 +62,9 @@
 <h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h1>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"derekmichaelwright/gwaspr"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"derekmichaelwright/gwaspr"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://derekmichaelwright.github.io/gwaspr">gwaspr</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="dependancies">Dependancies<a class="anchor" aria-label="anchor" href="#dependancies"></a>
@@ -73,6 +75,27 @@
 <h1 id="gwas-tutorial">GWAS Tutorial<a class="anchor" aria-label="anchor" href="#gwas-tutorial"></a>
 </h1>
 <p><a href="https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html" class="external-link uri">https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html</a></p>
+</div>
+<div class="section level1">
+<h1 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h1>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">myTraits</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_Traits.html">list_Traits</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"Results/"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">myResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_Result_Files.html">list_Result_Files</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"Results/"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_GWAS_Summary.html">gg_GWAS_Summary</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"Results/"</span>, traits <span class="op">=</span> <span class="va">myTraits</span><span class="op">)</span>
+<span class="fu">ggsave</span><span class="op">(</span><span class="st">"GWAS_Summary.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">myTraits</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"Results/"</span>, trait <span class="op">=</span> <span class="va">myTraits</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, facet <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
+  <span class="fu">ggsave</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Multi_"</span>,<span class="va">i</span>,<span class="st">".png"</span><span class="op">)</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">6</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">myTraits</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"Results/"</span>, trait <span class="op">=</span> <span class="va">myTraits</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, facet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+  <span class="fu">ggsave</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Facet_"</span>,<span class="va">i</span>,<span class="st">".png"</span><span class="op">)</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
 <hr>
 <p>© Derek Michael Wright <a href="https://dblogr.com/" class="external-link">www.dblogr.com/</a></p>
 </div>
