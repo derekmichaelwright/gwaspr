@@ -1,14 +1,8 @@
 gwaspr R Package
 ================
 
-<img src="hex_gwaspr.png" align="right" width = "200px" />
-
-`gwaspr`: an `R` package for plotting GWAS results from `GAPIT` package
-
-`GAPIT`: and `R` package for performing Genome Wide Association Studies
-(GWAS)
-
-<https://github.com/jiabowang/GAPIT3>
+`gwaspr`: an `R` package for plotting GWAS results from the `GAPIT`
+package
 
 # Installation
 
@@ -20,16 +14,18 @@ devtools::install_github("derekmichaelwright/gwaspr")
 library(gwaspr)
 ```
 
-# Dependancies
-
-`tidyverse`, `ggpubr`, `ggbeeswarm`, `ggrepel`, `ggtext`, `plotly`,
-`htmlwidgets`
+![](man/figures/hex_gwaspr.png)
 
 # GWAS Tutorial
 
-<https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html>
+<a href="https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html">
+<button class="btn btn-success"><i class="far fa-file-code"></i> https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html</button>
+</a>
 
 # Usage
+
+For best practice, output from GAPIT should be in its own folder. In
+this case, they are located in a folder called `Results/`.
 
 ``` r
 myTraits <- list_Traits(folder = "Results/")
@@ -57,6 +53,18 @@ for(i in myTraits) {
   ggsave(paste0("Facet_",i,".png"), mp, width = 12, height = 12)
 }
 ```
+
+# GAPIT
+
+`GAPIT`: and `R` package for performing Genome Wide Association Studies
+(GWAS)
+
+<https://github.com/jiabowang/GAPIT3>
+
+# Dependancies
+
+`tidyverse`, `ggpubr`, `ggbeeswarm`, `ggrepel`, `ggtext`, `plotly`,
+`htmlwidgets`
 
 ------------------------------------------------------------------------
 
