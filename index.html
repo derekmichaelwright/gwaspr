@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">gwaspr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,10 +53,7 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="gwaspr-r-package">gwaspr R Package<a class="anchor" aria-label="anchor" href="#gwaspr-r-package"></a>
 </h1></div>
-<p><img src="hex_gwaspr.png" align="right" width="200px"></p>
-<p><code>gwaspr</code>: an <code>R</code> package for plotting GWAS results from <code>GAPIT</code> package</p>
-<p><code>GAPIT</code>: and <code>R</code> package for performing Genome Wide Association Studies (GWAS)</p>
-<p><a href="https://github.com/jiabowang/GAPIT3" class="external-link uri">https://github.com/jiabowang/GAPIT3</a></p>
+<p><code>gwaspr</code>: an <code>R</code> package for plotting GWAS results from the <code>GAPIT</code> package</p>
 </div>
 <div class="section level1">
 <h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -65,20 +62,17 @@
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"derekmichaelwright/gwaspr"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://derekmichaelwright.github.io/gwaspr">gwaspr</a></span><span class="op">)</span></code></pre></div>
-</div>
-<div class="section level1">
-<h1 id="dependancies">Dependancies<a class="anchor" aria-label="anchor" href="#dependancies"></a>
-</h1>
-<p><code>tidyverse</code>, <code>ggpubr</code>, <code>ggbeeswarm</code>, <code>ggrepel</code>, <code>ggtext</code>, <code>plotly</code>, <code>htmlwidgets</code></p>
+<p><img src="reference/figures/hex_gwaspr.png"></p>
 </div>
 <div class="section level1">
 <h1 id="gwas-tutorial">GWAS Tutorial<a class="anchor" aria-label="anchor" href="#gwas-tutorial"></a>
 </h1>
-<p><a href="https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html" class="external-link uri">https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html</a></p>
+<p><a href="https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html" class="external-link"> <button class="btn btn-success"><i class="far fa-file-code"></i> <a href="https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html" class="external-link uri">https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html</a></button> </a></p>
 </div>
 <div class="section level1">
 <h1 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h1>
+<p>For best practice, output from GAPIT should be in its own folder. In this case, they are located in a folder called <code>Results/</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">myTraits</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_Traits.html">list_Traits</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"Results/"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -96,6 +90,17 @@
   <span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"Results/"</span>, trait <span class="op">=</span> <span class="va">myTraits</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, facet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
   <span class="fu">ggsave</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Facet_"</span>,<span class="va">i</span>,<span class="st">".png"</span><span class="op">)</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
+</div>
+<div class="section level1">
+<h1 id="gapit">GAPIT<a class="anchor" aria-label="anchor" href="#gapit"></a>
+</h1>
+<p><code>GAPIT</code>: and <code>R</code> package for performing Genome Wide Association Studies (GWAS)</p>
+<p><a href="https://github.com/jiabowang/GAPIT3" class="external-link uri">https://github.com/jiabowang/GAPIT3</a></p>
+</div>
+<div class="section level1">
+<h1 id="dependancies">Dependancies<a class="anchor" aria-label="anchor" href="#dependancies"></a>
+</h1>
+<p><code>tidyverse</code>, <code>ggpubr</code>, <code>ggbeeswarm</code>, <code>ggrepel</code>, <code>ggtext</code>, <code>plotly</code>, <code>htmlwidgets</code></p>
 <hr>
 <p>© Derek Michael Wright <a href="https://dblogr.com/" class="external-link">www.dblogr.com/</a></p>
 </div>
@@ -118,7 +123,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Derek Wright <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/YOUR-ORCID-ID" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Derek Wright <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
 
