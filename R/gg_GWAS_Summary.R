@@ -72,6 +72,7 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
     facet_grid(. ~ Chromosome, drop = F, scales = "free_x", space = "free_x") +
     scale_fill_manual(values = colors) +
     scale_shape_manual(values = c(21:26)) +
+    scale_x_continuous(breaks = 0:20) +
     scale_y_discrete(drop = F) +
     theme_gwaspr(legend.position = "bottom") +
     guides(shape = guide_legend(override.aes = list(size = 4))) +
