@@ -7,8 +7,8 @@
 gg_GWAS_Summary(
   folder = NULL,
   traits = list_Traits(),
-  threshold,
-  threshold2 = NULL,
+  threshold = -log10(5e-08),
+  threshold2 = -log10(5e-06),
   models = c("GLM", "MLM", "CMLM", "MLMM", "SUPER", "FarmCPU", "Blink"),
   colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
     "darkgoldenrod2"),

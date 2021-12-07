@@ -25,34 +25,62 @@ library(gwaspr)
 # Usage
 
 For best practice, output from GAPIT should be in its own folder. In
-this case, they are located in a folder called `Results/`.
+this case, they are located in a folder called `GWAS_Results/`.
 
 ``` r
-myTraits <- list_Traits(folder = "Results/")
+myTraits <- list_Traits(folder = "GWAS_Results/")
+myTraits
 ```
 
-``` r
-myResults <- list_Result_Files(folder = "Results/")
-```
+    ## [1] "DTF_Nepal_2017" "Testa_Pattern"
 
 ``` r
-mp <- gg_GWAS_Summary(folder = "Results/", traits = myTraits)
-ggsave("GWAS_Summary.png", mp, width = 12, height = 6)
+myResults <- list_Result_Files(folder = "GWAS_Results/")
+myResults
 ```
+
+    ## [1] "GAPIT.Blink.DTF_Nepal_2017.GWAS.Results.csv"  
+    ## [2] "GAPIT.Blink.Testa_Pattern.GWAS.Results.csv"   
+    ## [3] "GAPIT.FarmCPU.DTF_Nepal_2017.GWAS.Results.csv"
+    ## [4] "GAPIT.FarmCPU.Testa_Pattern.GWAS.Results.csv" 
+    ## [5] "GAPIT.MLM.DTF_Nepal_2017.GWAS.Results.csv"    
+    ## [6] "GAPIT.MLM.Testa_Pattern.GWAS.Results.csv"     
+    ## [7] "GAPIT.MLMM.DTF_Nepal_2017.GWAS.Results.csv"   
+    ## [8] "GAPIT.MLMM.Testa_Pattern.GWAS.Results.csv"
+
+## Summary Plot
+
+``` r
+mp <- gg_GWAS_Summary(folder = "GWAS_Results/", traits = myTraits,
+                      threshold = 7.3, threshold2 = 6.7)
+ggsave("man/figures/GWAS_Summary.png", mp, width = 10, height = 2)
+```
+
+![](man/figures/GWAS_Summary.png)
+
+## Manhattan Plots
 
 ``` r
 for(i in myTraits) {
-  mp <- gg_Manhattan(folder = "Results/", trait = i, facet = F)
-  ggsave(paste0("Multi_",i,".png"), mp, width = 10, height = 4)
+  mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = F)
+  ggsave(paste0("man/figures/Multi_",i,".png"), mp, width = 10, height = 4)
 }
 ```
 
+![](man/figures/Multi_DTF_Nepal_2017.png)
+
+![](man/figures/Multi_Testa_Pattern.png)
+
 ``` r
 for(i in myTraits) {
-  mp <- gg_Manhattan(folder = "Results/", trait = i, facet = T)
-  ggsave(paste0("Facet_",i,".png"), mp, width = 10, height = 8)
+  mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = T)
+  ggsave(paste0("man/figures/Facet_",i,".png"), mp, width = 10, height = 8)
 }
 ```
+
+![](man/figures/Facet_DTF_Nepal_2017.png)
+
+![](man/figures/Facet_Testa_Pattern.png)
 
 # GAPIT
 

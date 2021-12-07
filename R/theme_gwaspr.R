@@ -8,7 +8,6 @@
 #' @param lineColor color of axis lines
 #' @return ggplot with gwaspr theme
 #' @export
-#' @examples
 
 theme_gwaspr <- function(x, bgFill = "grey95", lineColor = "white", linesize = 0.75, stripFill = "white", ...) {
   theme(panel.background = element_rect(colour = "black", fill = bgFill, size = linesize),

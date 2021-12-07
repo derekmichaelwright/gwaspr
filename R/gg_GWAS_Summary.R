@@ -16,7 +16,8 @@
 #' @export
 
 gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
-                            threshold, threshold2 = NULL,
+                            threshold = -log10(0.00000005),
+                            threshold2 = -log10(0.000005),
                             models =  c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
                             colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2"),
                             markers = NULL, hlines = NULL,
@@ -47,7 +48,9 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
   x2 <- myP %>% filter(`-log10(p)` < threshold)
   #
   myG <- read.csv(paste0(folder, files[1])) %>%
-    mutate(Trait = myP$Trait[1],
+    mutate(Model = myP$Model[1],
+           Model = factor(Model, levels = models),
+           Trait = myP$Trait[1],
            Trait = factor(Trait, levels = rev(traits)))
   #
   mp <- ggplot(x1, aes(x = Position / 100000000, y = Trait)) +
@@ -80,9 +83,9 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
 #setwd("C:/gitfolder/gwas_tutorial")
 #library(gwaspr)
 #folder <- "Results/"
-#files <- list_Results(folder)
+#files <- list_Result_Files(folder)
 #files <- files[!grepl("GLM", files)]
-#traits <- unique(gsub("GAPIT.|GLM.|MLM.|CMLM.|MLMM.|SUPER.|FarmCPU.|Blink.|.GWAS.Results.csv", "", files))
+#traits <- unique(gsub("GAPIT.|GLM.|MLM.|CMLM.|MLMM.|SUPER.|FarmCPU.|Blink.|.GWAS.Results.csv", "", files))[c(1,3)]
 #models <- c("MLM","MLMM","FarmCPU","Blink")
 #threshold <- 6.7
 #threshold2 <- 5
@@ -92,3 +95,11 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
 #rowread <- 2000
 #colors <- c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2")
 #caption = paste0("Threshold = ", threshold, "\nSuggestive = ", threshold2)
+
+
+#setwd("C:/gitfolder/gwaspr")
+#library(gwaspr)
+#folder = "GWAS_Results/"
+#traits = c("DTF_Nepal_2017", "Testa_Pattern")
+#threshold = 7.3
+#threshold2 = 6.7
