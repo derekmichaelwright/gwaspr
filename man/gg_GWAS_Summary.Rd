@@ -5,8 +5,8 @@
 \title{gg_GWAS_Summary}
 \usage{
 gg_GWAS_Summary(
-  folder,
-  traits,
+  folder = NULL,
+  traits = list_Traits(),
   threshold,
   threshold2 = NULL,
   models = c("GLM", "MLM", "CMLM", "MLMM", "SUPER", "FarmCPU", "Blink"),

@@ -8,6 +8,8 @@ gg_Manhattan(
   folder,
   trait,
   title = trait,
+  threshold = NULL,
+  threshold2 = NULL,
   markers = NULL,
   labels = markers,
   lines = F,

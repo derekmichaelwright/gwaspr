@@ -42,15 +42,15 @@ ggsave("GWAS_Summary.png", mp, width = 12, height = 6)
 
 ``` r
 for(i in myTraits) {
-  mp <- gg_Manhattan(folder = "Results/", trait = myTraits[i], facet = F)
-  ggsave(paste0("Multi_",i,".png"), mp, width = 12, height = 6)
+  mp <- gg_Manhattan(folder = "Results/", trait = i, facet = F)
+  ggsave(paste0("Multi_",i,".png"), mp, width = 10, height = 4)
 }
 ```
 
 ``` r
 for(i in myTraits) {
-  mp <- gg_Manhattan(folder = "Results/", trait = myTraits[i], facet = T)
-  ggsave(paste0("Facet_",i,".png"), mp, width = 12, height = 12)
+  mp <- gg_Manhattan(folder = "Results/", trait = i, facet = T)
+  ggsave(paste0("Facet_",i,".png"), mp, width = 10, height = 8)
 }
 ```
 
