@@ -66,7 +66,7 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
       scale_x_continuous(breaks = seq(0, 2000, by = 100)) +
       scale_color_manual(values = colors1) +
       theme_gwaspr(legend.position = "none",
-                   axis.text.x = element_text(angle = 90, hjust = 0.5),
+                   axis.text.x = element_text(angle = 90, hjust = 0.5, vjust = 0.5),
                    axis.title.y = element_markdown()) +
       labs(title = title, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
     if(!is.null(markers)) {
@@ -97,7 +97,7 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
       facet_grid(. ~ Chromosome, scales = "free", space = "free") +
       scale_x_continuous(breaks = seq(0, 2000, by = 100)) +
       scale_color_manual(values = colors2) +
-      theme_gwaspr(axis.text.x = element_text(angle = 90, hjust = 0.5),
+      theme_gwaspr(axis.text.x = element_text(angle = 90, hjust = 0.5, vjust = 0.5),
                    axis.title.y = element_markdown()) +
       labs(title = title, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
     if(!is.null(markers)) {
