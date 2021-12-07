@@ -25,7 +25,17 @@ library(gwaspr)
 # Usage
 
 For best practice, output from GAPIT should be in its own folder. In
-this case, they are located in a folder called `GWAS_Results/`.
+this case, they are located in a folder called `GWAS_Results/`. For this
+example we will plot GWAS results from two traits in a lentil diversity
+panel:
+
+-   **Testa\_Pattern**: a *qualitative* trait describing the presence or
+    absence of seed coat pigmentation.
+-   **DTF\_Nepal\_2017**: a *quantitative* trait describing days from
+    sowing to flowering in a 2017 Nepal field trial.
+
+Note: for more info check out this (GWAS
+tutorial)\[<https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html>"\].
 
 ``` r
 myTraits <- list_Traits(folder = "GWAS_Results/")
