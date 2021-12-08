@@ -68,7 +68,8 @@ ggsave("man/figures/GWAS_Summary.png", mp, width = 10, height = 2)
 
 ```{r eval = T}
 for(i in myTraits) {
-  mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = F)
+  mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = F,
+                     threshold = 7.3, threshold2 = 6.7)
   ggsave(paste0("man/figures/Multi_",i,".png"), mp, width = 10, height = 4)
 }
 ```
@@ -79,7 +80,8 @@ for(i in myTraits) {
 
 ```{r eval = T}
 for(i in myTraits) {
-  mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = T)
+  mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = T,
+                     threshold = 7.3, threshold2 = 6.7)
   ggsave(paste0("man/figures/Facet_",i,".png"), mp, width = 10, height = 8)
 }
 ```

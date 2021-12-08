@@ -16,7 +16,7 @@ gg_Manhattan(
   facet = T,
   qq = T,
   pmax = NULL,
-  models = c("GLM", "MLM", "CMLM", "MLMM", "SUPER", "FarmCPU", "Blink"),
+  models = c("MLM", "MLMM", "FarmCPU", "Blink", "GLM"),
   colors1 = c("darkgreen", "darkgoldenrod3", "darkgreen", "darkgoldenrod3",
     "darkgreen", "darkgoldenrod3", "darkgreen"),
   colors2 = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",

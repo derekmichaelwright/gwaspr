@@ -19,7 +19,7 @@
 gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, threshold2 = NULL,
                          markers = NULL, labels = markers,
                          lines = F, facet = T, qq = T, pmax = NULL,
-                         models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
+                         models = c("MLM","MLMM","FarmCPU","Blink","GLM"),
                          colors1 = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
                                      "darkgreen","darkgoldenrod3","darkgreen"),
                          colors2 = c("darkgreen", "darkred", "darkorange3",
@@ -58,10 +58,10 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
   }
   if(facet == T) {
     mp1 <- mp1 +
-      geom_hline(yintercept = threshold, color = "red") +
-      geom_hline(yintercept = threshold2, color = "blue") +
-      geom_point(aes(color = factor(Chromosome)), pch = 1) +
-      geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = "darkred") +
+      geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
+      geom_hline(yintercept = threshold2, color = "blue", alpha = 0.8, size = 0.5) +
+      geom_point(aes(color = factor(Chromosome)), pch = 1, size = 1) +
+      geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = "darkred", alpha = 0.8) +
       facet_grid(Model ~ Chromosome, scales = "free", space = "free_x") +
       scale_color_manual(values = colors1) +
       scale_x_continuous(breaks = 0:20) +
@@ -76,8 +76,8 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
     }
     # QQ plot
     mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
-      geom_hline(yintercept = threshold, color = "red") +
-      geom_hline(yintercept = threshold2, color = "blue") +
+      geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
+      geom_hline(yintercept = threshold2, color = "blue", alpha = 0.8, size = 0.5) +
       geom_point(pch = 1, color = colors1[1], alpha = 0.8) +
       geom_point(data = x2, pch = 21, color = "black", fill = "darkred", alpha = 0.8) +
       geom_abline() +
@@ -89,10 +89,10 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
     } else { mp <- mp1 }
   } else {
     mp1 <- mp1 +
-      geom_hline(yintercept = threshold, color = "red") +
-      geom_hline(yintercept = threshold2, color = "blue") +
+      geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
+      geom_hline(yintercept = threshold2, color = "blue", alpha = 0.8, size = 0.5) +
       geom_point(size = 0.1, aes(color = Model), pch = 1) +
-      geom_point(data = x2, aes(color = Model), alpha = 0.8) +
+      geom_point(data = x2, aes(color = Model), size = 1.25, alpha = 0.8) +
       facet_grid(. ~ Chromosome, scales = "free", space = "free_x") +
       scale_color_manual(values = colors2) +
       theme_gwaspr(axis.title.y = element_markdown()) +
@@ -105,8 +105,8 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
     }
     # QQ plot
     mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
-      geom_hline(yintercept = threshold, color = "red") +
-      geom_hline(yintercept = threshold2, color = "blue") +
+      geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
+      geom_hline(yintercept = threshold2, color = "blue", alpha = 0.8, size = 0.5) +
       geom_point(pch = 1, aes(color = Model)) +
       geom_point(data = x2, aes(color = Model)) +
       geom_abline() +
