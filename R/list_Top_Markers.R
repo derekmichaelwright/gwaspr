@@ -10,7 +10,7 @@
 
 list_Top_Markers <- function(x, chroms = 1:7, n = 1, threshold = NULL) {
   #
-  threshold <- -log10(0.05 / (nrow(x)) )
+  #threshold <- -log10(0.05 / (nrow(x)) )
   #
   x <- x %>% filter(Chromosome %in% chroms) %>%
     group_by(Chromosome) %>%
