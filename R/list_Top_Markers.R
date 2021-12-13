@@ -18,7 +18,7 @@ list_Top_Markers <- function(x, chroms = 1:7, n = 1, threshold = NULL) {
     mutate(`-log10(p)` = round(-log10(P.value),2)) %>%
     arrange(Chromosome, rev(`-log10(p)`)) %>%
     as.data.frame() %>%
-    select(SNP, CHR=Chromosome, POS=Position, NegLog10)
+    select(SNP, CHR=Chromosome, POS=Position, `-log10(p)`)
   #
   if(!is.null(threshold)) { x <- x %>% filter(`-log10(p)` > threshold) }
   #
