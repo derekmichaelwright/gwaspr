@@ -44,6 +44,7 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
     arrange(Chromosome, Position, P.value, Trait) %>%
     mutate(Model = factor(Model, levels = models),
            Trait = factor(Trait, levels = rev(traits))) %>%
+    filter(!is.na(Trait)) %>%
     arrange(desc(Model))
   #
   x1 <- myP %>% filter(`-log10(p)` > threshold)
