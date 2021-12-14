@@ -54,7 +54,7 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
     mutate(Trait = myP$Trait[1],
            Trait = factor(Trait, levels = rev(traits)))
   #
-  mp <- ggplot(x1, aes(x = Position / 100000000, y = Trait)) +
+  mp <- ggplot(x1, aes(x = Position / 100000000, y = Trait, key1 = Chromosome, key2 = Position, key3 = P.value)) +
     geom_blank(data = myG)
   if(!is.null(markers)) {
     myGM <- myG %>% filter(SNP %in% markers)
