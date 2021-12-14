@@ -20,8 +20,8 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
                             threshold2 = -log10(0.000005),
                             models =  c("MLM","MLMM","FarmCPU","Blink","GLM"),
                             colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkgoldenrod2"),
-                            shapes = 21:25,
-                            markers = NULL, hlines = NULL,
+                            shapes = 21:25, hlines = NULL,
+                            markers = NULL, markers2 = NULL, markers3 = NULL,
                             title = NULL,
                             caption = paste0("Threshold = ", threshold, "\nSuggestive = ", threshold2),
                             rowread = 2000
@@ -60,14 +60,24 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
     mp <- mp + geom_vline(data = myGM, alpha = 0.5, color = "red",
                           aes(xintercept = Position / 100000000))
   }
+  if(!is.null(markers2)) {
+    myGM <- myG %>% filter(SNP %in% markers2)
+    mp <- mp + geom_vline(data = myGM, alpha = 0.5, color = "blue",
+                          aes(xintercept = Position / 100000000))
+  }
+  if(!is.null(markers3)) {
+    myGM <- myG %>% filter(SNP %in% markers3)
+    mp <- mp + geom_vline(data = myGM, alpha = 0.5, color = "green",
+                          aes(xintercept = Position / 100000000))
+  }
   if(!is.null(hlines)) {
     mp <- mp + geom_hline(yintercept = hlines, alpha = 0.7)
   }
   mp <- mp +
     geom_point(data = x2,
-               size = 1, color = "black", alpha = 0.5,
+               size = 0.75, color = "black", alpha = 0.5,
                aes(shape = Model, fill = Model)) +
-    geom_point(size = 2, color = "black", alpha = 0.5,
+    geom_point(size = 2.25, color = "black", alpha = 0.5,
                aes(shape = Model, fill = Model)) +
     facet_grid(. ~ Chromosome, drop = F, scales = "free_x", space = "free_x") +
     scale_fill_manual(values = colors, breaks = models) +
