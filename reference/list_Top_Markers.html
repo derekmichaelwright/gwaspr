@@ -42,13 +42,22 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">list_Top_Markers</span><span class="op">(</span><span class="va">x</span>, chroms <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, n <span class="op">=</span> <span class="fl">1</span>, threshold_filter <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">list_Top_Markers</span><span class="op">(</span>
+  <span class="va">trait</span>,
+  <span class="va">method</span>,
+  chroms <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">7</span>,
+  n <span class="op">=</span> <span class="fl">1</span>,
+  threshold <span class="op">=</span> <span class="cn">NULL</span>,
+  folder <span class="op">=</span> <span class="cn">NULL</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>x</dt>
-<dd><p>data.</p></dd>
+    <dl><dt>trait</dt>
+<dd><p>GWAS trait.</p></dd>
+<dt>method</dt>
+<dd><p>GWAS method.</p></dd>
 <dt>chroms</dt>
 <dd><p>Chromosomes to include.</p></dd>
 <dt>n</dt>
