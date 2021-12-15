@@ -34,8 +34,8 @@ panel:
 -   **DTF\_Nepal\_2017**: a *quantitative* trait describing days from
     sowing to flowering in a 2017 Nepal field trial.
 
-Note: for more info check out this (GWAS
-tutorial)\[<https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html>"\].
+Note: for more info check out this [GWAS
+tutorial](https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html%22).
 
 ``` r
 myTraits <- list_Traits(folder = "GWAS_Results/")

@@ -12,8 +12,10 @@ gg_GWAS_Summary(
   models = c("MLM", "MLMM", "FarmCPU", "Blink", "GLM"),
   colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkgoldenrod2"),
   shapes = 21:25,
-  markers = NULL,
   hlines = NULL,
+  markers = NULL,
+  markers2 = NULL,
+  markers3 = NULL,
   title = NULL,
   caption = paste0("Threshold = ", threshold, "\\nSuggestive = ", threshold2),
   rowread = 2000
@@ -32,9 +34,9 @@ gg_GWAS_Summary(
 
 \item{colors}{Colors for each model.}
 
-\item{markers}{Markers to be labelled with a vertical red line.}
-
 \item{hlines}{Locations for horizontal lines. e.g., hlines = c(1.5,2.5).}
+
+\item{markers}{Markers to be labelled with a vertical red line.}
 
 \item{title}{A title for the plot.}
 

@@ -4,7 +4,7 @@
 \alias{list_Top_Markers}
 \title{list_Top_Markers}
 \usage{
-list_Top_Markers(x, chroms = 1:7, n = 1, threshold_filter = T)
+list_Top_Markers(x, chroms = 1:7, n = 1, threshold = NULL)
 }
 \arguments{
 \item{x}{data.}
