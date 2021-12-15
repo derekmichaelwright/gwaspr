@@ -4,10 +4,19 @@
 \alias{list_Top_Markers}
 \title{list_Top_Markers}
 \usage{
-list_Top_Markers(x, chroms = 1:7, n = 1, threshold = NULL)
+list_Top_Markers(
+  trait,
+  method,
+  chroms = 1:7,
+  n = 1,
+  threshold = NULL,
+  folder = NULL
+)
 }
 \arguments{
-\item{x}{data.}
+\item{trait}{GWAS trait.}
+
+\item{method}{GWAS method.}
 
 \item{chroms}{Chromosomes to include.}
 

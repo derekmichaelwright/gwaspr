@@ -1,16 +1,22 @@
 #' list_Top_Markers
 #'
 #' Finds the markers with the highest association on each chromosome.
-#' @param x data.
+#' @param trait GWAS trait.
+#' @param method GWAS method.
 #' @param chroms Chromosomes to include.
 #' @param n Number per chromosome.
 #' @param threshold_filter Logical, filters non-significant results.
 #' @return Table of top results.
 #' @export
 
-list_Top_Markers <- function(x, chroms = 1:7, n = 1, threshold = NULL) {
+list_Top_Markers <- function(trait, method, chroms = 1:7, n = 1, threshold = NULL, folder = NULL) {
   #
-  #threshold <- -log10(0.05 / (nrow(x)) )
+  fname <- grepl(".GWAS.Results", list.files(folder)) &
+    grepl(trait, list.files(folder)) &
+    grepl(paste0("\\.",method,"\\."), list.files(folder))
+  fname <- list.files(folder)[fname]
+  fname
+  x <- read.csv(paste0(folder, fname))
   #
   x <- x %>% filter(Chromosome %in% chroms) %>%
     group_by(Chromosome) %>%
@@ -24,3 +30,15 @@ list_Top_Markers <- function(x, chroms = 1:7, n = 1, threshold = NULL) {
   #
   x
 }
+
+#setwd("C:/gitfolder/gwas_tutorial")
+#library(gwaspr)
+#trait <-"DTF_Nepal_2017"
+#method <- "MLM"
+#folder <- "GWAS_Results/"
+#folder <- "Results/"
+#files <- list_Result_Files(folder)
+#files <- files[!grepl("GLM", files)]
+#traits <- unique(gsub("GAPIT.|GLM.|MLM.|CMLM.|MLMM.|SUPER.|FarmCPU.|Blink.|.GWAS.Results.csv", "", files))[c(1,3)]
+
+#models <- c("MLM","MLMM","FarmCPU","Blink")
