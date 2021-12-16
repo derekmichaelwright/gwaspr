@@ -31,15 +31,15 @@ gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
     if(sum(colnames(xi)=="nobs")>0) { xi <- select(xi, -nobs) }
     xi <- xi %>%
       mutate(Model = mod,
-             negLog10     = -log10(P.value),
-             negLog10_exp = -log10((rank(P.value, ties.method="first")-.5)/nrow(.)))
+             `-log10(p)`     = -log10(P.value),
+             `-log10(p)_exp` = -log10((rank(P.value, ties.method="first")-.5)/nrow(.)))
     xx <- bind_rows(xx, xi)
   }
   xx <- xx %>% mutate(Model = factor(Model, levels = models)) %>%
     filter(Chromosome == chr, Position > start, Position < end, !is.na(Model))
   threshold <- -log10(0.05 / nrow(xi))
-  x1 <- xx %>% filter(negLog10 < threshold)
-  x2 <- xx %>% filter(negLog10 > threshold)
+  x1 <- xx %>% filter(`-log10(p)` < threshold)
+  x2 <- xx %>% filter(`-log10(p)` > threshold)
   # Man plot
   mp <- ggplot(xx, aes(x = Position / 1000000, y = `-log10(p)`))
   if(!is.null(markers) & lines == T) {
