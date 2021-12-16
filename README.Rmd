@@ -54,6 +54,12 @@ myResults <- list_Result_Files(folder = "GWAS_Results/")
 myResults
 ```
 
+```{r eval = T}
+list_Top_Markers(trait = "DTF_Nepal_2017", model = "MLMM", 
+                 folder = "GWAS_Results/", 
+                 threshold = 6.7, chroms = c(2,5), n = 1)
+```
+
 ## Summary Plot
 
 ```{r eval = T}
@@ -66,7 +72,7 @@ ggsave("man/figures/GWAS_Summary.png", mp, width = 10, height = 2)
 
 ## Manhattan Plots
 
-```{r eval = T}
+```{r eval = F}
 for(i in myTraits) {
   mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = F,
                      threshold = 7.3, threshold2 = 6.7)
@@ -78,7 +84,7 @@ for(i in myTraits) {
 
 ![](man/figures/Multi_Testa_Pattern.png)
 
-```{r eval = T}
+```{r eval = F}
 for(i in myTraits) {
   mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = T,
                      threshold = 7.3, threshold2 = 6.7)

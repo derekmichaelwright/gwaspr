@@ -6,21 +6,21 @@
 \usage{
 list_Top_Markers(
   trait,
-  method,
-  chroms = 1:7,
-  n = 1,
+  model,
+  folder = NULL,
   threshold = NULL,
-  folder = NULL
+  chroms = 1:50,
+  n = 1
 )
 }
 \arguments{
 \item{trait}{GWAS trait.}
 
-\item{method}{GWAS method.}
-
 \item{chroms}{Chromosomes to include.}
 
 \item{n}{Number per chromosome.}
+
+\item{method}{GWAS method.}
 
 \item{threshold_filter}{Logical, filters non-significant results.}
 }

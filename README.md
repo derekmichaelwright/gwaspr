@@ -58,6 +58,16 @@ myResults
     ## [7] "GAPIT.MLMM.DTF_Nepal_2017.GWAS.Results.csv"   
     ## [8] "GAPIT.MLMM.Testa_Pattern.GWAS.Results.csv"
 
+``` r
+list_Top_Markers(trait = "DTF_Nepal_2017", model = "MLMM", 
+                 folder = "GWAS_Results/", 
+                 threshold = 6.7, chroms = c(2,5), n = 1)
+```
+
+    ##                      SNP CHR      POS -log10(p)
+    ## 1 Lcu.2RBY.Chr2p42543877   2 42543877     11.58
+    ## 2  Lcu.2RBY.Chr5p1069654   5  1069654     16.71
+
 ## Summary Plot
 
 ``` r

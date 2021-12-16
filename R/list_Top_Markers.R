@@ -9,11 +9,11 @@
 #' @return Table of top results.
 #' @export
 
-list_Top_Markers <- function(trait, method, chroms = 1:7, n = 1, threshold = NULL, folder = NULL) {
+list_Top_Markers <- function(trait, model, folder = NULL, threshold = NULL, chroms = 1:50, n = 1) {
   #
   fname <- grepl(".GWAS.Results", list.files(folder)) &
     grepl(trait, list.files(folder)) &
-    grepl(paste0("\\.",method,"\\."), list.files(folder))
+    grepl(paste0("\\.",model,"\\."), list.files(folder))
   fname <- list.files(folder)[fname]
   fname
   x <- read.csv(paste0(folder, fname))

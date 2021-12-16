@@ -16,11 +16,11 @@
 #' @export
 
 gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
-                         title = trait,
-                         markers = NULL, labels = markers, lines = F,
-                         models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
-                         colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
-                                    "darkgreen", "darkgoldenrod3","darkgreen")) {
+                              title = trait,
+                              markers = NULL, labels = markers, lines = F,
+                              models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
+                              colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
+                                         "darkgreen", "darkgoldenrod3","darkgreen") ) {
   fnames <- grep(paste0(trait,".GWAS.Results"), list.files(folder))
   fnames <- list.files(folder)[fnames]
   xx <- NULL
