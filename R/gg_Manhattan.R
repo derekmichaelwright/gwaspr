@@ -103,7 +103,8 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.thr
       labs(title = title, y = "-log<sub>10</sub>(*p*)", x = "100 Mbp")
     if(!is.null(markers)) {
       xx <- xx %>% mutate(Label = ifelse(SNP %in% markers, SNP, NA),
-                          Label = plyr::mapvalues(Label, markers, labels))
+                          Label = plyr::mapvalues(Label, markers, labels)) %>%
+        filter(`-log10(p)` > min(threshold, sug.threshold))
       mp1 <- mp1 + geom_text_repel(data = xx %>% filter(SNP %in% markers),
                                    aes(label = Label), size = 2)
     }
