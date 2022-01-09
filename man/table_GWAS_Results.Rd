@@ -6,7 +6,7 @@
 \usage{
 table_GWAS_Results(
   folder,
-  file,
+  files,
   threshold = 6,
   sug.threshold = NULL,
   rowread = 2000
@@ -15,7 +15,7 @@ table_GWAS_Results(
 \arguments{
 \item{folder}{Folder containing GWAS results.}
 
-\item{file}{The file to read.}
+\item{files}{The files to read.}
 
 \item{threshold}{Significant threshold.}
 

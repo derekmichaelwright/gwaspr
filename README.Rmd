@@ -62,6 +62,11 @@ list_Top_Markers(trait = "DTF_Nepal_2017", model = "MLMM",
                  threshold = 6.7, chroms = c(2,5), n = 1)
 ```
 
+```{r eval = T}
+table_GWAS_Results(folder = "GWAS_Results/", files = myResults,
+                   threshold = 6.7, sug.threshold = 6)
+```
+
 ## Summary Plot
 
 ```{r eval = T}
