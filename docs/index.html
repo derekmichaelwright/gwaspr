@@ -89,8 +89,8 @@
 <span class="va">myTraits</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] "DTF_Nepal_2017"  "DTF_Sask_2017"   "DTF_Sask_2017_b" "Testa_Pattern"</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">myResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_Result_Files.html">list_Result_Files</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span><span class="op">)</span>
-<span class="va">myResults</span></code></pre></div>
+<code class="sourceCode R"><span class="va">myFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_Result_Files.html">list_Result_Files</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span><span class="op">)</span>
+<span class="va">myFiles</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  [1] "GAPIT.Blink.DTF_Nepal_2017.GWAS.Results.csv"   </span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  [2] "GAPIT.Blink.DTF_Sask_2017.GWAS.Results.csv"    </span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  [3] "GAPIT.Blink.DTF_Sask_2017_b.GWAS.Results.csv"  </span></span>
@@ -112,16 +112,19 @@
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="do">## [19] "GAPIT.MLMM.DTF_Sask_2017_b.GWAS.Results.csv"   </span></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="do">## [20] "GAPIT.MLMM.Testa_Pattern.GWAS.Results.csv"</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">myResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/table_GWAS_Results.html">table_GWAS_Results</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, files <span class="op">=</span> <span class="va">myFiles</span>,
+                   threshold <span class="op">=</span> <span class="fl">6.7</span>, sug.threshold <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/list_Top_Markers.html">list_Top_Markers</a></span><span class="op">(</span>trait <span class="op">=</span> <span class="st">"DTF_Nepal_2017"</span>, model <span class="op">=</span> <span class="st">"MLMM"</span>, 
                  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, 
                  threshold <span class="op">=</span> <span class="fl">6.7</span>, chroms <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">##                      SNP CHR      POS -log10(p)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 Lcu.2RBY.Chr2p42543877   2 42543877     11.58</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 2  Lcu.2RBY.Chr5p1069654   5  1069654     16.71</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">##                      SNP CHR      POS -log10(p)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 Lcu.2RBY.Chr2p42543877   2 42543877     11.58</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 2  Lcu.2RBY.Chr5p1069654   5  1069654     16.71</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="summary-plot">Summary Plot<a class="anchor" aria-label="anchor" href="#summary-plot"></a>
 </h2>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_GWAS_Summary.html">gg_GWAS_Summary</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, 
                       traits <span class="op">=</span> <span class="va">myTraits</span>,
                       models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"Blink"</span><span class="op">)</span>,
@@ -134,7 +137,7 @@
                       title <span class="op">=</span> <span class="st">"Summary of Significant GWAS Results"</span><span class="op">)</span>
 <span class="fu">ggsave</span><span class="op">(</span><span class="st">"man/figures/GWAS_Summary.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/GWAS_Summary.png"></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/gg_GWAS_plotly.html">gg_GWAS_plotly</a></span><span class="op">(</span><span class="va">mp</span>, filename <span class="op">=</span> <span class="st">"man/figures/GWAS_Summary.html"</span><span class="op">)</span></code></pre></div>
 <p><a href="https://derekmichaelwright.github.io/gwaspr/man/figures/GWAS_Summary.html" class="uri">https://derekmichaelwright.github.io/gwaspr/man/figures/GWAS_Summary.html</a></p>
 <hr>
@@ -145,7 +148,7 @@
 <div class="section level3">
 <h3 id="multi-manhattan-plots">Multi Manhattan Plots<a class="anchor" aria-label="anchor" href="#multi-manhattan-plots"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">myTraits</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, trait <span class="op">=</span> <span class="va">i</span>, facet <span class="op">=</span> <span class="cn">F</span>,
                      models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"Blink"</span><span class="op">)</span>,
@@ -165,7 +168,7 @@
 <div class="section level3">
 <h3 id="facetted-manhattan-plots">Facetted Manhattan Plots<a class="anchor" aria-label="anchor" href="#facetted-manhattan-plots"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">myTraits</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, trait <span class="op">=</span> <span class="va">i</span>, facet <span class="op">=</span> <span class="cn">T</span>,
                      threshold <span class="op">=</span> <span class="fl">7.3</span>, sug.threshold <span class="op">=</span> <span class="fl">6.7</span>,

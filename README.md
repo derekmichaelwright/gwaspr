@@ -51,8 +51,8 @@ myTraits
     ## [1] "DTF_Nepal_2017"  "DTF_Sask_2017"   "DTF_Sask_2017_b" "Testa_Pattern"
 
 ``` r
-myResults <- list_Result_Files(folder = "GWAS_Results/")
-myResults
+myFiles <- list_Result_Files(folder = "GWAS_Results/")
+myFiles
 ```
 
     ##  [1] "GAPIT.Blink.DTF_Nepal_2017.GWAS.Results.csv"   
@@ -75,6 +75,11 @@ myResults
     ## [18] "GAPIT.MLMM.DTF_Sask_2017.GWAS.Results.csv"     
     ## [19] "GAPIT.MLMM.DTF_Sask_2017_b.GWAS.Results.csv"   
     ## [20] "GAPIT.MLMM.Testa_Pattern.GWAS.Results.csv"
+
+``` r
+myResults <- table_GWAS_Results(folder = "GWAS_Results/", files = myFiles,
+                   threshold = 6.7, sug.threshold = 6)
+```
 
 ``` r
 list_Top_Markers(trait = "DTF_Nepal_2017", model = "MLMM", 
