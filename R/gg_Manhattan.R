@@ -7,6 +7,7 @@
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
 #' @param vlines Markers which will be used as a location for a vertical lines.
+#' @param vline.color color for each vertical line.
 #' @param facet Logical, whether or not to produce a facetted or multi-model plot.
 #' @param qq Logical, whether or not to add a QQ plot
 #' @param pmax A max value for the y-axis.
@@ -16,9 +17,10 @@
 #' @return A manhattan plot.
 #' @export
 
-gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, threshold2 = NULL,
+gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.threshold = NULL,
                          markers = NULL, labels = markers,
-                         vlines = markers, facet = T, qq = T, pmax = NULL,
+                         vlines = markers, vline.color = "red",
+                         facet = T, qq = T, pmax = NULL,
                          models = c("MLM","MLMM","FarmCPU","Blink","GLM"),
                          colors1 = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
                                      "darkgreen","darkgoldenrod3","darkgreen"),
@@ -51,15 +53,16 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
   x2 <- xx %>% filter(`-log10(p)` > threshold)
   # Man plot
   mp1 <- ggplot(x1, aes(x = Position / 100000000, y = `-log10(p)`))
-  if(!is.null(lines)) {
+  if(!is.null(vlines)) {
     mp1 <- mp1 +
       geom_vline(data = xx %>% filter(SNP %in% vlines),
-                 aes(xintercept = Position / 100000000), alpha = 0.5)
+                 alpha = 0.5, color = vline.color,
+                 aes(xintercept = Position / 100000000))
   }
   if(facet == T) {
     mp1 <- mp1 +
       geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
-      geom_hline(yintercept = threshold2, color = "blue", alpha = 0.8, size = 0.5) +
+      geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5) +
       geom_point(aes(color = factor(Chromosome)), pch = 1, size = 1) +
       geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = "darkred", alpha = 0.8) +
       facet_grid(Model ~ Chromosome, scales = "free", space = "free_x") +
@@ -77,7 +80,7 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
     # QQ plot
     mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
       geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
-      geom_hline(yintercept = threshold2, color = "blue", alpha = 0.8, size = 0.5) +
+      geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5) +
       geom_point(pch = 1, color = colors1[1], alpha = 0.8) +
       geom_point(data = x2, pch = 21, color = "black", fill = "darkred", alpha = 0.8) +
       geom_abline() +
@@ -90,7 +93,7 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
   } else {
     mp1 <- mp1 +
       geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
-      geom_hline(yintercept = threshold2, color = "blue", alpha = 0.8, size = 0.5) +
+      geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5) +
       geom_point(size = 0.1, aes(color = Model), pch = 1) +
       geom_point(data = x2, aes(color = Model), size = 1.25, alpha = 0.8) +
       facet_grid(. ~ Chromosome, scales = "free", space = "free_x") +
@@ -106,7 +109,7 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
     # QQ plot
     mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
       geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
-      geom_hline(yintercept = threshold2, color = "blue", alpha = 0.8, size = 0.5) +
+      geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5) +
       geom_point(pch = 1, aes(color = Model)) +
       geom_point(data = x2, aes(color = Model)) +
       geom_abline() +
@@ -116,8 +119,9 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
       theme_gwaspr() +
       labs(title = "", y = NULL, x = "Expected")
     # Append plots
-    if(qq == T) { mp <- ggpubr::ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
-                                          legend = "bottom", common.legend = T)
+    if(qq == T) {
+      mp <- ggpubr::ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
+                              legend = "bottom", common.legend = T)
     } else { mp <- mp1 }
   }
   mp

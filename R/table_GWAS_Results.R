@@ -4,13 +4,13 @@
 #' @param folder Folder containing GWAS results.
 #' @param file The file to read.
 #' @param threshold Significant threshold.
-#' @param threshold2 Suggestive threshold.
+#' @param sug.threshold Suggestive threshold.
 #' @param rowread Number of rows to read.
 #' @return A table of significant GWAS results.
 #' @export
 
 table_GWAS_Results <- function(folder, file,
-                              threshold = 6, threshold2 = NULL,
+                              threshold = 6, sug.threshold = NULL,
                               rowread = 2000) {
   #
   trait <- substr(file, gregexpr("GAPIT.", file)[[1]][1]+6,
@@ -23,8 +23,8 @@ table_GWAS_Results <- function(folder, file,
   #
   if(sum(colnames(output)=="nobs")>0) { output <- select(output, -nobs) }
   #
-  if(!is.null(threshold2)) {
-    output <- output %>% filter(`-log10(p)` >= threshold2)
+  if(!is.null(sug.threshold)) {
+    output <- output %>% filter(`-log10(p)` >= sug.threshold)
   } else{ output <- output %>% filter(`-log10(p)` > threshold) }
   #
   output <- output %>%

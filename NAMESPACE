@@ -2,7 +2,7 @@
 
 export(dropNAcol)
 export(gg_GWAS_Summary)
-export(gg_GWAS_Summary_plotly)
+export(gg_GWAS_plotly)
 export(gg_Manhattan)
 export(gg_Manhattan_Zoom)
 export(gg_Marker)

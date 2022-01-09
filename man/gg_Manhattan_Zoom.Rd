@@ -14,6 +14,7 @@ gg_Manhattan_Zoom(
   markers = NULL,
   labels = markers,
   vlines = markers,
+  vline.color = "red",
   models = c("GLM", "MLM", "CMLM", "MLMM", "SUPER", "FarmCPU", "Blink"),
   colors = c("darkgreen", "darkgoldenrod3", "darkgreen", "darkgoldenrod3", "darkgreen",
     "darkgoldenrod3", "darkgreen")
@@ -37,6 +38,8 @@ gg_Manhattan_Zoom(
 \item{labels}{Labels to be used for markers.}
 
 \item{vlines}{Markers which will be used as a location for a vertical lines.}
+
+\item{vline.color}{color for each vertical line.}
 
 \item{models}{Models to read.}
 

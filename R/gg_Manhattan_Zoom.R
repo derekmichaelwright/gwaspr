@@ -10,6 +10,7 @@
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
 #' @param vlines Markers which will be used as a location for a vertical lines.
+#' @param vline.color color for each vertical line.
 #' @param models Models to read.
 #' @param colors Colors for each chromosome
 #' @return A manhattan plot.
@@ -17,7 +18,8 @@
 
 gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
                               title = trait,
-                              markers = NULL, labels = markers, vlines = markers,
+                              markers = NULL, labels = markers,
+                              vlines = markers, vline.color = "red",
                               models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
                               colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
                                          "darkgreen", "darkgoldenrod3","darkgreen") ) {

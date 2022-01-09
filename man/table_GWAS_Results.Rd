@@ -8,7 +8,7 @@ table_GWAS_Results(
   folder,
   file,
   threshold = 6,
-  threshold2 = NULL,
+  sug.threshold = NULL,
   rowread = 2000
 )
 }
@@ -19,7 +19,7 @@ table_GWAS_Results(
 
 \item{threshold}{Significant threshold.}
 
-\item{threshold2}{Suggestive threshold.}
+\item{sug.threshold}{Suggestive threshold.}
 
 \item{rowread}{Number of rows to read.}
 }

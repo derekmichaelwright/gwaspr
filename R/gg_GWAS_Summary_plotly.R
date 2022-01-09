@@ -1,19 +1,17 @@
-#' gg_GWAS_Summary_plotly
+#' gg_GWAS_plotly
 #'
-#' Creates a summary GWAS plot of significant associations.
-#' @param mp Plot from gg_GWAS_Summary.
-#' @param width Plot width.
-#' @param height Plot height.
+#' Creates an interactive plotly plot.
+#' @param mp ggplot object.
 #' @param filename Filename for plot.
 #' @return A plotly summary GWAS plot.
 #' @export
 
-gg_GWAS_Summary_plotly <- function(mp, filename = "GWAS_Summary.html", width = 10, height = 8 ) {
+gg_GWAS_plotly <- function(mp, filename = "GWAS_plotly.html") {
   #
-  mpp <- ggplotly(mp)
+  mpp <- ggplotly(mp) %>% layout(showlegend = F)
   saveWidget(as_widget(mpp),
              filename,
-             knitrOptions = list(fig.width = width, fig.height = height),
+             #knitrOptions = list(fig.width = width, fig.height = height),
              selfcontained = T)
   mpp
 }

@@ -9,10 +9,11 @@ gg_Manhattan(
   trait,
   title = trait,
   threshold = NULL,
-  threshold2 = NULL,
+  sug.threshold = NULL,
   markers = NULL,
   labels = markers,
   vlines = markers,
+  vline.color = "red",
   facet = T,
   qq = T,
   pmax = NULL,
@@ -35,6 +36,8 @@ gg_Manhattan(
 \item{labels}{Labels to be used for markers.}
 
 \item{vlines}{Markers which will be used as a location for a vertical lines.}
+
+\item{vline.color}{color for each vertical line.}
 
 \item{facet}{Logical, whether or not to produce a facetted or multi-model plot.}
 

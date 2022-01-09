@@ -8,17 +8,17 @@ gg_GWAS_Summary(
   folder = NULL,
   traits = list_Traits(),
   threshold = -log10(5e-08),
-  threshold2 = -log10(5e-06),
+  sug.threshold = -log10(5e-06),
   models = c("MLM", "MLMM", "FarmCPU", "Blink", "GLM"),
   colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkgoldenrod2"),
   shapes = 21:25,
   hlines = NULL,
-  markers = NULL,
-  markers2 = NULL,
-  markers3 = NULL,
+  vlines = NULL,
+  vline.colors = rep("black", 10),
+  vline.legend = T,
   title = NULL,
   caption = paste0("Sig Threshold = ", threshold, " = Large\\nSuggestive = ",
-    threshold2, " = Small"),
+    sug.threshold, " = Small"),
   rowread = 2000
 )
 }
@@ -29,7 +29,7 @@ gg_GWAS_Summary(
 
 \item{threshold}{Significant threshold.}
 
-\item{threshold2}{Suggestive threshold.}
+\item{sug.threshold}{Suggestive threshold.}
 
 \item{models}{Models to read.}
 
@@ -37,7 +37,11 @@ gg_GWAS_Summary(
 
 \item{hlines}{Locations for horizontal lines. e.g., hlines = c(1.5,2.5).}
 
-\item{markers}{Markers to be labelled with a vertical red line.}
+\item{vlines}{Markers to be labelled with a vertical red line.}
+
+\item{vline.colors}{colors for each vertical line.}
+
+\item{vline.legend}{Logical, display of vline color legend.}
 
 \item{title}{A title for the plot.}
 

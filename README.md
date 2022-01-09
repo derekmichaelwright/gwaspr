@@ -93,20 +93,19 @@ mp <- gg_GWAS_Summary(folder = "GWAS_Results/",
                       traits = myTraits,
                       models = c("MLM", "MLMM", "FarmCPU", "Blink"),
                       colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
-                      threshold = 6.7, threshold2 = 6, 
+                      threshold = 6.7, sug.threshold = 6, 
                       hlines = c(1.5,3.5),
-                      markers = c("Lcu.2RBY.Chr2p42543877","Lcu.2RBY.Chr5p1069654"), 
-                      markers2 = "Lcu.2RBY.Chr6p12212845",
-                      markers3 = "Lcu.2RBY.Chr6p2528817" )
-ggsave("man/figures/GWAS_Summary.png", mp, width = 10, height = 2.5)
+                      vlines = c("Lcu.2RBY.Chr2p42543877","Lcu.2RBY.Chr5p1069654",
+                                 "Lcu.2RBY.Chr6p2528817", "Lcu.2RBY.Chr6p12212845"),
+                      vline.colors = c("red", "red", "green", "blue"),
+                      title = "Summary of Significant GWAS Results")
+ggsave("man/figures/GWAS_Summary.png", mp, width = 10, height = 3)
 ```
 
 ![](man/figures/GWAS_Summary.png)
 
 ``` r
-gg_GWAS_Summary_plotly(mp, 
-                       filename = "man/figures/GWAS_Summary.html", 
-                       width = 10, height = 8)
+gg_GWAS_plotly(mp, filename = "man/figures/GWAS_Summary.html")
 ```
 
 <https://derekmichaelwright.github.io/gwaspr/man/figures/GWAS_Summary.html>
@@ -121,7 +120,7 @@ gg_GWAS_Summary_plotly(mp,
 for(i in myTraits) {
   mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = F,
                      models = c("MLM", "MLMM", "FarmCPU", "Blink"),
-                     threshold = 7.3, threshold2 = 6.7, pmax = 12,
+                     threshold = 7.3, sug.threshold = 6.7, pmax = 12,
                      vlines = c("Lcu.2RBY.Chr2p42543877", 
                                 "Lcu.2RBY.Chr5p1069654",
                                 "Lcu.2RBY.Chr6p12212845",
@@ -145,7 +144,7 @@ for(i in myTraits) {
 ``` r
 for(i in myTraits) {
   mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = T,
-                     threshold = 7.3, threshold2 = 6.7,
+                     threshold = 7.3, sug.threshold = 6.7,
                      vlines = c("Lcu.2RBY.Chr2p42543877", 
                                 "Lcu.2RBY.Chr5p1069654",
                                 "Lcu.2RBY.Chr6p12212845",

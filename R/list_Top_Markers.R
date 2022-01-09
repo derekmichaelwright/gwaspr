@@ -5,7 +5,7 @@
 #' @param method GWAS method.
 #' @param chroms Chromosomes to include.
 #' @param n Number per chromosome.
-#' @param threshold_filter Logical, filters non-significant results.
+#' @param threshold filters results with -log10(p) below threshold.
 #' @return Table of top results.
 #' @export
 
