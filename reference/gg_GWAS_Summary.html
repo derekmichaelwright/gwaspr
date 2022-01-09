@@ -46,17 +46,17 @@
   folder <span class="op">=</span> <span class="cn">NULL</span>,
   traits <span class="op">=</span> <span class="fu"><a href="list_Traits.html">list_Traits</a></span><span class="op">(</span><span class="op">)</span>,
   threshold <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="fl">5e-08</span><span class="op">)</span>,
-  threshold2 <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="fl">5e-06</span><span class="op">)</span>,
+  sug.threshold <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="fl">5e-06</span><span class="op">)</span>,
   models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"Blink"</span>, <span class="st">"GLM"</span><span class="op">)</span>,
   colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkgoldenrod2"</span><span class="op">)</span>,
   shapes <span class="op">=</span> <span class="fl">21</span><span class="op">:</span><span class="fl">25</span>,
   hlines <span class="op">=</span> <span class="cn">NULL</span>,
-  markers <span class="op">=</span> <span class="cn">NULL</span>,
-  markers2 <span class="op">=</span> <span class="cn">NULL</span>,
-  markers3 <span class="op">=</span> <span class="cn">NULL</span>,
+  vlines <span class="op">=</span> <span class="cn">NULL</span>,
+  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="fl">10</span><span class="op">)</span>,
+  vline.legend <span class="op">=</span> <span class="cn">T</span>,
   title <span class="op">=</span> <span class="cn">NULL</span>,
   caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Sig Threshold = "</span>, <span class="va">threshold</span>, <span class="st">" = Large\nSuggestive = "</span>,
-    <span class="va">threshold2</span>, <span class="st">" = Small"</span><span class="op">)</span>,
+    <span class="va">sug.threshold</span>, <span class="st">" = Small"</span><span class="op">)</span>,
   rowread <span class="op">=</span> <span class="fl">2000</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -69,7 +69,7 @@
 <dd><p>The traits to read.</p></dd>
 <dt>threshold</dt>
 <dd><p>Significant threshold.</p></dd>
-<dt>threshold2</dt>
+<dt>sug.threshold</dt>
 <dd><p>Suggestive threshold.</p></dd>
 <dt>models</dt>
 <dd><p>Models to read.</p></dd>
@@ -77,8 +77,12 @@
 <dd><p>Colors for each model.</p></dd>
 <dt>hlines</dt>
 <dd><p>Locations for horizontal lines. e.g., hlines = c(1.5,2.5).</p></dd>
-<dt>markers</dt>
+<dt>vlines</dt>
 <dd><p>Markers to be labelled with a vertical red line.</p></dd>
+<dt>vline.colors</dt>
+<dd><p>colors for each vertical line.</p></dd>
+<dt>vline.legend</dt>
+<dd><p>Logical, display of vline color legend.</p></dd>
 <dt>title</dt>
 <dd><p>A title for the plot.</p></dd>
 <dt>caption</dt>
