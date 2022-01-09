@@ -9,5 +9,3 @@
 list_Threshold <- function(num_markers, p = 0.05) {
   -log10( p / (nrow(num_markers)-1) )
 }
-
-

@@ -23,7 +23,7 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
                             shapes = 21:25, hlines = NULL,
                             markers = NULL, markers2 = NULL, markers3 = NULL,
                             title = NULL,
-                            caption = paste0("Threshold = ", threshold, "\nSuggestive = ", threshold2),
+                            caption = paste0("Sig Threshold = ", threshold, " = Large\nSuggestive = ", threshold2," = Small"),
                             rowread = 2000
                             ) {
   #
@@ -36,7 +36,7 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
   #i<-files[1]
   for(i in files) {
     myPi <- table_GWAS_Results(folder = folder, file = i,
-                             threshold = threshold, threshold2 = threshold2)
+              threshold = threshold, threshold2 = threshold2)
     if(nrow(myPi)>0) { myP <- bind_rows(myP, myPi) }
   }
   #
@@ -77,9 +77,12 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
   mp <- mp +
     geom_point(data = x2,
                size = 0.75, color = "black", alpha = 0.5,
-               aes(shape = Model, fill = Model)) +
+               aes(shape = Model, fill = Model, key1 = SNP, key2 = `-log10(p)`)) +
     geom_point(size = 2.25, color = "black", alpha = 0.5,
-               aes(shape = Model, fill = Model)) +
+               aes(shape = Model, fill = Model, key1 = SNP, key2 = `-log10(p)`)) +
+    #geom_point(color = "black", alpha = 0.5,
+    #           aes(shape = Model, fill = Model, size = `-log10(p)`)) +
+    #scale_size_continuous(range = c(0.75, 3), guide = "none") +
     facet_grid(. ~ Chromosome, drop = F, scales = "free_x", space = "free_x") +
     scale_fill_manual(values = colors, breaks = models) +
     scale_shape_manual(values = shapes, breaks = models) +
@@ -91,28 +94,3 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
   #
   mp
 }
-
-#setwd("C:/gitfolder/gwas_tutorial")
-#library(gwaspr)
-#folder <- "Results/"
-#files <- list_Result_Files(folder)
-#files <- files[!grepl("GLM", files)]
-#traits <- unique(gsub("GAPIT.|GLM.|MLM.|CMLM.|MLMM.|SUPER.|FarmCPU.|Blink.|.GWAS.Results.csv", "", files))[c(1,3)]
-
-#models <- c("MLM","MLMM","FarmCPU","Blink")
-#threshold <- 6.7
-#threshold2 <- 5
-#markers <- "Lcu.2RBY.Chr6p12212845"
-#title <- NULL
-#hlines <- c(1.5,2.5)
-#rowread <- 2000
-#colors <- c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "darkgoldenrod2")
-#caption = paste0("Threshold = ", threshold, "\nSuggestive = ", threshold2)
-
-
-#setwd("C:/gitfolder/gwaspr")
-#library(gwaspr)
-#folder = "GWAS_Results/"
-#traits = c("DTF_Nepal_2017", "Testa_Pattern")
-#threshold = 7.3
-#threshold2 = 6.7

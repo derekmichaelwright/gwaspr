@@ -17,7 +17,8 @@ gg_GWAS_Summary(
   markers2 = NULL,
   markers3 = NULL,
   title = NULL,
-  caption = paste0("Threshold = ", threshold, "\\nSuggestive = ", threshold2),
+  caption = paste0("Sig Threshold = ", threshold, " = Large\\nSuggestive = ",
+    threshold2, " = Small"),
   rowread = 2000
 )
 }

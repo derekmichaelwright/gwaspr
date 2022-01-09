@@ -12,7 +12,7 @@ gg_Manhattan(
   threshold2 = NULL,
   markers = NULL,
   labels = markers,
-  lines = F,
+  vlines = markers,
   facet = T,
   qq = T,
   pmax = NULL,
@@ -34,7 +34,7 @@ gg_Manhattan(
 
 \item{labels}{Labels to be used for markers.}
 
-\item{lines}{Logical, value of whether or not to include vertical lines with markers.}
+\item{vlines}{Markers which will be used as a location for a vertical lines.}
 
 \item{facet}{Logical, whether or not to produce a facetted or multi-model plot.}
 

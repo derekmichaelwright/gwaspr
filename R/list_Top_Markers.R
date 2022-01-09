@@ -30,15 +30,3 @@ list_Top_Markers <- function(trait, model, folder = NULL, threshold = NULL, chro
   #
   x
 }
-
-#setwd("C:/gitfolder/gwas_tutorial")
-#library(gwaspr)
-#trait <-"DTF_Nepal_2017"
-#method <- "MLM"
-#folder <- "GWAS_Results/"
-#folder <- "Results/"
-#files <- list_Result_Files(folder)
-#files <- files[!grepl("GLM", files)]
-#traits <- unique(gsub("GAPIT.|GLM.|MLM.|CMLM.|MLMM.|SUPER.|FarmCPU.|Blink.|.GWAS.Results.csv", "", files))[c(1,3)]
-
-#models <- c("MLM","MLMM","FarmCPU","Blink")

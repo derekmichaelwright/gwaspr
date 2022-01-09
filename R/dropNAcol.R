@@ -8,4 +8,3 @@
 dropNAcol <- function(x) {
   x[,colSums(is.na(x)) < nrow(x)]
 }
-

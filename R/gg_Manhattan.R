@@ -6,7 +6,7 @@
 #' @param title A title for the plot.
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
-#' @param lines Logical, value of whether or not to include vertical lines with markers.
+#' @param vlines Markers which will be used as a location for a vertical lines.
 #' @param facet Logical, whether or not to produce a facetted or multi-model plot.
 #' @param qq Logical, whether or not to add a QQ plot
 #' @param pmax A max value for the y-axis.
@@ -18,7 +18,7 @@
 
 gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, threshold2 = NULL,
                          markers = NULL, labels = markers,
-                         lines = F, facet = T, qq = T, pmax = NULL,
+                         vlines = markers, facet = T, qq = T, pmax = NULL,
                          models = c("MLM","MLMM","FarmCPU","Blink","GLM"),
                          colors1 = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
                                      "darkgreen","darkgoldenrod3","darkgreen"),
@@ -51,9 +51,9 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
   x2 <- xx %>% filter(`-log10(p)` > threshold)
   # Man plot
   mp1 <- ggplot(x1, aes(x = Position / 100000000, y = `-log10(p)`))
-  if(!is.null(markers) & lines == T) {
+  if(!is.null(lines)) {
     mp1 <- mp1 +
-      geom_vline(data = xx %>% filter(SNP %in% markers),
+      geom_vline(data = xx %>% filter(SNP %in% vlines),
                  aes(xintercept = Position / 100000000), alpha = 0.5)
   }
   if(facet == T) {
@@ -122,4 +122,3 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, thresho
   }
   mp
 }
-
