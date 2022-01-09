@@ -9,7 +9,7 @@
 #' @param title A title for the plot.
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
-#' @param lines Logical value of whether or not to include vertical lines with markers.
+#' @param vlines Markers which will be used as a location for a vertical lines.
 #' @param models Models to read.
 #' @param colors Colors for each chromosome
 #' @return A manhattan plot.
@@ -17,7 +17,7 @@
 
 gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
                               title = trait,
-                              markers = NULL, labels = markers, lines = F,
+                              markers = NULL, labels = markers, vlines = markers,
                               models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","Blink"),
                               colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
                                          "darkgreen", "darkgoldenrod3","darkgreen") ) {
@@ -42,12 +42,11 @@ gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
   x2 <- xx %>% filter(`-log10(p)` > threshold)
   # Man plot
   mp <- ggplot(xx, aes(x = Position / 1000000, y = `-log10(p)`))
-  if(!is.null(markers) & lines == T) {
+  if(!is.null(vlines)) {
     mp <- mp +
       geom_vline(data = xx %>% filter(SNP %in% markers),
                  aes(xintercept = Position / 1000000), alpha = 0.5)
   }
-  if(lines == T) { mp <- mp + geom_line() }
   mp <- mp +
     geom_hline(yintercept = threshold, alpha = 0.6) +
     geom_point(aes(color = factor(Chromosome)), pch = 1, alpha = 0.8) +

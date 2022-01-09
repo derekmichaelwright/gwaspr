@@ -13,7 +13,7 @@ gg_Manhattan_Zoom(
   title = trait,
   markers = NULL,
   labels = markers,
-  lines = F,
+  vlines = markers,
   models = c("GLM", "MLM", "CMLM", "MLMM", "SUPER", "FarmCPU", "Blink"),
   colors = c("darkgreen", "darkgoldenrod3", "darkgreen", "darkgoldenrod3", "darkgreen",
     "darkgoldenrod3", "darkgreen")
@@ -36,7 +36,7 @@ gg_Manhattan_Zoom(
 
 \item{labels}{Labels to be used for markers.}
 
-\item{lines}{Logical value of whether or not to include vertical lines with markers.}
+\item{vlines}{Markers which will be used as a location for a vertical lines.}
 
 \item{models}{Models to read.}
 
