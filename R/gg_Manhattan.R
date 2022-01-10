@@ -99,6 +99,7 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.thr
       geom_point(data = x2, aes(color = Model), size = 1.25, alpha = 0.8) +
       facet_grid(. ~ Chromosome, scales = "free", space = "free_x") +
       scale_color_manual(values = colors2) +
+      scale_x_continuous(breaks = 0:20) +
       theme_gwaspr(axis.title.y = element_markdown()) +
       labs(title = title, y = "-log<sub>10</sub>(*p*)", x = "100 Mbp")
     if(!is.null(markers)) {
@@ -116,7 +117,6 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.thr
       geom_point(data = x2, aes(color = Model)) +
       geom_abline() +
       facet_grid(. ~ "QQ", scales = "free_y") +
-      scale_x_continuous(breaks = 0:20) +
       scale_color_manual(values = colors2) +
       theme_gwaspr() +
       labs(title = "", y = NULL, x = "Expected")
