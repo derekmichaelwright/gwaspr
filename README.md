@@ -113,11 +113,6 @@ ggsave("man/figures/GWAS_Summary.png", mp, width = 10, height = 3)
 gg_GWAS_plotly(mp, filename = "GWAS_Summary.html")
 ```
 
-<https://dblogr.com/academic/gwaspr/GWAS_Summary.html>
-
-<iframe src="https://dblogr.com/academic/gwaspr/GWAS_Summary.html" style="width:100%; height:600px;">
-</iframe>
-
 ------------------------------------------------------------------------
 
 ## Manhattan Plots
