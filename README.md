@@ -18,8 +18,8 @@ library(gwaspr)
 
 # GWAS Tutorial
 
-<a href="https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html">
-<button class="btn btn-success"><i class="far fa-file-code"></i> https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html</button>
+<a href="https://dblogr.com/academic/gwas_tutorial/">
+<button class="btn btn-success"><i class="far fa-file-code"></i> https://dblogr.com/academic/gwas_tutorial/</button>
 </a>
 
 # Usage
@@ -110,10 +110,13 @@ ggsave("man/figures/GWAS_Summary.png", mp, width = 10, height = 3)
 ![](man/figures/GWAS_Summary.png)
 
 ``` r
-gg_GWAS_plotly(mp, filename = "man/figures/GWAS_Summary.html")
+gg_GWAS_plotly(mp, filename = "GWAS_Summary.html")
 ```
 
-<https://derekmichaelwright.github.io/gwaspr/man/figures/GWAS_Summary.html>
+<https://derekmichaelwright.github.io/gwaspr/GWAS_Summary.html>
+
+<iframe src="https://derekmichaelwright.github.io/gwaspr/GWAS_Summary.html" style="width:100%; height:600px;">
+</iframe>
 
 ------------------------------------------------------------------------
 

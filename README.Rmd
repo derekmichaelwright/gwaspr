@@ -26,8 +26,8 @@ library(gwaspr)
 
 ```{r echo = F}
 downloadthis::download_link(
-  link = "https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html",
-  button_label = "https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html",
+  link = "https://dblogr.com/academic/gwas_tutorial/",
+  button_label = "https://dblogr.com/academic/gwas_tutorial/",
   button_type = "success",
   has_icon = TRUE,
   icon = "far fa-file-code",
@@ -86,10 +86,15 @@ ggsave("man/figures/GWAS_Summary.png", mp, width = 10, height = 3)
 ![](man/figures/GWAS_Summary.png)
 
 ```{r eval = F}
-gg_GWAS_plotly(mp, filename = "man/figures/GWAS_Summary.html")
+gg_GWAS_plotly(mp, filename = "GWAS_Summary.html")
 ```
 
-https://derekmichaelwright.github.io/gwaspr/man/figures/GWAS_Summary.html
+https://derekmichaelwright.github.io/gwaspr/GWAS_Summary.html
+
+<iframe
+  src="https://derekmichaelwright.github.io/gwaspr/GWAS_Summary.html"
+  style="width:100%; height:600px;"
+></iframe>
 
 ---
 
