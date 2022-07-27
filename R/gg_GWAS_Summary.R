@@ -27,7 +27,8 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
                             vlines = NULL, vline.colors = rep("black", 10), vline.legend = T,
                             title = NULL,
                             caption = paste0("Sig Threshold = ", threshold, " = Large\nSuggestive = ", sug.threshold," = Small"),
-                            rowread = 2000
+                            rowread = 2000,
+                            legend.position = "bottom"
                             ) {
   #
   files <- list_Result_Files(folder)
@@ -89,10 +90,11 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
     scale_shape_manual(name = NULL, values = shapes, breaks = models) +
     scale_x_continuous(breaks = 0:20) +
     scale_y_discrete(drop = F) +
-    theme_gwaspr(legend.position = "bottom",
-                 legend.box="vertical",
-                 legend.spacing.y = unit(0.4, "cm"),
-                 legend.margin = margin(-0.2,0,0,0, unit="cm")) +
+    theme_gwaspr(legend.position = legend.position#,
+                 #legend.box="vertical",
+                 #legend.spacing.y = unit(0.4, "cm"),
+                 #legend.margin = margin(-0.2,0,0,0, unit="cm")
+                 ) +
     guides(shape = guide_legend(override.aes = list(size = 4))) +
     labs(title = title, y = NULL, x = "100 Mbp", caption = caption)
   if(vline.legend == F) {
