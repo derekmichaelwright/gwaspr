@@ -7,25 +7,26 @@
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
 #' @param vlines Markers which will be used as a location for a vertical lines.
-#' @param vline.color color for each vertical line.
+#' @param vline.colors colors for each vertical line.
+#' @param vline.legend Logical, wheterh or not to add a legend for the vlines.
 #' @param facet Logical, whether or not to produce a facetted or multi-model plot.
 #' @param qq Logical, whether or not to add a QQ plot
 #' @param pmax A max value for the y-axis.
 #' @param models Models to read.
-#' @param colors1 Colors for each chromosome.
-#' @param colors2 Colors for each model.
+#' @param chrom.colors Colors for each chromosome. Used if `facet = T`.
+#' @param model.colors Colors for each model. Used if `facet = F`.
 #' @return A manhattan plot.
 #' @export
 
 gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.threshold = NULL,
                          markers = NULL, labels = markers,
-                         vlines = markers, vline.color = "red",
+                         vlines = markers, vline.colors = rep("red",length(vlines)), vline.legend = F,
                          facet = T, qq = T, pmax = NULL,
                          models = c("MLM","MLMM","FarmCPU","Blink","GLM"),
-                         colors1 = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
-                                     "darkgreen","darkgoldenrod3","darkgreen"),
-                         colors2 = c("darkgreen", "darkred", "darkorange3",
-                                     "steelblue", "darkorchid4", "darkgoldenrod2")) {
+                         chrom.colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
+                                          "darkgreen","darkgoldenrod3","darkgreen"),
+                         model.colors = c("darkgreen", "darkred", "darkorange3",
+                                          "steelblue", "darkorchid4", "darkgoldenrod2")) {
   #
   fnames <- grep(paste0(trait,".GWAS.Results"), list.files(folder))
   fnames <- list.files(folder)[fnames]
@@ -55,18 +56,21 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.thr
   mp1 <- ggplot(x1, aes(x = Position / 100000000, y = `-log10(p)`))
   if(!is.null(vlines)) {
     mp1 <- mp1 +
-      geom_vline(data = xx %>% filter(SNP %in% vlines),
-                 alpha = 0.5, color = vline.color,
-                 aes(xintercept = Position / 100000000))
+      geom_vline(data = xx %>% filter(SNP %in% vlines), alpha = 0.5,
+                 aes(xintercept = Position / 100000000, color = SNP))
+    if(vline.legend) {
+      mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors)
+    } else { mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors, guide = F) }
+
   }
   if(facet == T) {
     mp1 <- mp1 +
       geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
       geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5) +
-      geom_point(aes(color = factor(Chromosome)), pch = 1, size = 1) +
+      geom_point(aes(fill = factor(Chromosome)), pch = 21, size = 1, color = alpha("white", 0)) +
       geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = "darkred", alpha = 0.8) +
       facet_grid(Model ~ Chromosome, scales = "free", space = "free_x") +
-      scale_color_manual(values = colors1) +
+      scale_fill_manual(values = chrom.colors) +
       scale_x_continuous(breaks = 0:20) +
       theme_gwaspr(legend.position = "none",
                    axis.title.y = element_markdown()) +
@@ -82,7 +86,7 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.thr
     mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
       geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
       geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5) +
-      geom_point(pch = 1, color = colors1[1], alpha = 0.8) +
+      geom_point(pch = 1, color = chrom.colors[1], alpha = 0.8) +
       geom_point(data = x2, pch = 21, color = "black", fill = "darkred", alpha = 0.8) +
       geom_abline() +
       facet_grid(Model ~ "QQ", scales = "free_y") +
@@ -95,10 +99,10 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.thr
     mp1 <- mp1 +
       geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
       geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5) +
-      geom_point(size = 0.1, aes(color = Model), pch = 1) +
-      geom_point(data = x2, aes(color = Model), size = 1.25, alpha = 0.8) +
+      geom_point(size = 0.1, aes(fill = Model), pch = 21, color = alpha("white", 0)) +
+      geom_point(data = x2, aes(fill = Model), pch = 21, size = 1.25, alpha = 0.8) +
       facet_grid(. ~ Chromosome, scales = "free", space = "free_x") +
-      scale_color_manual(values = colors2) +
+      scale_fill_manual(values = model.colors) +
       scale_x_continuous(breaks = 0:20) +
       theme_gwaspr(axis.title.y = element_markdown()) +
       labs(title = title, y = "-log<sub>10</sub>(*p*)", x = "100 Mbp")
@@ -117,7 +121,7 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.thr
       geom_point(data = x2, aes(color = Model)) +
       geom_abline() +
       facet_grid(. ~ "QQ", scales = "free_y") +
-      scale_color_manual(values = colors2) +
+      scale_color_manual(values = model.colors) +
       theme_gwaspr() +
       labs(title = "", y = NULL, x = "Expected")
     # Append plots
