@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 2.0.1
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-01-11T20:39Z
+last_built: 2022-07-27T15:33Z
 urls:
   reference: https://derekmichaelwright.github.io/gwaspr/reference
   article: https://derekmichaelwright.github.io/gwaspr/articles
