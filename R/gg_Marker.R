@@ -16,6 +16,10 @@ gg_Marker <- function(myG, myY, trait, marker, marker2 = NULL,
                       type = "bar", points = T,
                       colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
                                  "darkslategray", "maroon4", "purple4", "darkblue")) {
+  gwaspr_dna <- data.frame(stringsAsFactors = F,
+                           Symbol = c("A", "C", "G", "T", "U", "R", "Y", "S", "W", "K", "M", "N"),
+                           Value  = c("AA","CC","GG","TT","UU","AG","CT","GC","AT","GT","AC","NN") )
+  #
   x1 <- myG %>% filter(rs == marker)
   if(!is.null(marker2)) {
     x2 <- myG %>% filter(rs == marker2) %>%

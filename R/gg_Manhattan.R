@@ -57,11 +57,8 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.thr
   if(!is.null(vlines)) {
     mp1 <- mp1 +
       geom_vline(data = xx %>% filter(SNP %in% vlines), alpha = 0.5,
-                 aes(xintercept = Position / 100000000, color = SNP))
-    if(vline.legend) {
-      mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors)
-    } else { mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors, guide = F) }
-
+                 aes(xintercept = Position / 100000000, color = SNP)) +
+      scale_color_manual(name = NULL, values = vline.colors)
   }
   if(facet == T) {
     mp1 <- mp1 +
@@ -129,6 +126,9 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.thr
       mp <- ggpubr::ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
                               legend = "bottom", common.legend = T)
     } else { mp <- mp1 }
+  }
+  if(vline.legend == F) {
+    mp <- mp + guides(color = vline.legend)
   }
   mp
 }
