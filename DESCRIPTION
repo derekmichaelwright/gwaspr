@@ -11,4 +11,5 @@ RoxygenNote: 7.2.3
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
-URL: https://derekmichaelwright.github.io/gwaspr
+URL: https://derekmichaelwright.github.io/gwaspr,
+    https://derekmichaelwright.github.io/gwaspr/

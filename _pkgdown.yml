@@ -1,6 +1,4 @@
-url: https://derekmichaelwright.github.io/gwaspr
+url: https://derekmichaelwright.github.io/gwaspr/
 template:
   bootstrap: 5
-  bootswatch: cosmo
-  bslib:
-    primary: "#1E3D2A"
+
