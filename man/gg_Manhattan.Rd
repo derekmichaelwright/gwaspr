@@ -50,9 +50,9 @@ gg_Manhattan(
 
 \item{models}{Models to read.}
 
-\item{chrom.colors}{Colors for each chromosome. Used if \code{facet = T}.}
+\item{chrom.colors}{Colors for each chromosome. Used if `facet = T`.}
 
-\item{model.colors}{Colors for each model. Used if \code{facet = F}.}
+\item{model.colors}{Colors for each model. Used if `facet = F`.}
 }
 \value{
 A manhattan plot.
