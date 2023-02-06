@@ -1,15 +1,13 @@
 Package: gwaspr
-Title: gwaspr
-Version: 1.0
-Authors@R: person("Derek","Wright", email = "wrightmderek@gmail.com", role = c("aut","cre"))
-Description: Agriculture realated datasets.
-Depends: R (>= 3.4.2), tidyverse, ggbeeswarm, ggpubr, ggrepel, ggtext
-License: <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
 Encoding: UTF-8
-LazyData: true
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Suggests: knitr,
-    rmarkdown
-VignetteBuilder: knitr
-URL: https://derekmichaelwright.github.io/gwaspr,
-    https://derekmichaelwright.github.io/gwaspr/
+URL: https://derekmichaelwright.github.io/gwaspr/
