@@ -1,5 +1,5 @@
 Package: gwaspr
-Title: an R package for plotting GWAS results from the GAPIT package
+Title: gwaspr
 Version: 1.0
 Authors@R: person("Derek","Wright", email = "wrightmderek@gmail.com", role = c("aut","cre"))
 Description: Agriculture realated datasets.
