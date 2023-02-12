@@ -1,13 +1,14 @@
 Package: gwaspr
-Title: An R package for GWAS plotting
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Title: GWAS plotting in R
+Version: 1.0
+Authors@R: person("Derek","Wright", email = "wrightmderek@gmail.com", role = c("aut","cre"))
+Description: Plot and analyse GWAS results with R.
+Depends: R (>= 3.4.2), tidyverse, ggbeeswarm, ggpubr, ggrepel, ggtext
+License: <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
+LazyData: true
 RoxygenNote: 7.2.3
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
 URL: https://derekmichaelwright.github.io/gwaspr/
