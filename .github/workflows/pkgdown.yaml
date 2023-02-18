@@ -11,6 +11,10 @@ on:
 
 name: pkgdown
 
+permissions:
+  id-token: write
+  contents: read # default
+
 jobs:
   pkgdown:
     runs-on: ubuntu-latest
