@@ -11,10 +11,6 @@ on:
 
 name: pkgdown
 
-permissions:
-  id-token: write
-  contents: read # default
-
 jobs:
   pkgdown:
     runs-on: ubuntu-latest
@@ -23,6 +19,9 @@ jobs:
       group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      id-token: write
+      contents: read # default
     steps:
       - uses: actions/checkout@v3
 
