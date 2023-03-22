@@ -33,6 +33,9 @@ gg_Marker <- function(myG, myY, trait, marker, marker2 = NULL,
            Allele = factor(Allele, levels = gwaspr_dna$Value)) %>%
     filter(Allele != "NN")
   if(!is.null(marker2)) { xx <- xx %>% left_join(x2, by = "Name") }
+  #
+  colnames(myY)[1] <- "Name"
+  #
   xx <- xx %>% left_join(myY, by = "Name") %>%
     filter(!is.na(get(trait))) %>%
     mutate(Allele = plyr::mapvalues(Allele, gwaspr_dna$Symbol, gwaspr_dna$Value))
