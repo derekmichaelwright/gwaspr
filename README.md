@@ -14,11 +14,11 @@ devtools::install_github("derekmichaelwright/gwaspr")
 library(gwaspr)
 ```
 
-![](man/figures/hex_gwaspr.png)
+![](man/figures/logo_gwaspr.png)
 
 # GWAS Tutorial
 
-<https://dblogr.com/academic/gwas_tutorial/>
+<https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial>
 
 # Usage
 
@@ -35,11 +35,10 @@ panel:
   to flowering in a 2017 Saskatchewan field trial.
 - **DTF_Sask_2017_b**: same as above but run with the *b* coefficient
   from a photothermal model (see [Wright *et al*.
-  2020](https://nph.onlinelibrary.wiley.com/doi/10.1002/ppp3.10158))
-  used as a covariate.
+  2020](https://doi.org/10.1002/ppp3.10158)) used as a covariate.
 
 Note: for more info check out this [GWAS
-tutorial](https://dblogr.com/academic/gwas_tutorial/gwas_tutorial.html%22).
+tutorial](https://derekmichaelwright.github.io/dblogr/academic/gwaspr_tutorial).
 
 ## List Traits
 
@@ -220,4 +219,4 @@ for(i in myTraits) {
 
 ------------------------------------------------------------------------
 
-© Derek Michael Wright [www.dblogr.com/](https://dblogr.com/)
+© Derek Michael Wright
