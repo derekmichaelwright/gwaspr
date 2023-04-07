@@ -61,7 +61,8 @@ gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.thr
   mp1 <- ggplot(x1, aes(x = Pos / 100000000, y = `-log10(p)`))
   if(!is.null(vlines)) {
     mp1 <- mp1 +
-      geom_vline(data = xx %>% filter(SNP %in% vlines) %>% mutate(SNP = factor(SNP, levels = vlines)),
+      geom_vline(data = xx %>% filter(SNP %in% vlines) %>%
+                   mutate(SNP = factor(SNP, levels = vlines)),
                  alpha = 0.4, aes(xintercept = Pos / 100000000, color = SNP))
     if(vline.legend == T) {
       mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors)
