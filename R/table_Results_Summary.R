@@ -8,7 +8,7 @@
 
 table_Results_Summary <- function(folder = "GWAS_Results/", isOrdered = F) {
   yy <- data.frame(Trait = list_Traits(folder),
-                   MLM = NA, MLMM = NA, FarmCPU = NA, BLINK = NA)
+                   GLM = NA, MLM = NA, MLMM = NA, FarmCPU = NA, BLINK = NA)
   xx <- list_Result_Files(folder)
   #i<-xx[303]
   for(i in xx) {
@@ -18,7 +18,7 @@ table_Results_Summary <- function(folder = "GWAS_Results/", isOrdered = F) {
     yy[yy$Trait==myTrait,colnames(yy)[colnames(yy)==myMod]] <- "X"
   }
   if(isOrdered) {
-    yy <- yy %>% mutate(MLM = NA, MLMM = NA, FarmCPU = NA, BLINK = NA)
+    yy <- yy %>% mutate(GLM = NA, MLM = NA, MLMM = NA, FarmCPU = NA, BLINK = NA)
     for(i in xx) {
       myTrait <- gsub("GAPIT.Association.GWAS_Results.|MLM.|MLMM.|FarmCPU.|BLINK.|.csv", "", i)
       myMod <- gsub("GAPIT.Association.GWAS_Results.|.csv", "", i)

@@ -10,19 +10,19 @@ gg_Manhattan(
   title = trait,
   threshold = NULL,
   sug.threshold = NULL,
-  markers = NULL,
-  labels = markers,
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
   vline.legend = F,
-  facet = T,
-  qq = T,
+  markers = NULL,
+  labels = markers,
+  facet = F,
+  addQQ = T,
   pmax = NULL,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
-  chrom.colors = c("darkgreen", "darkgoldenrod3", "darkgreen", "darkgoldenrod3",
-    "darkgreen", "darkgoldenrod3", "darkgreen"),
-  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
-    "darkgoldenrod2")
+  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
+  chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
+  chrom.unit = "100 Mbp",
+  legend.rows = 2
 )
 }
 \arguments{
@@ -32,27 +32,35 @@ gg_Manhattan(
 
 \item{title}{A title for the plot.}
 
-\item{markers}{Markers to be labelled.}
+\item{threshold}{Significant Threshold.}
 
-\item{labels}{Labels to be used for markers.}
+\item{sug.threshold}{Suggested threshold.}
 
 \item{vlines}{Markers which will be used as a location for a vertical lines.}
 
 \item{vline.colors}{colors for each vertical line.}
 
-\item{vline.legend}{Logical, wheterh or not to add a legend for the vlines.}
+\item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
+
+\item{markers}{Markers to be labelled.}
+
+\item{labels}{Labels to be used for markers.}
 
 \item{facet}{Logical, whether or not to produce a facetted or multi-model plot.}
 
-\item{qq}{Logical, whether or not to add a QQ plot}
+\item{addQQ}{Logical, whether or not to add a QQ plot}
 
 \item{pmax}{A max value for the y-axis.}
 
 \item{models}{Models to read.}
 
+\item{model.colors}{Colors for each model. Used if `facet = F`.}
+
 \item{chrom.colors}{Colors for each chromosome. Used if `facet = T`.}
 
-\item{model.colors}{Colors for each model. Used if `facet = F`.}
+\item{chrom.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
+
+\item{legend.rows}{Number of rows for the legend.}
 }
 \value{
 A manhattan plot.

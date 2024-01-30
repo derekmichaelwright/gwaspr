@@ -4,138 +4,180 @@
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
 #' @param title A title for the plot.
-#' @param markers Markers to be labelled.
-#' @param labels Labels to be used for markers.
+#' @param threshold Significant Threshold.
+#' @param sug.threshold Suggested threshold.
 #' @param vlines Markers which will be used as a location for a vertical lines.
 #' @param vline.colors colors for each vertical line.
-#' @param vline.legend Logical, wheterh or not to add a legend for the vlines.
+#' @param vline.legend Logical, whether or not to add a legend for the vlines.
+#' @param markers Markers to be labelled.
+#' @param labels Labels to be used for markers.
 #' @param facet Logical, whether or not to produce a facetted or multi-model plot.
-#' @param qq Logical, whether or not to add a QQ plot
+#' @param addQQ Logical, whether or not to add a QQ plot
 #' @param pmax A max value for the y-axis.
 #' @param models Models to read.
-#' @param chrom.colors Colors for each chromosome. Used if `facet = T`.
 #' @param model.colors Colors for each model. Used if `facet = F`.
+#' @param chrom.colors Colors for each chromosome. Used if `facet = T`.
+#' @param chrom.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
+#' @param legend.rows Number of rows for the legend.
 #' @return A manhattan plot.
 #' @export
 
-gg_Manhattan <- function(folder, trait, title = trait, threshold = NULL, sug.threshold = NULL,
-                         markers = NULL, labels = markers,
-                         vlines = markers, vline.colors = rep("red",length(vlines)), vline.legend = F,
-                         facet = T, qq = T, pmax = NULL,
-                         models = c("MLM","MLMM","FarmCPU","BLINK","GLM"),
-                         chrom.colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
-                                          "darkgreen","darkgoldenrod3","darkgreen"),
-                         model.colors = c("darkgreen", "darkred", "darkorange3",
-                                          "steelblue", "darkorchid4", "darkgoldenrod2")) {
+gg_Manhattan <- function (folder,
+                          trait,
+                          title = trait,
+                          threshold = NULL,
+                          sug.threshold = NULL,
+                          vlines = markers,
+                          vline.colors = rep("red", length(vlines)),
+                          vline.legend = F,
+                          markers = NULL,
+                          labels = markers,
+                          facet = F,
+                          addQQ = T,
+                          pmax = NULL,
+                          models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
+                          model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
+                          chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
+                          chrom.unit = "100 Mbp",
+                          legend.rows = 2 ) {
+  #
+  # Read in files
   #
   fnames <- list.files(folder)[grepl("GWAS_Results", list.files(folder))]
-  fnames <- fnames[grepl(paste0(trait,".csv"), fnames)]
-  #fnames <- grep(paste0(trait, "GWAS_Results"), list.files(folder))
-  #fnames <- grep(paste0(trait, "GWAS_Results"), list.files(folder))
-  #fnames <- list.files(folder)[fnames]
+  fnames <- fnames[grepl(paste0(trait, ".csv"), fnames)]
   xx <- NULL
-  # i <- fnames[3]
-  for(i in fnames) {
-    mod <- substr(i, gregexpr("GWAS_Results", i)[[1]][1]+13, gregexpr(".csv", i)[[1]][1]-1)
-    mod <- substr(mod, 1, gregexpr("\\.", mod)[[1]][1]-1)
+  for (i in fnames) {
+    mod <- substr(i, gregexpr("GWAS_Results", i)[[1]][1] +
+                    13, gregexpr(".csv", i)[[1]][1] - 1)
+    mod <- substr(mod, 1, gregexpr("\\.", mod)[[1]][1] -
+                    1)
     xi <- read.csv(paste0(folder, i))
-    if(sum(colnames(xi)=="nobs")>0) { xi <- select(xi, -nobs) }
-    xi <- xi %>%
-      mutate(Model = mod,
-             `-log10(p)`     = -log10(P.value),
-             `-log10(p)_exp` = -log10((rank(P.value, ties.method="first")-.5)/nrow(.)))
+    if (sum(colnames(xi) == "nobs") > 0) {
+      xi <- select(xi, -nobs)
+    }
+    xi <- xi %>% mutate(Model = mod, `-log10(p)` = -log10(P.value),
+                        `-log10(p)_exp` = -log10((rank(P.value, ties.method = "first") -
+                                                    0.5)/nrow(.)))
     xx <- bind_rows(xx, xi)
   }
+  #
+  # Prep data
+  #
   xx <- xx %>% filter(Model %in% models) %>%
     mutate(Model = factor(Model, levels = models)) %>%
     arrange(desc(Model))
   #
-  if(is.null(threshold)) { threshold <- -log10(0.05 / nrow(xi)) }
-  if(!is.null(pmax)) {
-    xx <- xx %>% mutate(`-log10(p)` = ifelse(`-log10(p)` > pmax, pmax, `-log10(p)`))
+  if (is.null(threshold)) {
+    threshold <- -log10(0.05/nrow(xi))
   }
-  #colnames(xx)[c(2:3,5)] <- c("Chromosome","Position","MAF")
+  #
+  if (!is.null(pmax)) {
+    xx <- xx %>%
+      mutate(`-log10(p)` = ifelse(`-log10(p)` > pmax, pmax, `-log10(p)`))
+  }
+  #
   x1 <- xx %>% filter(`-log10(p)` < threshold)
   x2 <- xx %>% filter(`-log10(p)` > threshold)
-  # Man plot
-  mp1 <- ggplot(x1, aes(x = Pos / 100000000, y = `-log10(p)`))
-  if(!is.null(vlines)) {
+  #
+  if(chrom.unit == "kbp")     { x.unit = 1000 }
+  if(chrom.unit == "100 kbp") { x.unit = 100000 }
+  if(chrom.unit == "Mbp")     { x.unit = 1000000 }
+  if(chrom.unit == "100 Mbp") { x.unit = 100000000 }
+  if(chrom.unit == "Gbp")     { x.unit = 1000000000 }
+  if(!chrom.unit %in% c("kbp", "100 kbp", "Mbp", "100 Mbp", "Gbp")) { print("error in chrom.unit") }
+  #
+  # Start Plots
+  #
+  mp1 <- ggplot(x1, aes(x = Pos/x.unit, y = `-log10(p)`)) +
+    theme_gwaspr(axis.title.y = element_markdown()) +
+    guides(fill = guide_legend(nrow = legend.rows),
+           color = guide_legend(nrow = legend.rows) ) +
+    labs(title = title, y = "-log<sub>10</sub>(*p*)", x = chrom.unit)
+  #
+  mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
+    theme_gwaspr() +
+    guides(fill = guide_legend(nrow = legend.rows),
+           color = guide_legend(nrow = legend.rows) ) +
+    labs(title = "", y = NULL, x = "Expected")
+  #
+  # Add vlines
+  #
+  if (!is.null(vlines)) {
     mp1 <- mp1 +
-      geom_vline(data = xx %>% filter(SNP %in% vlines) %>%
-                   mutate(SNP = factor(SNP, levels = vlines)),
-                 alpha = 0.4, aes(xintercept = Pos / 100000000, color = SNP))
-    if(vline.legend == T) {
+      geom_vline(data = xx %>% filter(SNP %in% vlines) %>% mutate(SNP = factor(SNP, levels = vlines)),
+                 aes(xintercept = Pos/x.unit, color = SNP), alpha = 0.4)
+    if (vline.legend == T) {
       mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors)
-    } else {
+    }
+    else {
       mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors, guide = F)
     }
   }
-  if(facet == T) {
+  #
+  # Add threshold lines
+  #
+  mp1 <- mp1+
+    geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
+    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5)
+  mp2 <- mp2 +
+    geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
+    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5)
+  #
+  # Add Markers
+  #
+  if (!is.null(markers)) {
+    xm <- xx %>%
+      mutate(SNP = ifelse(SNP %in% markers, SNP, NA),
+             Label = plyr::mapvalues(SNP, markers, labels)) %>%
+      filter(!is.na(Label),
+             `-log10(p)` > min(threshold, sug.threshold))
     mp1 <- mp1 +
-      geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
-      geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5) +
+      geom_text_repel(data = xm, aes(label = Label), size = 2)
+  }
+  #
+  # Plot facetted by model
+  #
+  if (facet == T) {
+    mp1 <- mp1 +
       geom_point(aes(fill = factor(Chr)), pch = 21, size = 1, color = alpha("white", 0)) +
-      geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = "darkred", alpha = 0.8) +
+      geom_point(data = x2, pch = 21, size = 1.5, color = "black",
+                 fill = "darkred", alpha = 0.8) +
       facet_grid(Model ~ Chr, scales = "free", space = "free_x") +
-      scale_fill_manual(values = chrom.colors) +
-      scale_x_continuous(breaks = 0:20) +
-      theme_gwaspr(legend.position = "none",
-                   axis.title.y = element_markdown()) +
-      labs(title = title, y = "-log<sub>10</sub>(*p*)", x = "100 Mbp")
-    if(!is.null(markers)) {
-      xx <- xx %>% mutate(Label = ifelse(SNP %in% markers, SNP, NA),
-                          Label = plyr::mapvalues(Label, markers, labels)) %>%
-        filter(`-log10(p)` > min(threshold, sug.threshold))
-      mp1 <- mp1 + geom_text_repel(data = xx %>% filter(SNP %in% markers),
-                                   aes(label = Label), size = 2)
-    }
-    # QQ plot
-    mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
-      geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
-      geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5) +
-      geom_point(pch = 1, color = chrom.colors[1], alpha = 0.8) +
-      geom_point(data = x2, pch = 21, color = "black", fill = "darkred", alpha = 0.8) +
-      geom_abline() +
-      facet_grid(Model ~ "QQ", scales = "free_y") +
-      theme_gwaspr() +
-      labs(title = "", y = NULL, x = "Expected")
-    # Append plots
-    if(qq == T) { mp <- ggpubr::ggarrange(mp1, mp2, ncol = 2, widths = c(4,1))
+      scale_fill_manual(name = NULL, values = chrom.colors) +
+      theme(legend.position = "none")
+    #
+    if(addQQ == T) {
+      mp2 <- mp2 +
+        geom_point(pch = 1, color = chrom.colors[1], alpha = 0.8) +
+        geom_point(data = x2, pch = 21, color = "black", fill = "darkred", alpha = 0.8) +
+        geom_abline() +
+        facet_grid(Model ~ "QQ", scales = "free_y")
+      mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1))
     } else { mp <- mp1 }
-  } else {
+  }
+  #
+  # Plot models together
+  #
+  else {
     mp1 <- mp1 +
-      geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
-      geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5) +
       geom_point(size = 0.1, aes(fill = Model), pch = 21, color = alpha("white", 0)) +
       geom_point(data = x2, aes(fill = Model), pch = 21, size = 1.25, alpha = 0.8) +
       facet_grid(. ~ Chr, scales = "free", space = "free_x") +
-      scale_fill_manual(values = model.colors) +
-      scale_x_continuous(breaks = 0:20) +
-      theme_gwaspr(axis.title.y = element_markdown()) +
-      labs(title = title, y = "-log<sub>10</sub>(*p*)", x = "100 Mbp")
-    if(!is.null(markers)) {
-      xx <- xx %>% mutate(Label = ifelse(SNP %in% markers, SNP, NA),
-                          Label = plyr::mapvalues(Label, markers, labels)) %>%
-        filter(`-log10(p)` > min(threshold, sug.threshold))
-      mp1 <- mp1 + geom_text_repel(data = xx %>% filter(SNP %in% markers),
-                                   aes(label = Label), size = 2)
-    }
-    # QQ plot
-    mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
-      geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
-      geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5) +
-      geom_point(pch = 1, aes(color = Model)) +
-      geom_point(data = x2, aes(color = Model)) +
-      geom_abline() +
-      facet_grid(. ~ "QQ", scales = "free_y") +
-      scale_color_manual(values = model.colors) +
-      theme_gwaspr() +
-      labs(title = "", y = NULL, x = "Expected")
-    # Append plots
-    if(qq == T) {
-      mp <- ggpubr::ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
-                              legend = "bottom", common.legend = T)
+      scale_fill_manual(name = NULL, values = model.colors)
+    #
+    if(addQQ == T) {
+      mp2 <- mp2 +
+        geom_point(pch = 1, aes(color = Model)) +
+        geom_point(data = x2, aes(color = Model)) +
+        geom_abline() +
+        facet_grid(. ~ "QQ", scales = "free_y") +
+        scale_color_manual(name = NULL, values = model.colors)
+      mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
+                      legend = "bottom", common.legend = T)
     } else { mp <- mp1 }
   }
+  #
+  # Output Plot
+  #
   mp
 }

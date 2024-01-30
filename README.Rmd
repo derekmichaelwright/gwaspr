@@ -70,10 +70,20 @@ list_Top_Markers(trait = "DTF_Nepal_2017", model = "MLMM",
                  threshold = 6.7, chroms = c(2,5), n = 1)
 ```
 
+```{r}
+myMarkers <- c("Lcu.2RBY.Chr2p42543877","Lcu.2RBY.Chr5p1069654",
+               "Lcu.2RBY.Chr6p2528817", "Lcu.2RBY.Chr6p12212845")
+```
+
 ```{r eval = T}
 list_Top_Markers(trait = "Testa_Pattern", model = "MLM", 
                  folder = "GWAS_Results/", 
                  threshold = 6.7, chroms = 6, n = 1)
+```
+
+```{r eval = T}
+table_Results_Summary("GWAS_Results/", isOrdered = F)
+table_Results_Summary("GWAS_Results/", isOrdered = T)
 ```
 
 ## Summary Plot
@@ -85,8 +95,7 @@ mp <- gg_GWAS_Summary(folder = "GWAS_Results/",
                       colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
                       threshold = 6.7, sug.threshold = 6, 
                       hlines = c(1.5,3.5), lrows = 2,
-                      vlines = c("Lcu.2RBY.Chr2p42543877","Lcu.2RBY.Chr5p1069654",
-                                 "Lcu.2RBY.Chr6p2528817", "Lcu.2RBY.Chr6p12212845"),
+                      vlines = ,
                       vline.colors = c("red", "red", "green", "blue"),
                       title = "Summary of Significant GWAS Results")
 ggsave("man/figures/GWAS_Summary.png", mp, width = 12, height = 4)
@@ -106,14 +115,21 @@ gg_GWAS_plotly(mp, filename = "GWAS_Summary.html")
 
 ```{r eval = F}
 for(i in myTraits) {
-  mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = F,
+  mp <- gg_Manhattan(folder = "GWAS_Results/", 
+                     trait = i, 
+                     title = paste("LDP -", i), 
+                     threshold = 7.3, 
+                     sug.threshold = 6.7, 
+                     vlines = myMarkers,
+                     vline.colors = c("red","red","darkgreen","blue"),
+                     vline.legend = T,
+                     facet = F,
+                     addQQ = T,
+                     pmax = 12, 
                      models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
-                     threshold = 7.3, sug.threshold = 6.7, pmax = 12,
-                     vlines = c("Lcu.2RBY.Chr2p42543877", 
-                                "Lcu.2RBY.Chr5p1069654",
-                                "Lcu.2RBY.Chr6p12212845",
-                                "Lcu.2RBY.Chr6p2528817") )
-  ggsave(paste0("man/figures/Multi_",i,".png"), 
+                     model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
+                     legend.rows = 2)
+  ggsave(paste0("man/figures/Multi_", i, ".png"), 
          mp, width = 12, height = 4, bg = "white")
 }
 ```
@@ -132,13 +148,22 @@ for(i in myTraits) {
 
 ```{r eval = F}
 for(i in myTraits) {
-  mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = T,
-                     threshold = 7.3, sug.threshold = 6.7,
-                     vlines = c("Lcu.2RBY.Chr2p42543877", 
-                                "Lcu.2RBY.Chr5p1069654",
-                                "Lcu.2RBY.Chr6p12212845",
-                                "Lcu.2RBY.Chr6p2528817"))
-  ggsave(paste0("man/figures/Facet_",i,".png"), mp, width = 12, height = 8)
+  mp <- gg_Manhattan(folder = "GWAS_Results/", 
+                     trait = i, 
+                     title = paste("LDP -", i), 
+                     threshold = 7.3, 
+                     sug.threshold = 6.7, 
+                     vlines = myMarkers,
+                     vline.colors = c("red","red","darkgreen","blue"),
+                     vline.legend = T,
+                     facet = T,
+                     addQQ = T,
+                     pmax = 12, 
+                     models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
+                     chrom.colors = rep(c("darkgreen", "darkgoldenrod2"), 4),
+                     legend.rows = 2)
+  ggsave(paste0("man/figures/Facet_", i, ".png"), 
+         mp, width = 12, height = 8)
 }
 ```
 

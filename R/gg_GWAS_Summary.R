@@ -61,7 +61,6 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
   myG <- read.csv(paste0(folder, files[1])) %>%
     mutate(Trait = myP$Trait[1],
            Trait = factor(Trait, levels = rev(traits)))
-  #colnames(myG)[c(2:3,5)] <- c("Chromosome","Position","MAF")
   #
   mp <- ggplot(x1, aes(x = Pos / 100000000, y = Trait)) +
     geom_blank(data = myG)
@@ -95,11 +94,7 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
     scale_shape_manual(name = NULL, values = shapes, breaks = models) +
     scale_x_continuous(breaks = 0:20) +
     scale_y_discrete(drop = F) +
-    theme_gwaspr(legend.position = legend.position#,
-                 #legend.box="vertical",
-                 #legend.spacing.y = unit(0.4, "cm"),
-                 #legend.margin = margin(-0.2,0,0,0, unit="cm")
-                 ) +
+    theme_gwaspr(legend.position = legend.position) +
     guides(shape = guide_legend(nrow = lrows, override.aes = list(size = 4)),
            color = guide_legend(nrow = lrows),
            fill = guide_legend(nrow = lrows)) +
