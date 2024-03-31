@@ -60,7 +60,7 @@ order_GWAS_Results(folder = "GWAS_Results/", files = myFiles)
 
 ```{r eval = T}
 myResults <- table_GWAS_Results(folder = "GWAS_Results/", files = myFiles,
-                   threshold = 6.7, sug.threshold = 6)
+                                threshold = 6.7, sug.threshold = 6)
 myResults[1:10,]
 ```
 
@@ -94,8 +94,8 @@ mp <- gg_GWAS_Summary(folder = "GWAS_Results/",
                       models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
                       colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
                       threshold = 6.7, sug.threshold = 6, 
-                      hlines = c(1.5,3.5), lrows = 2,
-                      vlines = ,
+                      hlines = c(1.5,3.5), legend.rows = 2,
+                      vlines = myMarkers,
                       vline.colors = c("red", "red", "green", "blue"),
                       title = "Summary of Significant GWAS Results")
 ggsave("man/figures/GWAS_Summary.png", mp, width = 12, height = 4)

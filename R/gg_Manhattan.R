@@ -39,7 +39,7 @@ gg_Manhattan <- function (folder,
                           model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
                           chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
                           chrom.unit = "100 Mbp",
-                          legend.rows = 2 ) {
+                          legend.rows = 1 ) {
   #
   # Read in files
   #
@@ -140,11 +140,11 @@ gg_Manhattan <- function (folder,
   if (facet == T) {
     mp1 <- mp1 +
       geom_point(aes(fill = factor(Chr)), pch = 21, size = 1, color = alpha("white", 0)) +
-      geom_point(data = x2, pch = 21, size = 1.5, color = "black",
-                 fill = "darkred", alpha = 0.8) +
+      geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = "darkred", alpha = 0.8) +
       facet_grid(Model ~ Chr, scales = "free", space = "free_x") +
-      scale_fill_manual(name = NULL, values = chrom.colors) +
-      theme(legend.position = "none")
+      scale_fill_manual(name = NULL, values = alpha(chrom.colors, 0.8), guide = F) +
+      guides(fill = F) +
+      theme(legend.position = "bottom")
     #
     if(addQQ == T) {
       mp2 <- mp2 +
@@ -152,7 +152,8 @@ gg_Manhattan <- function (folder,
         geom_point(data = x2, pch = 21, color = "black", fill = "darkred", alpha = 0.8) +
         geom_abline() +
         facet_grid(Model ~ "QQ", scales = "free_y")
-      mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1))
+      mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
+                      legend = "bottom", common.legend = T)
     } else { mp <- mp1 }
   }
   #

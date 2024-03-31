@@ -22,7 +22,7 @@ gg_Manhattan(
   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
   chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
   chrom.unit = "100 Mbp",
-  legend.rows = 2
+  legend.rows = 1
 )
 }
 \arguments{

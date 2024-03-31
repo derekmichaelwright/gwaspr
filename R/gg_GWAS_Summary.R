@@ -15,7 +15,7 @@
 #' @param title A title for the plot.
 #' @param caption A caption for the plot.
 #' @param rowread Number of rows to read for each GWAS results file.
-#' @param lrows Number of rows for the legend.
+#' @param legend.rows Number of rows for the legend.
 #' @return A GWAS summary plot.
 #' @export
 
@@ -33,7 +33,7 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
                             caption = paste0("Sig Threshold = ", threshold, " = Large\nSuggestive = ", sug.threshold," = Small"),
                             rowread = 2000,
                             legend.position = "bottom",
-                            lrows = 1 ) {
+                            legend.rows = 1 ) {
   #
   files <- list_Result_Files(folder)
   files <- files[grepl(paste(traits,collapse="|"), files)]
@@ -95,9 +95,9 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
     scale_x_continuous(breaks = 0:20) +
     scale_y_discrete(drop = F) +
     theme_gwaspr(legend.position = legend.position) +
-    guides(shape = guide_legend(nrow = lrows, override.aes = list(size = 4)),
-           color = guide_legend(nrow = lrows),
-           fill = guide_legend(nrow = lrows)) +
+    guides(shape = guide_legend(nrow = legend.rows, override.aes = list(size = 4)),
+           color = guide_legend(nrow = legend.rows),
+           fill = guide_legend(nrow = legend.rows)) +
     labs(title = title, y = NULL, x = "100 Mbp", caption = caption)
   if(vline.legend == F) {
     mp <- mp + guides(color = vline.legend)

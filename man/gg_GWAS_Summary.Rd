@@ -21,7 +21,7 @@ gg_GWAS_Summary(
     sug.threshold, " = Small"),
   rowread = 2000,
   legend.position = "bottom",
-  lrows = 1
+  legend.rows = 1
 )
 }
 \arguments{
@@ -53,7 +53,7 @@ gg_GWAS_Summary(
 
 \item{rowread}{Number of rows to read for each GWAS results file.}
 
-\item{lrows}{Number of rows for the legend.}
+\item{legend.rows}{Number of rows for the legend.}
 }
 \value{
 A GWAS summary plot.
