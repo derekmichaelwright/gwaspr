@@ -39,12 +39,10 @@ gg_Volcano <- function(folder, trait, title = trait,
   # Volcano plot
   ggplot(xx, aes(x = Effect, y = `-log10(p)`)) +
     geom_hline(yintercept = threshold, color = "red") +
-    geom_point(aes(color = Sig, shape = factor(Chr))) +
-    geom_point(data = xm, aes(shape = factor(Chr)), color = "darkred") +
+    geom_point(aes(color = Sig, shape = factor(Chr)), alpha = 0.7) +
     geom_text_repel(data = xm, size = 1, aes(label = SNP)) +
     facet_wrap(Model ~ ., scales = "free", ncol = length(unique(xx$Model))) +
-    scale_color_manual(values = c("darkgreen", "black"), guide = F) +
-    scale_fill_manual(values = c(alpha("darkgreen", 0), "darkred")) +
+    scale_color_manual(values = c("darkgreen", "black")) +
     scale_shape_manual(name = "Chr", values = c(1:7)) +
     guides(color = F) +
     theme_gwaspr(axis.title.y = element_markdown()) +
