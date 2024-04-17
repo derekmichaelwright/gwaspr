@@ -14,5 +14,6 @@ theme_gwaspr <- function(x, bgFill = "grey95", lineColor = "white", linesize = 0
         panel.grid = element_line(color = lineColor),
         panel.border = element_rect(colour = "black", fill=NA, size=linesize),
         strip.background = element_rect(colour = "black", fill = stripFill, size = linesize),
+        legend.key = element_rect(colour = "white"),
         ...)
 }
