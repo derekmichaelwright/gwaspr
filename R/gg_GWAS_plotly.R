@@ -11,7 +11,6 @@ gg_GWAS_plotly <- function(mp, filename = "GWAS_plotly.html") {
   mpp <- plotly::ggplotly(mp) %>% plotly::layout(showlegend = F)
   htmlwidgets::saveWidget(plotly::as_widget(mpp),
                           filename,
-                          #knitrOptions = list(fig.width = width, fig.height = height),
                           selfcontained = T)
   mpp
 }

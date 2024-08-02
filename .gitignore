@@ -4,3 +4,5 @@
 /Vignettes/*.Rmd
 inst/doc
 docs
+
+myG_hmp.csv

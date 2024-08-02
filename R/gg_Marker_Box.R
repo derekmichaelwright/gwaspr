@@ -14,14 +14,14 @@ gg_Marker_Box <- function (myG, myY, trait,
                            markers,
                            points = T,
                            colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
-                                      "darkslategray", "maroon4", "purple4", "darkblue"))
-  {
-  #markers = c("Lcu.2RBY.Chr2p42543877", "Lcu.2RBY.Chr5p1069654")
+                                      "darkslategray", "maroon4", "purple4", "darkblue")) {
+  #
   title <- paste(markers, collapse = "-")
   #
-  xx <- myG %>% filter(rs %in% markers) %>%
+  xx <- myG %>% rename(SNP=1) %>%
+    filter(SNP %in% markers) %>%
     select(-2,-3,-4,-5,-6,-7,-8,-9,-10,-11) %>%
-    column_to_rownames("rs") %>%
+    column_to_rownames("SNP") %>%
     t() %>% as.data.frame() %>% mutate(Alleles = NA)
   for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),]}
   #i<-1
