@@ -90,28 +90,17 @@ gg_Manhattan <- function (folder,
   #
   mp1 <- ggplot(x1, aes(x = Pos/x.unit, y = `-log10(p)`)) +
     theme_gwaspr(axis.title.y = element_markdown()) +
-    guides(fill = guide_legend(nrow = legend.rows),
-           color = guide_legend(nrow = legend.rows) ) +
     labs(title = title, y = "-log<sub>10</sub>(*p*)", x = chrom.unit)
   #
   mp2 <- ggplot(x1, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
     theme_gwaspr() +
-    guides(fill = guide_legend(nrow = legend.rows),
-           color = guide_legend(nrow = legend.rows) ) +
     labs(title = "", y = NULL, x = "Expected")
   #
   # Add vlines
   #
   if (!is.null(vlines)) {
-    mp1 <- mp1 +
-      geom_vline(data = xx %>% filter(SNP %in% vlines) %>% mutate(SNP = factor(SNP, levels = vlines)),
-                 aes(xintercept = Pos/x.unit, color = SNP), alpha = 0.4)
-    if (vline.legend == T) {
-      mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors)
-    }
-    else {
-      mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors, guide = F)
-    }
+    vv <- xx %>% filter(SNP %in% vlines) %>% mutate(SNP = factor(SNP, levels = vlines))
+    mp1 <- mp1 + geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP), alpha = 0.4)
   }
   #
   # Add threshold lines
@@ -123,7 +112,7 @@ gg_Manhattan <- function (folder,
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
     geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5)
   #
-  # Add Markers
+  # Add Marker labels
   #
   if (!is.null(markers)) {
     xm <- xx %>%
@@ -133,6 +122,12 @@ gg_Manhattan <- function (folder,
              `-log10(p)` > min(threshold, sug.threshold))
     mp1 <- mp1 +
       geom_text_repel(data = xm, aes(label = Label), size = 2)
+  }
+  # vline legends
+  if (vline.legend == T) {
+    mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors)
+  } else {
+    mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors, guide = F)
   }
   #
   # Plot facetted by model
@@ -155,16 +150,17 @@ gg_Manhattan <- function (folder,
       mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
                       legend = "bottom", common.legend = T)
     } else { mp <- mp1 }
-  }
-  #
-  # Plot models together
-  #
-  else {
+  } else {
+    #
+    # Plot models together
+    #
     mp1 <- mp1 +
       geom_point(size = 0.1, aes(fill = Model), pch = 21, color = alpha("white", 0)) +
       geom_point(data = x2, aes(fill = Model), pch = 21, size = 1.25, alpha = 0.8) +
       facet_grid(. ~ Chr, scales = "free", space = "free_x") +
-      scale_fill_manual(name = NULL, values = model.colors)
+      scale_fill_manual(name = NULL, values = model.colors) +
+      guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 1.5)),
+             color = guide_legend(nrow = legend.rows, byrow = T) )
     #
     if(addQQ == T) {
       mp2 <- mp2 +
@@ -172,7 +168,9 @@ gg_Manhattan <- function (folder,
         geom_point(data = x2, aes(color = Model)) +
         geom_abline() +
         facet_grid(. ~ "QQ", scales = "free_y") +
-        scale_color_manual(name = NULL, values = model.colors)
+        scale_color_manual(name = NULL, values = model.colors) +
+        guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 1.5)),
+               color = guide_legend(nrow = legend.rows, byrow = T) )
       mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
                       legend = "bottom", common.legend = T)
     } else { mp <- mp1 }
