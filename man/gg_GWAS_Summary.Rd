@@ -15,6 +15,7 @@ gg_GWAS_Summary(
   hlines = NULL,
   vlines = NULL,
   vline.colors = rep("red", length(vlines)),
+  vline.types = rep(1, length(vlines)),
   vline.legend = T,
   title = NULL,
   caption = paste0("Sig Threshold = ", threshold, " = Large\\nSuggestive = ",
@@ -44,6 +45,8 @@ gg_GWAS_Summary(
 \item{vlines}{Markers to be labelled with a vertical red line.}
 
 \item{vline.colors}{colors for each vertical line.}
+
+\item{vline.types}{lty for each vertical line.}
 
 \item{vline.legend}{Logical, display of vline color legend.}
 

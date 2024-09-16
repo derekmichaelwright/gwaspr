@@ -12,8 +12,13 @@ gg_GWAS_Hits(
   myTitle = "",
   sigMin = 0,
   myCV = NULL,
+  models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
+  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
+  model.shapes = c(21, 24:25, 22, 23),
   vlines = NULL,
-  vline.colors = rep("red", length(vlines))
+  vline.colors = rep("red", length(vlines)),
+  vline.types = rep(1, length(vlines)),
+  legend.rows = 1
 )
 }
 \arguments{
@@ -31,9 +36,17 @@ gg_GWAS_Hits(
 
 \item{myCV}{(optional) for filtering if you have a "CV" column.}
 
+\item{models}{Models to read.}
+
+\item{model.colors}{Colors for each model.}
+
 \item{vlines}{Markers to be labelled with a vertical red line.}
 
 \item{vline.colors}{colors for each vertical line.}
+
+\item{vline.types}{lty for each vertical line.}
+
+\item{legend.rows}{Number of rows for the legend.}
 }
 \value{
 A GWAS Hits plot.

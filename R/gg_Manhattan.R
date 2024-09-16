@@ -8,6 +8,7 @@
 #' @param sug.threshold Suggested threshold.
 #' @param vlines Markers which will be used as a location for a vertical lines.
 #' @param vline.colors colors for each vertical line.
+#' @param vline.types lty for each vertical line.
 #' @param vline.legend Logical, whether or not to add a legend for the vlines.
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
@@ -29,6 +30,7 @@ gg_Manhattan <- function (folder,
                           sug.threshold = NULL,
                           vlines = markers,
                           vline.colors = rep("red", length(vlines)),
+                          vline.types = rep(1, length(vlines)),
                           vline.legend = F,
                           markers = NULL,
                           labels = markers,
@@ -100,17 +102,19 @@ gg_Manhattan <- function (folder,
   #
   if (!is.null(vlines)) {
     vv <- xx %>% filter(SNP %in% vlines) %>% mutate(SNP = factor(SNP, levels = vlines))
-    mp1 <- mp1 + geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP), alpha = 0.4)
+    mp1 <- mp1 +
+      geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP, lty = SNP), alpha = 0.4) +
+      scale_linetype_manual(name = NULL, values = vline.types)
   }
   #
   # Add threshold lines
   #
   mp1 <- mp1+
-    geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
-    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5)
+    geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
+    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)
   mp2 <- mp2 +
-    geom_hline(yintercept = threshold, color = "red", alpha = 0.8, size = 0.5) +
-    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, size = 0.5)
+    geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
+    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)
   #
   # Add Marker labels
   #
@@ -127,7 +131,7 @@ gg_Manhattan <- function (folder,
   if (vline.legend == T) {
     mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors)
   } else {
-    mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors, guide = F)
+    mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors, guide = "none")
   }
   #
   # Plot facetted by model
@@ -137,8 +141,8 @@ gg_Manhattan <- function (folder,
       geom_point(aes(fill = factor(Chr)), pch = 21, size = 1, color = alpha("white", 0)) +
       geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = "darkred", alpha = 0.8) +
       facet_grid(Model ~ Chr, scales = "free", space = "free_x") +
-      scale_fill_manual(name = NULL, values = alpha(chrom.colors, 0.8), guide = F) +
-      guides(fill = F) +
+      scale_fill_manual(name = NULL, values = alpha(chrom.colors, 0.8), guide = "none") +
+      guides(fill = "none") +
       theme(legend.position = "bottom")
     #
     if(addQQ == T) {

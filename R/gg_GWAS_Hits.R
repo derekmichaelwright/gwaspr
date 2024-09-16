@@ -7,18 +7,27 @@
 #' @param myR Range for binning GWAS hits.
 #' @param myTitle Title for horizontal facet.
 #' @param sigMin Minimum number of hits to plot.
+#' @param models Models to read.
+#' @param model.colors Colors for each model.
 #' @param myCV (optional) for filtering if you have a "CV" column.
 #' @param vlines Markers to be labelled with a vertical red line.
 #' @param vline.colors colors for each vertical line.
+#' @param vline.types lty for each vertical line.
+#' @param legend.rows Number of rows for the legend.
 #' @return A GWAS Hits plot.
 #' @export
 
 gg_GWAS_Hits <- function(xx, myG, myTs, myR = 2000000, myTitle = "",
                          sigMin = 0, myCV = NULL,
-                         vlines = NULL, vline.colors = rep("red", length(vlines)) ) {
+                         models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
+                         model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
+                         model.shapes = c(21,24:25,22,23),
+                         vlines = NULL,
+                         vline.colors = rep("red", length(vlines)),
+                         vline.types = rep(1, length(vlines)),
+                         legend.rows = 1) {
   #
-  myCols <- c("darkgreen", "darkorange3", "darkslategray4","darkblue")
-  xx <- xx %>% filter(Trait %in% myTs) %>% mutate(Hits = NA)
+  xx <- xx %>% filter(Trait %in% myTs, Model %in% models) %>% mutate(Hits = NA)
   myG <- myG %>% select(SNP=1, Chr=3, Pos=4)
   #
   i<-1
@@ -34,7 +43,7 @@ gg_GWAS_Hits <- function(xx, myG, myTs, myR = 2000000, myTitle = "",
     xx$Pos[xx$SNP %in% xi$SNP & xx$Trait %in% xi$Trait] <- NA
   }
   xx <- xx %>% filter(!is.na(Pos), Hits > sigMin) %>%
-    mutate(Model = factor(Model, levels = c("MLM", "FarmCPU", "BLINK")))
+    mutate(Model = factor(Model, levels = models))
   #
   # myTitle <- paste0(myTitle, " (", length(myTs), ")")
   if(!is.null(myCV)) { xx <- xx %>% filter(CV %in% myCV) }
@@ -51,22 +60,27 @@ gg_GWAS_Hits <- function(xx, myG, myTs, myR = 2000000, myTitle = "",
       arrange(SNP)
     mp <- mp +
       geom_vline(data = myGM, alpha = 0.7,
-                 aes(xintercept = Pos/1e+08, color = SNP)) +
-      scale_color_manual(name = NULL, values = vline.colors)
+                 aes(xintercept = Pos/1e+08, color = SNP, lty = SNP)) +
+      scale_color_manual(name = NULL, values = vline.colors) +
+      scale_linetype_manual(name = NULL, values = vline.types)
   }
   mp <- mp +
     geom_point(aes(y = Hits, size = Hits, key1 = SNP,
                    fill = Model, shape = Model), alpha = 0.7) +
-    facet_grid(paste(myTitle) ~ paste("Chr", Chr),
-               space = "free_x", scales = "free_x") +
-    scale_shape_manual(values = c(21,24:25), breaks = c("MLM","FarmCPU","BLINK")) +
-    scale_fill_manual(values = myCols, breaks = c("MLM","FarmCPU","BLINK")) +
+    facet_grid(. ~ paste("Chr", Chr), space = "free_x", scales = "free_x") +
+    scale_shape_manual(values = model.shapes)+#, breaks = c("MLM","FarmCPU","BLINK")) +
+    scale_fill_manual(values = model.colors)+#, breaks = c("MLM","FarmCPU","BLINK")) +
     scale_size_continuous(range = c(0.5,3)) +
     scale_y_continuous(labels = scales::label_number(accuracy = 1),
                        limits = c(0,ymax)) +
-    theme_AGL +
+    theme_gwaspr() +
     theme(legend.position = "bottom") +
-    guides(color = F, size = F) +
-    labs(x = "100 Mbp", y = "Significant Associations")
+    #guides(color = F, size = F) +
+    guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 1.5)),
+           color = guide_legend(nrow = legend.rows, byrow = T),
+           size = "none",
+           shape = guide_legend(nrow = legend.rows, byrow = T) ) +
+    labs(title = myTitle, x = "100 Mbp", y = "Significant Associations")
   mp
 }
+

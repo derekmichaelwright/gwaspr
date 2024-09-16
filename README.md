@@ -158,23 +158,6 @@ table_Results_Summary("GWAS_Results/", isOrdered = T)
     ## 3 DTF_Sask_2017_CV_b  NA   X    X       X     X
     ## 4      Testa_Pattern  NA   X    X       X     X
 
-## Summary Plot
-
-``` r
-mp <- gg_GWAS_Summary(folder = "GWAS_Results/", 
-                      traits = myTraits,
-                      models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
-                      colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
-                      threshold = 6.7, sug.threshold = 6, 
-                      hlines = c(1.5,3.5), legend.rows = 2,
-                      vlines = myMarkers,
-                      vline.colors = c("red", "red", "green", "blue"),
-                      title = "Summary of Significant GWAS Results")
-ggsave("man/figures/GWAS_Summary.png", mp, width = 12, height = 4)
-```
-
-![](man/figures/GWAS_Summary.png)
-
 ------------------------------------------------------------------------
 
 ## Manhattan Plots
@@ -190,6 +173,7 @@ for(i in myTraits) {
                      sug.threshold = 6.7, 
                      vlines = myMarkers,
                      vline.colors = c("red","red","darkgreen","blue"),
+                     vline.types = c(1,1,1,1),
                      vline.legend = T,
                      facet = F,
                      addQQ = T,
@@ -223,15 +207,16 @@ for(i in myTraits) {
                      sug.threshold = 6.7, 
                      vlines = myMarkers,
                      vline.colors = c("red","red","darkgreen","blue"),
+                     vline.types = c(1,1,1,1),
                      vline.legend = T,
                      facet = T,
                      addQQ = T,
                      pmax = 12, 
                      models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
                      chrom.colors = rep(c("darkgreen", "darkgoldenrod2"), 4),
-                     legend.rows = 2)
+                     legend.rows = 1)
   ggsave(paste0("man/figures/Facet_", i, ".png"), 
-         mp, width = 12, height = 8)
+         mp, width = 12, height = 8, bg = "white")
 }
 ```
 
@@ -242,6 +227,76 @@ for(i in myTraits) {
 ![](man/figures/Facet_DTF_Sask_2017_CV_b.png)
 
 ![](man/figures/Facet_Testa_Pattern.png)
+
+------------------------------------------------------------------------
+
+## Summary Plot
+
+``` r
+mp <- gg_GWAS_Summary(folder = "GWAS_Results/", 
+                      traits = myTraits,
+                      models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
+                      colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
+                      threshold = 6.7, sug.threshold = 6, 
+                      hlines = c(1.5,3.5), legend.rows = 2,
+                      vlines = myMarkers,
+                      vline.colors = c("red", "red", "green", "blue"),
+                      vline.types = c(1,1,1,1),
+                      title = "Summary of Significant GWAS Results")
+ggsave("man/figures/GWAS_Summary.png", mp, width = 12, height = 4)
+```
+
+![](man/figures/GWAS_Summary.png)
+
+------------------------------------------------------------------------
+
+## GWAS Hits Plot
+
+``` r
+# Prep 
+myG <- read.csv("myG_hmp.csv", header = T)
+# Plot
+mp <- gg_GWAS_Hits(xx = myResults, 
+                   myG = myG, 
+                   myTs = list_Traits("GWAS_Results/"), 
+                   myR = 2000000, 
+                   myTitle = "",
+                   sigMin = 0, 
+                   myCV = NULL,
+                   models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
+                   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
+                   model.shapes = c(21,24:25,22,23),
+                   vlines = myMarkers,
+                   vline.colors = c("red", "red", "green", "blue"),
+                   vline.types = rep(1, length(vlines)) )
+ggsave("man/figures/GWAS_Hits_01.png", mp, width = 10, height = 4)
+```
+
+![](man/figures/GWAS_Hits_01.png)
+
+------------------------------------------------------------------------
+
+![](man/figures/GWAS_Hits_02.png)
+
+``` r
+mp <- gg_GWAS_Hits(xx = myResults, 
+                   myG = myG, 
+                   myTs = list_Traits("GWAS_Results/"), 
+                   myR = 2000000, 
+                   myTitle = "",
+                   sigMin = 0, 
+                   myCV = NULL,
+                   models =  c("MLM", "MLMM", "FarmCPU", "BLINK"),
+                   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
+                   model.shapes = c(21,24:25,22),
+                   vlines = myMarkers,
+                   vline.colors = c("red", "red", "green", "blue"),
+                   vline.types = rep(1, length(vlines)),
+                   legend.rows = 2)
+ggsave("man/figures/GWAS_Hits_02.png", mp, width = 10, height = 4)
+```
+
+![](man/figures/GWAS_Hits.png)
 
 ------------------------------------------------------------------------
 

@@ -12,6 +12,7 @@ gg_Manhattan(
   sug.threshold = NULL,
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
+  vline.types = rep(1, length(vlines)),
   vline.legend = F,
   markers = NULL,
   labels = markers,
@@ -39,6 +40,8 @@ gg_Manhattan(
 \item{vlines}{Markers which will be used as a location for a vertical lines.}
 
 \item{vline.colors}{colors for each vertical line.}
+
+\item{vline.types}{lty for each vertical line.}
 
 \item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
 

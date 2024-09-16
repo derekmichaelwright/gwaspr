@@ -10,6 +10,7 @@
 #' @param shapes The shape values to use for the different models. e.g., 21:25
 #' @param vlines Markers to be labelled with a vertical red line.
 #' @param vline.colors colors for each vertical line.
+#' @param vline.types lty for each vertical line.
 #' @param vline.legend Logical, display of vline color legend.
 #' @param hlines Locations for horizontal lines. e.g., hlines = c(1.5,2.5).
 #' @param title A title for the plot.
@@ -28,6 +29,7 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
                             hlines = NULL,
                             vlines = NULL,
                             vline.colors = rep("red",length(vlines)),
+                            vline.types = rep(1, length(vlines)),
                             vline.legend = T,
                             title = NULL,
                             caption = paste0("Sig Threshold = ", threshold, " = Large\nSuggestive = ", sug.threshold," = Small"),
@@ -75,7 +77,8 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
     mp <- mp +
       geom_vline(data = myGM, alpha = 0.5,
                  aes(xintercept = Pos / 100000000, color = SNP)) +
-      scale_color_manual(name = NULL, values = vline.colors)
+      scale_color_manual(name = NULL, values = vline.colors) +
+      scale_linetype_manual(name = NULL, values = vline.types)
   }
   if(!is.null(hlines)) {
     mp <- mp + geom_hline(yintercept = hlines, alpha = 0.7)
