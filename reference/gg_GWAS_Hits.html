@@ -45,8 +45,13 @@
 <span>  myTitle <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  sigMin <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  myCV <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"GLM"</span><span class="op">)</span>,</span>
+<span>  model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkorchid4"</span><span class="op">)</span>,</span>
+<span>  model.shapes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21</span>, <span class="fl">24</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">22</span>, <span class="fl">23</span><span class="op">)</span>,</span>
 <span>  vlines <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span></span>
+<span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  legend.rows <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -82,12 +87,28 @@
 <dd><p>(optional) for filtering if you have a "CV" column.</p></dd>
 
 
+<dt id="arg-models">models<a class="anchor" aria-label="anchor" href="#arg-models"></a></dt>
+<dd><p>Models to read.</p></dd>
+
+
+<dt id="arg-model-colors">model.colors<a class="anchor" aria-label="anchor" href="#arg-model-colors"></a></dt>
+<dd><p>Colors for each model.</p></dd>
+
+
 <dt id="arg-vlines">vlines<a class="anchor" aria-label="anchor" href="#arg-vlines"></a></dt>
 <dd><p>Markers to be labelled with a vertical red line.</p></dd>
 
 
 <dt id="arg-vline-colors">vline.colors<a class="anchor" aria-label="anchor" href="#arg-vline-colors"></a></dt>
 <dd><p>colors for each vertical line.</p></dd>
+
+
+<dt id="arg-vline-types">vline.types<a class="anchor" aria-label="anchor" href="#arg-vline-types"></a></dt>
+<dd><p>lty for each vertical line.</p></dd>
+
+
+<dt id="arg-legend-rows">legend.rows<a class="anchor" aria-label="anchor" href="#arg-legend-rows"></a></dt>
+<dd><p>Number of rows for the legend.</p></dd>
 
 </dl></div>
     <div class="section level2">
