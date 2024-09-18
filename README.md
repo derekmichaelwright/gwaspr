@@ -257,7 +257,7 @@ ggsave("man/figures/GWAS_Summary.png", mp, width = 12, height = 4)
 myG <- read.csv("myG_hmp.csv", header = T)
 # Plot
 mp <- gg_GWAS_Hits(xx = myResults, 
-                   myG = myG, 
+                   xG = myG, 
                    myTs = list_Traits("GWAS_Results/"), 
                    myR = 2000000, 
                    myTitle = "",
@@ -268,7 +268,8 @@ mp <- gg_GWAS_Hits(xx = myResults,
                    model.shapes = c(21,24:25,22,23),
                    vlines = myMarkers,
                    vline.colors = c("red", "red", "green", "blue"),
-                   vline.types = rep(1, length(vlines)) )
+                   vline.types = rep(1, length(vlines)),
+                   legend.rows = 1)
 ggsave("man/figures/GWAS_Hits_01.png", mp, width = 10, height = 4)
 ```
 
@@ -280,7 +281,7 @@ ggsave("man/figures/GWAS_Hits_01.png", mp, width = 10, height = 4)
 
 ``` r
 mp <- gg_GWAS_Hits(xx = myResults, 
-                   myG = myG, 
+                   xG = myG, 
                    myTs = list_Traits("GWAS_Results/"), 
                    myR = 2000000, 
                    myTitle = "",
@@ -295,8 +296,6 @@ mp <- gg_GWAS_Hits(xx = myResults,
                    legend.rows = 2)
 ggsave("man/figures/GWAS_Hits_02.png", mp, width = 10, height = 4)
 ```
-
-![](man/figures/GWAS_Hits.png)
 
 ------------------------------------------------------------------------
 

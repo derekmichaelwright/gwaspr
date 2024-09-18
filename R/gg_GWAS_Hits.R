@@ -2,7 +2,7 @@
 #'
 #' Creates a summary GWAS plot of significant associations.
 #' @param xx Table of significant GWAS results. See ?table_GWAS_Results().
-#' @param myG Genotype data.
+#' @param xG Genotype data.
 #' @param myTs List of traits to use.
 #' @param myR Range for binning GWAS hits.
 #' @param myTitle Title for horizontal facet.
@@ -17,7 +17,7 @@
 #' @return A GWAS Hits plot.
 #' @export
 
-gg_GWAS_Hits <- function(xx, myG, myTs, myR = 2000000, myTitle = "",
+gg_GWAS_Hits <- function(xx, xG, myTs, myR = 2000000, myTitle = "",
                          sigMin = 0, myCV = NULL,
                          models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
                          model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
@@ -28,7 +28,7 @@ gg_GWAS_Hits <- function(xx, myG, myTs, myR = 2000000, myTitle = "",
                          legend.rows = 1) {
   #
   xx <- xx %>% filter(Trait %in% myTs, Model %in% models) %>% mutate(Hits = NA)
-  myG <- myG %>% select(SNP=1, Chr=3, Pos=4)
+  xG <- xG %>% select(SNP=1, Chr=3, Pos=4)
   #
   i<-1
   for(i in 1:nrow(xx)) {
@@ -51,15 +51,15 @@ gg_GWAS_Hits <- function(xx, myG, myTs, myR = 2000000, myTitle = "",
   #
   # group_by(Model) %>% summarise(Count = n())
   mp <- ggplot(xx, aes(x = Pos / 100000000) ) +
-    geom_blank(data = myG) #+
+    geom_blank(data = xG) #+
   #geom_hline(yintercept = sigThresh, alpha = 0.5, color = "darkred")
   if(!is.null(vlines)) {
-    myGM <- myG %>%
+    xGM <- xG %>%
       filter(SNP %in% vlines) %>%
       mutate(SNP = factor(SNP, levels = vlines)) %>%
       arrange(SNP)
     mp <- mp +
-      geom_vline(data = myGM, alpha = 0.7,
+      geom_vline(data = xGM, alpha = 0.7,
                  aes(xintercept = Pos/1e+08, color = SNP, lty = SNP)) +
       scale_color_manual(name = NULL, values = vline.colors) +
       scale_linetype_manual(name = NULL, values = vline.types)

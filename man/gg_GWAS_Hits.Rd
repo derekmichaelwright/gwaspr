@@ -6,7 +6,7 @@
 \usage{
 gg_GWAS_Hits(
   xx,
-  myG,
+  xG,
   myTs,
   myR = 2e+06,
   myTitle = "",
@@ -24,7 +24,7 @@ gg_GWAS_Hits(
 \arguments{
 \item{xx}{Table of significant GWAS results. See ?table_GWAS_Results().}
 
-\item{myG}{Genotype data.}
+\item{xG}{Genotype data.}
 
 \item{myTs}{List of traits to use.}
 
