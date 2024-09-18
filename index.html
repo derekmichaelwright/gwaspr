@@ -266,7 +266,7 @@
 <span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"myG_hmp.csv"</span>, header <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_GWAS_Hits.html">gg_GWAS_Hits</a></span><span class="op">(</span>xx <span class="op">=</span> <span class="va">myResults</span>, </span>
-<span>                   myG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>                   xG <span class="op">=</span> <span class="va">myG</span>, </span>
 <span>                   myTs <span class="op">=</span> <span class="fu"><a href="reference/list_Traits.html">list_Traits</a></span><span class="op">(</span><span class="st">"GWAS_Results/"</span><span class="op">)</span>, </span>
 <span>                   myR <span class="op">=</span> <span class="fl">2000000</span>, </span>
 <span>                   myTitle <span class="op">=</span> <span class="st">""</span>,</span>
@@ -277,14 +277,15 @@
 <span>                   model.shapes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21</span>,<span class="fl">24</span><span class="op">:</span><span class="fl">25</span>,<span class="fl">22</span>,<span class="fl">23</span><span class="op">)</span>,</span>
 <span>                   vlines <span class="op">=</span> <span class="va">myMarkers</span>,</span>
 <span>                   vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span>
-<span>                   vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span> <span class="op">)</span></span>
+<span>                   vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                   legend.rows <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"man/figures/GWAS_Hits_01.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/GWAS_Hits_01.png"></p>
 <hr>
 <p><img src="reference/figures/GWAS_Hits_02.png"></p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_GWAS_Hits.html">gg_GWAS_Hits</a></span><span class="op">(</span>xx <span class="op">=</span> <span class="va">myResults</span>, </span>
-<span>                   myG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>                   xG <span class="op">=</span> <span class="va">myG</span>, </span>
 <span>                   myTs <span class="op">=</span> <span class="fu"><a href="reference/list_Traits.html">list_Traits</a></span><span class="op">(</span><span class="st">"GWAS_Results/"</span><span class="op">)</span>, </span>
 <span>                   myR <span class="op">=</span> <span class="fl">2000000</span>, </span>
 <span>                   myTitle <span class="op">=</span> <span class="st">""</span>,</span>
@@ -298,7 +299,6 @@
 <span>                   vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   legend.rows <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"man/figures/GWAS_Hits_02.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/GWAS_Hits.png"></p>
 <hr>
 </div>
 </div>
@@ -349,7 +349,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
