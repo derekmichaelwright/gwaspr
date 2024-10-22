@@ -109,7 +109,7 @@ gg_Manhattan <- function (folder,
   #
   # Add threshold lines
   #
-  mp1 <- mp1+
+  mp1 <- mp1 +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
     geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)
   mp2 <- mp2 +

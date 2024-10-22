@@ -25,7 +25,7 @@
 gg_Manhattan_Traits <- function (
     folder,
     traits,
-    title = trait,
+    title = "GWAS",
     threshold = NULL,
     sug.threshold = NULL,
     vlines = markers,
@@ -46,9 +46,10 @@ gg_Manhattan_Traits <- function (
   #
   fnames <- list.files(folder)[grepl("GWAS_Results", list.files(folder))]
   fnames2 <- NULL
-  for(i in traits) { fnames2 <- c(fnames2, fnames[grepl(paste0(model, ".", traits, ".csv"), fnames)]) }
+  for(i in traits) { fnames2 <- c(fnames2, fnames[grepl(paste0(model, ".", i, ".csv"), fnames)]) }
   fnames <- fnames2
   xx <- NULL
+  i <-
   for (i in fnames) {
     xi <- read.csv(paste0(folder, i))
     if (sum(colnames(xi) == "nobs") > 0) {
@@ -110,7 +111,7 @@ gg_Manhattan_Traits <- function (
   #
   # Add threshold lines
   #
-  mp1 <- mp1+
+  mp1 <- mp1 +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
     geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)
   mp2 <- mp2 +
@@ -141,7 +142,7 @@ gg_Manhattan_Traits <- function (
     mp1 <- mp1 +
       geom_point(aes(fill = factor(Chr)), pch = 21, size = 1, color = alpha("white", 0)) +
       geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = "darkred", alpha = 0.8) +
-      facet_grid(Model ~ Chr, scales = "free", space = "free_x") +
+      facet_grid(Trait ~ Chr, scales = "free", space = "free_x") +
       scale_fill_manual(name = NULL, values = alpha(chrom.colors, 0.8), guide = "none") +
       guides(fill = "none") +
       theme(legend.position = "bottom")
@@ -151,29 +152,29 @@ gg_Manhattan_Traits <- function (
         geom_point(pch = 1, color = chrom.colors[1], alpha = 0.8) +
         geom_point(data = x2, pch = 21, color = "black", fill = "darkred", alpha = 0.8) +
         geom_abline() +
-        facet_grid(Model ~ "QQ", scales = "free_y")
+        facet_grid(Trait ~ "QQ", scales = "free_y")
       mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
                       legend = "bottom", common.legend = T)
     } else { mp <- mp1 }
   } else {
     #
-    # Plot models together
+    # Plot traits together
     #
     mp1 <- mp1 +
-      geom_point(size = 0.1, aes(fill = Model), pch = 21, color = alpha("white", 0)) +
-      geom_point(data = x2, aes(fill = Model), pch = 21, size = 1.25, alpha = 0.8) +
+      geom_point(size = 0.1, aes(fill = Trait), pch = 21, color = alpha("white", 0)) +
+      geom_point(data = x2, aes(fill = Trait), pch = 21, size = 1.25, alpha = 0.8) +
       facet_grid(. ~ Chr, scales = "free", space = "free_x") +
-      scale_fill_manual(name = NULL, values = model.colors) +
+      scale_fill_manual(name = NULL, values = myColors) +
       guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 1.5)),
              color = guide_legend(nrow = legend.rows, byrow = T) )
     #
     if(addQQ == T) {
       mp2 <- mp2 +
-        geom_point(pch = 1, aes(color = Model)) +
-        geom_point(data = x2, aes(color = Model)) +
+        geom_point(pch = 1, aes(color = Trait)) +
+        geom_point(data = x2, aes(color = Trait)) +
         geom_abline() +
         facet_grid(. ~ "QQ", scales = "free_y") +
-        scale_color_manual(name = NULL, values = model.colors) +
+        scale_color_manual(name = NULL, values = myColors) +
         guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 1.5)),
                color = guide_legend(nrow = legend.rows, byrow = T) )
       mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
