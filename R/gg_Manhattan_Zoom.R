@@ -10,19 +10,16 @@
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
 #' @param vlines Markers which will be used as a location for a vertical lines.
-#' @param vline.color color for each vertical line.
+#' @param vline.colors colors for each vertical line.
 #' @param models Models to read.
-#' @param colors Colors for each chromosome
 #' @return A manhattan plot.
 #' @export
 
 gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
                               title = trait,
                               markers = NULL, labels = markers,
-                              vlines = markers, vline.color = "red",
-                              models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","BLINK"),
-                              colors = c("darkgreen","darkgoldenrod3","darkgreen","darkgoldenrod3",
-                                         "darkgreen", "darkgoldenrod3","darkgreen") ) {
+                              vlines = markers, vline.colors = "red",
+                              models = c("GLM","MLM","CMLM","MLMM","SUPER","FarmCPU","BLINK") ) {
   fnames <- list.files(folder)[grepl("GWAS_Results", list.files(folder))]
   fnames <- fnames[grepl(paste0(trait,".csv"), fnames)]
   xx <- NULL
@@ -48,15 +45,16 @@ gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
   if(!is.null(vlines)) {
     mp <- mp +
       geom_vline(data = xx %>% filter(SNP %in% markers),
-                 aes(xintercept = Pos / 1000000),
-                 color = vline.color, alpha = 0.5)
+                 aes(xintercept = Pos / 1000000, color = SNP),
+                 alpha = 0.5) +
+      scale_color_manual(values = vline.colors)
   }
   mp <- mp +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.6) +
-    geom_point(aes(color = factor(Chr)), pch = 1, alpha = 0.8) +
-    geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = "darkred", alpha = 0.8) +
+    geom_point(alpha = 0.8, color = "darkgreen", pch = 16) +
+    geom_point(data = x2, pch = 16, size = 1.5, color = "darkred", alpha = 0.8) +
     facet_grid(Model ~ Chr, scales = "free") +
-    scale_color_manual(values = colors) +
+
     theme_gwaspr(legend.position = "none",
                  axis.title.y = element_markdown()) +
     labs(title = trait, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
