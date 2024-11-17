@@ -9,7 +9,9 @@ gg_Marker_Box(
   myY,
   trait,
   markers,
+  box.width = 0.1,
   points = T,
+  violin = T,
   colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4", "darkslategray",
     "maroon4", "purple4", "darkblue")
 )
@@ -23,7 +25,11 @@ gg_Marker_Box(
 
 \item{markers}{Markers to plot.}
 
-\item{points}{Logical, whether or not to plot points}
+\item{box.width}{width for the boxplot.}
+
+\item{points}{Logical, whether or not to plot points.}
+
+\item{violin}{Logical, whether or not to plot violin.}
 
 \item{colors}{Color palette.}
 }

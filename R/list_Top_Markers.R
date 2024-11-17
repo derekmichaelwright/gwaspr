@@ -2,7 +2,7 @@
 #'
 #' Finds the markers with the highest association on each chromosome.
 #' @param trait GWAS trait.
-#' @param method GWAS method.
+#' @param model GWAS model to include.
 #' @param chroms Chromosomes to include.
 #' @param n Number per chromosome.
 #' @param threshold filters results with -log10(p) below threshold.
@@ -17,7 +17,6 @@ list_Top_Markers <- function(trait, model, folder = NULL, threshold = NULL, chro
   fname <- list.files(folder)[fname]
   fname
   x <- read.csv(paste0(folder, fname))
-  #colnames(x)[2:3] <- c("Chromosome", "Position")
   #
   x <- x %>% filter(Chr %in% chroms) %>%
     group_by(Chr) %>%

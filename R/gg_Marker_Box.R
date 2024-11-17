@@ -5,14 +5,18 @@
 #' @param myY GWAS phenotype object.
 #' @param trait Trait to plot.
 #' @param markers Markers to plot.
-#' @param points Logical, whether or not to plot points
+#' @param box.width width for the boxplot.
+#' @param violin Logical, whether or not to plot violin.
+#' @param points Logical, whether or not to plot points.
 #' @param colors Color palette.
 #' @return Marker plot.
 #' @export
 
 gg_Marker_Box <- function (myG, myY, trait,
                            markers,
+                           box.width = 0.1,
                            points = T,
+                           violin = T,
                            colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
                                       "darkslategray", "maroon4", "purple4", "darkblue")) {
   #
@@ -30,12 +34,13 @@ gg_Marker_Box <- function (myG, myY, trait,
     left_join(myY, by = "Name") %>%
     filter(!is.na(get(trait)))
   # Plot
-  mp <- ggplot(xx, aes(x = Alleles, y = get(trait))) +
-    geom_violin(aes(fill = Alleles), alpha = 0.5) +
-    geom_boxplot(width = 0.1, outlier.shape = NA) +
+  mp <- ggplot(xx, aes(x = Alleles, y = get(trait)))
+  if(violin == T) { mp <- mp + geom_violin(aes(fill = Alleles), alpha = 0.5) }
+  mp <- mp +
+    geom_boxplot(width = box.width, outlier.shape = NA) +
     scale_fill_manual(name = NULL, values = colors) +
     theme_gwaspr(legend.position = "none") +
     labs(y = trait, x = title)
-    if (points == T) { mp <- mp + geom_quasirandom(alpha = 0.5, pch = 16) }
+  if (points == T) { mp <- mp + geom_quasirandom(alpha = 0.5, pch = 16) }
   mp
 }

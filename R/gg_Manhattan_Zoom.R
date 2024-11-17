@@ -38,7 +38,6 @@ gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
              `-log10(p)_exp` = -log10((rank(P.value, ties.method="first")-.5)/nrow(.)))
     xx <- bind_rows(xx, xi)
   }
-  #colnames(xx)[c(2:3)] <- c("Chromosome","Position")
   xx <- xx %>% mutate(Model = factor(Model, levels = models)) %>%
     filter(Chr == chr, Pos > start, Pos < end, !is.na(Model))
   threshold <- -log10(0.05 / nrow(xi))
@@ -59,7 +58,6 @@ gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
     facet_grid(Model ~ Chr, scales = "free") +
     scale_color_manual(values = colors) +
     theme_gwaspr(legend.position = "none",
-                 #axis.text.x = element_text(angle = 90, hjust = 0.5),
                  axis.title.y = element_markdown()) +
     labs(title = trait, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
   if(!is.null(markers)) {

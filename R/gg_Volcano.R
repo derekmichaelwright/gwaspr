@@ -29,7 +29,6 @@ gg_Volcano <- function(folder, trait, title = trait,
              Sig = ifelse(`-log10(p)` > -log10(0.05/nrow(.)), "Significant", "Non-Significant"))
     xx <- bind_rows(xx, xi)
   }
-  #colnames(xx)[c(2:3)] <- c("Chromosome","Position")
   xx <- xx %>% filter(Model %in% models) %>%
     mutate(Model = factor(Model, levels = models)) %>%
     filter(!is.na(Model), !is.na(Effect))

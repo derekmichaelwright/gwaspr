@@ -35,7 +35,6 @@ table_GWAS_Results <- function(folder, files, nrowstoread = 1000,
   if(sum(colnames(output)=="nobs")>0) { output <- select(output, -nobs) }
   #
   #
-  #colnames(output)[c(2:3,5)] <- c("Chromosome","Position","MAF")
   output %>% arrange(desc(`-log10(p)`)) #%>%
     #select(SNP, Chromosome, Position, Model, Trait, P.value, `-log10(p)`, MAF, Threshold,
      #      FDR_Adjusted_P.values, effect, Rsquare.of.Model.without.SNP, Rsquare.of.Model.with.SNP)

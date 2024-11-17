@@ -16,13 +16,13 @@ list_Top_Markers(
 \arguments{
 \item{trait}{GWAS trait.}
 
+\item{model}{GWAS model to include.}
+
 \item{threshold}{filters results with -log10(p) below threshold.}
 
 \item{chroms}{Chromosomes to include.}
 
 \item{n}{Number per chromosome.}
-
-\item{method}{GWAS method.}
 }
 \value{
 Table of top results.

@@ -56,7 +56,6 @@ old_gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
     facet_grid(Model ~ Chr, scales = "free") +
     scale_color_manual(values = colors) +
     theme_gwaspr(legend.position = "none",
-                 #axis.text.x = element_text(angle = 90, hjust = 0.5),
                  axis.title.y = element_markdown()) +
     labs(title = trait, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
   if(!is.null(markers)) {

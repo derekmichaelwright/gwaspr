@@ -230,6 +230,31 @@ mp <- gg_GWAS_Hits(xx = myResults,
 ggsave("man/figures/GWAS_Hits_02.png", mp, width = 10, height = 4)
 ```
 
+
+```{r eval = F echo = F}
+p <- gg_Manhattan_Traits(folder = "GWAS_Results/",
+                    traits = paste0("Ro17_Plot.Height.d0", c("24","32","40","54","61","67","74","80","89","95")),
+                    model = "MLM",
+                    title = "GWAS",
+                    threshold = 6,
+                    sug.threshold = 4,
+                    markers = myMarkers,
+                    labels = markers,
+                    vlines = markers,
+                    vline.colors = rep("red", length(vlines)),
+                    vline.types = rep(1, length(vlines)),
+                    vline.legend = T,
+                    addQQ = T,
+                    facet = F,
+                    pmax = NULL,
+                    chrom.unit = "100 Mbp",
+                    myColors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
+                                 "darkslategray", "burlywood4", "darkgoldenrod2", "red", "maroon3",
+                                 "blue2", "cyan3", "deeppink3"),
+                    legend.rows = 4)
+ggsave("Additional/Additional_Figure_15.png", mp, width = 12, height = 5, bg = "white")
+```
+
 ---
 
 # GAPIT
