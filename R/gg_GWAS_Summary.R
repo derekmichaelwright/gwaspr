@@ -5,6 +5,9 @@
 #' @param traits The traits to read.
 #' @param threshold Significant threshold.
 #' @param sug.threshold Suggestive threshold.
+#' @param chroms Chromosomes to plot.
+#' @param pos1 starting position to plot.
+#' @param pos2 ending position to plot.
 #' @param models Models to read.
 #' @param colors Colors for each model.
 #' @param shapes The shape values to use for the different models. e.g., 21:25
@@ -23,8 +26,9 @@
 gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
                             threshold = -log10(0.00000005),
                             sug.threshold = -log10(0.000005),
-                            models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
-                            colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkgoldenrod2"),
+                            chroms = NULL, pos1 = NULL, pos2 = NULL,
+                            models =  c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM"),
+                            colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4"),
                             shapes = 21:25,
                             hlines = NULL,
                             vlines = NULL,
@@ -63,6 +67,12 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
   myG <- read.csv(paste0(folder, files[1])) %>%
     mutate(Trait = myP$Trait[1],
            Trait = factor(Trait, levels = rev(traits)))
+  #
+  if(!is.null(chroms)) {
+    myG <- myG %>% filter(Chr %in% chroms, Pos > pos1, Pos < pos2)
+    x1 <- x1 %>% filter(Chr %in% chroms, Pos > pos1, Pos < pos2)
+    x2 <- x2 %>% filter(Chr %in% chroms, Pos > pos1, Pos < pos2)
+  }
   #
   mp <- ggplot(x1, aes(x = Pos / 100000000, y = Trait)) +
     geom_blank(data = myG)

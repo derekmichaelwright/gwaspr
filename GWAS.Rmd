@@ -1,0 +1,52 @@
+---
+title: gwaspr R Package
+output: github_document
+always_allow_html: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = T, message = F, warning = F)
+```
+
+# Prepare data
+
+```{r}
+library(agiler)
+x1 <- AGILE_Seed %>% select(Name, CotyledonColor) %>%
+  mutate(CotyledonColor = ifelse(CotyledonColor %in% c("green","Red/Yellow"), NA, as.character(CotyledonColor)),
+         CotyledonColor01 = plyr::mapvalues(CotyledonColor, c("Red","Yellow"), c(0,1)),
+         CotyledonColor01 = as.numeric(CotyledonColor01))
+x2 <- AGILE_Sutherland_2017 %>% select(Name, DTF_Sask_2017=`Days till 10% of Plants have One Open Flower (R1; days)`)
+x3 <- AGILE_Bardiya_2017 %>% select(Name, DTF_Nepal_2017=`Days till 10% of Plants have One Open Flower (R1; days)`)
+x4 <- AGILE_PT %>% select(Name, b)
+#colnames(x1)
+#
+fixNames <- function(xx) {
+  xx %>% mutate(Name = gsub(" ", "_", Name),
+                Name = gsub("-", "\\.", Name),
+                Name = plyr::mapvalues(Name, "3156.11_AGL", "X3156.11_AGL"))
+}
+#
+xx <- left_join(x1, x2, by = "Name") %>%
+  left_join(x3, by = "Name") %>%
+  fixNames()
+x4 <- x4 %>% fixNames()
+write.csv(xx, "myY.csv", row.names = F)
+write.csv(x4, "myCV.csv", row.names = F)
+```
+
+# Run GWAS
+
+```{r}
+library(GAPIT)
+#
+myY <- read.csv("myY.csv")
+myY <- myY[,-2]
+myCV <- read.csv("myCV.csv")
+myG <- read.csv("myG_hmp.csv")
+#
+myGAPIT <- GAPIT(Y = myY, G = myG, PCA.total = 4, 
+                 model = c("MLM","MLMM","FarmCPU","BLINK"))
+```
+
+

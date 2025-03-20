@@ -12,7 +12,7 @@
 
 gg_Volcano <- function(folder, trait, title = trait,
                        markers = NULL, labels = markers,
-                       models = c("GLM","MLM","MLMM","CMLM","SUPER","FarmCPU","BLINK")) {
+                       models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM")) {
   fnames <- list.files(folder)[grepl("GWAS_Results", list.files(folder))]
   fnames <- fnames[grepl(paste0(trait,".csv"), fnames)]
   xx <- NULL

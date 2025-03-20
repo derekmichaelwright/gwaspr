@@ -19,8 +19,8 @@
 
 gg_GWAS_Hits <- function(xx, xG, myTs, myR = 2000000, myTitle = "",
                          sigMin = 0, myCV = NULL,
-                         models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
-                         model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
+                         models =  c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM"),
+                         model.colors = c("darkgreen", "darkorange3", "steelblue","darkred", "darkorchid4"),
                          model.shapes = c(21,24:25,22,23),
                          vlines = NULL,
                          vline.colors = rep("red", length(vlines)),
