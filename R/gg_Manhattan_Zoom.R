@@ -19,7 +19,7 @@ gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
                               title = trait,
                               markers = NULL, labels = markers,
                               vlines = markers, vline.colors = "red",
-                              models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM") ) {
+                              models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER") ) {
   fnames <- list.files(folder)[grepl("GWAS_Results", list.files(folder))]
   fnames <- fnames[grepl(paste0(trait,".csv"), fnames)]
   xx <- NULL

@@ -38,7 +38,7 @@ gg_Manhattan_Traits <- function (
     addQQ = T,
     pmax = NULL,
     model = "MLM",
-    myColors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4"),
+    myColors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
     chrom.unit = "100 Mbp",
     legend.rows = 1 ) {
   #
