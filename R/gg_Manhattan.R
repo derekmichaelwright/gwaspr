@@ -6,6 +6,9 @@
 #' @param title A title for the plot.
 #' @param threshold Significant Threshold.
 #' @param sug.threshold Suggested threshold.
+#' @param chrom Chromosomes to plot. Use if you want to plot a single chromosome.
+#' @param pos1 starting position to plot.
+#' @param pos2 ending position to plot.
 #' @param vlines Markers which will be used as a location for a vertical lines.
 #' @param vline.colors colors for each vertical line.
 #' @param vline.types lty for each vertical line.
@@ -28,6 +31,7 @@ gg_Manhattan <- function (folder,
                           title = trait,
                           threshold = NULL,
                           sug.threshold = NULL,
+                          chrom = NULL,
                           vlines = markers,
                           vline.colors = rep("red", length(vlines)),
                           vline.types = rep(1, length(vlines)),
@@ -37,8 +41,8 @@ gg_Manhattan <- function (folder,
                           facet = F,
                           addQQ = T,
                           pmax = NULL,
-                          models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM"),
-                          model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4"),
+                          models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+                          model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
                           chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
                           chrom.unit = "100 Mbp",
                           legend.rows = 1 ) {
@@ -87,6 +91,11 @@ gg_Manhattan <- function (folder,
   if(chrom.unit == "100 Mbp") { x.unit = 100000000 }
   if(chrom.unit == "Gbp")     { x.unit = 1000000000 }
   if(!chrom.unit %in% c("kbp", "100 kbp", "Mbp", "100 Mbp", "Gbp")) { print("error in chrom.unit") }
+  #
+  if(!is.null(chrom)) {
+    x1 <- x1 %>% filter(Chr %in% chrom)
+    x2 <- x2 %>% filter(Chr %in% chrom)
+  }
   #
   # Start Plots
   #
