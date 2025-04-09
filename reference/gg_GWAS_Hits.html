@@ -40,14 +40,15 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gg_GWAS_Hits</span><span class="op">(</span></span>
 <span>  <span class="va">xx</span>,</span>
 <span>  <span class="va">xG</span>,</span>
-<span>  <span class="va">myTs</span>,</span>
-<span>  myR <span class="op">=</span> <span class="fl">2e+06</span>,</span>
-<span>  myTitle <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  xCV <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">traits</span>,</span>
+<span>  range <span class="op">=</span> <span class="fl">2e+06</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  sigMin <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  myCV <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"GLM"</span><span class="op">)</span>,</span>
-<span>  model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkorchid4"</span><span class="op">)</span>,</span>
-<span>  model.shapes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21</span>, <span class="fl">24</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">22</span>, <span class="fl">23</span><span class="op">)</span>,</span>
+<span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"MLMM"</span>, <span class="st">"GLM"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span>,</span>
+<span>  model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorchid4"</span>,</span>
+<span>    <span class="st">"burlywood4"</span>, <span class="st">"darkseagreen4"</span><span class="op">)</span>,</span>
+<span>  model.shapes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21</span><span class="op">:</span><span class="fl">25</span>, <span class="fl">21</span><span class="op">:</span><span class="fl">22</span><span class="op">)</span>,</span>
 <span>  vlines <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -64,27 +65,27 @@
 
 
 <dt id="arg-xg">xG<a class="anchor" aria-label="anchor" href="#arg-xg"></a></dt>
-<dd><p>Genotype data.</p></dd>
+<dd><p>Genotype data in hapmap format.</p></dd>
 
 
-<dt id="arg-myts">myTs<a class="anchor" aria-label="anchor" href="#arg-myts"></a></dt>
+<dt id="arg-xcv">xCV<a class="anchor" aria-label="anchor" href="#arg-xcv"></a></dt>
+<dd><p>(optional) for filtering if you have a "CV" column.</p></dd>
+
+
+<dt id="arg-traits">traits<a class="anchor" aria-label="anchor" href="#arg-traits"></a></dt>
 <dd><p>List of traits to use.</p></dd>
 
 
-<dt id="arg-myr">myR<a class="anchor" aria-label="anchor" href="#arg-myr"></a></dt>
+<dt id="arg-range">range<a class="anchor" aria-label="anchor" href="#arg-range"></a></dt>
 <dd><p>Range for binning GWAS hits.</p></dd>
 
 
-<dt id="arg-mytitle">myTitle<a class="anchor" aria-label="anchor" href="#arg-mytitle"></a></dt>
+<dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
 <dd><p>Title for horizontal facet.</p></dd>
 
 
 <dt id="arg-sigmin">sigMin<a class="anchor" aria-label="anchor" href="#arg-sigmin"></a></dt>
 <dd><p>Minimum number of hits to plot.</p></dd>
-
-
-<dt id="arg-mycv">myCV<a class="anchor" aria-label="anchor" href="#arg-mycv"></a></dt>
-<dd><p>(optional) for filtering if you have a "CV" column.</p></dd>
 
 
 <dt id="arg-models">models<a class="anchor" aria-label="anchor" href="#arg-models"></a></dt>

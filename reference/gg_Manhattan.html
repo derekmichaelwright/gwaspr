@@ -38,11 +38,12 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gg_Manhattan</span><span class="op">(</span></span>
-<span>  <span class="va">folder</span>,</span>
-<span>  <span class="va">trait</span>,</span>
+<span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
+<span>  trait <span class="op">=</span> <span class="fu"><a href="list_Traits.html">list_Traits</a></span><span class="op">(</span><span class="va">folder</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
 <span>  title <span class="op">=</span> <span class="va">trait</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sug.threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  chrom <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  vlines <span class="op">=</span> <span class="va">markers</span>,</span>
 <span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -52,8 +53,9 @@
 <span>  facet <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  addQQ <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  pmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"GLM"</span><span class="op">)</span>,</span>
-<span>  model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkorchid4"</span><span class="op">)</span>,</span>
+<span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"MLMM"</span>, <span class="st">"GLM"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span>,</span>
+<span>  model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorchid4"</span>,</span>
+<span>    <span class="st">"burlywood4"</span>, <span class="st">"darkseagreen4"</span><span class="op">)</span>,</span>
 <span>  chrom.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkgoldenrod3"</span><span class="op">)</span>, <span class="fl">30</span><span class="op">)</span>,</span>
 <span>  chrom.unit <span class="op">=</span> <span class="st">"100 Mbp"</span>,</span>
 <span>  legend.rows <span class="op">=</span> <span class="fl">1</span></span>
@@ -82,6 +84,10 @@
 
 <dt id="arg-sug-threshold">sug.threshold<a class="anchor" aria-label="anchor" href="#arg-sug-threshold"></a></dt>
 <dd><p>Suggested threshold.</p></dd>
+
+
+<dt id="arg-chrom">chrom<a class="anchor" aria-label="anchor" href="#arg-chrom"></a></dt>
+<dd><p>Chromosomes to plot. Use if you want to plot a single chromosome.</p></dd>
 
 
 <dt id="arg-vlines">vlines<a class="anchor" aria-label="anchor" href="#arg-vlines"></a></dt>
@@ -138,6 +144,14 @@
 
 <dt id="arg-legend-rows">legend.rows<a class="anchor" aria-label="anchor" href="#arg-legend-rows"></a></dt>
 <dd><p>Number of rows for the legend.</p></dd>
+
+
+<dt id="arg-pos-">pos1<a class="anchor" aria-label="anchor" href="#arg-pos-"></a></dt>
+<dd><p>starting position to plot.</p></dd>
+
+
+<dt id="arg-pos-">pos2<a class="anchor" aria-label="anchor" href="#arg-pos-"></a></dt>
+<dd><p>ending position to plot.</p></dd>
 
 </dl></div>
     <div class="section level2">
