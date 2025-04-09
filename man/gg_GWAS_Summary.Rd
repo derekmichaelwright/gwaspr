@@ -5,12 +5,16 @@
 \title{gg_GWAS_Summary}
 \usage{
 gg_GWAS_Summary(
-  folder = NULL,
-  traits = list_Traits(),
+  folder = "GWAS_Results/",
+  traits = list_Traits(folder),
   threshold = -log10(5e-08),
   sug.threshold = -log10(5e-06),
-  models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
-  colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkgoldenrod2"),
+  chroms = NULL,
+  pos1 = NULL,
+  pos2 = NULL,
+  models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+  colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
+    "burlywood4", "darkseagreen4"),
   shapes = 21:25,
   hlines = NULL,
   vlines = NULL,
@@ -33,6 +37,12 @@ gg_GWAS_Summary(
 \item{threshold}{Significant threshold.}
 
 \item{sug.threshold}{Suggestive threshold.}
+
+\item{chroms}{Chromosomes to plot.}
+
+\item{pos1}{starting position to plot.}
+
+\item{pos2}{ending position to plot.}
 
 \item{models}{Models to read.}
 

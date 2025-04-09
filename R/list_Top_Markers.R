@@ -1,19 +1,26 @@
 #' list_Top_Markers
 #'
 #' Finds the markers with the highest association on each chromosome.
-#' @param trait GWAS trait.
-#' @param model GWAS model to include.
+#' @param folder Folder containing GWAS results.
+#' @param traits GWAS trait.
+#' @param models GWAS models to include.
 #' @param chroms Chromosomes to include.
-#' @param n Number per chromosome.
+#' @param n Number per trait and model.
 #' @param threshold filters results with -log10(p) below threshold.
 #' @return Table of top results.
 #' @export
 
-list_Top_Markers <- function(trait, model, folder = NULL, threshold = NULL, chroms = 1:50, n = 1) {
+list_Top_Markers <- function(
+    folder = "GWAS_Results/",
+    traits = list_Traits(folder),
+    models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+    threshold = 5,
+    chroms = 1:50,
+    n = 1) {
   #
   fname <- grepl("GWAS_Results", list.files(folder)) &
-    grepl(trait, list.files(folder)) &
-    grepl(paste0("\\.",model,"\\."), list.files(folder))
+    grepl(traits, list.files(folder)) &
+    grepl(paste0("\\.",models,"\\."), list.files(folder))
   fname <- list.files(folder)[fname]
   fname
   x <- read.csv(paste0(folder, fname))

@@ -5,24 +5,26 @@
 \title{list_Top_Markers}
 \usage{
 list_Top_Markers(
-  trait,
-  model,
-  folder = NULL,
-  threshold = NULL,
+  folder = "GWAS_Results/",
+  traits = list_Traits(folder),
+  models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+  threshold = 5,
   chroms = 1:50,
   n = 1
 )
 }
 \arguments{
-\item{trait}{GWAS trait.}
+\item{folder}{Folder containing GWAS results.}
 
-\item{model}{GWAS model to include.}
+\item{traits}{GWAS trait.}
+
+\item{models}{GWAS models to include.}
 
 \item{threshold}{filters results with -log10(p) below threshold.}
 
 \item{chroms}{Chromosomes to include.}
 
-\item{n}{Number per chromosome.}
+\item{n}{Number per trait and model.}
 }
 \value{
 Table of top results.

@@ -5,7 +5,7 @@
 #' @return List of GWAS results.
 #' @export
 
-list_Result_Files <- function(folder) {
+list_Result_Files <- function(folder = "GWAS_Results/") {
   fnames <- grep(".GWAS.Results", list.files(folder))
   list.files(folder)[fnames]
 }

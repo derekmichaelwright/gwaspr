@@ -26,26 +26,27 @@
 #' @return A manhattan plot.
 #' @export
 
-gg_Manhattan <- function (folder,
-                          trait,
-                          title = trait,
-                          threshold = NULL,
-                          sug.threshold = NULL,
-                          chrom = NULL,
-                          vlines = markers,
-                          vline.colors = rep("red", length(vlines)),
-                          vline.types = rep(1, length(vlines)),
-                          vline.legend = F,
-                          markers = NULL,
-                          labels = markers,
-                          facet = F,
-                          addQQ = T,
-                          pmax = NULL,
-                          models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-                          model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
-                          chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
-                          chrom.unit = "100 Mbp",
-                          legend.rows = 1 ) {
+gg_Manhattan <- function (
+    folder = "GWAS_Results/",
+    trait = list_Traits(folder)[1],
+    title = trait,
+    threshold = NULL,
+    sug.threshold = NULL,
+    chrom = NULL,
+    vlines = markers,
+    vline.colors = rep("red", length(vlines)),
+    vline.types = rep(1, length(vlines)),
+    vline.legend = F,
+    markers = NULL,
+    labels = markers,
+    facet = F,
+    addQQ = T,
+    pmax = NULL,
+    models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+    model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
+    chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
+    chrom.unit = "100 Mbp",
+    legend.rows = 1 ) {
   #
   # Read in files
   #

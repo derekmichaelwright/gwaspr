@@ -5,24 +5,24 @@
 \title{gg_Marker}
 \usage{
 gg_Marker_Bar(
-  myG,
-  myY,
+  xG,
+  xY,
   trait,
   markers,
-  colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4", "darkslategray",
-    "maroon4", "purple4", "darkblue")
+  marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
+    "darkslategray", "maroon4", "purple4", "darkblue")
 )
 }
 \arguments{
-\item{myG}{GWAS genotype object. Note:  needs to be in hapmap format.}
+\item{xG}{GWAS genotype object. Note:  needs to be in hapmap format.}
 
-\item{myY}{GWAS phenotype object.}
+\item{xY}{GWAS phenotype object.}
 
 \item{trait}{Trait to plot.}
 
 \item{markers}{Markers to plot.}
 
-\item{colors}{Color palette.}
+\item{marker.colors}{Color palette.}
 }
 \value{
 Marker plot.

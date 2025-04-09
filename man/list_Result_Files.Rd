@@ -4,7 +4,7 @@
 \alias{list_Result_Files}
 \title{list_Result_Files}
 \usage{
-list_Result_Files(folder)
+list_Result_Files(folder = "GWAS_Results/")
 }
 \arguments{
 \item{folder}{Folder containing GWAS results.}

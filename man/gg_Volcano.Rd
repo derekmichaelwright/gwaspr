@@ -5,12 +5,12 @@
 \title{gg_Volcano}
 \usage{
 gg_Volcano(
-  folder,
-  trait,
+  folder = "GWAS_Results/",
+  trait = list_Traits(folder)[1],
   title = trait,
   markers = NULL,
   labels = markers,
-  models = c("GLM", "MLM", "MLMM", "CMLM", "SUPER", "FarmCPU", "BLINK")
+  models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
 )
 }
 \arguments{

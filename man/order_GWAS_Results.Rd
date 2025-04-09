@@ -4,7 +4,7 @@
 \alias{order_GWAS_Results}
 \title{order_GWAS_Results}
 \usage{
-order_GWAS_Results(folder, files)
+order_GWAS_Results(folder = "GWAS_Results/", files = list_Result_Files(folder))
 }
 \arguments{
 \item{folder}{Folder containing GWAS results.}

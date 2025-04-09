@@ -6,7 +6,9 @@
 #' @return Rearranged files of GWAS results.
 #' @export
 
-order_GWAS_Results <- function(folder, files) {
+order_GWAS_Results <- function(
+    folder = "GWAS_Results/",
+    files = list_Result_Files(folder)) {
   #
   for(i in files){
     xx <- read.csv(paste0(folder, i)) %>%

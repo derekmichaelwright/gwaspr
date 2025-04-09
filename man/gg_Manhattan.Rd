@@ -5,11 +5,12 @@
 \title{gg_Manhattan}
 \usage{
 gg_Manhattan(
-  folder,
-  trait,
+  folder = "GWAS_Results/",
+  trait = list_Traits(folder)[1],
   title = trait,
   threshold = NULL,
   sug.threshold = NULL,
+  chrom = NULL,
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
@@ -19,8 +20,9 @@ gg_Manhattan(
   facet = F,
   addQQ = T,
   pmax = NULL,
-  models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
-  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
+  models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+  model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
+    "burlywood4", "darkseagreen4"),
   chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
   chrom.unit = "100 Mbp",
   legend.rows = 1
@@ -36,6 +38,8 @@ gg_Manhattan(
 \item{threshold}{Significant Threshold.}
 
 \item{sug.threshold}{Suggested threshold.}
+
+\item{chrom}{Chromosomes to plot. Use if you want to plot a single chromosome.}
 
 \item{vlines}{Markers which will be used as a location for a vertical lines.}
 
@@ -64,6 +68,10 @@ gg_Manhattan(
 \item{chrom.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
 
 \item{legend.rows}{Number of rows for the legend.}
+
+\item{pos1}{starting position to plot.}
+
+\item{pos2}{ending position to plot.}
 }
 \value{
 A manhattan plot.

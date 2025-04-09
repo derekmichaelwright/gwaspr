@@ -5,9 +5,9 @@
 \title{gg_Manhattan_Traits}
 \usage{
 gg_Manhattan_Traits(
-  folder,
-  traits,
-  title = "GWAS",
+  folder = "GWAS_Results/",
+  traits = list_Traits(folder)[1:2],
+  title = trait,
   threshold = NULL,
   sug.threshold = NULL,
   vlines = markers,
@@ -20,7 +20,8 @@ gg_Manhattan_Traits(
   addQQ = T,
   pmax = NULL,
   model = "MLM",
-  myColors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
+  trait.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
+    "burlywood4", "darkseagreen4"),
   chrom.unit = "100 Mbp",
   legend.rows = 1
 )
@@ -56,7 +57,7 @@ gg_Manhattan_Traits(
 
 \item{model}{Model to read.}
 
-\item{myColors}{Colors for each trait.}
+\item{trait.colors}{Colors for each trait.}
 
 \item{chrom.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
 

@@ -15,15 +15,21 @@
 #' @return A manhattan plot.
 #' @export
 
-gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
-                              title = trait,
-                              markers = NULL, labels = markers,
-                              vlines = markers, vline.colors = "red",
-                              models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER") ) {
+gg_Manhattan_Zoom <- function(
+    folder = "GWAS_Results/",
+    trait = list_Traits(folder)[1],
+    chr, start, end,
+    title = trait,
+    markers = NULL,
+    labels = markers,
+    vlines = markers,
+    vline.colors = "red",
+    models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER") ) {
+  #
   fnames <- list.files(folder)[grepl("GWAS_Results", list.files(folder))]
   fnames <- fnames[grepl(paste0(trait,".csv"), fnames)]
   xx <- NULL
-  # i <- fnames[3]
+  #
   for(i in fnames) {
     mod <- substr(i, gregexpr("GWAS_Results", i)[[1]][1]+13, gregexpr(".csv", i)[[1]][1]-1)
     mod <- substr(mod, 1, gregexpr("\\.", mod)[[1]][1]-1)
@@ -35,6 +41,7 @@ gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
              `-log10(p)_exp` = -log10((rank(P.value, ties.method="first")-.5)/nrow(.)))
     xx <- bind_rows(xx, xi)
   }
+  #
   xx <- xx %>% mutate(Model = factor(Model, levels = models)) %>%
     filter(Chr == chr, Pos > start, Pos < end, !is.na(Model))
   threshold <- -log10(0.05 / nrow(xi))
@@ -58,6 +65,7 @@ gg_Manhattan_Zoom <- function(folder, trait, chr, start, end,
     theme_gwaspr(legend.position = "none",
                  axis.title.y = element_markdown()) +
     labs(title = trait, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
+  #
   if(!is.null(markers)) {
     xx <- xx %>% mutate(Label = ifelse(SNP %in% markers, SNP, NA),
                         Label = plyr::mapvalues(Label, markers, labels))

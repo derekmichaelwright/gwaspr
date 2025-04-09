@@ -4,7 +4,7 @@
 \alias{list_Traits}
 \title{list_Traits}
 \usage{
-list_Traits(folder)
+list_Traits(folder = "GWAS_Results/")
 }
 \arguments{
 \item{folder}{Folder containing GWAS results.}

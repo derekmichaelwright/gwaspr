@@ -10,13 +10,18 @@
 #' @return A volcano plot.
 #' @export
 
-gg_Volcano <- function(folder, trait, title = trait,
-                       markers = NULL, labels = markers,
-                       models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM")) {
+gg_Volcano <- function(
+    folder = "GWAS_Results/",
+    trait = list_Traits(folder)[1],
+    title = trait,
+    markers = NULL,
+    labels = markers,
+    models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER") ) {
+  #
   fnames <- list.files(folder)[grepl("GWAS_Results", list.files(folder))]
   fnames <- fnames[grepl(paste0(trait,".csv"), fnames)]
   xx <- NULL
-  # i <- fnames[1]
+  #
   for(i in fnames) {
     mod <- substr(i, gregexpr("GWAS_Results", i)[[1]][1]+13, gregexpr(".csv", i)[[1]][1]-1)
     mod <- substr(mod, 1, gregexpr("\\.", mod)[[1]][1]-1)

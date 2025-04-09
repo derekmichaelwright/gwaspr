@@ -9,8 +9,12 @@
 #' @return A table of significant GWAS results.
 #' @export
 
-table_GWAS_Results <- function(folder, files = list.files(folder), nrowstoread = 1000,
-                               threshold = 6, sug.threshold = NULL) {
+table_GWAS_Results <- function(
+    folder = "GWAS_Results/",
+    files = list.files(folder),
+    nrowstoread = 1000,
+    threshold = 6,
+    sug.threshold = NULL) {
   #
   output <- NULL
   for(i in files){

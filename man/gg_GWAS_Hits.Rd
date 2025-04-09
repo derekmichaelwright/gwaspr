@@ -7,14 +7,15 @@
 gg_GWAS_Hits(
   xx,
   xG,
-  myTs,
-  myR = 2e+06,
-  myTitle = "",
+  xCV = NULL,
+  traits,
+  range = 2e+06,
+  title = "",
   sigMin = 0,
-  myCV = NULL,
-  models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
-  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
-  model.shapes = c(21, 24:25, 22, 23),
+  models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+  model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
+    "burlywood4", "darkseagreen4"),
+  model.shapes = c(21:25, 21:22),
   vlines = NULL,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
@@ -24,17 +25,17 @@ gg_GWAS_Hits(
 \arguments{
 \item{xx}{Table of significant GWAS results. See ?table_GWAS_Results().}
 
-\item{xG}{Genotype data.}
+\item{xG}{Genotype data in hapmap format.}
 
-\item{myTs}{List of traits to use.}
+\item{xCV}{(optional) for filtering if you have a "CV" column.}
 
-\item{myR}{Range for binning GWAS hits.}
+\item{traits}{List of traits to use.}
 
-\item{myTitle}{Title for horizontal facet.}
+\item{range}{Range for binning GWAS hits.}
+
+\item{title}{Title for horizontal facet.}
 
 \item{sigMin}{Minimum number of hits to plot.}
-
-\item{myCV}{(optional) for filtering if you have a "CV" column.}
 
 \item{models}{Models to read.}
 

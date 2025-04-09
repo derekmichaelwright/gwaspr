@@ -5,8 +5,8 @@
 \title{gg_Manhattan_Zoom}
 \usage{
 gg_Manhattan_Zoom(
-  folder,
-  trait,
+  folder = "GWAS_Results/",
+  trait = list_Traits(folder)[1],
   chr,
   start,
   end,
@@ -15,7 +15,7 @@ gg_Manhattan_Zoom(
   labels = markers,
   vlines = markers,
   vline.colors = "red",
-  models = c("GLM", "MLM", "CMLM", "MLMM", "SUPER", "FarmCPU", "BLINK")
+  models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
 )
 }
 \arguments{

@@ -2,14 +2,14 @@
 #'
 #' Creates a summary GWAS plot of significant associations.
 #' @param xx Table of significant GWAS results. See ?table_GWAS_Results().
-#' @param xG Genotype data.
-#' @param myTs List of traits to use.
-#' @param myR Range for binning GWAS hits.
-#' @param myTitle Title for horizontal facet.
+#' @param xG Genotype data in hapmap format.
+#' @param xCV (optional) for filtering if you have a "CV" column.
+#' @param traits List of traits to use.
+#' @param range Range for binning GWAS hits.
+#' @param title Title for horizontal facet.
 #' @param sigMin Minimum number of hits to plot.
 #' @param models Models to read.
 #' @param model.colors Colors for each model.
-#' @param myCV (optional) for filtering if you have a "CV" column.
 #' @param vlines Markers to be labelled with a vertical red line.
 #' @param vline.colors colors for each vertical line.
 #' @param vline.types lty for each vertical line.
@@ -17,27 +17,30 @@
 #' @return A GWAS Hits plot.
 #' @export
 
-gg_GWAS_Hits <- function(xx, xG, myTs, myR = 2000000, myTitle = "",
-                         sigMin = 0, myCV = NULL,
-                         models =  c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-                         model.colors = c("darkgreen", "darkorange3", "steelblue","darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
-                         model.shapes = c(21,24:25,22,23),
-                         vlines = NULL,
-                         vline.colors = rep("red", length(vlines)),
-                         vline.types = rep(1, length(vlines)),
-                         legend.rows = 1) {
+gg_GWAS_Hits <- function(
+    xx, xG, xCV = NULL,
+    traits,
+    range = 2000000,
+    title = "",
+    sigMin = 0,
+    models =  c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+    model.colors = c("darkgreen", "darkorange3", "steelblue","darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
+    model.shapes = c(21:25,21:22),
+    vlines = NULL,
+    vline.colors = rep("red", length(vlines)),
+    vline.types = rep(1, length(vlines)),
+    legend.rows = 1) {
   #
-  xx <- xx %>% filter(Trait %in% myTs, Model %in% models) %>% mutate(Hits = NA)
+  xx <- xx %>% filter(Trait %in% traits, Model %in% models) %>% mutate(Hits = NA)
   xG <- xG %>% select(SNP=1, Chr=3, Pos=4)
   #
-  i<-1
   for(i in 1:nrow(xx)) {
     myChr <- xx$Chr[i]
     myPos <- xx$Pos[i]
     myMod <- xx$Model[i]
     xi <- xx %>%
       filter(Chr == myChr, Model == myMod,
-             Pos > myPos-myR, Pos < myPos+myR)
+             Pos > myPos-range, Pos < myPos+range)
     xx$Hits[i] <- nrow(xi)
     xi <- xi %>% filter(!(SNP == xx$SNP[i] & Trait == xx$Trait[i]))
     xx$Pos[xx$SNP %in% xi$SNP & xx$Trait %in% xi$Trait] <- NA
@@ -45,14 +48,12 @@ gg_GWAS_Hits <- function(xx, xG, myTs, myR = 2000000, myTitle = "",
   xx <- xx %>% filter(!is.na(Pos), Hits > sigMin) %>%
     mutate(Model = factor(Model, levels = models))
   #
-  # myTitle <- paste0(myTitle, " (", length(myTs), ")")
-  if(!is.null(myCV)) { xx <- xx %>% filter(CV %in% myCV) }
+  if(!is.null(xCV)) { xx <- xx %>% filter(CV %in% xCV) }
   ymax <- max(xx$Hits)
   #
-  # group_by(Model) %>% summarise(Count = n())
   mp <- ggplot(xx, aes(x = Pos / 100000000) ) +
-    geom_blank(data = xG) #+
-  #geom_hline(yintercept = sigThresh, alpha = 0.5, color = "darkred")
+    geom_blank(data = xG)
+  #
   if(!is.null(vlines)) {
     xGM <- xG %>%
       filter(SNP %in% vlines) %>%
@@ -68,8 +69,8 @@ gg_GWAS_Hits <- function(xx, xG, myTs, myR = 2000000, myTitle = "",
     geom_point(aes(y = Hits, size = Hits, key1 = SNP,
                    fill = Model, shape = Model), alpha = 0.7) +
     facet_grid(. ~ paste("Chr", Chr), space = "free_x", scales = "free_x") +
-    scale_shape_manual(values = model.shapes)+#, breaks = c("MLM","FarmCPU","BLINK")) +
-    scale_fill_manual(values = model.colors)+#, breaks = c("MLM","FarmCPU","BLINK")) +
+    scale_shape_manual(values = model.shapes)+
+    scale_fill_manual(values = model.colors)+
     scale_size_continuous(range = c(0.5,3)) +
     scale_y_continuous(labels = scales::label_number(accuracy = 1),
                        limits = c(0,ymax)) +
@@ -80,7 +81,7 @@ gg_GWAS_Hits <- function(xx, xG, myTs, myR = 2000000, myTitle = "",
            color = guide_legend(nrow = legend.rows, byrow = T),
            size = "none",
            shape = guide_legend(nrow = legend.rows, byrow = T) ) +
-    labs(title = myTitle, x = "100 Mbp", y = "Significant Associations")
+    labs(title = title, x = "100 Mbp", y = "Significant Associations")
   mp
 }
 

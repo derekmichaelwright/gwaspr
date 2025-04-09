@@ -23,23 +23,25 @@
 #' @return A GWAS summary plot.
 #' @export
 
-gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
-                            threshold = -log10(0.00000005),
-                            sug.threshold = -log10(0.000005),
-                            chroms = NULL, pos1 = NULL, pos2 = NULL,
-                            models =  c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-                            colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
-                            shapes = 21:25,
-                            hlines = NULL,
-                            vlines = NULL,
-                            vline.colors = rep("red",length(vlines)),
-                            vline.types = rep(1, length(vlines)),
-                            vline.legend = T,
-                            title = NULL,
-                            caption = paste0("Sig Threshold = ", threshold, " = Large\nSuggestive = ", sug.threshold," = Small"),
-                            rowread = 2000,
-                            legend.position = "bottom",
-                            legend.rows = 1 ) {
+gg_GWAS_Summary <- function(
+    folder = "GWAS_Results/",
+    traits = list_Traits(folder),
+    threshold = -log10(0.00000005),
+    sug.threshold = -log10(0.000005),
+    chroms = NULL, pos1 = NULL, pos2 = NULL,
+    models =  c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+    colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
+    shapes = 21:25,
+    hlines = NULL,
+    vlines = NULL,
+    vline.colors = rep("red",length(vlines)),
+    vline.types = rep(1, length(vlines)),
+    vline.legend = T,
+    title = NULL,
+    caption = paste0("Sig Threshold = ", threshold, " = Large\nSuggestive = ", sug.threshold," = Small"),
+    rowread = 2000,
+    legend.position = "bottom",
+    legend.rows = 1 ) {
   #
   files <- list_Result_Files(folder)
   files <- files[grepl(paste(traits,collapse="|"), files)]
@@ -47,7 +49,6 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
   #
   myP <- NULL
   #
-  #i<-files[20]
   for(i in files) {
     myPi <- table_GWAS_Results(folder = folder, files = i,
               threshold = threshold, sug.threshold = sug.threshold)
@@ -80,10 +81,7 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
     myGM <- myG %>% filter(SNP %in% vlines) %>%
       mutate(SNP = factor(SNP, levels = vlines)) %>%
       arrange(SNP)
-    #for(i in 1:nrow(myGM)) {
-    #  mp <- mp + geom_vline(data = myGM[i,], alpha = 0.5, color = vline.colors[i],
-    #                        aes(xintercept = Position / 100000000))
-    #}
+    #
     mp <- mp +
       geom_vline(data = myGM, alpha = 0.5,
                  aes(xintercept = Pos / 100000000, color = SNP)) +
@@ -99,9 +97,6 @@ gg_GWAS_Summary <- function(folder = NULL, traits = list_Traits(),
                aes(shape = Model, fill = Model, key1 = SNP, key2 = `-log10(p)`)) +
     geom_point(size = 2.25, color = "black", alpha = 0.5,
                aes(shape = Model, fill = Model, key1 = SNP, key2 = `-log10(p)`)) +
-    #geom_point(color = "black", alpha = 0.5,
-    #           aes(shape = Model, fill = Model, size = `-log10(p)`)) +
-    #scale_size_continuous(range = c(0.75, 3), guide = "none") +
     facet_grid(. ~ Chr, drop = F, scales = "free_x", space = "free_x") +
     scale_fill_manual(name = NULL, values = colors, breaks = models) +
     scale_shape_manual(name = NULL, values = shapes, breaks = models) +

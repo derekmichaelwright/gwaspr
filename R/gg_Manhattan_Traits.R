@@ -16,16 +16,16 @@
 #' @param addQQ Logical, whether or not to add a QQ plot
 #' @param pmax A max value for the y-axis.
 #' @param model Model to read.
-#' @param myColors Colors for each trait.
+#' @param trait.colors Colors for each trait.
 #' @param chrom.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
 #' @param legend.rows Number of rows for the legend.
 #' @return A manhattan plot.
 #' @export
 
 gg_Manhattan_Traits <- function (
-    folder,
-    traits,
-    title = "GWAS",
+    folder = "GWAS_Results/",
+    traits = list_Traits(folder)[1:2],
+    title = trait,
     threshold = NULL,
     sug.threshold = NULL,
     vlines = markers,
@@ -38,7 +38,7 @@ gg_Manhattan_Traits <- function (
     addQQ = T,
     pmax = NULL,
     model = "MLM",
-    myColors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
+    trait.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
     chrom.unit = "100 Mbp",
     legend.rows = 1 ) {
   #
@@ -49,7 +49,7 @@ gg_Manhattan_Traits <- function (
   for(i in traits) { fnames2 <- c(fnames2, fnames[grepl(paste0(model, ".", i, ".csv"), fnames)]) }
   fnames <- fnames2
   xx <- NULL
-  i <-
+  #
   for (i in fnames) {
     xi <- read.csv(paste0(folder, i))
     if (sum(colnames(xi) == "nobs") > 0) {
@@ -164,7 +164,7 @@ gg_Manhattan_Traits <- function (
       geom_point(size = 0.1, aes(fill = Trait), pch = 21, color = alpha("white", 0)) +
       geom_point(data = x2, aes(fill = Trait), pch = 21, size = 1.25, alpha = 0.8) +
       facet_grid(. ~ Chr, scales = "free", space = "free_x") +
-      scale_fill_manual(name = NULL, values = myColors) +
+      scale_fill_manual(name = NULL, values = trait.colors) +
       guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 1.5)),
              color = guide_legend(nrow = legend.rows, byrow = T) )
     #
@@ -174,7 +174,7 @@ gg_Manhattan_Traits <- function (
         geom_point(data = x2, aes(color = Trait)) +
         geom_abline() +
         facet_grid(. ~ "QQ", scales = "free_y") +
-        scale_color_manual(name = NULL, values = myColors) +
+        scale_color_manual(name = NULL, values = trait.colors) +
         guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 1.5)),
                color = guide_legend(nrow = legend.rows, byrow = T) )
       mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",

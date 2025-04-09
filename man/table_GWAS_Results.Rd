@@ -5,8 +5,8 @@
 \title{table_GWAS_Results}
 \usage{
 table_GWAS_Results(
-  folder,
-  files,
+  folder = "GWAS_Results/",
+  files = list.files(folder),
   nrowstoread = 1000,
   threshold = 6,
   sug.threshold = NULL

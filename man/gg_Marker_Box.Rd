@@ -5,21 +5,21 @@
 \title{gg_Marker}
 \usage{
 gg_Marker_Box(
-  myG,
-  myY,
+  xG,
+  xY,
   trait,
   markers,
   box.width = 0.1,
   points = T,
   violin = T,
-  colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4", "darkslategray",
-    "maroon4", "purple4", "darkblue")
+  marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
+    "darkslategray", "maroon4", "purple4", "darkblue")
 )
 }
 \arguments{
-\item{myG}{GWAS genotype object. Note: needs to be in hapmap format.}
+\item{xG}{GWAS genotype object. Note: needs to be in hapmap format.}
 
-\item{myY}{GWAS phenotype object.}
+\item{xY}{GWAS phenotype object.}
 
 \item{trait}{Trait to plot.}
 
@@ -31,7 +31,7 @@ gg_Marker_Box(
 
 \item{violin}{Logical, whether or not to plot violin.}
 
-\item{colors}{Color palette.}
+\item{marker.colors}{Color palette.}
 }
 \value{
 Marker plot.
