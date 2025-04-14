@@ -11,7 +11,7 @@
 
 table_GWAS_Results <- function(
     folder = "GWAS_Results/",
-    files = list.files(folder),
+    files = list_Result_Files(folder),
     nrowstoread = 1000,
     threshold = 6,
     sug.threshold = NULL) {

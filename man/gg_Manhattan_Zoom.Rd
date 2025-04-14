@@ -8,8 +8,8 @@ gg_Manhattan_Zoom(
   folder = "GWAS_Results/",
   trait = list_Traits(folder)[1],
   chr,
-  start,
-  end,
+  pos1,
+  pos2,
   title = trait,
   markers = NULL,
   labels = markers,
@@ -25,9 +25,9 @@ gg_Manhattan_Zoom(
 
 \item{chr}{Chromosome to plot.}
 
-\item{start}{Start position on chromosome.}
+\item{pos1}{Start position on chromosome.}
 
-\item{end}{End position on chromosome.}
+\item{pos2}{End position on chromosome.}
 
 \item{title}{A title for the plot.}
 

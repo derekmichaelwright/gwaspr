@@ -37,7 +37,7 @@ gg_Marker_Pie <- function (
    coord_polar("y", start = 0) +
    facet_grid(. ~ Alleles, scales = "free") +
    scale_fill_manual(name = NULL, values = marker.colors) +
-   theme_gwaspr(legend.position = "bottom") +
-   labs(x = title)
+   theme_gwaspr_pie(legend.position = "bottom") +
+   labs(title = title, y = trait, x = NULL)
  mp
 }

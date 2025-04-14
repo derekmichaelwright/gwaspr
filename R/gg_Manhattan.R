@@ -36,7 +36,7 @@ gg_Manhattan <- function (
     vlines = markers,
     vline.colors = rep("red", length(vlines)),
     vline.types = rep(1, length(vlines)),
-    vline.legend = F,
+    vline.legend = T,
     markers = NULL,
     labels = markers,
     facet = F,
@@ -111,10 +111,10 @@ gg_Manhattan <- function (
   # Add vlines
   #
   if (!is.null(vlines)) {
-    vv <- xx %>% filter(SNP %in% vlines) %>% mutate(SNP = factor(SNP, levels = vlines))
+    vv <- xx %>% filter(SNP %in% vlines) %>% filter(!duplicated(SNP)) %>%
+      mutate(SNP = factor(SNP, levels = vlines))
     mp1 <- mp1 +
-      geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP, lty = SNP), alpha = 0.4) +
-      scale_linetype_manual(name = NULL, values = vline.types)
+      geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP, lty = SNP), alpha = 0.4)
   }
   #
   # Add threshold lines
@@ -139,9 +139,13 @@ gg_Manhattan <- function (
   }
   # vline legends
   if (vline.legend == T) {
-    mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors)
+    mp1 <- mp1 +
+      scale_color_manual(name = NULL, values = vline.colors) +
+      scale_linetype_manual(name = NULL, values = vline.types)
   } else {
-    mp1 <- mp1 + scale_color_manual(name = NULL, values = vline.colors, guide = "none")
+    mp1 <- mp1 +
+      scale_color_manual(name = NULL, values = vline.colors, guide = "none") +
+      scale_linetype_manual(name = NULL, values = vline.types, guide = "none")
   }
   #
   # Plot facetted by model
@@ -173,7 +177,7 @@ gg_Manhattan <- function (
       geom_point(data = x2, aes(fill = Model), pch = 21, size = 1.25, alpha = 0.8) +
       facet_grid(. ~ Chr, scales = "free", space = "free_x") +
       scale_fill_manual(name = NULL, values = model.colors) +
-      guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 1.5)),
+      guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)),
              color = guide_legend(nrow = legend.rows, byrow = T) )
     #
     if(addQQ == T) {
@@ -183,7 +187,7 @@ gg_Manhattan <- function (
         geom_abline() +
         facet_grid(. ~ "QQ", scales = "free_y") +
         scale_color_manual(name = NULL, values = model.colors) +
-        guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 1.5)),
+        guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)),
                color = guide_legend(nrow = legend.rows, byrow = T) )
       mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
                       legend = "bottom", common.legend = T)

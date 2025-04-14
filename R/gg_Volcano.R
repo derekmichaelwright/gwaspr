@@ -44,7 +44,7 @@ gg_Volcano <- function(
   ggplot(xx, aes(x = Effect, y = `-log10(p)`)) +
     geom_hline(yintercept = threshold, color = "red") +
     geom_point(aes(color = Sig, shape = factor(Chr)), alpha = 0.7) +
-    geom_text_repel(data = xm, size = 1, aes(label = SNP)) +
+    geom_text_repel(data = xm, size = 2, aes(label = SNP)) +
     facet_wrap(Model ~ ., scales = "free", ncol = length(unique(xx$Model))) +
     scale_color_manual(values = c("darkgreen", "black")) +
     scale_shape_manual(name = "Chr", values = c(1:7)) +

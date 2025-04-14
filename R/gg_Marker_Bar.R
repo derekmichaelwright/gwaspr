@@ -36,6 +36,6 @@ gg_Marker_Bar <- function (
    geom_bar(aes(fill = get(trait)), position = "dodge", color = "black", alpha = 0.5) +
    scale_fill_manual(name = NULL, values = marker.colors) +
    theme_gwaspr(legend.position = "bottom") +
-   labs(x = title)
+   labs(title = title, y = trait, x = NULL)
  mp
 }

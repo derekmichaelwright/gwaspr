@@ -43,7 +43,7 @@ gg_Marker_Box <- function (
     geom_boxplot(width = box.width, outlier.shape = NA) +
     scale_fill_manual(name = NULL, values = marker.colors) +
     theme_gwaspr(legend.position = "none") +
-    labs(y = trait, x = title)
+    labs(title = title, y = trait, x = NULL)
   if (points == T) { mp <- mp + geom_quasirandom(alpha = 0.5, pch = 16) }
   mp
 }

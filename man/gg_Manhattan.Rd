@@ -14,7 +14,7 @@ gg_Manhattan(
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
-  vline.legend = F,
+  vline.legend = T,
   markers = NULL,
   labels = markers,
   facet = F,

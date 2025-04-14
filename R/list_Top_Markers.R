@@ -16,24 +16,38 @@ list_Top_Markers <- function(
     models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
     threshold = 5,
     chroms = 1:50,
-    n = 1) {
+    n = 3) {
   #
-  fname <- grepl("GWAS_Results", list.files(folder)) &
-    grepl(traits, list.files(folder)) &
-    grepl(paste0("\\.",models,"\\."), list.files(folder))
-  fname <- list.files(folder)[fname]
-  fname
-  x <- read.csv(paste0(folder, fname))
+  fnames <- list_Result_Files(folder)
   #
-  x <- x %>% filter(Chr %in% chroms) %>%
-    group_by(Chr) %>%
-    top_n(., n = n, -log10(P.value)) %>%
-    mutate(`-log10(p)` = round(-log10(P.value),2)) %>%
-    arrange(Chr, rev(`-log10(p)`)) %>%
-    as.data.frame() %>%
-    select(SNP, Chr, Pos, `-log10(p)`)
+  xx <- NULL
+  for(i in fnames) {
+    trait <- substr(i, gregexpr("GWAS_Results", i)[[1]][1]+13,
+                    gregexpr(".csv", i)[[1]][1]-1 )
+    model <- substr(trait, 1, gregexpr("\\.", trait)[[1]][1]-1 )
+    trait <- substr(trait, gregexpr("\\.", trait)[[1]][1]+1, nchar(trait) )
+    #
+    if(model %in% models & trait %in% traits) {
+      xi <- read.csv(paste0(folder, i)) %>%
+        filter(Chr %in% chroms) %>%
+        mutate(`-log10(p)` = -log10(P.value)) %>%
+        group_by(Chr) %>%
+        filter(`-log10(p)` >= threshold) %>%
+        slice(1:n) %>%
+        ungroup() %>%
+        mutate(Trait = trait, Model = model)
+      #
+      xx <- bind_rows(xx, xi)
+    }
+  }
+  xx <- xx %>% mutate(Traits = NA, Models = NA)
+  for(i in 1:nrow(xx)) {
+    xi <- xx %>% filter(SNP == xx$SNP[i])
+    xx$Traits[i] <- paste(unique(xi$Trait), collapse = "; ")
+    xx$Models[i] <- paste(unique(xi$Model), collapse = "; ")
+  }
   #
-  if(!is.null(threshold)) { x <- x %>% filter(`-log10(p)` > threshold) }
-  #
-  x
+  xx %>% arrange(desc(`-log10(p)`)) %>%
+    filter(!duplicated(SNP)) %>%
+    select(SNP, Chr, Pos, Traits, Models, Max_LogP = `-log10(p)`)
 }

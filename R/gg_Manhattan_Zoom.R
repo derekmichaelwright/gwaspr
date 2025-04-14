@@ -4,8 +4,8 @@
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
 #' @param chr Chromosome to plot.
-#' @param start Start position on chromosome.
-#' @param end End position on chromosome.
+#' @param pos1 Start position on chromosome.
+#' @param pos2 End position on chromosome.
 #' @param title A title for the plot.
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
@@ -18,7 +18,7 @@
 gg_Manhattan_Zoom <- function(
     folder = "GWAS_Results/",
     trait = list_Traits(folder)[1],
-    chr, start, end,
+    chr, pos1, pos2,
     title = trait,
     markers = NULL,
     labels = markers,
@@ -43,7 +43,7 @@ gg_Manhattan_Zoom <- function(
   }
   #
   xx <- xx %>% mutate(Model = factor(Model, levels = models)) %>%
-    filter(Chr == chr, Pos > start, Pos < end, !is.na(Model))
+    filter(Chr == chr, Pos > pos1, Pos < pos2, !is.na(Model))
   threshold <- -log10(0.05 / nrow(xi))
   x1 <- xx %>% filter(`-log10(p)` < threshold)
   x2 <- xx %>% filter(`-log10(p)` > threshold)
@@ -61,7 +61,6 @@ gg_Manhattan_Zoom <- function(
     geom_point(alpha = 0.8, color = "darkgreen", pch = 16) +
     geom_point(data = x2, pch = 16, size = 1.5, color = "darkred", alpha = 0.8) +
     facet_grid(Model ~ Chr, scales = "free") +
-
     theme_gwaspr(legend.position = "none",
                  axis.title.y = element_markdown()) +
     labs(title = trait, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
