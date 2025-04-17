@@ -17,7 +17,7 @@ gg_Marker_Pie <- function (
     marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
                       "darkslategray", "maroon4", "purple4", "darkblue") ) {
  #
- title <- paste(markers, collapse = "-")
+ title <- paste(markers, collapse = "\n")
  #
  xx <- xG %>% rename(SNP=1) %>%
    filter(SNP %in% markers) %>%
