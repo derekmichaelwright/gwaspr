@@ -7,7 +7,7 @@
 gg_Manhattan_Zoom(
   folder = "GWAS_Results/",
   trait = list_Traits(folder)[1],
-  chr,
+  chrom,
   pos1,
   pos2,
   title = trait,
@@ -23,7 +23,7 @@ gg_Manhattan_Zoom(
 
 \item{trait}{The trait to read.}
 
-\item{chr}{Chromosome to plot.}
+\item{chrom}{Chromosome to plot.}
 
 \item{pos1}{Start position on chromosome.}
 

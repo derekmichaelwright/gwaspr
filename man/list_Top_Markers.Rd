@@ -10,7 +10,7 @@ list_Top_Markers(
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
   threshold = 5,
   chroms = 1:50,
-  n = 1
+  n = 3
 )
 }
 \arguments{

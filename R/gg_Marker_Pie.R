@@ -31,11 +31,12 @@ gg_Marker_Pie <- function (
    left_join(xY, by = "Name") %>%
    filter(!is.na(get(trait)))
  xx[,trait] <- factor(xx[,trait])
+ xx <- xx %>% group_by(Alleles) %>% mutate(Count = n())
  # Plot
  mp <- ggplot(xx, aes(x = "")) +
    geom_bar(aes(fill = get(trait)), color = "black", alpha = 0.5) +
    coord_polar("y", start = 0) +
-   facet_grid(. ~ Alleles, scales = "free") +
+   facet_grid(. ~ paste0(Alleles,"\nn = ",Count), scales = "free") +
    scale_fill_manual(name = NULL, values = marker.colors) +
    theme_gwaspr_pie(legend.position = "bottom") +
    labs(title = title, y = trait, x = NULL)

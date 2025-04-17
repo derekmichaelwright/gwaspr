@@ -3,7 +3,7 @@
 #' Creates a manhattan plot zoomed in to a particular region.
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
-#' @param chr Chromosome to plot.
+#' @param chrom Chromosome to plot.
 #' @param pos1 Start position on chromosome.
 #' @param pos2 End position on chromosome.
 #' @param title A title for the plot.
@@ -18,7 +18,7 @@
 gg_Manhattan_Zoom <- function(
     folder = "GWAS_Results/",
     trait = list_Traits(folder)[1],
-    chr, pos1, pos2,
+    chrom, pos1, pos2,
     title = trait,
     markers = NULL,
     labels = markers,
@@ -43,7 +43,7 @@ gg_Manhattan_Zoom <- function(
   }
   #
   xx <- xx %>% mutate(Model = factor(Model, levels = models)) %>%
-    filter(Chr == chr, Pos > pos1, Pos < pos2, !is.na(Model))
+    filter(Chr == chrom, Pos > pos1, Pos < pos2, !is.na(Model))
   threshold <- -log10(0.05 / nrow(xi))
   x1 <- xx %>% filter(`-log10(p)` < threshold)
   x2 <- xx %>% filter(`-log10(p)` > threshold)
