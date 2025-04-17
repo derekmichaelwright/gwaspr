@@ -112,7 +112,7 @@ gg_Manhattan <- function (
   #
   if (!is.null(vlines)) {
     vv <- xx %>% filter(SNP %in% vlines) %>% filter(!duplicated(SNP)) %>%
-      mutate(SNP = factor(SNP, levels = vlines))
+      mutate(SNP = factor(SNP, levels = vlines)) %>% select(-Model)
     mp1 <- mp1 +
       geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP, lty = SNP), alpha = 0.4)
   }
