@@ -68,8 +68,7 @@
 </h1>
 <p>For best practice, output from GAPIT should be in its own folder. In this case, they are located in a folder called <code>GWAS_Results/</code>. For this example we will plot GWAS results from 3 traits in a lentil diversity panel:</p>
 <ul>
-<li>
-<strong>Testa_Pattern</strong>: a <em>qualitative</em> trait describing the presence or absence of seed coat pigmentation.</li>
+<li>****Cotyledon_Color**: a <em>qualitative</em> trait describing cotyledon color (Red = 0, Yellow = 1).</li>
 <li>
 <strong>DTF_Nepal_2017</strong>: a <em>quantitative</em> trait describing days from sowing to flowering in a 2017 Nepal field trial.</li>
 <li>
@@ -84,8 +83,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myTraits</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_Traits.html">list_Traits</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span><span class="op">)</span></span>
 <span><span class="va">myTraits</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## [1] "DTF_Nepal_2017"     "DTF_Sask_2017"      "DTF_Sask_2017_CV_b"</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="do">## [4] "Testa_Pattern"</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="do">## [1] "Cotyledon_Color" "DTF_Nepal_2017"  "DTF_Sask_2017"   "DTF_Sask_2017_b"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="list-results-files">List Results Files<a class="anchor" aria-label="anchor" href="#list-results-files"></a>
@@ -93,89 +91,124 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myFiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_Result_Files.html">list_Result_Files</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span><span class="op">)</span></span>
 <span><span class="va">myFiles</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="do">##  [1] "GAPIT.Association.GWAS_Results.BLINK.DTF_Nepal_2017.csv"      </span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="do">##  [2] "GAPIT.Association.GWAS_Results.BLINK.DTF_Sask_2017.csv"       </span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="do">##  [3] "GAPIT.Association.GWAS_Results.BLINK.DTF_Sask_2017_CV_b.csv"  </span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="do">##  [4] "GAPIT.Association.GWAS_Results.BLINK.Testa_Pattern.csv"       </span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="do">##  [5] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Nepal_2017.csv"    </span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="do">##  [6] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Sask_2017.csv"     </span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="do">##  [7] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Sask_2017_CV_b.csv"</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="do">##  [8] "GAPIT.Association.GWAS_Results.FarmCPU.Testa_Pattern.csv"     </span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="do">##  [9] "GAPIT.Association.GWAS_Results.GLM.DTF_Nepal_2017.csv"        </span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="do">## [10] "GAPIT.Association.GWAS_Results.GLM.DTF_Sask_2017.csv"         </span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="do">## [11] "GAPIT.Association.GWAS_Results.GLM.DTF_Sask_2017_CV_b.csv"    </span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="do">## [12] "GAPIT.Association.GWAS_Results.GLM.Testa_Pattern.csv"         </span></span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="do">## [13] "GAPIT.Association.GWAS_Results.MLM.DTF_Nepal_2017.csv"        </span></span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="do">## [14] "GAPIT.Association.GWAS_Results.MLM.DTF_Sask_2017.csv"         </span></span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="do">## [15] "GAPIT.Association.GWAS_Results.MLM.DTF_Sask_2017_CV_b.csv"    </span></span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="do">## [16] "GAPIT.Association.GWAS_Results.MLM.Testa_Pattern.csv"         </span></span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="do">## [17] "GAPIT.Association.GWAS_Results.MLMM.DTF_Nepal_2017.csv"       </span></span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="do">## [18] "GAPIT.Association.GWAS_Results.MLMM.DTF_Sask_2017.csv"        </span></span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="do">## [19] "GAPIT.Association.GWAS_Results.MLMM.DTF_Sask_2017_CV_b.csv"   </span></span>
-<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="do">## [20] "GAPIT.Association.GWAS_Results.MLMM.Testa_Pattern.csv"</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="do">##  [1] "GAPIT.Association.GWAS_Results.BLINK.Cotyledon_Color.csv"  </span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="do">##  [2] "GAPIT.Association.GWAS_Results.BLINK.DTF_Nepal_2017.csv"   </span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="do">##  [3] "GAPIT.Association.GWAS_Results.BLINK.DTF_Sask_2017.csv"    </span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="do">##  [4] "GAPIT.Association.GWAS_Results.BLINK.DTF_Sask_2017_b.csv"  </span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="do">##  [5] "GAPIT.Association.GWAS_Results.CMLM.Cotyledon_Color.csv"   </span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="do">##  [6] "GAPIT.Association.GWAS_Results.CMLM.DTF_Nepal_2017.csv"    </span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="do">##  [7] "GAPIT.Association.GWAS_Results.CMLM.DTF_Sask_2017.csv"     </span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="do">##  [8] "GAPIT.Association.GWAS_Results.CMLM.DTF_Sask_2017_b.csv"   </span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="do">##  [9] "GAPIT.Association.GWAS_Results.FarmCPU.Cotyledon_Color.csv"</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="do">## [10] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Nepal_2017.csv" </span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="do">## [11] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Sask_2017.csv"  </span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="do">## [12] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Sask_2017_b.csv"</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="do">## [13] "GAPIT.Association.GWAS_Results.GLM.Cotyledon_Color.csv"    </span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="do">## [14] "GAPIT.Association.GWAS_Results.GLM.DTF_Nepal_2017.csv"     </span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="do">## [15] "GAPIT.Association.GWAS_Results.GLM.DTF_Sask_2017.csv"      </span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="do">## [16] "GAPIT.Association.GWAS_Results.GLM.DTF_Sask_2017_b.csv"    </span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="do">## [17] "GAPIT.Association.GWAS_Results.MLM.Cotyledon_Color.csv"    </span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="do">## [18] "GAPIT.Association.GWAS_Results.MLM.DTF_Nepal_2017.csv"     </span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="do">## [19] "GAPIT.Association.GWAS_Results.MLM.DTF_Sask_2017.csv"      </span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="do">## [20] "GAPIT.Association.GWAS_Results.MLM.DTF_Sask_2017_b.csv"    </span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="do">## [21] "GAPIT.Association.GWAS_Results.MLMM.Cotyledon_Color.csv"   </span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="do">## [22] "GAPIT.Association.GWAS_Results.MLMM.DTF_Nepal_2017.csv"    </span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="do">## [23] "GAPIT.Association.GWAS_Results.MLMM.DTF_Sask_2017.csv"     </span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="do">## [24] "GAPIT.Association.GWAS_Results.MLMM.DTF_Sask_2017_b.csv"   </span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="do">## [25] "GAPIT.Association.GWAS_Results.SUPER.Cotyledon_Color.csv"  </span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="do">## [26] "GAPIT.Association.GWAS_Results.SUPER.DTF_Nepal_2017.csv"   </span></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="do">## [27] "GAPIT.Association.GWAS_Results.SUPER.DTF_Sask_2017.csv"    </span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="do">## [28] "GAPIT.Association.GWAS_Results.SUPER.DTF_Sask_2017_b.csv"</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="check-results">Check Results<a class="anchor" aria-label="anchor" href="#check-results"></a>
+</h2>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/is_ran.html">is_ran</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="do">##             Trait MLM MLMM FarmCPU BLINK GLM CMLM SUPER</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="do">## 1 Cotyledon_Color   X    X       X     X   X    X     X</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="do">## 2  DTF_Nepal_2017   X    X       X     X   X    X     X</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="do">## 3   DTF_Sask_2017   X    X       X     X   X    X     X</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="do">## 4 DTF_Sask_2017_b   X    X       X     X   X    X     X</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="list-significant-markers">List Significant Markers<a class="anchor" aria-label="anchor" href="#list-significant-markers"></a>
 </h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># first reorder the result files if they are not already arranged by P.value</span></span>
 <span><span class="fu"><a href="reference/order_GWAS_Results.html">order_GWAS_Results</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, files <span class="op">=</span> <span class="va">myFiles</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">myResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/table_GWAS_Results.html">table_GWAS_Results</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, files <span class="op">=</span> <span class="va">myFiles</span>,</span>
-<span>                                threshold <span class="op">=</span> <span class="fl">6.7</span>, sug.threshold <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
-<span><span class="va">myResults</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="do">##                        SNP Chr       Pos      P.value        MAF  H.B.P.Value</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="do">## 1   Lcu.2RBY.Chr6p12212845   6  12212845 2.553940e-55 0.42056075 6.840600e-50</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="do">## 2    Lcu.2RBY.Chr5p1061938   5   1061938 4.300613e-33 0.12345679 1.151898e-27</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="do">## 3   Lcu.2RBY.Chr6p14410759   6  14410759 9.468879e-31 0.38317757 2.536192e-25</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="do">## 4    Lcu.2RBY.Chr6p2528817   6   2528817 2.687467e-30 0.27932099 7.198246e-25</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="do">## 5  Lcu.2RBY.Chr3p188873032   3 188873032 2.260523e-29 0.01168224 3.027349e-24</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="do">## 6  Lcu.2RBY.Chr4p323097758   4 323097758 3.245062e-27 0.07943925 4.345868e-22</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="do">## 7  Lcu.2RBY.Chr6p317400151   6 317400151 4.516331e-27 0.09112150 4.032255e-22</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="do">## 8   Lcu.2RBY.Chr6p12192948   6  12192948 8.560650e-27 0.43925234 2.292927e-21</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="do">## 9   Lcu.2RBY.Chr2p42543877   2  42543877 3.264679e-25 0.06790123 4.372140e-20</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="do">## 10   Lcu.2RBY.Chr5p1061938   5   1061938 8.804190e-24 0.12345679 2.358158e-18</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="do">##         Effect -log10(p)   Model              Trait   Threshold</span></span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="do">## 1    0.4002402  54.59279    MLMM      Testa_Pattern Significant</span></span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="do">## 2  -12.1833602  32.36647   BLINK     DTF_Nepal_2017 Significant</span></span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="do">## 3    0.2234545  30.02370   BLINK      Testa_Pattern Significant</span></span>
-<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="do">## 4   -2.1310601  29.57066 FarmCPU DTF_Sask_2017_CV_b Significant</span></span>
-<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="do">## 5    0.3969966  28.64579   BLINK      Testa_Pattern Significant</span></span>
-<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a><span class="do">## 6    0.3775797  26.48878    MLMM      Testa_Pattern Significant</span></span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a><span class="do">## 7    0.3144896  26.34521   BLINK      Testa_Pattern Significant</span></span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a><span class="do">## 8    0.2223050  26.06749 FarmCPU      Testa_Pattern Significant</span></span>
-<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="do">## 9   10.7592301  24.48616   BLINK     DTF_Nepal_2017 Significant</span></span>
-<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a><span class="do">## 10 -10.8302898  23.05531 FarmCPU     DTF_Nepal_2017 Significant</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/list_Top_Markers.html">list_Top_Markers</a></span><span class="op">(</span>trait <span class="op">=</span> <span class="st">"DTF_Nepal_2017"</span>, model <span class="op">=</span> <span class="st">"MLMM"</span>, </span>
-<span>                 folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, </span>
-<span>                 threshold <span class="op">=</span> <span class="fl">6.7</span>, chroms <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="do">##                      SNP Chr      Pos -log10(p)</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="do">## 1 Lcu.2RBY.Chr2p42543877   2 42543877     11.53</span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="do">## 2  Lcu.2RBY.Chr5p1069654   5  1069654     16.66</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/is_ordered.html">is_ordered</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="do">##             Trait MLM MLMM FarmCPU BLINK GLM CMLM SUPER</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="do">## 1 Cotyledon_Color   X    X       X     X   X    X     X</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="do">## 2  DTF_Nepal_2017   X    X       X     X   X    X     X</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="do">## 3   DTF_Sask_2017   X    X       X     X   X    X     X</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="do">## 4 DTF_Sask_2017_b   X    X       X     X   X    X     X</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">myMarkers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.2RBY.Chr2p42543877"</span>,<span class="st">"Lcu.2RBY.Chr5p1069654"</span>,</span>
-<span>               <span class="st">"Lcu.2RBY.Chr6p2528817"</span>, <span class="st">"Lcu.2RBY.Chr6p12212845"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/list_Top_Markers.html">list_Top_Markers</a></span><span class="op">(</span>trait <span class="op">=</span> <span class="st">"Testa_Pattern"</span>, model <span class="op">=</span> <span class="st">"MLM"</span>, </span>
-<span>                 folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, </span>
-<span>                 threshold <span class="op">=</span> <span class="fl">6.7</span>, chroms <span class="op">=</span> <span class="fl">6</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="do">##                      SNP Chr      Pos -log10(p)</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="do">## 1 Lcu.2RBY.Chr6p12212845   6 12212845     11.55</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">table_Results_Summary</span><span class="op">(</span><span class="st">"GWAS_Results/"</span>, isOrdered <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="do">##                Trait GLM MLM MLMM FarmCPU BLINK</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="do">## 1     DTF_Nepal_2017  NA   X    X       X     X</span></span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="do">## 2      DTF_Sask_2017  NA   X    X       X     X</span></span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="do">## 3 DTF_Sask_2017_CV_b  NA   X    X       X     X</span></span>
-<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="do">## 4      Testa_Pattern  NA   X    X       X     X</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">table_Results_Summary</span><span class="op">(</span><span class="st">"GWAS_Results/"</span>, isOrdered <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="do">##                Trait GLM MLM MLMM FarmCPU BLINK</span></span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="do">## 1     DTF_Nepal_2017  NA   X    X       X     X</span></span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="do">## 2      DTF_Sask_2017  NA   X    X       X     X</span></span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="do">## 3 DTF_Sask_2017_CV_b  NA   X    X       X     X</span></span>
-<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="do">## 4      Testa_Pattern  NA   X    X       X     X</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">myResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/table_GWAS_Results.html">table_GWAS_Results</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, files <span class="op">=</span> <span class="va">myFiles</span>,</span>
+<span>                                threshold <span class="op">=</span> <span class="fl">6.8</span>, sug.threshold <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">myResults</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="do">##                        SNP Chr       Pos       P.value        MAF   H.B.P.Value</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="do">## 1  Lcu.1GRN.Chr1p365986872   1 365986872 7.591040e-158 0.47096774 2.553375e-152</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="do">## 2  Lcu.1GRN.Chr1p365986872   1 365986872 1.420895e-132 0.47096774 4.779422e-127</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="do">## 3  Lcu.1GRN.Chr1p365986872   1 365986872 1.526374e-101 0.47096774  5.134218e-96</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="do">## 4  Lcu.1GRN.Chr1p361840399   1 361840399  4.903122e-56 0.04193548  8.246243e-51</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="do">## 5  Lcu.1GRN.Chr4p416272481   4 416272481  7.979537e-42 0.27795031  2.684053e-36</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="do">## 6  Lcu.1GRN.Chr4p416272481   4 416272481  7.979537e-42 0.27795031  2.684053e-36</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="do">## 7  Lcu.1GRN.Chr4p416272481   4 416272481  7.979537e-42 0.27795031  2.684053e-36</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="do">## 8  Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="do">## 9  Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="do">## 10 Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="do">##        Effect -log10(p)   Model           Trait   Threshold</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="do">## 1   0.5033628 157.11970    MLMM Cotyledon_Color Significant</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="do">## 2   0.4885724 131.84744 FarmCPU Cotyledon_Color Significant</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="do">## 3   0.4137794 100.81634   BLINK Cotyledon_Color Significant</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="do">## 4   0.4990497  55.30953 FarmCPU Cotyledon_Color Significant</span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="do">## 5  -2.9355992  41.09802    CMLM DTF_Sask_2017_b Significant</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="do">## 6  -2.9355992  41.09802     GLM DTF_Sask_2017_b Significant</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="do">## 7  -2.9355992  41.09802   SUPER DTF_Sask_2017_b Significant</span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="do">## 8  -2.8859922  40.36040    CMLM DTF_Sask_2017_b Significant</span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="do">## 9  -2.8859922  40.36040     GLM DTF_Sask_2017_b Significant</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="do">## 10 -2.8859922  40.36040   SUPER DTF_Sask_2017_b Significant</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/list_Top_Markers.html">list_Top_Markers</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, trait <span class="op">=</span> <span class="st">"DTF_Nepal_2017"</span>, </span>
+<span>                 threshold <span class="op">=</span> <span class="fl">6.7</span>, chroms <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="do">## # A tibble: 8 × 6</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="do">##   SNP                      Chr      Pos Traits         Models           Max_LogP</span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                  &lt;int&gt;    &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;               &lt;dbl&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="do">## 1 Lcu.1GRN.Chr2p44545877     2 44545877 DTF_Nepal_2017 BLINK; CMLM; Fa…    40.1 </span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="do">## 2 Lcu.1GRN.Chr2p44546658     2 44546658 DTF_Nepal_2017 CMLM; GLM; MLM;…    39.8 </span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="do">## 3 Lcu.1GRN.Chr2p44558948     2 44558948 DTF_Nepal_2017 CMLM; GLM; MLM;…    39.5 </span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="do">## 4 Lcu.1GRN.Chr5p1658484      5  1658484 DTF_Nepal_2017 BLINK; CMLM; Fa…    31.7 </span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="do">## 5 Lcu.1GRN.Chr5p73165919     5 73165919 DTF_Nepal_2017 CMLM; GLM; SUPER    26.6 </span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="do">## 6 Lcu.1GRN.Chr5p73166268     5 73166268 DTF_Nepal_2017 CMLM; GLM; SUPER    26.6 </span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="do">## 7 Lcu.1GRN.Chr5p1650591      5  1650591 DTF_Nepal_2017 MLM                  8.30</span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="do">## 8 Lcu.1GRN.Chr5p1651791      5  1651791 DTF_Nepal_2017 MLM                  8.30</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/list_Top_Markers.html">list_Top_Markers</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, trait <span class="op">=</span> <span class="st">"DTF_Sask_2017_b"</span>, </span>
+<span>                 threshold <span class="op">=</span> <span class="fl">6.7</span>, chroms <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="do">## # A tibble: 8 × 6</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="do">##   SNP                       Chr       Pos Traits          Models        Max_LogP</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                   &lt;int&gt;     &lt;int&gt; &lt;chr&gt;           &lt;chr&gt;            &lt;dbl&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="do">## 1 Lcu.1GRN.Chr6p22044874      6  22044874 DTF_Sask_2017_b CMLM; GLM; S…    36.6 </span></span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="do">## 2 Lcu.1GRN.Chr6p21968500      6  21968500 DTF_Sask_2017_b CMLM; GLM; S…    35.7 </span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a><span class="do">## 3 Lcu.1GRN.Chr6p22039846      6  22039846 DTF_Sask_2017_b CMLM; GLM; S…    35.6 </span></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="do">## 4 Lcu.1GRN.Chr6p3269280       6   3269280 DTF_Sask_2017_b BLINK; FarmC…    32.9 </span></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="do">## 5 Lcu.1GRN.Chr6p324049462     6 324049462 DTF_Sask_2017_b BLINK            13.1 </span></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="do">## 6 Lcu.1GRN.Chr6p46982948      6  46982948 DTF_Sask_2017_b BLINK             9.10</span></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="do">## 7 Lcu.1GRN.Chr6p431595092     6 431595092 DTF_Sask_2017_b FarmCPU           9.04</span></span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a><span class="do">## 8 Lcu.1GRN.Chr6p172232372     6 172232372 DTF_Sask_2017_b FarmCPU           8.71</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/list_Top_Markers.html">list_Top_Markers</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, trait <span class="op">=</span> <span class="st">"Cotyledon_Color"</span>, </span>
+<span>                 threshold <span class="op">=</span> <span class="fl">6.7</span>, chroms <span class="op">=</span> <span class="fl">6</span>, n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="do">## # A tibble: 2 × 6</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="do">##   SNP                       Chr       Pos Traits          Models        Max_LogP</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                   &lt;int&gt;     &lt;int&gt; &lt;chr&gt;           &lt;chr&gt;            &lt;dbl&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="do">## 1 Lcu.1GRN.Chr6p390278241     6 390278241 Cotyledon_Color CMLM; GLM; S…     23.0</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="do">## 2 Lcu.1GRN.Chr6p390159188     6 390159188 Cotyledon_Color CMLM; GLM; S…     20.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">myMarkers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr2p44545877"</span>, <span class="st">"Lcu.1GRN.Chr5p1658484"</span>,</span>
+<span>               <span class="st">"Lcu.1GRN.Chr6p3269280"</span>, <span class="st">"Lcu.1GRN.Chr1p365986872"</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
@@ -184,13 +217,13 @@
 <div class="section level3">
 <h3 id="multi-manhattan-plots">Multi Manhattan Plots<a class="anchor" aria-label="anchor" href="#multi-manhattan-plots"></a>
 </h3>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">myTraits</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, </span>
 <span>                     trait <span class="op">=</span> <span class="va">i</span>, </span>
 <span>                     title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"LDP -"</span>, <span class="va">i</span><span class="op">)</span>, </span>
-<span>                     threshold <span class="op">=</span> <span class="fl">7.3</span>, </span>
-<span>                     sug.threshold <span class="op">=</span> <span class="fl">6.7</span>, </span>
+<span>                     threshold <span class="op">=</span> <span class="fl">6.7</span>, </span>
+<span>                     sug.threshold <span class="op">=</span> <span class="fl">5</span>, </span>
 <span>                     vlines <span class="op">=</span> <span class="va">myMarkers</span>,</span>
 <span>                     vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"red"</span>,<span class="st">"darkgreen"</span>,<span class="st">"blue"</span><span class="op">)</span>,</span>
 <span>                     vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>,</span>
@@ -207,13 +240,13 @@
 <p><img src="reference/figures/Multi_DTF_Nepal_2017.png"></p>
 <p><img src="reference/figures/Multi_DTF_Sask_2017.png"></p>
 <p><img src="reference/figures/Multi_DTF_Sask_2017_CV_b.png"></p>
-<p><img src="reference/figures/Multi_Testa_Pattern.png"></p>
+<p><img src="reference/figures/Multi_Cotyledon_Color.png"></p>
 <hr>
 </div>
 <div class="section level3">
 <h3 id="facetted-manhattan-plots">Facetted Manhattan Plots<a class="anchor" aria-label="anchor" href="#facetted-manhattan-plots"></a>
 </h3>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">myTraits</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, </span>
 <span>                     trait <span class="op">=</span> <span class="va">i</span>, </span>
@@ -236,14 +269,14 @@
 <p><img src="reference/figures/Facet_DTF_Nepal_2017.png"></p>
 <p><img src="reference/figures/Facet_DTF_Sask_2017.png"></p>
 <p><img src="reference/figures/Facet_DTF_Sask_2017_CV_b.png"></p>
-<p><img src="reference/figures/Facet_Testa_Pattern.png"></p>
+<p><img src="reference/figures/Facet_Cotyledon_Color.png"></p>
 <hr>
 </div>
 </div>
 <div class="section level2">
 <h2 id="summary-plot">Summary Plot<a class="anchor" aria-label="anchor" href="#summary-plot"></a>
 </h2>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_GWAS_Summary.html">gg_GWAS_Summary</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, </span>
 <span>                      traits <span class="op">=</span> <span class="va">myTraits</span>,</span>
 <span>                      models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span><span class="op">)</span>,</span>
@@ -254,51 +287,66 @@
 <span>                      vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span>
 <span>                      vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>,</span>
 <span>                      title <span class="op">=</span> <span class="st">"Summary of Significant GWAS Results"</span><span class="op">)</span></span>
-<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"man/figures/GWAS_Summary.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/GWAS_Summary.png"></p>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"man/figures/GWAS_Summary_01.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/GWAS_Summary_01.png"></p>
+<hr>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_GWAS_Summary.html">gg_GWAS_Summary</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, </span>
+<span>                      traits <span class="op">=</span> <span class="va">myTraits</span>,</span>
+<span>                      models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span><span class="op">)</span>,</span>
+<span>                      colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span><span class="op">)</span>,</span>
+<span>                      threshold <span class="op">=</span> <span class="fl">6.7</span>, sug.threshold <span class="op">=</span> <span class="fl">6</span>, </span>
+<span>                      hlines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.5</span>,<span class="fl">3.5</span><span class="op">)</span>, legend.rows <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>                      vlines <span class="op">=</span> <span class="va">myMarkers</span>,</span>
+<span>                      vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span>
+<span>                      vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>,</span>
+<span>                      title <span class="op">=</span> <span class="st">"Summary of Significant GWAS Results"</span><span class="op">)</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"man/figures/GWAS_Summary_02.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/GWAS_Summary_02.png"></p>
 <hr>
 </div>
 <div class="section level2">
 <h2 id="gwas-hits-plot">GWAS Hits Plot<a class="anchor" aria-label="anchor" href="#gwas-hits-plot"></a>
 </h2>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Prep </span></span>
 <span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"myG_hmp.csv"</span>, header <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_GWAS_Hits.html">gg_GWAS_Hits</a></span><span class="op">(</span>xx <span class="op">=</span> <span class="va">myResults</span>, </span>
 <span>                   xG <span class="op">=</span> <span class="va">myG</span>, </span>
-<span>                   myTs <span class="op">=</span> <span class="fu"><a href="reference/list_Traits.html">list_Traits</a></span><span class="op">(</span><span class="st">"GWAS_Results/"</span><span class="op">)</span>, </span>
-<span>                   myR <span class="op">=</span> <span class="fl">2000000</span>, </span>
-<span>                   myTitle <span class="op">=</span> <span class="st">""</span>,</span>
+<span>                   xCV <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                   traits <span class="op">=</span> <span class="fu"><a href="reference/list_Traits.html">list_Traits</a></span><span class="op">(</span><span class="st">"GWAS_Results/"</span><span class="op">)</span>, </span>
+<span>                   range <span class="op">=</span> <span class="fl">2000000</span>, </span>
+<span>                   title <span class="op">=</span> <span class="st">""</span>,</span>
 <span>                   sigMin <span class="op">=</span> <span class="fl">0</span>, </span>
-<span>                   myCV <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                   models <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"GLM"</span><span class="op">)</span>,</span>
-<span>                   model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkorchid4"</span><span class="op">)</span>,</span>
-<span>                   model.shapes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21</span>,<span class="fl">24</span><span class="op">:</span><span class="fl">25</span>,<span class="fl">22</span>,<span class="fl">23</span><span class="op">)</span>,</span>
+<span>                   models <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span><span class="op">)</span>,</span>
+<span>                   model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span><span class="op">)</span>,</span>
+<span>                   model.shapes <span class="op">=</span> <span class="fl">21</span><span class="op">:</span><span class="fl">24</span>,</span>
 <span>                   vlines <span class="op">=</span> <span class="va">myMarkers</span>,</span>
 <span>                   vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span>
 <span>                   vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>                   legend.rows <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>                   legend.rows <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"man/figures/GWAS_Hits_01.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/GWAS_Hits_01.png"></p>
 <hr>
-<p><img src="reference/figures/GWAS_Hits_02.png"></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_GWAS_Hits.html">gg_GWAS_Hits</a></span><span class="op">(</span>xx <span class="op">=</span> <span class="va">myResults</span>, </span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gg_GWAS_Hits.html">gg_GWAS_Hits</a></span><span class="op">(</span>xx <span class="op">=</span> <span class="va">myResults</span>, </span>
 <span>                   xG <span class="op">=</span> <span class="va">myG</span>, </span>
-<span>                   myTs <span class="op">=</span> <span class="fu"><a href="reference/list_Traits.html">list_Traits</a></span><span class="op">(</span><span class="st">"GWAS_Results/"</span><span class="op">)</span>, </span>
-<span>                   myR <span class="op">=</span> <span class="fl">2000000</span>, </span>
-<span>                   myTitle <span class="op">=</span> <span class="st">""</span>,</span>
+<span>                   xCV <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                   traits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DTF_Nepal_2017"</span>, <span class="st">"DTF_Sask_2017"</span>, <span class="st">"DTF_Sask_2017_b"</span><span class="op">)</span>, </span>
+<span>                   range <span class="op">=</span> <span class="fl">2000000</span>, </span>
+<span>                   title <span class="op">=</span> <span class="st">""</span>,</span>
 <span>                   sigMin <span class="op">=</span> <span class="fl">0</span>, </span>
-<span>                   myCV <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>                   models <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span><span class="op">)</span>,</span>
 <span>                   model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span><span class="op">)</span>,</span>
-<span>                   model.shapes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21</span>,<span class="fl">24</span><span class="op">:</span><span class="fl">25</span>,<span class="fl">22</span><span class="op">)</span>,</span>
+<span>                   model.shapes <span class="op">=</span> <span class="fl">21</span><span class="op">:</span><span class="fl">24</span>,</span>
 <span>                   vlines <span class="op">=</span> <span class="va">myMarkers</span>,</span>
 <span>                   vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span>
 <span>                   vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   legend.rows <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"man/figures/GWAS_Hits_02.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/GWAS_Hits_02.png"></p>
 <hr>
 </div>
 </div>
@@ -306,7 +354,7 @@
 <h1 id="gapit">GAPIT<a class="anchor" aria-label="anchor" href="#gapit"></a>
 </h1>
 <p><code>GAPIT</code>: and <code>R</code> package for performing Genome Wide Association Studies (GWAS)</p>
-<p><a href="https://github.com/jiabowang/GAPIT3" class="external-link uri">https://github.com/jiabowang/GAPIT3</a></p>
+<p><a href="https://github.com/jiabowang/GAPIT" class="external-link uri">https://github.com/jiabowang/GAPIT</a></p>
 </div>
 <div class="section level1">
 <h1 id="dependancies">Dependancies<a class="anchor" aria-label="anchor" href="#dependancies"></a>
@@ -334,7 +382,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Derek Wright <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Derek Wright <br><small class="roles"> Author, maintainer </small>   </li>
 </ul>
 </div>
 
@@ -349,7 +397,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>
