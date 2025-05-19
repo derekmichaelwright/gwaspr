@@ -30,7 +30,7 @@ https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial
 
 For best practice, output from GAPIT should be in its own folder. In this case, they are located in a folder called `GWAS_Results/`. For this example we will plot GWAS results from 3 traits in a lentil diversity panel:
 
-- **Testa_Pattern**: a *qualitative* trait describing the presence or absence of seed coat pigmentation.
+- ****Cotyledon_Color**: a *qualitative* trait describing cotyledon color (Red = 0, Yellow = 1).
 - **DTF_Nepal_2017**: a *quantitative* trait describing days from sowing to flowering in a 2017 Nepal field trial. 
 - **DTF_Sask_2017**: a *quantitative* trait describing days from sowing to flowering in a 2017 Saskatchewan field trial. 
 - **DTF_Sask_2017_b**: same as above but run with the *b* coefficient from a photothermal model (see [Wright *et al*. 2020](https://doi.org/10.1002/ppp3.10158)) used as a covariate. 
@@ -51,6 +51,12 @@ myFiles <- list_Result_Files(folder = "GWAS_Results/")
 myFiles
 ```
 
+## Check Results
+
+```{r}
+is_ran(folder = "GWAS_Results/")
+```
+
 ## List Significant Markers
 
 ```{r eval = F}
@@ -58,32 +64,34 @@ myFiles
 order_GWAS_Results(folder = "GWAS_Results/", files = myFiles)
 ```
 
+```{r}
+is_ordered(folder = "GWAS_Results/")
+```
+
 ```{r eval = T}
 myResults <- table_GWAS_Results(folder = "GWAS_Results/", files = myFiles,
-                                threshold = 6.7, sug.threshold = 6)
+                                threshold = 6.8, sug.threshold = 5)
 myResults[1:10,]
 ```
 
 ```{r eval = T}
-list_Top_Markers(trait = "DTF_Nepal_2017", model = "MLMM", 
-                 folder = "GWAS_Results/", 
-                 threshold = 6.7, chroms = c(2,5), n = 1)
+list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Nepal_2017", 
+                 threshold = 6.7, chroms = c(2,5))
+```
+
+```{r eval = T}
+list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Sask_2017_b", 
+                 threshold = 6.7, chroms = 6)
+```
+
+```{r eval = T}
+list_Top_Markers(folder = "GWAS_Results/", trait = "Cotyledon_Color", 
+                 threshold = 6.7, chroms = 6, n = 2)
 ```
 
 ```{r}
-myMarkers <- c("Lcu.2RBY.Chr2p42543877","Lcu.2RBY.Chr5p1069654",
-               "Lcu.2RBY.Chr6p2528817", "Lcu.2RBY.Chr6p12212845")
-```
-
-```{r eval = T}
-list_Top_Markers(trait = "Testa_Pattern", model = "MLM", 
-                 folder = "GWAS_Results/", 
-                 threshold = 6.7, chroms = 6, n = 1)
-```
-
-```{r eval = T}
-table_Results_Summary("GWAS_Results/", isOrdered = F)
-table_Results_Summary("GWAS_Results/", isOrdered = T)
+myMarkers <- c("Lcu.1GRN.Chr2p44545877", "Lcu.1GRN.Chr5p1658484",
+               "Lcu.1GRN.Chr6p3269280", "Lcu.1GRN.Chr1p365986872")
 ```
 
 ---
@@ -97,8 +105,8 @@ for(i in myTraits) {
   mp <- gg_Manhattan(folder = "GWAS_Results/", 
                      trait = i, 
                      title = paste("LDP -", i), 
-                     threshold = 7.3, 
-                     sug.threshold = 6.7, 
+                     threshold = 6.7, 
+                     sug.threshold = 5, 
                      vlines = myMarkers,
                      vline.colors = c("red","red","darkgreen","blue"),
                      vline.types = c(1,1,1,1),
@@ -120,7 +128,7 @@ for(i in myTraits) {
 
 ![](man/figures/Multi_DTF_Sask_2017_CV_b.png)
 
-![](man/figures/Multi_Testa_Pattern.png)
+![](man/figures/Multi_Cotyledon_Color.png)
 
 ---
 
@@ -154,7 +162,7 @@ for(i in myTraits) {
 
 ![](man/figures/Facet_DTF_Sask_2017_CV_b.png)
 
-![](man/figures/Facet_Testa_Pattern.png)
+![](man/figures/Facet_Cotyledon_Color.png)
 
 ---
 
@@ -171,10 +179,28 @@ mp <- gg_GWAS_Summary(folder = "GWAS_Results/",
                       vline.colors = c("red", "red", "green", "blue"),
                       vline.types = c(1,1,1,1),
                       title = "Summary of Significant GWAS Results")
-ggsave("man/figures/GWAS_Summary.png", mp, width = 12, height = 4)
+ggsave("man/figures/GWAS_Summary_01.png", mp, width = 12, height = 4)
 ```
 
-![](man/figures/GWAS_Summary.png)
+![](man/figures/GWAS_Summary_01.png)
+
+---
+
+```{r eval = F}
+mp <- gg_GWAS_Summary(folder = "GWAS_Results/", 
+                      traits = myTraits,
+                      models = c("MLMM", "FarmCPU", "BLINK"),
+                      colors = c("darkred", "darkorange3", "steelblue"),
+                      threshold = 6.7, sug.threshold = 6, 
+                      hlines = c(1.5,3.5), legend.rows = 2,
+                      vlines = myMarkers,
+                      vline.colors = c("red", "red", "green", "blue"),
+                      vline.types = c(1,1,1,1),
+                      title = "Summary of Significant GWAS Results")
+ggsave("man/figures/GWAS_Summary_02.png", mp, width = 12, height = 4)
+```
+
+![](man/figures/GWAS_Summary_02.png)
 
 ```{r eval = F, echo = F}
 gg_GWAS_plotly(mp, filename = "man/figures/GWAS_Summary.html")
@@ -191,18 +217,18 @@ myG <- read.csv("myG_hmp.csv", header = T)
 # Plot
 mp <- gg_GWAS_Hits(xx = myResults, 
                    xG = myG, 
-                   myTs = list_Traits("GWAS_Results/"), 
-                   myR = 2000000, 
-                   myTitle = "",
+                   xCV = NULL,
+                   traits = list_Traits("GWAS_Results/"), 
+                   range = 2000000, 
+                   title = "",
                    sigMin = 0, 
-                   myCV = NULL,
-                   models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM"),
-                   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4"),
-                   model.shapes = c(21,24:25,22,23),
+                   models =  c("MLM", "MLMM", "FarmCPU", "BLINK"),
+                   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
+                   model.shapes = 21:24,
                    vlines = myMarkers,
                    vline.colors = c("red", "red", "green", "blue"),
                    vline.types = rep(1, length(vlines)),
-                   legend.rows = 1)
+                   legend.rows = 2)
 ggsave("man/figures/GWAS_Hits_01.png", mp, width = 10, height = 4)
 ```
 
@@ -210,19 +236,18 @@ ggsave("man/figures/GWAS_Hits_01.png", mp, width = 10, height = 4)
 
 ---
 
-![](man/figures/GWAS_Hits_02.png)
-
 ```{r eval = F}
+# Plot
 mp <- gg_GWAS_Hits(xx = myResults, 
                    xG = myG, 
-                   myTs = list_Traits("GWAS_Results/"), 
-                   myR = 2000000, 
-                   myTitle = "",
+                   xCV = NULL,
+                   traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b"), 
+                   range = 2000000, 
+                   title = "",
                    sigMin = 0, 
-                   myCV = NULL,
                    models =  c("MLM", "MLMM", "FarmCPU", "BLINK"),
                    model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
-                   model.shapes = c(21,24:25,22),
+                   model.shapes = 21:24,
                    vlines = myMarkers,
                    vline.colors = c("red", "red", "green", "blue"),
                    vline.types = rep(1, length(vlines)),
@@ -230,30 +255,7 @@ mp <- gg_GWAS_Hits(xx = myResults,
 ggsave("man/figures/GWAS_Hits_02.png", mp, width = 10, height = 4)
 ```
 
-
-```{r eval = F echo = F}
-p <- gg_Manhattan_Traits(folder = "GWAS_Results/",
-                    traits = paste0("Ro17_Plot.Height.d0", c("24","32","40","54","61","67","74","80","89","95")),
-                    model = "MLM",
-                    title = "GWAS",
-                    threshold = 6,
-                    sug.threshold = 4,
-                    markers = myMarkers,
-                    labels = markers,
-                    vlines = markers,
-                    vline.colors = rep("red", length(vlines)),
-                    vline.types = rep(1, length(vlines)),
-                    vline.legend = T,
-                    addQQ = T,
-                    facet = F,
-                    pmax = NULL,
-                    chrom.unit = "100 Mbp",
-                    myColors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
-                                 "darkslategray", "burlywood4", "darkgoldenrod2", "red", "maroon3",
-                                 "blue2", "cyan3", "deeppink3"),
-                    legend.rows = 4)
-ggsave("Additional/Additional_Figure_15.png", mp, width = 12, height = 5, bg = "white")
-```
+![](man/figures/GWAS_Hits_02.png)
 
 ---
 
@@ -261,7 +263,7 @@ ggsave("Additional/Additional_Figure_15.png", mp, width = 12, height = 5, bg = "
 
 `GAPIT`: and `R` package for performing Genome Wide Association Studies (GWAS)
 
-https://github.com/jiabowang/GAPIT3
+https://github.com/jiabowang/GAPIT
 
 # Dependancies
 

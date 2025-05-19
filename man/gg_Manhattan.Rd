@@ -23,6 +23,8 @@ gg_Manhattan(
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
   model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
     "burlywood4", "darkseagreen4"),
+  highlight.sig = F,
+  sig.col = "darkred",
   chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
   chrom.unit = "100 Mbp",
   legend.rows = 1
@@ -53,7 +55,7 @@ gg_Manhattan(
 
 \item{labels}{Labels to be used for markers.}
 
-\item{facet}{Logical, whether or not to produce a facetted or multi-model plot.}
+\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`}
 
 \item{addQQ}{Logical, whether or not to add a QQ plot}
 
@@ -62,6 +64,10 @@ gg_Manhattan(
 \item{models}{Models to read.}
 
 \item{model.colors}{Colors for each model. Used if `facet = F`.}
+
+\item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.}
+
+\item{sig.col}{Color for significant assoctiations. Used if `facet = T`.}
 
 \item{chrom.colors}{Colors for each chromosome. Used if `facet = T`.}
 

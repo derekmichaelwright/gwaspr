@@ -27,7 +27,7 @@ gg_GWAS_Hits(
 
 \item{xG}{Genotype data in hapmap format.}
 
-\item{xCV}{(optional) for filtering if you have a "CV" column.}
+\item{xCV}{Optional, for filtering if you have a "CV" column.}
 
 \item{traits}{List of traits to use.}
 

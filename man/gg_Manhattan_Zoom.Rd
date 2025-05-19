@@ -11,11 +11,20 @@ gg_Manhattan_Zoom(
   pos1,
   pos2,
   title = trait,
+  threshold = NULL,
+  sug.threshold = NULL,
   markers = NULL,
   labels = markers,
   vlines = markers,
   vline.colors = "red",
-  models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
+  sig.col = "red",
+  models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+  model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
+    "burlywood4", "darkseagreen4"),
+  facet = F,
+  highlight.sig = F,
+  highlight.marker.color = "red",
+  legend.rows = 1
 )
 }
 \arguments{
@@ -31,6 +40,10 @@ gg_Manhattan_Zoom(
 
 \item{title}{A title for the plot.}
 
+\item{threshold}{Significant Threshold.}
+
+\item{sug.threshold}{Suggested threshold.}
+
 \item{markers}{Markers to be labelled.}
 
 \item{labels}{Labels to be used for markers.}
@@ -39,7 +52,15 @@ gg_Manhattan_Zoom(
 
 \item{vline.colors}{colors for each vertical line.}
 
+\item{sig.col}{Color for significant assoctiations.}
+
 \item{models}{Models to read.}
+
+\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.}
+
+\item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.}
+
+\item{legend.rows}{Number of rows for the legend.}
 }
 \value{
 A manhattan plot.

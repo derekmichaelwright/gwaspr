@@ -3,7 +3,7 @@
 #' Creates a summary GWAS plot of significant associations.
 #' @param xx Table of significant GWAS results. See ?table_GWAS_Results().
 #' @param xG Genotype data in hapmap format.
-#' @param xCV (optional) for filtering if you have a "CV" column.
+#' @param xCV Optional, for filtering if you have a "CV" column.
 #' @param traits List of traits to use.
 #' @param range Range for binning GWAS hits.
 #' @param title Title for horizontal facet.
