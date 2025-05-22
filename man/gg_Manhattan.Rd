@@ -28,7 +28,7 @@ gg_Manhattan(
   chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
   chrom.unit = "100 Mbp",
   legend.rows = 1,
-  plotHBpvalues = F
+  plotHBPvalues = F
 )
 }
 \arguments{
@@ -76,11 +76,11 @@ gg_Manhattan(
 
 \item{legend.rows}{Number of rows for the legend.}
 
+\item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
+
 \item{pos1}{starting position to plot.}
 
 \item{pos2}{ending position to plot.}
-
-\item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
 }
 \value{
 A manhattan plot.

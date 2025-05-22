@@ -25,7 +25,7 @@ gg_Manhattan_Zoom(
   highlight.sig = F,
   highlight.marker.color = "red",
   legend.rows = 1,
-  plotHBpvalues = F
+  plotHBPvalues = F
 )
 }
 \arguments{

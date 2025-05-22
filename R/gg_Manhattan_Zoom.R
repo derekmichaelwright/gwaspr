@@ -40,7 +40,7 @@ gg_Manhattan_Zoom <- function(
     highlight.sig = F,
     highlight.marker.color = "red",
     legend.rows = 1,
-    plotHBpvalues = F
+    plotHBPvalues = F
     ) {
   #
   # Read in files
@@ -76,7 +76,7 @@ gg_Manhattan_Zoom <- function(
       mutate(Sig.level = ifelse(negLog10_P < threshold & negLog10_P >= sug.threshold, "Sug", Sig.level))
   }
   #
-  if(plotHBpvalues == T) {
+  if(plotHBPvalues == T) {
     xx <- xx %>% mutate(pvals = -log10(H.B.P.Value))
   } else {
     xx <- xx %>% mutate(pvals = negLog10_P)

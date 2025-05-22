@@ -52,7 +52,7 @@ gg_Manhattan <- function (
     chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
     chrom.unit = "100 Mbp",
     legend.rows = 1,
-    plotHBpvalues = F
+    plotHBPvalues = F
     ) {
   #
   # Read in files
@@ -100,7 +100,7 @@ gg_Manhattan <- function (
       mutate(Sig.level = ifelse(negLog10_P < threshold & negLog10_P >= sug.threshold, "Sug", Sig.level))
   }
   #
-  if(plotHBpvalues == T) {
+  if(plotHBPvalues == T) {
     xx <- xx %>% mutate(pvals = -log10(H.B.P.Value))
   } else {
     xx <- xx %>% mutate(pvals = negLog10_P)
