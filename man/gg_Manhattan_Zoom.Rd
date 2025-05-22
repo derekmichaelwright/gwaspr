@@ -24,7 +24,8 @@ gg_Manhattan_Zoom(
   facet = F,
   highlight.sig = F,
   highlight.marker.color = "red",
-  legend.rows = 1
+  legend.rows = 1,
+  plotHBpvalues = F
 )
 }
 \arguments{
@@ -61,6 +62,8 @@ gg_Manhattan_Zoom(
 \item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.}
 
 \item{legend.rows}{Number of rows for the legend.}
+
+\item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
 }
 \value{
 A manhattan plot.

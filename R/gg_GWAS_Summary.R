@@ -20,6 +20,7 @@
 #' @param caption A caption for the plot.
 #' @param rowread Number of rows to read for each GWAS results file.
 #' @param legend.rows Number of rows for the legend.
+#' @param plotHBPvalues Logical, should H.B.P.Values be uses.
 #' @return A GWAS summary plot.
 #' @export
 
@@ -41,7 +42,8 @@ gg_GWAS_Summary <- function(
     caption = paste0("Sig Threshold = ", threshold, " = Large\nSuggestive = ", sug.threshold," = Small"),
     rowread = 2000,
     legend.position = "bottom",
-    legend.rows = 1 ) {
+    legend.rows = 1,
+    plotHBPvalues = F) {
   #
   files <- list_Result_Files(folder)
   files <- files[grepl(paste(traits,collapse="|"), files)]
@@ -55,6 +57,12 @@ gg_GWAS_Summary <- function(
     if(nrow(myPi)>0) { myP <- bind_rows(myP, myPi) }
   }
   #
+  if(plotHBPvalues == T) {
+    myP <- myP %>% mutate(pvals = negLog10_HBP)
+  } else {
+    myP <- myP %>% mutate(pvals = negLog10_P)
+  }
+  #
   myP <- myP %>% filter(!is.na(SNP)) %>%
     arrange(Chr, Pos, P.value, Trait) %>%
     mutate(Model = factor(Model, levels = models),
@@ -62,8 +70,8 @@ gg_GWAS_Summary <- function(
     filter(!is.na(Trait)) %>%
     arrange(desc(Model))
   #
-  x1 <- myP %>% filter(`-log10(p)` > threshold)
-  x2 <- myP %>% filter(`-log10(p)` < threshold)
+  x1 <- myP %>% filter(pvals >= threshold)
+  x2 <- myP %>% filter(pvals < threshold)
   #
   myG <- read.csv(paste0(folder, files[1])) %>%
     mutate(Trait = myP$Trait[1],
@@ -94,9 +102,9 @@ gg_GWAS_Summary <- function(
   mp <- mp +
     geom_point(data = x2,
                size = 0.75, color = "black", alpha = 0.5,
-               aes(shape = Model, fill = Model, key1 = SNP, key2 = `-log10(p)`)) +
+               aes(shape = Model, fill = Model, key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP)) +
     geom_point(size = 2.25, color = "black", alpha = 0.5,
-               aes(shape = Model, fill = Model, key1 = SNP, key2 = `-log10(p)`)) +
+               aes(shape = Model, fill = Model, key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP)) +
     facet_grid(. ~ Chr, drop = F, scales = "free_x", space = "free_x") +
     scale_fill_manual(name = NULL, values = colors, breaks = models) +
     scale_shape_manual(name = NULL, values = shapes, breaks = models) +

@@ -26,7 +26,8 @@ gg_GWAS_Summary(
     sug.threshold, " = Small"),
   rowread = 2000,
   legend.position = "bottom",
-  legend.rows = 1
+  legend.rows = 1,
+  plotHBPvalues = F
 )
 }
 \arguments{
@@ -67,6 +68,8 @@ gg_GWAS_Summary(
 \item{rowread}{Number of rows to read for each GWAS results file.}
 
 \item{legend.rows}{Number of rows for the legend.}
+
+\item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
 }
 \value{
 A GWAS summary plot.

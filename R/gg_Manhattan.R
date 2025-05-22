@@ -25,6 +25,7 @@
 #' @param chrom.colors Colors for each chromosome. Used if `facet = T`.
 #' @param chrom.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
 #' @param legend.rows Number of rows for the legend.
+#' @param plotHBPvalues Logical, should H.B.P.Values be uses.
 #' @return A manhattan plot.
 #' @export
 
@@ -50,7 +51,8 @@ gg_Manhattan <- function (
     sig.col = "darkred",
     chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
     chrom.unit = "100 Mbp",
-    legend.rows = 1
+    legend.rows = 1,
+    plotHBpvalues = F
     ) {
   #
   # Read in files
@@ -69,9 +71,10 @@ gg_Manhattan <- function (
     if (sum(colnames(xi) == "nobs") > 0) {
       xi <- select(xi, -nobs)
     }
-    xi <- xi %>% mutate(Model = mod, `-log10(p)` = -log10(P.value),
-                        `-log10(p)_exp` = -log10((rank(P.value, ties.method = "first") -
-                                                    0.5)/nrow(.)))
+    xi <- xi %>%
+      mutate(Model = mod,
+             negLog10_P = -log10(P.value),
+             negLog10_Exp = -log10((rank(P.value, ties.method = "first") - 0.5)/nrow(.)))
     xx <- bind_rows(xx, xi)
   }
   #
@@ -87,16 +90,23 @@ gg_Manhattan <- function (
   #
   if (!is.null(pmax)) {
     xx <- xx %>%
-      mutate(`-log10(p)` = ifelse(`-log10(p)` > pmax, pmax, `-log10(p)`))
+      mutate(negLog10_P = ifelse(negLog10_P > pmax, pmax, negLog10_P))
   }
   #
   xx <- xx %>%
-    mutate(Sig.level = ifelse(`-log10(p)` >= threshold, "Sig","Not Sig"))
+    mutate(Sig.level = ifelse(negLog10_P >= threshold, "Sig","Not Sig"))
   if(!is.null(sug.threshold)) {
     xx <- xx %>%
-      mutate(Sig.level = ifelse(`-log10(p)` < threshold & `-log10(p)` >= sug.threshold, "Sug", Sig.level))
+      mutate(Sig.level = ifelse(negLog10_P < threshold & negLog10_P >= sug.threshold, "Sug", Sig.level))
   }
-  x2 <- xx %>% filter(`-log10(p)` > threshold)
+  #
+  if(plotHBpvalues == T) {
+    xx <- xx %>% mutate(pvals = -log10(H.B.P.Value))
+  } else {
+    xx <- xx %>% mutate(pvals = negLog10_P)
+  }
+  #
+  x2 <- xx %>% filter(negLog10_P > threshold)
   #
   if(chrom.unit == "kbp")     { x.unit = 1000 }
   if(chrom.unit == "100 kbp") { x.unit = 100000 }
@@ -114,11 +124,11 @@ gg_Manhattan <- function (
   #
   # Start Plots
   #
-  mp1 <- ggplot(xx, aes(x = Pos/x.unit, y = `-log10(p)`)) +
+  mp1 <- ggplot(xx, aes(x = Pos/x.unit, y = pvals)) +
     theme_gwaspr(axis.title.y = element_markdown()) +
     labs(title = title, y = "-log<sub>10</sub>(*p*)", x = chrom.unit)
   #
-  mp2 <- ggplot(xx, aes(y = `-log10(p)`, x = `-log10(p)_exp`)) +
+  mp2 <- ggplot(xx, aes(y = negLog10_P, x = negLog10_Exp)) +
     theme_gwaspr() +
     labs(title = "", y = NULL, x = "Expected")
   #
@@ -146,7 +156,7 @@ gg_Manhattan <- function (
     xm <- xx %>%
       mutate(SNP = ifelse(SNP %in% markers, SNP, NA),
              Label = plyr::mapvalues(SNP, markers, labels)) %>%
-      filter(!is.na(Label), `-log10(p)` > min(threshold, sug.threshold))
+      filter(!is.na(Label), negLog10_P > min(threshold, sug.threshold))
     mp1 <- mp1 +
       geom_text_repel(data = xm, aes(label = Label), size = 2)
   }

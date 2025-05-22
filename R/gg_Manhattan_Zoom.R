@@ -18,6 +18,7 @@
 #' @param facet Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.
 #' @param highlight.sig Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.
 #' @param legend.rows Number of rows for the legend.
+#' @param plotHBPvalues Logical, should H.B.P.Values be uses.
 #' @return A manhattan plot.
 #' @export
 
@@ -38,7 +39,9 @@ gg_Manhattan_Zoom <- function(
     facet = F,
     highlight.sig = F,
     highlight.marker.color = "red",
-    legend.rows = 1) {
+    legend.rows = 1,
+    plotHBpvalues = F
+    ) {
   #
   # Read in files
   #
@@ -53,7 +56,7 @@ gg_Manhattan_Zoom <- function(
     mod <- substr(mod, 1, gregexpr("\\.", mod)[[1]][1]-1)
     xi <- read.csv(paste0(folder, i))
     if(sum(colnames(xi)=="nobs")>0) { xi <- select(xi, -nobs) }
-    xi <- xi %>% mutate(Model = mod, `-log10(p)` = -log10(P.value))
+    xi <- xi %>% mutate(Model = mod, negLog10_P = -log10(P.value))
     xx <- bind_rows(xx, xi)
   }
   #
@@ -67,19 +70,24 @@ gg_Manhattan_Zoom <- function(
   }
   #
   xx <- xx %>%
-    mutate(Sig.level = ifelse(`-log10(p)` >= threshold, "Sig","Not Sig"))
+    mutate(Sig.level = ifelse(negLog10_P >= threshold, "Sig","Not Sig"))
   if(!is.null(sug.threshold)) {
     xx <- xx %>%
-      mutate(Sig.level = ifelse(`-log10(p)` < threshold & `-log10(p)` >= sug.threshold, "Sug", Sig.level))
+      mutate(Sig.level = ifelse(negLog10_P < threshold & negLog10_P >= sug.threshold, "Sug", Sig.level))
   }
   #
-  #x1 <- xx %>% filter(`-log10(p)` < threshold)
-  x2 <- xx %>% filter(`-log10(p)` >= threshold)
+  if(plotHBpvalues == T) {
+    xx <- xx %>% mutate(pvals = -log10(H.B.P.Value))
+  } else {
+    xx <- xx %>% mutate(pvals = negLog10_P)
+  }
+  #
+  x2 <- xx %>% filter(negLog10_P >= threshold)
   x3 <- xx %>% filter(SNP %in% markers)
   #
   # Start Plots
   #
-  mp <- ggplot(xx, aes(x = Pos / 1000000, y = `-log10(p)`))
+  mp <- ggplot(xx, aes(x = Pos / 1000000, y = pvals))
   #
   # Add vlines
   #

@@ -9,7 +9,8 @@ table_GWAS_Results(
   files = list_Result_Files(folder),
   nrowstoread = 1000,
   threshold = 6,
-  sug.threshold = NULL
+  sug.threshold = NULL,
+  useHBPvalues = F
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ table_GWAS_Results(
 \item{threshold}{Significant threshold.}
 
 \item{sug.threshold}{Suggestive threshold.}
+
+\item{useHBPvalues}{Logical, should H.B.P.Values be uses.}
 }
 \value{
 A table of significant GWAS results.
