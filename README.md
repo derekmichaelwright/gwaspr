@@ -131,17 +131,17 @@ myResults[1:10,]
     ## 8  Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36
     ## 9  Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36
     ## 10 Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36
-    ##        Effect -log10(p)   Model           Trait   Threshold
-    ## 1   0.5033628 157.11970    MLMM Cotyledon_Color Significant
-    ## 2   0.4885724 131.84744 FarmCPU Cotyledon_Color Significant
-    ## 3   0.4137794 100.81634   BLINK Cotyledon_Color Significant
-    ## 4   0.4990497  55.30953 FarmCPU Cotyledon_Color Significant
-    ## 5  -2.9355992  41.09802    CMLM DTF_Sask_2017_b Significant
-    ## 6  -2.9355992  41.09802     GLM DTF_Sask_2017_b Significant
-    ## 7  -2.9355992  41.09802   SUPER DTF_Sask_2017_b Significant
-    ## 8  -2.8859922  40.36040    CMLM DTF_Sask_2017_b Significant
-    ## 9  -2.8859922  40.36040     GLM DTF_Sask_2017_b Significant
-    ## 10 -2.8859922  40.36040   SUPER DTF_Sask_2017_b Significant
+    ##        Effect   Model           Trait negLog10_P negLog10_HBP   Threshold
+    ## 1   0.5033628    MLMM Cotyledon_Color  157.11970    151.59289 Significant
+    ## 2   0.4885724 FarmCPU Cotyledon_Color  131.84744    126.32062 Significant
+    ## 3   0.4137794   BLINK Cotyledon_Color  100.81634     95.28953 Significant
+    ## 4   0.4990497 FarmCPU Cotyledon_Color   55.30953     50.08374 Significant
+    ## 5  -2.9355992    CMLM DTF_Sask_2017_b   41.09802     35.57121 Significant
+    ## 6  -2.9355992     GLM DTF_Sask_2017_b   41.09802     35.57121 Significant
+    ## 7  -2.9355992   SUPER DTF_Sask_2017_b   41.09802     35.57121 Significant
+    ## 8  -2.8859922    CMLM DTF_Sask_2017_b   40.36040     35.16503 Significant
+    ## 9  -2.8859922     GLM DTF_Sask_2017_b   40.36040     35.16503 Significant
+    ## 10 -2.8859922   SUPER DTF_Sask_2017_b   40.36040     35.16503 Significant
 
 ``` r
 list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Nepal_2017", 
