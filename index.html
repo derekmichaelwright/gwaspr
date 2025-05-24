@@ -159,17 +159,17 @@
 <span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="do">## 8  Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36</span></span>
 <span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="do">## 9  Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36</span></span>
 <span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="do">## 10 Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36</span></span>
-<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="do">##        Effect -log10(p)   Model           Trait   Threshold</span></span>
-<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="do">## 1   0.5033628 157.11970    MLMM Cotyledon_Color Significant</span></span>
-<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="do">## 2   0.4885724 131.84744 FarmCPU Cotyledon_Color Significant</span></span>
-<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="do">## 3   0.4137794 100.81634   BLINK Cotyledon_Color Significant</span></span>
-<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="do">## 4   0.4990497  55.30953 FarmCPU Cotyledon_Color Significant</span></span>
-<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="do">## 5  -2.9355992  41.09802    CMLM DTF_Sask_2017_b Significant</span></span>
-<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="do">## 6  -2.9355992  41.09802     GLM DTF_Sask_2017_b Significant</span></span>
-<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="do">## 7  -2.9355992  41.09802   SUPER DTF_Sask_2017_b Significant</span></span>
-<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="do">## 8  -2.8859922  40.36040    CMLM DTF_Sask_2017_b Significant</span></span>
-<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="do">## 9  -2.8859922  40.36040     GLM DTF_Sask_2017_b Significant</span></span>
-<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="do">## 10 -2.8859922  40.36040   SUPER DTF_Sask_2017_b Significant</span></span></code></pre></div>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="do">##        Effect   Model           Trait negLog10_P negLog10_HBP   Threshold</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="do">## 1   0.5033628    MLMM Cotyledon_Color  157.11970    151.59289 Significant</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="do">## 2   0.4885724 FarmCPU Cotyledon_Color  131.84744    126.32062 Significant</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="do">## 3   0.4137794   BLINK Cotyledon_Color  100.81634     95.28953 Significant</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="do">## 4   0.4990497 FarmCPU Cotyledon_Color   55.30953     50.08374 Significant</span></span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a><span class="do">## 5  -2.9355992    CMLM DTF_Sask_2017_b   41.09802     35.57121 Significant</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="do">## 6  -2.9355992     GLM DTF_Sask_2017_b   41.09802     35.57121 Significant</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="do">## 7  -2.9355992   SUPER DTF_Sask_2017_b   41.09802     35.57121 Significant</span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a><span class="do">## 8  -2.8859922    CMLM DTF_Sask_2017_b   40.36040     35.16503 Significant</span></span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a><span class="do">## 9  -2.8859922     GLM DTF_Sask_2017_b   40.36040     35.16503 Significant</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a><span class="do">## 10 -2.8859922   SUPER DTF_Sask_2017_b   40.36040     35.16503 Significant</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/list_Top_Markers.html">list_Top_Markers</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, trait <span class="op">=</span> <span class="st">"DTF_Nepal_2017"</span>, </span>
 <span>                 threshold <span class="op">=</span> <span class="fl">6.7</span>, chroms <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
