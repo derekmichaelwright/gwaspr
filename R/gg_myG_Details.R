@@ -1,12 +1,14 @@
 #' gg_myG_Details
 #'
 #' Analyses your genotype data and outputs 2 summary files with marker details and 3 plots.
-#' @param xx GWAS genotype object. Note: needs to be in hapmap format.
+#' @param filename GWAS genotype object. Note: needs to be in hapmap format.
 #' @param myPrefix Prefix for file names.
 #' @return 2 .csv files with marker details & 3 Marker plots.
 #' @export
 
-gg_myG_Details <- function(xx, myPrefix = "") {
+gg_myG_Details <- function(filname, myPrefix = "") {
+  #
+  xx <- read.csv(filename, header = T)
   #
   xNames <- colnames(xx)[12:ncol(xx)]
   #
