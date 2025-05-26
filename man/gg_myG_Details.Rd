@@ -4,12 +4,12 @@
 \alias{gg_myG_Details}
 \title{gg_myG_Details}
 \usage{
-gg_myG_Details(filname, myPrefix = "")
+gg_myG_Details(filename, myPrefix = "")
 }
 \arguments{
-\item{myPrefix}{Prefix for file names.}
-
 \item{filename}{GWAS genotype object. Note: needs to be in hapmap format.}
+
+\item{myPrefix}{Prefix for file names.}
 }
 \value{
 2 .csv files with marker details & 3 Marker plots.

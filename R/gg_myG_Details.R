@@ -6,7 +6,7 @@
 #' @return 2 .csv files with marker details & 3 Marker plots.
 #' @export
 
-gg_myG_Details <- function(filname, myPrefix = "") {
+gg_myG_Details <- function(filename, myPrefix = "") {
   #
   xx <- read.csv(filename, header = T)
   #

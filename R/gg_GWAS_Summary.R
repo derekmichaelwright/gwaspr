@@ -45,13 +45,13 @@ gg_GWAS_Summary <- function(
     legend.rows = 1,
     plotHBPvalues = F) {
   #
-  files <- list_Result_Files(folder)
-  files <- files[grepl(paste(traits,collapse="|"), files)]
-  files <- files[grepl(paste(models,collapse="|"), files)]
+  fnames <- list_Result_Files(folder)
+  fnames <- files[grepl(paste(paste0(traits,".csv"),collapse="|"),fnames)]
+  fnames <- files[grepl(paste(models,collapse="|"),fnames)]
   #
   myP <- NULL
   #
-  for(i in files) {
+  for(i in fnames) {
     myPi <- table_GWAS_Results(folder = folder, files = i,
               threshold = threshold, sug.threshold = sug.threshold)
     if(nrow(myPi)>0) { myP <- bind_rows(myP, myPi) }
