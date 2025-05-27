@@ -29,7 +29,7 @@ table_GWAS_Results <- function(
              negLog10_P = -log10(P.value),
              negLog10_HBP = -log10(H.B.P.Value))
     #
-    oi <- oi %>% mutate(Threshold = ifelse(pvals < threshold, "Suggestive", "Significant"))
+    oi <- oi %>% mutate(Threshold = ifelse(negLog10_P < threshold, "Suggestive", "Significant"))
     oi <- oi %>% mutate(H.B.Threshold = ifelse(negLog10_HBP < 1.3, "Not Significant", "Significant"))
     #
     if (!is.null(sug.threshold)) {
@@ -44,5 +44,5 @@ table_GWAS_Results <- function(
   #
   if(sum(colnames(output)=="nobs")>0) { output <- select(output, -nobs) }
   #
-  output %>% arrange(desc(negLog10_P)) %>% select(-pvals)
+  output %>% arrange(desc(negLog10_P))
 }
