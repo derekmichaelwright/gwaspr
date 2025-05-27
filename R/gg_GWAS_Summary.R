@@ -45,14 +45,19 @@ gg_GWAS_Summary <- function(
     legend.rows = 1,
     plotHBPvalues = F) {
   #
+  if(is.null(sug.threshold) & caption == paste0("Sig Threshold = ", threshold, " = Large\nSuggestive = ",
+                                                sug.threshold, " = Small") ) {
+    caption <- paste0("Sig Threshold = ", threshold)
+  }
+  #
   fnames <- list_Result_Files(folder)
-  fnames <- files[grepl(paste(paste0(traits,".csv"),collapse="|"),fnames)]
-  fnames <- files[grepl(paste(models,collapse="|"),fnames)]
+  fnames <- fnames[grepl(paste(paste0(traits,".csv"),collapse="|"),fnames)]
+  fnames <- fnames[grepl(paste(models,collapse="|"),fnames)]
   #
   myP <- NULL
   #
   for(i in fnames) {
-    myPi <- table_GWAS_Results(folder = folder, files = i,
+    myPi <- table_GWAS_Results(folder = folder, fnames = i,
               threshold = threshold, sug.threshold = sug.threshold)
     if(nrow(myPi)>0) { myP <- bind_rows(myP, myPi) }
   }
@@ -73,7 +78,7 @@ gg_GWAS_Summary <- function(
   x1 <- myP %>% filter(pvals >= threshold)
   x2 <- myP %>% filter(pvals < threshold)
   #
-  myG <- read.csv(paste0(folder, files[1])) %>%
+  myG <- read.csv(paste0(folder, fnames[1])) %>%
     mutate(Trait = myP$Trait[1],
            Trait = factor(Trait, levels = rev(traits)))
   #
@@ -82,6 +87,8 @@ gg_GWAS_Summary <- function(
     x1 <- x1 %>% filter(Chr %in% chroms, Pos > pos1, Pos < pos2)
     x2 <- x2 %>% filter(Chr %in% chroms, Pos > pos1, Pos < pos2)
   }
+  #
+  if(is.null(sug.threshold)) { x2 <- x2[0,] }
   #
   mp <- ggplot(x1, aes(x = Pos / 100000000, y = Trait)) +
     geom_blank(data = myG)

@@ -6,17 +6,16 @@
 \usage{
 table_GWAS_Results(
   folder = "GWAS_Results/",
-  files = list_Result_Files(folder),
+  fnames = list_Result_Files(folder),
   nrowstoread = 1000,
   threshold = 6,
-  sug.threshold = NULL,
-  useHBPvalues = F
+  sug.threshold = NULL
 )
 }
 \arguments{
 \item{folder}{Folder containing GWAS results.}
 
-\item{files}{The files to read.}
+\item{fnames}{The files to read.}
 
 \item{nrowstoread}{Number of rows to read.}
 
