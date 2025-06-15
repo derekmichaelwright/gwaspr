@@ -29,7 +29,8 @@ gg_GWAS_Hits <- function(
     vlines = NULL,
     vline.colors = rep("red", length(vlines)),
     vline.types = rep(1, length(vlines)),
-    legend.rows = 1) {
+    legend.rows = 1
+    ) {
   #
   xx <- xx %>% filter(Trait %in% traits, Model %in% models) %>% mutate(Hits = NA)
   xG <- xG %>% select(SNP=1, Chr=3, Pos=4)

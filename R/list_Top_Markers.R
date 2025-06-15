@@ -26,6 +26,7 @@ list_Top_Markers <- function(
                     gregexpr(".csv", i)[[1]][1]-1 )
     model <- substr(trait, 1, gregexpr("\\.", trait)[[1]][1]-1 )
     trait <- substr(trait, gregexpr("\\.", trait)[[1]][1]+1, nchar(trait) )
+    sky <- substr(i, gregexpr("\\(", i)[[1]][1] + 1, gregexpr("\\)", i)[[1]][1] - 1)
     #
     if(model %in% models & trait %in% traits) {
       xi <- read.csv(paste0(folder, i)) %>%
@@ -35,7 +36,7 @@ list_Top_Markers <- function(
         filter(`-log10(p)` >= threshold) %>%
         slice(1:n) %>%
         ungroup() %>%
-        mutate(Trait = trait, Model = model)
+        mutate(Trait = trait, Model = model, Type = sky)
       #
       xx <- bind_rows(xx, xi)
     }

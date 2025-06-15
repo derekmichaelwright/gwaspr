@@ -1,6 +1,7 @@
 #' gg_GWAS_Summary
 #'
 #' Creates a summary GWAS plot of significant associations.
+#' Note: this function requires the GWAS results files to be ordered
 #' @param folder Folder containing GWAS results.
 #' @param traits The traits to read.
 #' @param threshold Significant threshold.
@@ -21,14 +22,15 @@
 #' @param rowread Number of rows to read for each GWAS results file.
 #' @param legend.rows Number of rows for the legend.
 #' @param plotHBPvalues Logical, should H.B.P.Values be uses.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
 #' @return A GWAS summary plot.
 #' @export
 
 gg_GWAS_Summary <- function(
     folder = "GWAS_Results/",
     traits = list_Traits(folder),
-    threshold = -log10(0.00000005),
-    sug.threshold = -log10(0.000005),
+    threshold = round(-log10(0.00000005),1),
+    sug.threshold = round(-log10(0.000005),1),
     chroms = NULL, pos1 = NULL, pos2 = NULL,
     models =  c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
     colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
@@ -38,27 +40,42 @@ gg_GWAS_Summary <- function(
     vline.colors = rep("red",length(vlines)),
     vline.types = rep(1, length(vlines)),
     vline.legend = T,
-    title = NULL,
-    caption = paste0("Sig Threshold = ", threshold, " = Large\nSuggestive = ", sug.threshold," = Small"),
+    title = "Summary of Significant GWAS Results",
+    caption = paste0("Significant Threshold = ", threshold, " = Large\nSuggestive Threshold = ", sug.threshold," = Small"),
     rowread = 2000,
     legend.position = "bottom",
     legend.rows = 1,
-    plotHBPvalues = F) {
+    plotHBPvalues = F,
+    skyline = NULL
+    ) {
   #
-  if(is.null(sug.threshold) & caption == paste0("Sig Threshold = ", threshold, " = Large\nSuggestive = ",
-                                                sug.threshold, " = Small") ) {
-    caption <- paste0("Sig Threshold = ", threshold)
+  check1 <- is_ran(folder = folder) %>% dropNAcol()
+  check2 <- is_ordered(folder = folder) %>% select(colnames(check1))
+  if(sum(is.na(check2)) > 0) {
+    warning("Some of your GWAS results files might not be ordered by pvalue")
+    warning("use order_GWAS_Results() before making these summary plots")
+    warning("use is_ordered() to check if GWAS results are properly ordered for use with this function")
+  }
+  #
+  if(is.null(sug.threshold) &
+     caption == paste0("Significant Threshold = ", threshold, " = Large\nSuggestive = ", sug.threshold, " = Small") ) {
+     caption <- paste0("Significant Threshold = ", threshold)
   }
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste(paste0(traits,".csv"),collapse="|"),fnames)]
+  fnames <- fnames[grepl(paste(traits,collapse="|"),fnames)]
   fnames <- fnames[grepl(paste(models,collapse="|"),fnames)]
+  #if(removeKansas == T) { fnames <- fnames[!grepl("Kansas", fnames)] }
   #
   myP <- NULL
   #
   for(i in fnames) {
-    myPi <- table_GWAS_Results(folder = folder, fnames = i,
-              threshold = threshold, sug.threshold = sug.threshold)
+    myPi <- table_GWAS_Results(folder = folder,
+                               fnames = i,
+                               threshold = threshold,
+                               sug.threshold = sug.threshold,
+                               skyline = skyline)
+    #
     if(nrow(myPi)>0) { myP <- bind_rows(myP, myPi) }
   }
   #
@@ -68,7 +85,8 @@ gg_GWAS_Summary <- function(
     myP <- myP %>% mutate(pvals = negLog10_P)
   }
   #
-  myP <- myP %>% filter(!is.na(SNP)) %>%
+  myP <- myP %>%
+    filter(!is.na(SNP)) %>%
     arrange(Chr, Pos, P.value, Trait) %>%
     mutate(Model = factor(Model, levels = models),
            Trait = factor(Trait, levels = rev(traits))) %>%
@@ -90,8 +108,8 @@ gg_GWAS_Summary <- function(
   #
   if(is.null(sug.threshold)) { x2 <- x2[0,] }
   #
-  mp <- ggplot(x1, aes(x = Pos / 100000000, y = Trait)) +
-    geom_blank(data = myG)
+  mp <- ggplot(x1, aes(x = Pos / 100000000, y = Trait)) + geom_blank(data = myG)
+  #
   if(!is.null(vlines)) {
     myGM <- myG %>% filter(SNP %in% vlines) %>%
       mutate(SNP = factor(SNP, levels = vlines)) %>%
@@ -103,9 +121,11 @@ gg_GWAS_Summary <- function(
       scale_color_manual(name = NULL, values = vline.colors) +
       scale_linetype_manual(name = NULL, values = vline.types)
   }
+  #
   if(!is.null(hlines)) {
     mp <- mp + geom_hline(yintercept = hlines, alpha = 0.7)
   }
+  #
   mp <- mp +
     geom_point(data = x2,
                size = 0.75, color = "black", alpha = 0.5,
@@ -122,9 +142,19 @@ gg_GWAS_Summary <- function(
            color = guide_legend(nrow = legend.rows),
            fill = guide_legend(nrow = legend.rows)) +
     labs(title = title, y = NULL, x = "100 Mbp", caption = caption)
+  #
   if(vline.legend == F) {
     mp <- mp + guides(color = vline.legend)
   }
   #
   mp
 }
+
+#folder = "GWAS_Results/"; traits = list_Traits(folder); threshold = round(-log10(0.00000005),1); sug.threshold = round(-log10(0.000005),1)
+#chroms = NULL; pos1 = NULL; pos2 = NULL
+#models =  c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
+#colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4")
+#shapes = 21:25; hlines = NULL; vlines = NULL; vline.colors = rep("red",length(vlines));
+#vline.types = rep(1, length(vlines)); vline.legend = T; title = "Summary of Significant GWAS Results";
+#caption = paste0("Significant Threshold = ", threshold, " = Large\nSuggestive Threshold = ", sug.threshold," = Small")
+#rowread = 2000; legend.position = "bottom"; legend.rows = 1; plotHBPvalues = F; removeKansas = F

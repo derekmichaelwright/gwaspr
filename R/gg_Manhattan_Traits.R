@@ -19,6 +19,7 @@
 #' @param trait.colors Colors for each trait.
 #' @param chrom.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
 #' @param legend.rows Number of rows for the legend.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
 #' @return A manhattan plot.
 #' @export
 
@@ -40,7 +41,9 @@ gg_Manhattan_Traits <- function (
     model = "MLM",
     trait.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
     chrom.unit = "100 Mbp",
-    legend.rows = 1 ) {
+    legend.rows = 1,
+    skyline = NULL
+    ) {
   #
   # Read in files
   #
@@ -58,12 +61,21 @@ gg_Manhattan_Traits <- function (
     myTrait <- substr(i,
                       gregexpr("GWAS_Results", i)[[1]][1] + 14 + nchar(model),
                       gregexpr(".csv", i)[[1]][1] - 1)
+    sky <- substr(i, gregexpr("\\(", i)[[1]][1] + 1, gregexpr("\\)", i)[[1]][1] - 1)
     xi <- xi %>% mutate(Trait = myTrait,
+                        Type = sky,
                         `-log10(p)` = -log10(P.value),
                         `-log10(p)_exp` = -log10((rank(P.value, ties.method = "first") -
                                                     0.5)/nrow(.)))
     xx <- bind_rows(xx, xi)
   }
+  #
+  if(!is.null(skyline)) {
+    if(skyline == "NYC")    { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
+    if(skyline == "Kansas") { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
+  }
+  #
+  xx  <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value)))
   #
   # Prep data
   #

@@ -7,7 +7,8 @@
 gg_Marker_Box(
   xG,
   xY,
-  trait,
+  traits,
+  myncol = NULL,
   markers,
   box.width = 0.1,
   points = T,
@@ -21,7 +22,7 @@ gg_Marker_Box(
 
 \item{xY}{GWAS phenotype object.}
 
-\item{trait}{Trait to plot.}
+\item{traits}{Traits to plot.}
 
 \item{markers}{Markers to plot.}
 

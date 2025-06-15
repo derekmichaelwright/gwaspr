@@ -19,6 +19,7 @@
 #' @param highlight.sig Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.
 #' @param legend.rows Number of rows for the legend.
 #' @param plotHBPvalues Logical, should H.B.P.Values be uses.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
 #' @return A manhattan plot.
 #' @export
 
@@ -40,7 +41,8 @@ gg_Manhattan_Zoom <- function(
     highlight.sig = F,
     highlight.marker.color = "red",
     legend.rows = 1,
-    plotHBPvalues = F
+    plotHBPvalues = F,
+    skyline = NULL
     ) {
   #
   # Read in files
@@ -54,11 +56,19 @@ gg_Manhattan_Zoom <- function(
   for(i in fnames) {
     mod <- substr(i, gregexpr("GWAS_Results", i)[[1]][1]+13, gregexpr(".csv", i)[[1]][1]-1)
     mod <- substr(mod, 1, gregexpr("\\.", mod)[[1]][1]-1)
+    sky <- substr(i, gregexpr("\\(", i)[[1]][1] + 1, gregexpr("\\)", i)[[1]][1] - 1)
     xi <- read.csv(paste0(folder, i))
     if(sum(colnames(xi)=="nobs")>0) { xi <- select(xi, -nobs) }
-    xi <- xi %>% mutate(Model = mod, negLog10_P = -log10(P.value))
+    xi <- xi %>% mutate(Model = mod, Type = sky, negLog10_P = -log10(P.value))
     xx <- bind_rows(xx, xi)
   }
+  #
+  if(!is.null(skyline)) {
+    if(skyline == "NYC")    { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
+    if(skyline == "Kansas") { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
+  }
+  #
+  xx  <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value)))
   #
   # Prep data
   #

@@ -9,7 +9,10 @@ list_Traits <- function(folder = "GWAS_Results/") {
   #
   fnames <- grep(".GWAS.Results", list.files(folder))
   fnames <- list.files(folder)[fnames]
-  fnames <- gsub("GAPIT.|GLM.|MLM.|CMLM.|MLMM.|SUPER.|FarmCPU.|Blink.|BLINK.|.GWAS.Results|Association.GWAS_Results.|.csv","",fnames)
-  fnames
+  fnames <- gsub("GAPIT.|GLM.|MLM.|CMLM.|MLMM.|SUPER.|FarmCPU.|Blink.|BLINK.",
+                 "", fnames)
+  fnames <- gsub(".GWAS.Results|Association.GWAS_Results.|\\(Kansas\\)|\\(NYC\\)|.csv",
+                 "", fnames)
+  #fnames
   unique(fnames)
 }

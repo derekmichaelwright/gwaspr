@@ -10,7 +10,8 @@ gg_Volcano(
   title = trait,
   markers = NULL,
   labels = markers,
-  models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
+  models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+  skyline = NULL
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ gg_Volcano(
 \item{labels}{Labels to be used for markers.}
 
 \item{models}{Models to read.}
+
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
 }
 \value{
 A volcano plot.

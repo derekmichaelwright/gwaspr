@@ -1,6 +1,6 @@
-#' gg_Manhattan
+#' gg_NYCvsKansas
 #'
-#' Creates a manhattan plot.
+#' Creates a manhattan plot comparing the NYC and Kansas results.
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
 #' @param title A title for the plot.
@@ -13,22 +13,18 @@
 #' @param vline.colors colors for each vertical line.
 #' @param vline.types lty for each vertical line.
 #' @param vline.legend Logical, whether or not to add a legend for the vlines.
-#' @param facet Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`
 #' @param addQQ Logical, whether or not to add a QQ plot
 #' @param pmax A max value for the y-axis.
 #' @param models Models to read.
-#' @param model.colors Colors for each model. Used if `facet = F`.
-#' @param highlight.sig Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.
 #' @param sig.col Color for significant assoctiations. Used if `facet = T`.
 #' @param chrom.colors Colors for each chromosome. Used if `facet = T`.
 #' @param chrom.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
 #' @param legend.rows Number of rows for the legend.
-#' @param plotHBPvalues Logical, if TRUE, H.B.P.values be uses.
-#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
+#' @param plotHBPvalues Logical, if TRUE, H.B.P.Values be uses.
 #' @return A manhattan plot.
 #' @export
 
-gg_Manhattan <- function (
+gg_NYCvsKansas <- function (
     folder = "GWAS_Results/",
     trait = list_Traits(folder)[1],
     title = trait,
@@ -41,18 +37,14 @@ gg_Manhattan <- function (
     vline.colors = rep("red", length(vlines)),
     vline.types = rep(1, length(vlines)),
     vline.legend = T,
-    facet = F,
     addQQ = T,
     pmax = NULL,
-    models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-    model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
-    highlight.sig = F,
+    models = c("FarmCPU", "BLINK"),
     sig.col = "darkred",
     chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
     chrom.unit = "100 Mbp",
     legend.rows = 1,
-    plotHBPvalues = F,
-    skyline = NULL
+    plotHBPvalues = F
     ) {
   #
   # Read in files
@@ -60,7 +52,6 @@ gg_Manhattan <- function (
   fnames <- list_Result_Files(folder)
   fnames <- fnames[grepl(paste(trait, collapse="|"), fnames)]
   fnames <- fnames[grepl(paste(models, collapse="|"), fnames)]
-  #if(removeKansas == T) { fnames <- fnames[!grepl("Kansas", fnames)] }
   #
   xx <- NULL
   for (i in fnames) {
@@ -79,13 +70,7 @@ gg_Manhattan <- function (
     xx <- bind_rows(xx, xi)
   }
   #
-  #if(removeKansas == F) { xx  <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value))) }
-  if(!is.null(skyline)) {
-    if(skyline == "NYC")    { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
-    if(skyline == "Kansas") { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
-  }
-  #
-  xx  <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value)))
+  xx  <- xx %>% filter(!duplicated(paste(SNP, Model, P.value)))
   #
   # Prep data
   #
@@ -182,61 +167,26 @@ gg_Manhattan <- function (
   #
   # Plot facetted by model
   #
-  if (facet == T) {
-    mp1 <- mp1 +
-      geom_point(aes(fill = factor(Chr), size = Sig.level), pch = 21, color = alpha("white", 0)) +
-      geom_point(data = x2, pch = 21, size = 1.25, color = "black", fill = sig.col, alpha = 0.8) +
-      facet_grid(Model+Type ~ Chr, scales = "free", space = "free_x") +
-      scale_fill_manual(name = NULL, values = alpha(chrom.colors, 0.8), guide = "none") +
-      scale_size_manual(name = NULL, values = c(0.4,1.25,0.75), guide = "none") +
-      scale_x_continuous(breaks = myBreaks, minor_breaks = myBreaks) +
-      guides(color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
-      theme(legend.position = "bottom")
+  mp1 <- mp1 +
+    geom_point(aes(fill = factor(Chr), size = Sig.level), pch = 21, color = alpha("white", 0)) +
+    geom_point(data = x2, pch = 21, size = 1.5, color = "black", fill = sig.col, alpha = 0.8) +
+    facet_grid(Model+Type ~ Chr, scales = "free", space = "free_x") +
+    scale_fill_manual(name = NULL, values = alpha(chrom.colors, 0.8), guide = "none") +
+    scale_size_manual(name = NULL, values = c(0.4,1.25,0.75), guide = "none") +
+    scale_x_continuous(breaks = myBreaks, minor_breaks = myBreaks) +
+    guides(color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
+    theme(legend.position = "bottom")
+  #
+  if(addQQ == T) {
+    mp2 <- mp2 +
+      geom_point(pch = 1, color = chrom.colors[1], alpha = 0.8) +
+      geom_point(data = x2, pch = 21, color = "black", fill = "darkred", alpha = 0.8) +
+      geom_abline() +
+      facet_grid(Model+Type ~ "QQ", scales = "free_y")
     #
-    if(addQQ == T) {
-      mp2 <- mp2 +
-        geom_point(pch = 1, size = 1.25, color = chrom.colors[1], alpha = 0.8) +
-        geom_point(data = x2, pch = 21, size = 1.25, color = "black", fill = "darkred", alpha = 0.8) +
-        geom_abline() +
-        facet_grid(Model+Type ~ "QQ", scales = "free_y")
-      #
-      mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
-                      legend = "bottom", common.legend = T)
+    mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
+                    legend = "bottom", common.legend = T)
     } else { mp <- mp1 }
-  } else {
-    #
-    # Plot models together
-    #
-    mp1 <- mp1 +
-      geom_point(aes(fill = Model, size = Sig.level), pch = 21, color = alpha("white", 0)) +
-      facet_grid(. ~ Chr, scales = "free", space = "free_x") +
-      scale_fill_manual(name = NULL, values = alpha(model.colors,0.8)) +
-      scale_size_manual(name = NULL, values = c(0.3,1.25,0.75), guide = "none") +
-      scale_x_continuous(breaks = myBreaks, minor_breaks = myBreaks) +
-      guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)),
-             color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
-      theme(legend.position = "bottom")
-    if(highlight.sig == T) {
-      mp1 <- mp1 + geom_point(data = x2, fill = alpha("white", 0), pch = 21, size = 1.25)
-    }
-    #
-    if(addQQ == T) {
-      mp2 <- mp2 +
-        geom_point(pch = 1, size = 1.25, aes(color = Model+Type)) +
-        geom_point(data = x2, size = 1.25, aes(color = Model+Type)) +
-        geom_abline() +
-        facet_grid(. ~ "QQ", scales = "free_y") +
-        scale_color_manual(name = NULL, values = alpha(model.colors,0.8)) +
-        guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)),
-               color = guide_legend(nrow = legend.rows, byrow = T))
-      if(highlight.sig == T) {
-        mp2 <- mp2 + geom_point(data = x2, fill = alpha("white", 0), pch = 21, size = 1.25)
-      }
-      #
-      mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
-                      legend = "bottom", common.legend = T)
-    } else { mp <- mp1 }
-  }
   #
   # Output Plot
   #
@@ -246,9 +196,7 @@ gg_Manhattan <- function (
 #folder = "GWAS_Results/"; trait = list_Traits(folder)[1]; title = trait; threshold = NULL; sug.threshold = NULL
 #chrom = NULL; markers = NULL; labels = markers
 #vlines = markers; vline.colors = rep("red", length(vlines)); vline.types = rep(1, length(vlines)); vline.legend = T
-#facet = F; addQQ = T; pmax = NULL;
-#models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
+#facet = F; addQQ = T; pmax = NULL; 
 #models = "BLINK"
-#model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4")
 #highlight.sig = F; sig.col = "darkred"; chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30)
-#chrom.unit = "100 Mbp"; legend.rows = 1; plotHBPvalues = F; skyline = NULL
+#chrom.unit = "100 Mbp"; legend.rows = 1; plotHBPvalues = F

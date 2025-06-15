@@ -25,7 +25,8 @@ gg_Manhattan_Zoom(
   highlight.sig = F,
   highlight.marker.color = "red",
   legend.rows = 1,
-  plotHBPvalues = F
+  plotHBPvalues = F,
+  skyline = NULL
 )
 }
 \arguments{
@@ -64,6 +65,8 @@ gg_Manhattan_Zoom(
 \item{legend.rows}{Number of rows for the legend.}
 
 \item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
+
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
 }
 \value{
 A manhattan plot.

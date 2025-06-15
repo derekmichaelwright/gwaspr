@@ -11,12 +11,12 @@ gg_Manhattan(
   threshold = NULL,
   sug.threshold = NULL,
   chrom = NULL,
+  markers = NULL,
+  labels = markers,
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
-  markers = NULL,
-  labels = markers,
   facet = F,
   addQQ = T,
   pmax = NULL,
@@ -28,7 +28,8 @@ gg_Manhattan(
   chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
   chrom.unit = "100 Mbp",
   legend.rows = 1,
-  plotHBPvalues = F
+  plotHBPvalues = F,
+  skyline = NULL
 )
 }
 \arguments{
@@ -44,6 +45,10 @@ gg_Manhattan(
 
 \item{chrom}{Chromosomes to plot. Use if you want to plot a single chromosome.}
 
+\item{markers}{Markers to be labelled.}
+
+\item{labels}{Labels to be used for markers.}
+
 \item{vlines}{Markers which will be used as a location for a vertical lines.}
 
 \item{vline.colors}{colors for each vertical line.}
@@ -51,10 +56,6 @@ gg_Manhattan(
 \item{vline.types}{lty for each vertical line.}
 
 \item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
-
-\item{markers}{Markers to be labelled.}
-
-\item{labels}{Labels to be used for markers.}
 
 \item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`}
 
@@ -76,11 +77,9 @@ gg_Manhattan(
 
 \item{legend.rows}{Number of rows for the legend.}
 
-\item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
+\item{plotHBPvalues}{Logical, if TRUE, H.B.P.values be uses.}
 
-\item{pos1}{starting position to plot.}
-
-\item{pos2}{ending position to plot.}
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
 }
 \value{
 A manhattan plot.

@@ -7,10 +7,14 @@
 gg_Marker_Bar(
   xG,
   xY,
-  trait,
+  traits,
   markers,
+  plot.histogram = T,
+  plot.density = T,
   marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
-    "darkslategray", "maroon4", "purple4", "darkblue")
+    "darkslategray", "maroon4", "purple4", "darkblue"),
+  myncol = NULL,
+  line.color = F
 )
 }
 \arguments{
@@ -18,7 +22,7 @@ gg_Marker_Bar(
 
 \item{xY}{GWAS phenotype object.}
 
-\item{trait}{Trait to plot.}
+\item{traits}{Traits to plot.}
 
 \item{markers}{Markers to plot.}
 

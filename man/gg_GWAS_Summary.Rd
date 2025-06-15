@@ -7,8 +7,8 @@
 gg_GWAS_Summary(
   folder = "GWAS_Results/",
   traits = list_Traits(folder),
-  threshold = -log10(5e-08),
-  sug.threshold = -log10(5e-06),
+  threshold = round(-log10(5e-08), 1),
+  sug.threshold = round(-log10(5e-06), 1),
   chroms = NULL,
   pos1 = NULL,
   pos2 = NULL,
@@ -21,13 +21,14 @@ gg_GWAS_Summary(
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
-  title = NULL,
-  caption = paste0("Sig Threshold = ", threshold, " = Large\\nSuggestive = ",
-    sug.threshold, " = Small"),
+  title = "Summary of Significant GWAS Results",
+  caption = paste0("Significant Threshold = ", threshold,
+    " = Large\\nSuggestive Threshold = ", sug.threshold, " = Small"),
   rowread = 2000,
   legend.position = "bottom",
   legend.rows = 1,
-  plotHBPvalues = F
+  plotHBPvalues = F,
+  skyline = NULL
 )
 }
 \arguments{
@@ -70,10 +71,13 @@ gg_GWAS_Summary(
 \item{legend.rows}{Number of rows for the legend.}
 
 \item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
+
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
 }
 \value{
 A GWAS summary plot.
 }
 \description{
 Creates a summary GWAS plot of significant associations.
+Note: this function requires the GWAS results files to be ordered
 }

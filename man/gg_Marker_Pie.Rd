@@ -8,6 +8,7 @@ gg_Marker_Pie(
   xG,
   xY,
   trait,
+  myncol = NULL,
   markers,
   marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
     "darkslategray", "maroon4", "purple4", "darkblue")

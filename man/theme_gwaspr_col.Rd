@@ -7,7 +7,7 @@
 theme_gwaspr_col(
   x,
   bgFill = "white",
-  lineColor = "grey80",
+  lineColor = "grey90",
   linesize = 0.75,
   stripFill = "white",
   ...

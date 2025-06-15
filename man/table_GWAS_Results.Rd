@@ -9,7 +9,8 @@ table_GWAS_Results(
   fnames = list_Result_Files(folder),
   nrowstoread = 1000,
   threshold = 6,
-  sug.threshold = NULL
+  sug.threshold = NULL,
+  skyline = NULL
 )
 }
 \arguments{
@@ -23,7 +24,9 @@ table_GWAS_Results(
 
 \item{sug.threshold}{Suggestive threshold.}
 
-\item{useHBPvalues}{Logical, should H.B.P.Values be uses.}
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
+
+\item{useHBPvalues}{Logical, if TRUE, H.B.P.Values will be uses.}
 }
 \value{
 A table of significant GWAS results.
