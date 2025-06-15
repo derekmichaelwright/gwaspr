@@ -44,12 +44,12 @@
 <span>  threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sug.threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  chrom <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  markers <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  labels <span class="op">=</span> <span class="va">markers</span>,</span>
 <span>  vlines <span class="op">=</span> <span class="va">markers</span>,</span>
 <span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  vline.legend <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>  markers <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  labels <span class="op">=</span> <span class="va">markers</span>,</span>
 <span>  facet <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  addQQ <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  pmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -61,7 +61,8 @@
 <span>  chrom.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkgoldenrod3"</span><span class="op">)</span>, <span class="fl">30</span><span class="op">)</span>,</span>
 <span>  chrom.unit <span class="op">=</span> <span class="st">"100 Mbp"</span>,</span>
 <span>  legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  plotHBPvalues <span class="op">=</span> <span class="cn">F</span></span>
+<span>  plotHBPvalues <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  skyline <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -93,6 +94,14 @@
 <dd><p>Chromosomes to plot. Use if you want to plot a single chromosome.</p></dd>
 
 
+<dt id="arg-markers">markers<a class="anchor" aria-label="anchor" href="#arg-markers"></a></dt>
+<dd><p>Markers to be labelled.</p></dd>
+
+
+<dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
+<dd><p>Labels to be used for markers.</p></dd>
+
+
 <dt id="arg-vlines">vlines<a class="anchor" aria-label="anchor" href="#arg-vlines"></a></dt>
 <dd><p>Markers which will be used as a location for a vertical lines.</p></dd>
 
@@ -107,14 +116,6 @@
 
 <dt id="arg-vline-legend">vline.legend<a class="anchor" aria-label="anchor" href="#arg-vline-legend"></a></dt>
 <dd><p>Logical, whether or not to add a legend for the vlines.</p></dd>
-
-
-<dt id="arg-markers">markers<a class="anchor" aria-label="anchor" href="#arg-markers"></a></dt>
-<dd><p>Markers to be labelled.</p></dd>
-
-
-<dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
-<dd><p>Labels to be used for markers.</p></dd>
 
 
 <dt id="arg-facet">facet<a class="anchor" aria-label="anchor" href="#arg-facet"></a></dt>
@@ -158,15 +159,11 @@
 
 
 <dt id="arg-plothbpvalues">plotHBPvalues<a class="anchor" aria-label="anchor" href="#arg-plothbpvalues"></a></dt>
-<dd><p>Logical, should H.B.P.Values be uses.</p></dd>
+<dd><p>Logical, if TRUE, H.B.P.values be uses.</p></dd>
 
 
-<dt id="arg-pos-">pos1<a class="anchor" aria-label="anchor" href="#arg-pos-"></a></dt>
-<dd><p>starting position to plot.</p></dd>
-
-
-<dt id="arg-pos-">pos2<a class="anchor" aria-label="anchor" href="#arg-pos-"></a></dt>
-<dd><p>ending position to plot.</p></dd>
+<dt id="arg-skyline">skyline<a class="anchor" aria-label="anchor" href="#arg-skyline"></a></dt>
+<dd><p>Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.</p></dd>
 
 </dl></div>
     <div class="section level2">
