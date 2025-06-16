@@ -24,6 +24,7 @@ list_Top_Markers <- function(
   for(i in fnames) {
     trait <- substr(i, gregexpr("GWAS_Results", i)[[1]][1]+13,
                     gregexpr(".csv", i)[[1]][1]-1 )
+    trait <- gsub("\\(Kansas\\)|\\(NYC\\)", "", trait)
     model <- substr(trait, 1, gregexpr("\\.", trait)[[1]][1]-1 )
     trait <- substr(trait, gregexpr("\\.", trait)[[1]][1]+1, nchar(trait) )
     sky <- substr(i, gregexpr("\\(", i)[[1]][1] + 1, gregexpr("\\)", i)[[1]][1] - 1)
@@ -41,7 +42,7 @@ list_Top_Markers <- function(
       xx <- bind_rows(xx, xi)
     }
   }
-  xx <- xx %>% mutate(Traits = NA, Models = NA)
+  xx <- xx %>% mutate(Traits = NA, Models = NA, Type = NA)
   for(i in 1:nrow(xx)) {
     xi <- xx %>% filter(SNP == xx$SNP[i])
     xx$Traits[i] <- paste(unique(xi$Trait), collapse = "; ")

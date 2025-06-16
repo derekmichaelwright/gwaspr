@@ -69,7 +69,7 @@ is_ordered(folder = "GWAS_Results/")
 ```
 
 ```{r eval = T}
-myResults <- table_GWAS_Results(folder = "GWAS_Results/", files = myFiles,
+myResults <- table_GWAS_Results(folder = "GWAS_Results/", fnames = myFiles,
                                 threshold = 6.8, sug.threshold = 5)
 myResults[1:10,]
 ```
@@ -206,56 +206,6 @@ ggsave("man/figures/GWAS_Summary_02.png", mp, width = 12, height = 4)
 gg_GWAS_plotly(mp, filename = "man/figures/GWAS_Summary.html")
 plotly::ggplotly(mp)
 ```
-
----
-
-## GWAS Hits Plot
-
-```{r eval = F}
-# Prep 
-myG <- read.csv("myG_hmp.csv", header = T)
-# Plot
-mp <- gg_GWAS_Hits(xx = myResults, 
-                   xG = myG, 
-                   xCV = NULL,
-                   traits = list_Traits("GWAS_Results/"), 
-                   range = 2000000, 
-                   title = "",
-                   sigMin = 0, 
-                   models =  c("MLM", "MLMM", "FarmCPU", "BLINK"),
-                   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
-                   model.shapes = 21:24,
-                   vlines = myMarkers,
-                   vline.colors = c("red", "red", "green", "blue"),
-                   vline.types = rep(1, length(vlines)),
-                   legend.rows = 2)
-ggsave("man/figures/GWAS_Hits_01.png", mp, width = 10, height = 4)
-```
-
-![](man/figures/GWAS_Hits_01.png)
-
----
-
-```{r eval = F}
-# Plot
-mp <- gg_GWAS_Hits(xx = myResults, 
-                   xG = myG, 
-                   xCV = NULL,
-                   traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b"), 
-                   range = 2000000, 
-                   title = "",
-                   sigMin = 0, 
-                   models =  c("MLM", "MLMM", "FarmCPU", "BLINK"),
-                   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
-                   model.shapes = 21:24,
-                   vlines = myMarkers,
-                   vline.colors = c("red", "red", "green", "blue"),
-                   vline.types = rep(1, length(vlines)),
-                   legend.rows = 2)
-ggsave("man/figures/GWAS_Hits_02.png", mp, width = 10, height = 4)
-```
-
-![](man/figures/GWAS_Hits_02.png)
 
 ---
 

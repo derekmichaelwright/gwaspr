@@ -56,34 +56,34 @@ myFiles <- list_Result_Files(folder = "GWAS_Results/")
 myFiles
 ```
 
-    ##  [1] "GAPIT.Association.GWAS_Results.BLINK.Cotyledon_Color.csv"  
-    ##  [2] "GAPIT.Association.GWAS_Results.BLINK.DTF_Nepal_2017.csv"   
-    ##  [3] "GAPIT.Association.GWAS_Results.BLINK.DTF_Sask_2017.csv"    
-    ##  [4] "GAPIT.Association.GWAS_Results.BLINK.DTF_Sask_2017_b.csv"  
-    ##  [5] "GAPIT.Association.GWAS_Results.CMLM.Cotyledon_Color.csv"   
-    ##  [6] "GAPIT.Association.GWAS_Results.CMLM.DTF_Nepal_2017.csv"    
-    ##  [7] "GAPIT.Association.GWAS_Results.CMLM.DTF_Sask_2017.csv"     
-    ##  [8] "GAPIT.Association.GWAS_Results.CMLM.DTF_Sask_2017_b.csv"   
-    ##  [9] "GAPIT.Association.GWAS_Results.FarmCPU.Cotyledon_Color.csv"
-    ## [10] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Nepal_2017.csv" 
-    ## [11] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Sask_2017.csv"  
-    ## [12] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Sask_2017_b.csv"
-    ## [13] "GAPIT.Association.GWAS_Results.GLM.Cotyledon_Color.csv"    
-    ## [14] "GAPIT.Association.GWAS_Results.GLM.DTF_Nepal_2017.csv"     
-    ## [15] "GAPIT.Association.GWAS_Results.GLM.DTF_Sask_2017.csv"      
-    ## [16] "GAPIT.Association.GWAS_Results.GLM.DTF_Sask_2017_b.csv"    
-    ## [17] "GAPIT.Association.GWAS_Results.MLM.Cotyledon_Color.csv"    
-    ## [18] "GAPIT.Association.GWAS_Results.MLM.DTF_Nepal_2017.csv"     
-    ## [19] "GAPIT.Association.GWAS_Results.MLM.DTF_Sask_2017.csv"      
-    ## [20] "GAPIT.Association.GWAS_Results.MLM.DTF_Sask_2017_b.csv"    
-    ## [21] "GAPIT.Association.GWAS_Results.MLMM.Cotyledon_Color.csv"   
-    ## [22] "GAPIT.Association.GWAS_Results.MLMM.DTF_Nepal_2017.csv"    
-    ## [23] "GAPIT.Association.GWAS_Results.MLMM.DTF_Sask_2017.csv"     
-    ## [24] "GAPIT.Association.GWAS_Results.MLMM.DTF_Sask_2017_b.csv"   
-    ## [25] "GAPIT.Association.GWAS_Results.SUPER.Cotyledon_Color.csv"  
-    ## [26] "GAPIT.Association.GWAS_Results.SUPER.DTF_Nepal_2017.csv"   
-    ## [27] "GAPIT.Association.GWAS_Results.SUPER.DTF_Sask_2017.csv"    
-    ## [28] "GAPIT.Association.GWAS_Results.SUPER.DTF_Sask_2017_b.csv"
+    ##  [1] "GAPIT.Association.GWAS_Results.BLINK.Cotyledon_Color(Kansas).csv"  
+    ##  [2] "GAPIT.Association.GWAS_Results.BLINK.Cotyledon_Color(NYC).csv"     
+    ##  [3] "GAPIT.Association.GWAS_Results.BLINK.DTF_Nepal_2017(Kansas).csv"   
+    ##  [4] "GAPIT.Association.GWAS_Results.BLINK.DTF_Nepal_2017(NYC).csv"      
+    ##  [5] "GAPIT.Association.GWAS_Results.BLINK.DTF_Sask_2017(Kansas).csv"    
+    ##  [6] "GAPIT.Association.GWAS_Results.BLINK.DTF_Sask_2017(NYC).csv"       
+    ##  [7] "GAPIT.Association.GWAS_Results.BLINK.DTF_Sask_2017_b(Kansas).csv"  
+    ##  [8] "GAPIT.Association.GWAS_Results.BLINK.DTF_Sask_2017_b(NYC).csv"     
+    ##  [9] "GAPIT.Association.GWAS_Results.FarmCPU.Cotyledon_Color(Kansas).csv"
+    ## [10] "GAPIT.Association.GWAS_Results.FarmCPU.Cotyledon_Color(NYC).csv"   
+    ## [11] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Nepal_2017(Kansas).csv" 
+    ## [12] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Nepal_2017(NYC).csv"    
+    ## [13] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Sask_2017(Kansas).csv"  
+    ## [14] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Sask_2017(NYC).csv"     
+    ## [15] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Sask_2017_b(Kansas).csv"
+    ## [16] "GAPIT.Association.GWAS_Results.FarmCPU.DTF_Sask_2017_b(NYC).csv"   
+    ## [17] "GAPIT.Association.GWAS_Results.GLM.Cotyledon_Color(NYC).csv"       
+    ## [18] "GAPIT.Association.GWAS_Results.GLM.DTF_Nepal_2017(NYC).csv"        
+    ## [19] "GAPIT.Association.GWAS_Results.GLM.DTF_Sask_2017(NYC).csv"         
+    ## [20] "GAPIT.Association.GWAS_Results.GLM.DTF_Sask_2017_b(NYC).csv"       
+    ## [21] "GAPIT.Association.GWAS_Results.MLM.Cotyledon_Color(NYC).csv"       
+    ## [22] "GAPIT.Association.GWAS_Results.MLM.DTF_Nepal_2017(NYC).csv"        
+    ## [23] "GAPIT.Association.GWAS_Results.MLM.DTF_Sask_2017(NYC).csv"         
+    ## [24] "GAPIT.Association.GWAS_Results.MLM.DTF_Sask_2017_b(NYC).csv"       
+    ## [25] "GAPIT.Association.GWAS_Results.MLMM.Cotyledon_Color(NYC).csv"      
+    ## [26] "GAPIT.Association.GWAS_Results.MLMM.DTF_Nepal_2017(NYC).csv"       
+    ## [27] "GAPIT.Association.GWAS_Results.MLMM.DTF_Sask_2017(NYC).csv"        
+    ## [28] "GAPIT.Association.GWAS_Results.MLMM.DTF_Sask_2017_b(NYC).csv"
 
 ## Check Results
 
@@ -91,11 +91,11 @@ myFiles
 is_ran(folder = "GWAS_Results/")
 ```
 
-    ##             Trait MLM MLMM FarmCPU BLINK GLM CMLM SUPER
-    ## 1 Cotyledon_Color   X    X       X     X   X    X     X
-    ## 2  DTF_Nepal_2017   X    X       X     X   X    X     X
-    ## 3   DTF_Sask_2017   X    X       X     X   X    X     X
-    ## 4 DTF_Sask_2017_b   X    X       X     X   X    X     X
+    ##             Trait GLM MLM MLMM FarmCPU BLINK CMLM SUPER
+    ## 1 Cotyledon_Color   X   X    X       X     X   NA    NA
+    ## 2  DTF_Nepal_2017   X   X    X       X     X   NA    NA
+    ## 3   DTF_Sask_2017   X   X    X       X     X   NA    NA
+    ## 4 DTF_Sask_2017_b   X   X    X       X     X   NA    NA
 
 ## List Significant Markers
 
@@ -108,40 +108,56 @@ order_GWAS_Results(folder = "GWAS_Results/", files = myFiles)
 is_ordered(folder = "GWAS_Results/")
 ```
 
-    ##             Trait MLM MLMM FarmCPU BLINK GLM CMLM SUPER
-    ## 1 Cotyledon_Color   X    X       X     X   X    X     X
-    ## 2  DTF_Nepal_2017   X    X       X     X   X    X     X
-    ## 3   DTF_Sask_2017   X    X       X     X   X    X     X
-    ## 4 DTF_Sask_2017_b   X    X       X     X   X    X     X
+    ##             Trait GLM MLM MLMM FarmCPU BLINK CMLM SUPER FarmCPU_Kansas
+    ## 1 Cotyledon_Color   X   X    X       X     X   NA    NA              X
+    ## 2  DTF_Nepal_2017   X   X    X       X     X   NA    NA              X
+    ## 3   DTF_Sask_2017   X   X    X       X     X   NA    NA              X
+    ## 4 DTF_Sask_2017_b   X   X    X       X     X   NA    NA              X
+    ##   BLINK_Kansas
+    ## 1            X
+    ## 2            X
+    ## 3            X
+    ## 4            X
 
 ``` r
-myResults <- table_GWAS_Results(folder = "GWAS_Results/", files = myFiles,
+myResults <- table_GWAS_Results(folder = "GWAS_Results/", fnames = myFiles,
                                 threshold = 6.8, sug.threshold = 5)
 myResults[1:10,]
 ```
 
-    ##                        SNP Chr       Pos       P.value        MAF   H.B.P.Value
-    ## 1  Lcu.1GRN.Chr1p365986872   1 365986872 7.591040e-158 0.47096774 2.553375e-152
-    ## 2  Lcu.1GRN.Chr1p365986872   1 365986872 1.420895e-132 0.47096774 4.779422e-127
-    ## 3  Lcu.1GRN.Chr1p365986872   1 365986872 1.526374e-101 0.47096774  5.134218e-96
-    ## 4  Lcu.1GRN.Chr1p361840399   1 361840399  4.903122e-56 0.04193548  8.246243e-51
-    ## 5  Lcu.1GRN.Chr4p416272481   4 416272481  7.979537e-42 0.27795031  2.684053e-36
-    ## 6  Lcu.1GRN.Chr4p416272481   4 416272481  7.979537e-42 0.27795031  2.684053e-36
-    ## 7  Lcu.1GRN.Chr4p416272481   4 416272481  7.979537e-42 0.27795031  2.684053e-36
-    ## 8  Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36
-    ## 9  Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36
-    ## 10 Lcu.1GRN.Chr4p415952453   4 415952453  4.361101e-41 0.27484472  6.838708e-36
-    ##        Effect   Model           Trait negLog10_P negLog10_HBP   Threshold
-    ## 1   0.5033628    MLMM Cotyledon_Color  157.11970    151.59289 Significant
-    ## 2   0.4885724 FarmCPU Cotyledon_Color  131.84744    126.32062 Significant
-    ## 3   0.4137794   BLINK Cotyledon_Color  100.81634     95.28953 Significant
-    ## 4   0.4990497 FarmCPU Cotyledon_Color   55.30953     50.08374 Significant
-    ## 5  -2.9355992    CMLM DTF_Sask_2017_b   41.09802     35.57121 Significant
-    ## 6  -2.9355992     GLM DTF_Sask_2017_b   41.09802     35.57121 Significant
-    ## 7  -2.9355992   SUPER DTF_Sask_2017_b   41.09802     35.57121 Significant
-    ## 8  -2.8859922    CMLM DTF_Sask_2017_b   40.36040     35.16503 Significant
-    ## 9  -2.8859922     GLM DTF_Sask_2017_b   40.36040     35.16503 Significant
-    ## 10 -2.8859922   SUPER DTF_Sask_2017_b   40.36040     35.16503 Significant
+    ##                        SNP Chr       Pos       P.value        MAF     effect
+    ## 1  Lcu.1GRN.Chr1p365986872   1 365986872 1.754402e-175 0.47096774  0.4683785
+    ## 2  Lcu.1GRN.Chr1p365986872   1 365986872 1.164052e-154 0.47096774         NA
+    ## 3  Lcu.1GRN.Chr1p365986872   1 365986872 3.281941e-128 0.47096774  0.4954384
+    ## 4  Lcu.1GRN.Chr1p361840399   1 361840399  2.178943e-84 0.04193548  0.4603589
+    ## 5  Lcu.1GRN.Chr1p361840399   1 361840399  6.963600e-47 0.04193548  0.4715544
+    ## 6  Lcu.1GRN.Chr1p361856257   1 361856257  3.377658e-40 0.04516129         NA
+    ## 7  Lcu.1GRN.Chr1p365986872   1 365986872  2.845683e-37 0.47096774         NA
+    ## 8  Lcu.1GRN.Chr1p365318023   1 365318023  1.769760e-35 0.47096774         NA
+    ## 9  Lcu.1GRN.Chr1p365318027   1 365318027  2.803987e-35 0.47258065         NA
+    ## 10   Lcu.1GRN.Chr5p1658484   5   1658484  1.050791e-34 0.12345679 12.5619150
+    ##      H.B.P.Value   Model   Type           Trait negLog10_P negLog10_HBP
+    ## 1  5.901229e-170   BLINK Kansas Cotyledon_Color  174.75587    169.22906
+    ## 2  3.915488e-149    MLMM    NYC Cotyledon_Color  153.93403    148.40721
+    ## 3  1.103937e-122 FarmCPU Kansas Cotyledon_Color  127.48387    121.95706
+    ## 4   3.664623e-79   BLINK Kansas Cotyledon_Color   83.66175     78.43597
+    ## 5   1.171163e-41 FarmCPU Kansas Cotyledon_Color   46.15717     40.93138
+    ## 6   5.680663e-35    MLMM    NYC Cotyledon_Color   39.47138     34.24560
+    ## 7   9.571939e-32     GLM    NYC Cotyledon_Color   36.54581     31.01900
+    ## 8   2.976445e-30     GLM    NYC Cotyledon_Color   34.75209     29.52630
+    ## 9   3.143895e-30     GLM    NYC Cotyledon_Color   34.55222     29.50253
+    ## 10  3.534516e-29   BLINK Kansas  DTF_Nepal_2017   33.97848     28.45167
+    ##      Threshold    Effect
+    ## 1  Significant        NA
+    ## 2  Significant 0.4905608
+    ## 3  Significant        NA
+    ## 4  Significant        NA
+    ## 5  Significant        NA
+    ## 6  Significant 1.4947330
+    ## 7  Significant 0.4558343
+    ## 8  Significant 0.4470957
+    ## 9  Significant 0.4451259
+    ## 10 Significant        NA
 
 ``` r
 list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Nepal_2017", 
@@ -151,31 +167,32 @@ list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Nepal_2017",
     ## # A tibble: 8 × 6
     ##   SNP                      Chr      Pos Traits         Models           Max_LogP
     ##   <chr>                  <int>    <int> <chr>          <chr>               <dbl>
-    ## 1 Lcu.1GRN.Chr2p44545877     2 44545877 DTF_Nepal_2017 BLINK; CMLM; Fa…    40.1 
-    ## 2 Lcu.1GRN.Chr2p44546658     2 44546658 DTF_Nepal_2017 CMLM; GLM; MLM;…    39.8 
-    ## 3 Lcu.1GRN.Chr2p44558948     2 44558948 DTF_Nepal_2017 CMLM; GLM; MLM;…    39.5 
-    ## 4 Lcu.1GRN.Chr5p1658484      5  1658484 DTF_Nepal_2017 BLINK; CMLM; Fa…    31.7 
-    ## 5 Lcu.1GRN.Chr5p73165919     5 73165919 DTF_Nepal_2017 CMLM; GLM; SUPER    26.6 
-    ## 6 Lcu.1GRN.Chr5p73166268     5 73166268 DTF_Nepal_2017 CMLM; GLM; SUPER    26.6 
-    ## 7 Lcu.1GRN.Chr5p1650591      5  1650591 DTF_Nepal_2017 MLM                  8.30
-    ## 8 Lcu.1GRN.Chr5p1651791      5  1651791 DTF_Nepal_2017 MLM                  8.30
+    ## 1 Lcu.1GRN.Chr5p1658484      5  1658484 DTF_Nepal_2017 BLINK; FarmCPU;…    34.0 
+    ## 2 Lcu.1GRN.Chr2p44546658     2 44546658 DTF_Nepal_2017 FarmCPU; GLM; M…    33.0 
+    ## 3 Lcu.1GRN.Chr2p44545877     2 44545877 DTF_Nepal_2017 BLINK; FarmCPU;…    22.7 
+    ## 4 Lcu.1GRN.Chr2p44558948     2 44558948 DTF_Nepal_2017 GLM; MLM            22.2 
+    ## 5 Lcu.1GRN.Chr5p1650591      5  1650591 DTF_Nepal_2017 FarmCPU; GLM; M…    18.7 
+    ## 6 Lcu.1GRN.Chr5p2101990      5  2101990 DTF_Nepal_2017 FarmCPU             14.8 
+    ## 7 Lcu.1GRN.Chr5p1651791      5  1651791 DTF_Nepal_2017 GLM; MLM            14.1 
+    ## 8 Lcu.1GRN.Chr5p2102310      5  2102310 DTF_Nepal_2017 FarmCPU              7.40
 
 ``` r
 list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Sask_2017_b", 
                  threshold = 6.7, chroms = 6)
 ```
 
-    ## # A tibble: 8 × 6
+    ## # A tibble: 9 × 6
     ##   SNP                       Chr       Pos Traits          Models        Max_LogP
     ##   <chr>                   <int>     <int> <chr>           <chr>            <dbl>
-    ## 1 Lcu.1GRN.Chr6p22044874      6  22044874 DTF_Sask_2017_b CMLM; GLM; S…    36.6 
-    ## 2 Lcu.1GRN.Chr6p21968500      6  21968500 DTF_Sask_2017_b CMLM; GLM; S…    35.7 
-    ## 3 Lcu.1GRN.Chr6p22039846      6  22039846 DTF_Sask_2017_b CMLM; GLM; S…    35.6 
-    ## 4 Lcu.1GRN.Chr6p3269280       6   3269280 DTF_Sask_2017_b BLINK; FarmC…    32.9 
-    ## 5 Lcu.1GRN.Chr6p324049462     6 324049462 DTF_Sask_2017_b BLINK            13.1 
-    ## 6 Lcu.1GRN.Chr6p46982948      6  46982948 DTF_Sask_2017_b BLINK             9.10
-    ## 7 Lcu.1GRN.Chr6p431595092     6 431595092 DTF_Sask_2017_b FarmCPU           9.04
-    ## 8 Lcu.1GRN.Chr6p172232372     6 172232372 DTF_Sask_2017_b FarmCPU           8.71
+    ## 1 Lcu.1GRN.Chr6p3269280       6   3269280 DTF_Sask_2017_b BLINK; FarmC…    32.9 
+    ## 2 Lcu.1GRN.Chr6p1734191       6   1734191 DTF_Sask_2017_b GLM              23.6 
+    ## 3 Lcu.1GRN.Chr6p1445607       6   1445607 DTF_Sask_2017_b GLM              23.5 
+    ## 4 Lcu.1GRN.Chr6p3270522       6   3270522 DTF_Sask_2017_b FarmCPU          21.8 
+    ## 5 Lcu.1GRN.Chr6p431657465     6 431657465 DTF_Sask_2017_b FarmCPU          17.8 
+    ## 6 Lcu.1GRN.Chr6p324049462     6 324049462 DTF_Sask_2017_b BLINK            13.1 
+    ## 7 Lcu.1GRN.Chr6p46982948      6  46982948 DTF_Sask_2017_b BLINK             9.10
+    ## 8 Lcu.1GRN.Chr6p431595092     6 431595092 DTF_Sask_2017_b FarmCPU           9.04
+    ## 9 Lcu.1GRN.Chr6p172232372     6 172232372 DTF_Sask_2017_b FarmCPU           8.71
 
 ``` r
 list_Top_Markers(folder = "GWAS_Results/", trait = "Cotyledon_Color", 
@@ -183,10 +200,10 @@ list_Top_Markers(folder = "GWAS_Results/", trait = "Cotyledon_Color",
 ```
 
     ## # A tibble: 2 × 6
-    ##   SNP                       Chr       Pos Traits          Models        Max_LogP
-    ##   <chr>                   <int>     <int> <chr>           <chr>            <dbl>
-    ## 1 Lcu.1GRN.Chr6p390278241     6 390278241 Cotyledon_Color CMLM; GLM; S…     23.0
-    ## 2 Lcu.1GRN.Chr6p390159188     6 390159188 Cotyledon_Color CMLM; GLM; S…     20.0
+    ##   SNP                       Chr       Pos Traits          Models Max_LogP
+    ##   <chr>                   <int>     <int> <chr>           <chr>     <dbl>
+    ## 1 Lcu.1GRN.Chr6p297914010     6 297914010 Cotyledon_Color GLM        13.4
+    ## 2 Lcu.1GRN.Chr6p303174618     6 303174618 Cotyledon_Color GLM        12.8
 
 ``` r
 myMarkers <- c("Lcu.1GRN.Chr2p44545877", "Lcu.1GRN.Chr5p1658484",
@@ -300,56 +317,6 @@ ggsave("man/figures/GWAS_Summary_02.png", mp, width = 12, height = 4)
 ```
 
 ![](man/figures/GWAS_Summary_02.png)
-
-------------------------------------------------------------------------
-
-## GWAS Hits Plot
-
-``` r
-# Prep 
-myG <- read.csv("myG_hmp.csv", header = T)
-# Plot
-mp <- gg_GWAS_Hits(xx = myResults, 
-                   xG = myG, 
-                   xCV = NULL,
-                   traits = list_Traits("GWAS_Results/"), 
-                   range = 2000000, 
-                   title = "",
-                   sigMin = 0, 
-                   models =  c("MLM", "MLMM", "FarmCPU", "BLINK"),
-                   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
-                   model.shapes = 21:24,
-                   vlines = myMarkers,
-                   vline.colors = c("red", "red", "green", "blue"),
-                   vline.types = rep(1, length(vlines)),
-                   legend.rows = 2)
-ggsave("man/figures/GWAS_Hits_01.png", mp, width = 10, height = 4)
-```
-
-![](man/figures/GWAS_Hits_01.png)
-
-------------------------------------------------------------------------
-
-``` r
-# Plot
-mp <- gg_GWAS_Hits(xx = myResults, 
-                   xG = myG, 
-                   xCV = NULL,
-                   traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b"), 
-                   range = 2000000, 
-                   title = "",
-                   sigMin = 0, 
-                   models =  c("MLM", "MLMM", "FarmCPU", "BLINK"),
-                   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
-                   model.shapes = 21:24,
-                   vlines = myMarkers,
-                   vline.colors = c("red", "red", "green", "blue"),
-                   vline.types = rep(1, length(vlines)),
-                   legend.rows = 2)
-ggsave("man/figures/GWAS_Hits_02.png", mp, width = 10, height = 4)
-```
-
-![](man/figures/GWAS_Hits_02.png)
 
 ------------------------------------------------------------------------
 

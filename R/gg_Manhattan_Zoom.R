@@ -48,7 +48,7 @@ gg_Manhattan_Zoom <- function(
   # Read in files
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste(paste0(trait,".csv"),collapse="|"),fnames)]
+  fnames <- fnames[grepl(paste(trait,collapse="|"),fnames)]
   fnames <- fnames[grepl(paste(models,collapse="|"),fnames)]
   #
   xx <- NULL

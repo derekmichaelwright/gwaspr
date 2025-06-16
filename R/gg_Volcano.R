@@ -22,7 +22,7 @@ gg_Volcano <- function(
     ) {
   #
   fnames <- list.files(folder)[grepl("GWAS_Results", list.files(folder))]
-  fnames <- fnames[grepl(paste0(trait,".csv"), fnames)]
+  fnames <- fnames[grepl(trait, fnames)]
   xx <- NULL
   #
   for(i in fnames) {
