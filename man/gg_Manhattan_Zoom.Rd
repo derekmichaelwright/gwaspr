@@ -7,16 +7,18 @@
 gg_Manhattan_Zoom(
   folder = "GWAS_Results/",
   trait = list_Traits(folder)[1],
+  title = trait,
   chrom,
   pos1,
   pos2,
-  title = trait,
   threshold = NULL,
   sug.threshold = NULL,
   markers = NULL,
   labels = markers,
   vlines = markers,
-  vline.colors = "red",
+  vline.colors = rep("red", length(vlines)),
+  vline.types = rep(1, length(vlines)),
+  vline.legend = T,
   sig.col = "red",
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
   model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
@@ -34,13 +36,13 @@ gg_Manhattan_Zoom(
 
 \item{trait}{The trait to read.}
 
+\item{title}{A title for the plot.}
+
 \item{chrom}{Chromosome to plot.}
 
 \item{pos1}{Start position on chromosome.}
 
 \item{pos2}{End position on chromosome.}
-
-\item{title}{A title for the plot.}
 
 \item{threshold}{Significant Threshold.}
 
@@ -54,9 +56,15 @@ gg_Manhattan_Zoom(
 
 \item{vline.colors}{colors for each vertical line.}
 
+\item{vline.types}{lty for each vertical line.}
+
+\item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
+
 \item{sig.col}{Color for significant assoctiations.}
 
 \item{models}{Models to read.}
+
+\item{model.colors}{Colors for each model. Used if `facet = F`.}
 
 \item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.}
 
@@ -67,6 +75,14 @@ gg_Manhattan_Zoom(
 \item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
 
 \item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
+
+\item{addQQ}{Logical, whether or not to add a QQ plot}
+
+\item{pmax}{A max value for the y-axis.}
+
+\item{chrom.colors}{Colors for each chromosome. Used if `facet = T`.}
+
+\item{chrom.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
 }
 \value{
 A manhattan plot.

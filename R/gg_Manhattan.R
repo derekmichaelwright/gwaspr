@@ -13,8 +13,8 @@
 #' @param vline.colors colors for each vertical line.
 #' @param vline.types lty for each vertical line.
 #' @param vline.legend Logical, whether or not to add a legend for the vlines.
-#' @param facet Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`
-#' @param addQQ Logical, whether or not to add a QQ plot
+#' @param facet Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.
+#' @param addQQ Logical, whether or not to add a QQ plot.
 #' @param pmax A max value for the y-axis.
 #' @param models Models to read.
 #' @param model.colors Colors for each model. Used if `facet = F`.
@@ -130,12 +130,13 @@ gg_Manhattan <- function (
   }
   #
   myBreaks <- 0:(round(max(xx$Pos)/x.unit))
+  ylabel <- ifelse(plotHBPvalues == T, "-log<sub>10</sub>(*HBp*)", "-log<sub>10</sub>(*p*)")
   #
   # Start Plots
   #
   mp1 <- ggplot(xx, aes(x = Pos/x.unit, y = pvals)) +
     theme_gwaspr(axis.title.y = element_markdown()) +
-    labs(title = title, y = "-log<sub>10</sub>(*p*)", x = chrom.unit)
+    labs(title = title, y = ylabel, x = chrom.unit)
   #
   mp2 <- ggplot(xx, aes(y = negLog10_P, x = negLog10_Exp)) +
     theme_gwaspr() +
@@ -144,8 +145,11 @@ gg_Manhattan <- function (
   # Add vlines
   #
   if (!is.null(vlines)) {
-    vv <- xx %>% filter(SNP %in% vlines) %>% filter(!duplicated(SNP)) %>%
-      mutate(SNP = factor(SNP, levels = vlines)) %>% select(-Model)
+    vv <- xx %>%
+      filter(SNP %in% vlines) %>%
+      filter(!duplicated(SNP)) %>%
+      mutate(SNP = factor(SNP, levels = vlines)) %>%
+      select(SNP, Chr, Pos)
     mp1 <- mp1 +
       geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP, lty = SNP), alpha = 0.7)
   }
@@ -186,7 +190,7 @@ gg_Manhattan <- function (
     mp1 <- mp1 +
       geom_point(aes(fill = factor(Chr), size = Sig.level), pch = 21, color = alpha("white", 0)) +
       geom_point(data = x2, pch = 21, size = 1.25, color = "black", fill = sig.col, alpha = 0.8) +
-      facet_grid(Model+Type ~ Chr, scales = "free", space = "free_x") +
+      facet_grid(Model ~ Chr, scales = "free", space = "free_x") +
       scale_fill_manual(name = NULL, values = alpha(chrom.colors, 0.8), guide = "none") +
       scale_size_manual(name = NULL, values = c(0.4,1.25,0.75), guide = "none") +
       scale_x_continuous(breaks = myBreaks, minor_breaks = myBreaks) +
@@ -198,7 +202,7 @@ gg_Manhattan <- function (
         geom_point(pch = 1, size = 1.25, color = chrom.colors[1], alpha = 0.8) +
         geom_point(data = x2, pch = 21, size = 1.25, color = "black", fill = "darkred", alpha = 0.8) +
         geom_abline() +
-        facet_grid(Model+Type ~ "QQ", scales = "free_y")
+        facet_grid(Model ~ "QQ", scales = "free_y")
       #
       mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
                       legend = "bottom", common.legend = T)
@@ -222,8 +226,8 @@ gg_Manhattan <- function (
     #
     if(addQQ == T) {
       mp2 <- mp2 +
-        geom_point(pch = 1, size = 1.25, aes(color = Model+Type)) +
-        geom_point(data = x2, size = 1.25, aes(color = Model+Type)) +
+        geom_point(pch = 1, size = 1.25, aes(color = Model)) +
+        geom_point(data = x2, size = 1.25, aes(color = Model)) +
         geom_abline() +
         facet_grid(. ~ "QQ", scales = "free_y") +
         scale_color_manual(name = NULL, values = alpha(model.colors,0.8)) +

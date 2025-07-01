@@ -57,9 +57,9 @@ gg_Manhattan(
 
 \item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
 
-\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`}
+\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.}
 
-\item{addQQ}{Logical, whether or not to add a QQ plot}
+\item{addQQ}{Logical, whether or not to add a QQ plot.}
 
 \item{pmax}{A max value for the y-axis.}
 

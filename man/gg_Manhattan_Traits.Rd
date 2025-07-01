@@ -7,23 +7,27 @@
 gg_Manhattan_Traits(
   folder = "GWAS_Results/",
   traits = list_Traits(folder)[1:2],
-  title = trait,
+  title = NULL,
   threshold = NULL,
   sug.threshold = NULL,
+  chrom = NULL,
+  markers = NULL,
+  labels = markers,
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = F,
-  markers = NULL,
-  labels = markers,
   facet = F,
   addQQ = T,
   pmax = NULL,
-  model = "MLM",
+  models = "MLM",
+  highlight.sig = F,
+  sig.col = "darkred",
   trait.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
     "burlywood4", "darkseagreen4"),
   chrom.unit = "100 Mbp",
   legend.rows = 1,
+  plotHBPvalues = F,
   skyline = NULL
 )
 }
@@ -38,6 +42,12 @@ gg_Manhattan_Traits(
 
 \item{sug.threshold}{Suggested threshold.}
 
+\item{chrom}{Chromosomes to plot. Use if you want to plot a single chromosome.}
+
+\item{markers}{Markers to be labelled.}
+
+\item{labels}{Labels to be used for markers.}
+
 \item{vlines}{Markers which will be used as a location for a vertical lines.}
 
 \item{vline.colors}{colors for each vertical line.}
@@ -46,17 +56,15 @@ gg_Manhattan_Traits(
 
 \item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
 
-\item{markers}{Markers to be labelled.}
-
-\item{labels}{Labels to be used for markers.}
-
 \item{facet}{Logical, whether or not to produce a facetted or multi-model plot.}
 
-\item{addQQ}{Logical, whether or not to add a QQ plot}
+\item{addQQ}{Logical, whether or not to add a QQ plot.}
 
 \item{pmax}{A max value for the y-axis.}
 
-\item{model}{Model to read.}
+\item{models}{Model to read.}
+
+\item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.}
 
 \item{trait.colors}{Colors for each trait.}
 

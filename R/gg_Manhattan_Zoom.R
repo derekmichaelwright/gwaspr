@@ -3,20 +3,27 @@
 #' Creates a manhattan plot zoomed in to a particular region.
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
+#' @param title A title for the plot.
 #' @param chrom Chromosome to plot.
 #' @param pos1 Start position on chromosome.
 #' @param pos2 End position on chromosome.
-#' @param title A title for the plot.
 #' @param threshold Significant Threshold.
 #' @param sug.threshold Suggested threshold.
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
 #' @param vlines Markers which will be used as a location for a vertical lines.
 #' @param vline.colors colors for each vertical line.
-#' @param sig.col Color for significant assoctiations.
-#' @param models Models to read.
+#' @param vline.types lty for each vertical line.
+#' @param vline.legend Logical, whether or not to add a legend for the vlines.
 #' @param facet Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.
+#' @param addQQ Logical, whether or not to add a QQ plot
+#' @param pmax A max value for the y-axis.
+#' @param models Models to read.
+#' @param model.colors Colors for each model. Used if `facet = F`. 
 #' @param highlight.sig Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.
+#' @param sig.col Color for significant assoctiations.
+#' @param chrom.colors Colors for each chromosome. Used if `facet = T`.
+#' @param chrom.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
 #' @param legend.rows Number of rows for the legend.
 #' @param plotHBPvalues Logical, should H.B.P.Values be uses.
 #' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
@@ -26,14 +33,16 @@
 gg_Manhattan_Zoom <- function(
     folder = "GWAS_Results/",
     trait = list_Traits(folder)[1],
-    chrom, pos1, pos2,
     title = trait,
+    chrom, pos1, pos2,
     threshold = NULL,
     sug.threshold = NULL,
     markers = NULL,
     labels = markers,
     vlines = markers,
-    vline.colors = "red",
+    vline.colors = rep("red", length(vlines)),
+    vline.types = rep(1, length(vlines)),
+    vline.legend = T,
     sig.col = "red",
     models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
     model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),

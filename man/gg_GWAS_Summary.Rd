@@ -7,6 +7,7 @@
 gg_GWAS_Summary(
   folder = "GWAS_Results/",
   traits = list_Traits(folder),
+  groups = NULL,
   threshold = round(-log10(5e-08), 1),
   sug.threshold = round(-log10(5e-06), 1),
   chroms = NULL,
@@ -36,6 +37,8 @@ gg_GWAS_Summary(
 
 \item{traits}{The traits to read.}
 
+\item{groups}{Grouping for the traits. Should be equal length to `traits`.}
+
 \item{threshold}{Significant threshold.}
 
 \item{sug.threshold}{Suggestive threshold.}
@@ -50,7 +53,7 @@ gg_GWAS_Summary(
 
 \item{colors}{Colors for each model.}
 
-\item{shapes}{The shape values to use for the different models. e.g., 21:25}
+\item{shapes}{The shape values to use for the different models. e.g., 21:25.}
 
 \item{hlines}{Locations for horizontal lines. e.g., hlines = c(1.5,2.5).}
 

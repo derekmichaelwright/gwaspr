@@ -129,8 +129,11 @@ gg_NYCvsKansas <- function (
   # Add vlines
   #
   if (!is.null(vlines)) {
-    vv <- xx %>% filter(SNP %in% vlines) %>% filter(!duplicated(SNP)) %>%
-      mutate(SNP = factor(SNP, levels = vlines)) %>% select(-Model)
+    vv <- xx %>% 
+      filter(SNP %in% vlines) %>% 
+      filter(!duplicated(SNP)) %>%
+      mutate(SNP = factor(SNP, levels = vlines)) %>% 
+      select(SNP, Chr, Pos)
     mp1 <- mp1 +
       geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP, lty = SNP), alpha = 0.7)
   }
