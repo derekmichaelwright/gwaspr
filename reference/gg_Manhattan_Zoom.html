@@ -40,16 +40,18 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gg_Manhattan_Zoom</span><span class="op">(</span></span>
 <span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
 <span>  trait <span class="op">=</span> <span class="fu"><a href="list_Traits.html">list_Traits</a></span><span class="op">(</span><span class="va">folder</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>  title <span class="op">=</span> <span class="va">trait</span>,</span>
 <span>  <span class="va">chrom</span>,</span>
 <span>  <span class="va">pos1</span>,</span>
 <span>  <span class="va">pos2</span>,</span>
-<span>  title <span class="op">=</span> <span class="va">trait</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sug.threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  markers <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  labels <span class="op">=</span> <span class="va">markers</span>,</span>
 <span>  vlines <span class="op">=</span> <span class="va">markers</span>,</span>
-<span>  vline.colors <span class="op">=</span> <span class="st">"red"</span>,</span>
+<span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  vline.legend <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  sig.col <span class="op">=</span> <span class="st">"red"</span>,</span>
 <span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"MLMM"</span>, <span class="st">"GLM"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span>,</span>
 <span>  model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorchid4"</span>,</span>
@@ -75,6 +77,10 @@
 <dd><p>The trait to read.</p></dd>
 
 
+<dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
+<dd><p>A title for the plot.</p></dd>
+
+
 <dt id="arg-chrom">chrom<a class="anchor" aria-label="anchor" href="#arg-chrom"></a></dt>
 <dd><p>Chromosome to plot.</p></dd>
 
@@ -85,10 +91,6 @@
 
 <dt id="arg-pos-">pos2<a class="anchor" aria-label="anchor" href="#arg-pos-"></a></dt>
 <dd><p>End position on chromosome.</p></dd>
-
-
-<dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
-<dd><p>A title for the plot.</p></dd>
 
 
 <dt id="arg-threshold">threshold<a class="anchor" aria-label="anchor" href="#arg-threshold"></a></dt>
@@ -115,12 +117,24 @@
 <dd><p>colors for each vertical line.</p></dd>
 
 
+<dt id="arg-vline-types">vline.types<a class="anchor" aria-label="anchor" href="#arg-vline-types"></a></dt>
+<dd><p>lty for each vertical line.</p></dd>
+
+
+<dt id="arg-vline-legend">vline.legend<a class="anchor" aria-label="anchor" href="#arg-vline-legend"></a></dt>
+<dd><p>Logical, whether or not to add a legend for the vlines.</p></dd>
+
+
 <dt id="arg-sig-col">sig.col<a class="anchor" aria-label="anchor" href="#arg-sig-col"></a></dt>
 <dd><p>Color for significant assoctiations.</p></dd>
 
 
 <dt id="arg-models">models<a class="anchor" aria-label="anchor" href="#arg-models"></a></dt>
 <dd><p>Models to read.</p></dd>
+
+
+<dt id="arg-model-colors">model.colors<a class="anchor" aria-label="anchor" href="#arg-model-colors"></a></dt>
+<dd><p>Colors for each model. Used if `facet = F`.</p></dd>
 
 
 <dt id="arg-facet">facet<a class="anchor" aria-label="anchor" href="#arg-facet"></a></dt>
@@ -141,6 +155,22 @@
 
 <dt id="arg-skyline">skyline<a class="anchor" aria-label="anchor" href="#arg-skyline"></a></dt>
 <dd><p>Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.</p></dd>
+
+
+<dt id="arg-addqq">addQQ<a class="anchor" aria-label="anchor" href="#arg-addqq"></a></dt>
+<dd><p>Logical, whether or not to add a QQ plot</p></dd>
+
+
+<dt id="arg-pmax">pmax<a class="anchor" aria-label="anchor" href="#arg-pmax"></a></dt>
+<dd><p>A max value for the y-axis.</p></dd>
+
+
+<dt id="arg-chrom-colors">chrom.colors<a class="anchor" aria-label="anchor" href="#arg-chrom-colors"></a></dt>
+<dd><p>Colors for each chromosome. Used if `facet = T`.</p></dd>
+
+
+<dt id="arg-chrom-unit">chrom.unit<a class="anchor" aria-label="anchor" href="#arg-chrom-unit"></a></dt>
+<dd><p>Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").</p></dd>
 
 </dl></div>
     <div class="section level2">
