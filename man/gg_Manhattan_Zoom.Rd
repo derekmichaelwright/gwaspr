@@ -19,13 +19,12 @@ gg_Manhattan_Zoom(
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
-  sig.col = "red",
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
   model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
     "burlywood4", "darkseagreen4"),
   facet = F,
   highlight.sig = F,
-  highlight.marker.color = "red",
+  sig.color = "red",
   legend.rows = 1,
   plotHBPvalues = F,
   skyline = NULL
@@ -60,8 +59,6 @@ gg_Manhattan_Zoom(
 
 \item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
 
-\item{sig.col}{Color for significant assoctiations.}
-
 \item{models}{Models to read.}
 
 \item{model.colors}{Colors for each model. Used if `facet = F`.}
@@ -69,6 +66,8 @@ gg_Manhattan_Zoom(
 \item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.}
 
 \item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.}
+
+\item{sig.color}{Color for significant assoctiations.}
 
 \item{legend.rows}{Number of rows for the legend.}
 

@@ -67,7 +67,6 @@ gg_GWAS_Summary <- function(
   fnames <- list_Result_Files(folder)
   fnames <- fnames[grepl(paste(traits,collapse="|"),fnames)]
   fnames <- fnames[grepl(paste(models,collapse="|"),fnames)]
-  #if(removeKansas == T) { fnames <- fnames[!grepl("Kansas", fnames)] }
   #
   myP <- NULL
   #
@@ -82,9 +81,9 @@ gg_GWAS_Summary <- function(
   }
   #
   if(plotHBPvalues == T) {
-    myP <- myP %>% mutate(pvals = negLog10_HBP)
+    myP <- myP %>% mutate(Pvalue = negLog10_HBP)
   } else {
-    myP <- myP %>% mutate(pvals = negLog10_P)
+    myP <- myP %>% mutate(Pvalue = negLog10_P)
   }
   #
   myP <- myP %>%
@@ -117,8 +116,8 @@ gg_GWAS_Summary <- function(
   }
   #
   #
-  x1 <- myP %>% filter(pvals >= threshold)
-  x2 <- myP %>% filter(pvals < threshold)
+  x1 <- myP %>% filter(Pvalue >= threshold)
+  x2 <- myP %>% filter(Pvalue < threshold)
   #
   if(is.null(sug.threshold)) { x2 <- x2[0,] }
   #

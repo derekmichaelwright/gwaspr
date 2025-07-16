@@ -24,7 +24,7 @@ gg_Manhattan(
   model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
     "burlywood4", "darkseagreen4"),
   highlight.sig = F,
-  sig.col = "darkred",
+  sig.color = "darkred",
   chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
   chrom.unit = "100 Mbp",
   legend.rows = 1,
@@ -69,7 +69,7 @@ gg_Manhattan(
 
 \item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.}
 
-\item{sig.col}{Color for significant assoctiations. Used if `facet = T`.}
+\item{sig.color}{Color for significant assoctiations. Used if `facet = T`.}
 
 \item{chrom.colors}{Colors for each chromosome. Used if `facet = T`.}
 

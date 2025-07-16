@@ -19,7 +19,7 @@
 #' @param models Models to read.
 #' @param model.colors Colors for each model. Used if `facet = F`.
 #' @param highlight.sig Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.
-#' @param sig.col Color for significant assoctiations. Used if `facet = T`.
+#' @param sig.color Color for significant assoctiations. Used if `facet = T`.
 #' @param chrom.colors Colors for each chromosome. Used if `facet = T`.
 #' @param chrom.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
 #' @param legend.rows Number of rows for the legend.
@@ -47,7 +47,7 @@ gg_Manhattan <- function (
     models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
     model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
     highlight.sig = F,
-    sig.col = "darkred",
+    sig.color = "darkred",
     chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
     chrom.unit = "100 Mbp",
     legend.rows = 1,
@@ -60,17 +60,16 @@ gg_Manhattan <- function (
   fnames <- list_Result_Files(folder)
   fnames <- fnames[grepl(paste(trait, collapse="|"), fnames)]
   fnames <- fnames[grepl(paste(models, collapse="|"), fnames)]
-  #if(removeKansas == T) { fnames <- fnames[!grepl("Kansas", fnames)] }
   #
   xx <- NULL
-  for (i in fnames) {
+  for(i in fnames) {
     mod <- substr(i, gregexpr("GWAS_Results", i)[[1]][1] + 13, gregexpr(".csv", i)[[1]][1] - 1)
     mod <- substr(mod, 1, gregexpr("\\.", mod)[[1]][1] - 1)
     sky <- substr(i, gregexpr("\\(", i)[[1]][1] + 1, gregexpr("\\)", i)[[1]][1] - 1)
     #
     xi <- read.csv(paste0(folder, i))
-    if (sum(colnames(xi) == "nobs") > 0) { xi <- select(xi, -nobs) }
-    if (sum(colnames(xi) == "effect") > 0) { xi <- rename(xi, Effect=effect) }
+    if(sum(colnames(xi) == "nobs") > 0) { xi <- select(xi, -nobs) }
+    if(sum(colnames(xi) == "effect") > 0) { xi <- rename(xi, Effect=effect) }
     xi <- xi %>%
       mutate(Model = mod,
              negLog10_P = -log10(P.value),
@@ -79,13 +78,12 @@ gg_Manhattan <- function (
     xx <- bind_rows(xx, xi)
   }
   #
-  #if(removeKansas == F) { xx  <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value))) }
   if(!is.null(skyline)) {
     if(skyline == "NYC")    { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
     if(skyline == "Kansas") { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
   }
   #
-  xx  <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value)))
+  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value)))
   #
   # Prep data
   #
@@ -93,11 +91,11 @@ gg_Manhattan <- function (
     mutate(Model = factor(Model, levels = models)) %>%
     arrange(desc(Model))
   #
-  if (is.null(threshold)) {
+  if(is.null(threshold)) {
     threshold <- -log10(0.05/nrow(xi))
   }
   #
-  if (!is.null(pmax)) {
+  if(!is.null(pmax)) {
     xx <- xx %>%
       mutate(negLog10_P = ifelse(negLog10_P > pmax, pmax, negLog10_P))
   }
@@ -110,9 +108,9 @@ gg_Manhattan <- function (
   }
   #
   if(plotHBPvalues == T) {
-    xx <- xx %>% mutate(pvals = -log10(H.B.P.Value))
+    xx <- xx %>% mutate(Pvalue = -log10(H.B.P.Value))
   } else {
-    xx <- xx %>% mutate(pvals = negLog10_P)
+    xx <- xx %>% mutate(Pvalue = negLog10_P)
   }
   #
   x2 <- xx %>% filter(negLog10_P > threshold)
@@ -134,7 +132,7 @@ gg_Manhattan <- function (
   #
   # Start Plots
   #
-  mp1 <- ggplot(xx, aes(x = Pos/x.unit, y = pvals)) +
+  mp1 <- ggplot(xx, aes(x = Pos/x.unit, y = Pvalue)) +
     theme_gwaspr(axis.title.y = element_markdown()) +
     labs(title = title, y = ylabel, x = chrom.unit)
   #
@@ -144,7 +142,7 @@ gg_Manhattan <- function (
   #
   # Add vlines
   #
-  if (!is.null(vlines)) {
+  if(!is.null(vlines)) {
     vv <- xx %>%
       filter(SNP %in% vlines) %>%
       filter(!duplicated(SNP)) %>%
@@ -165,7 +163,7 @@ gg_Manhattan <- function (
   #
   # Add Marker labels
   #
-  if (!is.null(markers)) {
+  if(!is.null(markers)) {
     xm <- xx %>%
       mutate(SNP = ifelse(SNP %in% markers, SNP, NA),
              Label = plyr::mapvalues(SNP, markers, labels)) %>%
@@ -174,7 +172,7 @@ gg_Manhattan <- function (
       geom_text_repel(data = xm, aes(label = Label), size = 2)
   }
   # vline legends
-  if (vline.legend == T) {
+  if(vline.legend == T) {
     mp1 <- mp1 +
       scale_color_manual(name = NULL, values = vline.colors) +
       scale_linetype_manual(name = NULL, values = vline.types)
@@ -186,10 +184,10 @@ gg_Manhattan <- function (
   #
   # Plot facetted by model
   #
-  if (facet == T) {
+  if(facet == T) {
     mp1 <- mp1 +
       geom_point(aes(fill = factor(Chr), size = Sig.level), pch = 21, color = alpha("white", 0)) +
-      geom_point(data = x2, pch = 21, size = 1.25, color = "black", fill = sig.col, alpha = 0.8) +
+      geom_point(data = x2, pch = 21, size = 1.25, color = "black", fill = sig.color, alpha = 0.8) +
       facet_grid(Model ~ Chr, scales = "free", space = "free_x") +
       scale_fill_manual(name = NULL, values = alpha(chrom.colors, 0.8), guide = "none") +
       scale_size_manual(name = NULL, values = c(0.4,1.25,0.75), guide = "none") +
@@ -254,5 +252,5 @@ gg_Manhattan <- function (
 #models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
 #models = "BLINK"
 #model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4")
-#highlight.sig = F; sig.col = "darkred"; chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30)
+#highlight.sig = F; sig.color = "darkred"; chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30)
 #chrom.unit = "100 Mbp"; legend.rows = 1; plotHBPvalues = F; skyline = NULL

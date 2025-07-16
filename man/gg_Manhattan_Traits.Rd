@@ -17,12 +17,9 @@ gg_Manhattan_Traits(
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = F,
-  facet = F,
   addQQ = T,
   pmax = NULL,
-  models = "MLM",
-  highlight.sig = F,
-  sig.col = "darkred",
+  models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
   trait.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
     "burlywood4", "darkseagreen4"),
   chrom.unit = "100 Mbp",
@@ -56,15 +53,11 @@ gg_Manhattan_Traits(
 
 \item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
 
-\item{facet}{Logical, whether or not to produce a facetted or multi-model plot.}
-
 \item{addQQ}{Logical, whether or not to add a QQ plot.}
 
 \item{pmax}{A max value for the y-axis.}
 
 \item{models}{Model to read.}
-
-\item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.}
 
 \item{trait.colors}{Colors for each trait.}
 

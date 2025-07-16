@@ -3,12 +3,24 @@
 #' Analyses your genotype data and outputs 2 summary files with marker details and 3 plots.
 #' @param filename GWAS genotype object. Note: needs to be in hapmap format.
 #' @param myPrefix Prefix for file names.
+#' @param filetype default is "csv". other option is "txt".
 #' @return 2 .csv files with marker details & 3 Marker plots.
 #' @export
 
-gg_myG_Details <- function(filename, myPrefix = "") {
+gg_myG_Details <- function(filename, myPrefix = "", filetype = "csv") {
   #
-  xx <- read.csv(filename, header = T)
+  dna <- data.frame(stringsAsFactors = F,
+                    Symbol = c("A", "C", "G", "T", "U", 
+                               "R", "Y", "S", "W", "K", "M", "N"),
+                    Value  = c("AA","CC","GG","TT","UU",
+                               "AG","CT","GC","AT","GT","AC","NN") )
+  #
+  if(filetype == "csv") { xx <- read.csv(filename, header = T) }
+  if(filetype == "txt") { xx <- read.table(filename, header = T) }
+  #
+  #if(nchar(xx[2,12]) > 1) { 
+  for(i in 12:ncol(xx)) { xx[,i] <- suppressMessages(plyr::mapvalues(xx[,i], dna$Value, dna$Symbol)) } 
+  #}
   #
   xNames <- colnames(xx)[12:ncol(xx)]
   #
@@ -61,7 +73,7 @@ gg_myG_Details <- function(filename, myPrefix = "") {
   mp1 <- ggplot(xx, aes(x = Het * 100)) +
     geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
     theme_gwaspr() +
-    labs(title = "Marker Details (myG)",
+    labs(title = "A) Details by Marker",
          subtitle = "Heterozygosity", x = NULL, y = NULL)
   mp2 <- ggplot(xx, aes(x = MAF * 100)) +
     geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
@@ -103,7 +115,7 @@ gg_myG_Details <- function(filename, myPrefix = "") {
   mp4 <- ggplot(yy, aes(x = Het * 100)) +
     geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
     theme_gwaspr() +
-    labs(title = "Genotype Details (myY)",
+    labs(title = "Details by Genotype",
          subtitle = "Heterozygosity", x = NULL, y = NULL)
   mp5 <- ggplot(yy, aes(x = MAF * 100)) +
     geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
@@ -119,3 +131,5 @@ gg_myG_Details <- function(filename, myPrefix = "") {
   mp <- ggarrange(mpA, mpB, ncol = 1, nrow = 2, align = "v")
   ggsave(paste0(myPrefix,"_03_myG_Details.png"), mp, width = 12, height = 8)
 }
+
+#xx <- myG
