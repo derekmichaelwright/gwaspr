@@ -8,7 +8,6 @@
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/figures/GWAS_Summary.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Hits.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary.html</loc></url>
-<url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_plotly.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Traits.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom.html</loc></url>
@@ -16,8 +15,10 @@
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Box.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Pie.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_NYCvsKansas.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_QTL_Summary.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_Volcano.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_myG_Details.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_plotly.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/index.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/is_ordered.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/is_ran.html</loc></url>
