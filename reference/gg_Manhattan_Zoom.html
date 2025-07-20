@@ -52,6 +52,7 @@
 <span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  vline.legend <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  pmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"MLMM"</span>, <span class="st">"GLM"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span>,</span>
 <span>  model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorchid4"</span>,</span>
 <span>    <span class="st">"burlywood4"</span>, <span class="st">"darkseagreen4"</span><span class="op">)</span>,</span>
@@ -60,7 +61,7 @@
 <span>  sig.color <span class="op">=</span> <span class="st">"red"</span>,</span>
 <span>  legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  plotHBPvalues <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>  skyline <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  skyline <span class="op">=</span> <span class="st">"Kansas"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -124,6 +125,10 @@
 <dd><p>Logical, whether or not to add a legend for the vlines.</p></dd>
 
 
+<dt id="arg-pmax">pmax<a class="anchor" aria-label="anchor" href="#arg-pmax"></a></dt>
+<dd><p>A max value for the y-axis.</p></dd>
+
+
 <dt id="arg-models">models<a class="anchor" aria-label="anchor" href="#arg-models"></a></dt>
 <dd><p>Models to read.</p></dd>
 
@@ -158,10 +163,6 @@
 
 <dt id="arg-addqq">addQQ<a class="anchor" aria-label="anchor" href="#arg-addqq"></a></dt>
 <dd><p>Logical, whether or not to add a QQ plot</p></dd>
-
-
-<dt id="arg-pmax">pmax<a class="anchor" aria-label="anchor" href="#arg-pmax"></a></dt>
-<dd><p>A max value for the y-axis.</p></dd>
 
 
 <dt id="arg-chrom-colors">chrom.colors<a class="anchor" aria-label="anchor" href="#arg-chrom-colors"></a></dt>
