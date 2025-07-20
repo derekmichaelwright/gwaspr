@@ -19,6 +19,7 @@ gg_Manhattan_Zoom(
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
+  pmax = NULL,
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
   model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
     "burlywood4", "darkseagreen4"),
@@ -27,7 +28,7 @@ gg_Manhattan_Zoom(
   sig.color = "red",
   legend.rows = 1,
   plotHBPvalues = F,
-  skyline = NULL
+  skyline = "Kansas"
 )
 }
 \arguments{
@@ -59,6 +60,8 @@ gg_Manhattan_Zoom(
 
 \item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
 
+\item{pmax}{A max value for the y-axis.}
+
 \item{models}{Models to read.}
 
 \item{model.colors}{Colors for each model. Used if `facet = F`.}
@@ -76,8 +79,6 @@ gg_Manhattan_Zoom(
 \item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
 
 \item{addQQ}{Logical, whether or not to add a QQ plot}
-
-\item{pmax}{A max value for the y-axis.}
 
 \item{chrom.colors}{Colors for each chromosome. Used if `facet = T`.}
 

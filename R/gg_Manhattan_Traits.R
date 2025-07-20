@@ -43,15 +43,22 @@ gg_Manhattan_Traits <- function (
     chrom.unit = "100 Mbp",
     legend.rows = 1,
     plotHBPvalues = F,
-    skyline = NULL
+    skyline = "Kansas"
     ) {
   #
   # Read in files
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste(traits, collapse="|"), fnames)]
   fnames <- fnames[grepl(paste(models, collapse="|"), fnames)]
-  #if(removeKansas == T) { fnames <- fnames[!grepl("Kansas", fnames)] }
+  fnames <- fnames[grepl(paste(c(paste0(traits, ".csv"), paste0(traits, "\\(")), collapse="|"), fnames)]
+  #
+  if(!is.null(skyline)) {
+    if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
+    if(skyline == "Kansas") {
+      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
+      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+    }
+  }
   #
   xx <- NULL
   for(i in fnames) {
@@ -74,13 +81,7 @@ gg_Manhattan_Traits <- function (
     xx <- bind_rows(xx, xi)
   }
   #
-  #if(removeKansas == F) { xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value))) }
-  if(!is.null(skyline)) {
-    if(skyline == "NYC")    { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
-    if(skyline == "Kansas") { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
-  }
-  #
-  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value)))
+  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model)))
   #
   # Prep data
   #
@@ -194,7 +195,7 @@ gg_Manhattan_Traits <- function (
     #
   if(addQQ == T) {
     mp2 <- mp2 +
-      geom_point(aes(fill = Trait), pch = 1, size = 1.25) +
+      geom_point(aes(color = Trait), pch = 1, size = 1.25) +
       geom_abline() +
       facet_grid(Model ~ "QQ", scales = "free_y") +
       scale_color_manual(name = NULL, values = alpha(trait.colors, 0.7)) +

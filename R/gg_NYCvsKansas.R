@@ -50,8 +50,8 @@ gg_NYCvsKansas <- function (
   # Read in files
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste(trait, collapse="|"), fnames)]
   fnames <- fnames[grepl(paste(models, collapse="|"), fnames)]
+  fnames <- fnames[grepl(paste0(trait, c(".csv","\\("), collapse="|"), fnames)]
   #
   xx <- NULL
   for (i in fnames) {
@@ -129,10 +129,10 @@ gg_NYCvsKansas <- function (
   # Add vlines
   #
   if (!is.null(vlines)) {
-    vv <- xx %>% 
-      filter(SNP %in% vlines) %>% 
+    vv <- xx %>%
+      filter(SNP %in% vlines) %>%
       filter(!duplicated(SNP)) %>%
-      mutate(SNP = factor(SNP, levels = vlines)) %>% 
+      mutate(SNP = factor(SNP, levels = vlines)) %>%
       select(SNP, Chr, Pos)
     mp1 <- mp1 +
       geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP, lty = SNP), alpha = 0.7)
@@ -199,7 +199,7 @@ gg_NYCvsKansas <- function (
 #folder = "GWAS_Results/"; trait = list_Traits(folder)[1]; title = trait; threshold = NULL; sug.threshold = NULL
 #chrom = NULL; markers = NULL; labels = markers
 #vlines = markers; vline.colors = rep("red", length(vlines)); vline.types = rep(1, length(vlines)); vline.legend = T
-#facet = F; addQQ = T; pmax = NULL; 
+#facet = F; addQQ = T; pmax = NULL;
 #models = "BLINK"
 #highlight.sig = F; sig.col = "darkred"; chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30)
 #chrom.unit = "100 Mbp"; legend.rows = 1; plotHBPvalues = F

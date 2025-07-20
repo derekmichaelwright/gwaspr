@@ -19,7 +19,7 @@
 #' @param addQQ Logical, whether or not to add a QQ plot
 #' @param pmax A max value for the y-axis.
 #' @param models Models to read.
-#' @param model.colors Colors for each model. Used if `facet = F`. 
+#' @param model.colors Colors for each model. Used if `facet = F`.
 #' @param highlight.sig Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.
 #' @param sig.color Color for significant assoctiations.
 #' @param chrom.colors Colors for each chromosome. Used if `facet = T`.
@@ -43,6 +43,7 @@ gg_Manhattan_Zoom <- function(
     vline.colors = rep("red", length(vlines)),
     vline.types = rep(1, length(vlines)),
     vline.legend = T,
+    pmax = NULL,
     models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
     model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
     facet = F,
@@ -50,14 +51,22 @@ gg_Manhattan_Zoom <- function(
     sig.color = "red",
     legend.rows = 1,
     plotHBPvalues = F,
-    skyline = NULL
+    skyline = "Kansas"
     ) {
   #
   # Read in files
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste(trait,collapse="|"),fnames)]
   fnames <- fnames[grepl(paste(models,collapse="|"),fnames)]
+  fnames <- fnames[grepl(paste0(trait, c(".csv","\\("), collapse="|"), fnames)]
+  #
+  if(!is.null(skyline)) {
+    if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
+    if(skyline == "Kansas") {
+      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
+      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+    }
+  }
   #
   xx <- NULL
   #
@@ -71,12 +80,7 @@ gg_Manhattan_Zoom <- function(
     xx <- bind_rows(xx, xi)
   }
   #
-  if(!is.null(skyline)) {
-    if(skyline == "NYC")    { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
-    if(skyline == "Kansas") { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
-  }
-  #
-  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value)))
+  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model)))
   #
   # Prep data
   #
@@ -85,6 +89,11 @@ gg_Manhattan_Zoom <- function(
   #
   if(is.null(threshold)) {
     threshold <- -log10(0.05/nrow(xi))
+  }
+  #
+  if(!is.null(pmax)) {
+    xx <- xx %>%
+      mutate(negLog10_P = ifelse(negLog10_P > pmax, pmax, negLog10_P))
   }
   #
   xx <- xx %>%
@@ -101,10 +110,10 @@ gg_Manhattan_Zoom <- function(
   }
   #
   x2 <- xx %>% filter(negLog10_P >= threshold)
-  x3 <- xx %>% filter(SNP %in% markers) %>% 
+  x3 <- xx %>% filter(SNP %in% markers) %>%
     mutate(Label = plyr::mapvalues(SNP, markers, labels))
-  x4 <- xx %>% filter(SNP %in% vlines) %>% 
-    filter(!duplicat)
+  x4 <- xx %>% filter(SNP %in% vlines) %>%
+    filter(!duplicated(paste(SNP, Model)))
   #
   # Start Plots
   #
@@ -129,7 +138,7 @@ gg_Manhattan_Zoom <- function(
   #
   mp <- mp +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.6) +
-    geom_point(aes(fill = Model, size = Sig.level, key1 = SNP), 
+    geom_point(aes(fill = Model, size = Sig.level, key1 = SNP),
                pch = 21, color = alpha("white",0)) +
     scale_size_manual(name = NULL, values = c(1,2,1.5), guide = "none") +
     guides(color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +

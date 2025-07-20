@@ -37,88 +37,78 @@ For best practice, output from GAPIT should be in its own folder. In this case, 
 
 Note: for more info check out this [GWAS tutorial](https://derekmichaelwright.github.io/dblogr/academic/gwaspr_tutorial).
 
-## List Traits
+# gwaspr Functions
+
+## list_Traits()
 
 ```{r eval = T}
-myTraits <- list_Traits(folder = "GWAS_Results/")
-myTraits
+list_Traits(folder = "GWAS_Results/")
 ```
 
-## List Results Files
+## list_Results_Files()
 
 ```{r eval = T}
-myFiles <- list_Result_Files(folder = "GWAS_Results/")
-myFiles
+list_Result_Files(folder = "GWAS_Results/")
 ```
 
-## Check Results
+## is_ran()
 
 ```{r}
 is_ran(folder = "GWAS_Results/")
 ```
 
-## List Significant Markers
+## Order_GWAS_Results()
 
 ```{r eval = F}
 # first reorder the result files if they are not already arranged by P.value
-order_GWAS_Results(folder = "GWAS_Results/", files = myFiles)
+order_GWAS_Results(folder = "GWAS_Results/")
 ```
+
+## is_ordered()
 
 ```{r}
 is_ordered(folder = "GWAS_Results/")
 ```
 
+## table_GWAS_Results()
+
 ```{r eval = T}
-myResults <- table_GWAS_Results(folder = "GWAS_Results/", fnames = myFiles,
+myResults <- table_GWAS_Results(folder = "GWAS_Results/",
                                 threshold = 6.8, sug.threshold = 5)
 myResults[1:10,]
 ```
 
+## list_Top_Markers()
+
 ```{r eval = T}
-list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Nepal_2017", 
-                 threshold = 6.7, chroms = c(2,5))
+list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Nepal_2017")
 ```
 
 ```{r eval = T}
-list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Sask_2017_b", 
-                 threshold = 6.7, chroms = 6)
+list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Sask_2017")
 ```
 
 ```{r eval = T}
-list_Top_Markers(folder = "GWAS_Results/", trait = "Cotyledon_Color", 
-                 threshold = 6.7, chroms = 6, n = 2)
+list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Sask_2017_b")
 ```
 
-```{r}
-myMarkers <- c("Lcu.1GRN.Chr2p44545877", "Lcu.1GRN.Chr5p1658484",
-               "Lcu.1GRN.Chr6p3269280", "Lcu.1GRN.Chr1p365986872")
+```{r eval = T}
+list_Top_Markers(folder = "GWAS_Results/", trait = "Cotyledon_Color")
 ```
 
 ---
 
-## Manhattan Plots
+## gg_Manhattan()
 
 ### Multi Manhattan Plots
 
 ```{r eval = F}
-for(i in myTraits) {
-  mp <- gg_Manhattan(folder = "GWAS_Results/", 
-                     trait = i, 
-                     title = paste("LDP -", i), 
-                     threshold = 6.7, 
-                     sug.threshold = 5, 
-                     vlines = myMarkers,
-                     vline.colors = c("red","red","darkgreen","blue"),
-                     vline.types = c(1,1,1,1),
-                     vline.legend = T,
-                     facet = F,
-                     addQQ = T,
-                     pmax = 12, 
-                     models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
-                     model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
-                     legend.rows = 2)
-  ggsave(paste0("man/figures/Multi_", i, ".png"), 
-         mp, width = 12, height = 4, bg = "white")
+for(i in list_Traits(folder = "GWAS_Results/")) {
+  # Plot
+  mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i)
+  # Save
+  ggsave(paste0("man/figures/gg_Man1_", i, ".png"), 
+         mp, width = 12, height = 3.5, bg = "white")
 }
 ```
 
@@ -135,23 +125,13 @@ for(i in myTraits) {
 ### Facetted Manhattan Plots
 
 ```{r eval = F}
-for(i in myTraits) {
-  mp <- gg_Manhattan(folder = "GWAS_Results/", 
-                     trait = i, 
-                     title = paste("LDP -", i), 
-                     threshold = 7.3, 
-                     sug.threshold = 6.7, 
-                     vlines = myMarkers,
-                     vline.colors = c("red","red","darkgreen","blue"),
-                     vline.types = c(1,1,1,1),
-                     vline.legend = T,
-                     facet = T,
-                     addQQ = T,
-                     pmax = 12, 
-                     models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
-                     chrom.colors = rep(c("darkgreen", "darkgoldenrod2"), 4),
-                     legend.rows = 1)
-  ggsave(paste0("man/figures/Facet_", i, ".png"), 
+#i<-"DTF_Sask_2017"
+#i<-"DTF_Sask_2017_b"
+for(i in list_Traits(folder = "GWAS_Results/")) {
+  # Plot
+  mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = T)
+  # Save
+  ggsave(paste0("man/figures/gg_Man2_", i, ".png"), 
          mp, width = 12, height = 8, bg = "white")
 }
 ```
@@ -166,44 +146,114 @@ for(i in myTraits) {
 
 ---
 
-## Summary Plot
+## gg_Manhattan_Traits()
 
 ```{r eval = F}
+# Plot
+mp <- gg_Manhattan_Traits(
+  # Specify a folder with GWAS results
+  folder = "GWAS_Results/",
+  # Select traits to plot
+  traits = c("DTF_Sask_2017", "DTF_Sask_2017_b"),
+  # Specify a title
+  title = "Days to Flower",
+  # Highlight specific markers
+  markers = c("Lcu.1GRN.Chr2p44545877",
+              "Lcu.1GRN.Chr5p1658484",
+              "Lcu.1GRN.Chr6p3269280"),
+  # Create alt labels for the markers
+  labels = c("44Mbp","16Mbp","32Mbp"),
+  # Specify Color for each marker vline
+  vline.colors = c("red","red","blue")
+)
+# Save
+ggsave("man/figures/gg_Man_Traits.png", mp, width = 12, height = 8, bg = "white")
+```
+
+![](man/figures/gg_Man_Traits.png)
+
+---
+
+## gg_Mahattan_Zoom()
+
+```{r eval = F}
+# Plot
+mp <- gg_Manhattan_Zoom(
+  # Specify a folder with GWAS results
+  folder = "GWAS_Results/", 
+  # Select a trait to plot
+  trait = "Cotyledon_Color", 
+  # Plot just Chromosome 1
+  chr = 1,
+  pos1 = 360000000,
+  pos2 = 370000000,
+  # Highlight specific markers
+  markers = c("Lcu.1GRN.Chr1p365986872",
+              "Lcu.1GRN.Chr1p361840399",
+              "Lcu.1GRN.Chr1p362336814"),
+  # Create alt labels for the markers
+  labels = c("365Mbp","361Mbp","362Mbp"),
+  # Specify Color for each marker vline
+  vline.colors = rep("green",3),
+  # Should models be facetted
+  facet = T
+  )
+# Save
+ggsave("man/figures/gg_Man_Zoom1.png", mp, width = 8, height = 8)
+```
+
+![](man/figures/gg_Man_Zoom1.png)
+
+```{r eval = F}
+# Plot
+mp <- gg_Manhattan_Zoom(
+  # Specify a folder with GWAS results
+  folder = "GWAS_Results/", 
+  # Select a trait to plot
+  trait = "Cotyledon_Color", 
+  # Plot just Chromosome 1
+  chr = 1,
+  pos1 = 360000000,
+  pos2 = 370000000,
+  # Plot only certain GWAS models
+  models = c("MLMM","FarmCPU","BLINK"),
+  # Highlight specific markers
+  markers = c("Lcu.1GRN.Chr1p365986872",
+              "Lcu.1GRN.Chr1p361840399",
+              "Lcu.1GRN.Chr1p362336814"),
+  # Create alt labels for the markers
+  labels = c("365Mbp","361Mbp","362Mbp"),
+  # Specify Color for each marker vline
+  vline.colors = rep("green",3),
+  # Should models be facetted
+  facet = F,
+  # set a max P value
+  pmax = 15
+  )
+# Save
+ggsave("man/figures/gg_Man_Zoom2.png", mp, width = 8, height = 8)
+```
+
+![](man/figures/gg_Man_Zoom2.png)
+
+---
+
+## gg_GWAS_Summary()
+
+```{r eval = F}
+# Plot
 mp <- gg_GWAS_Summary(folder = "GWAS_Results/", 
-                      traits = myTraits,
-                      models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
-                      colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
-                      threshold = 6.7, sug.threshold = 6, 
-                      hlines = c(1.5,3.5), legend.rows = 2,
-                      vlines = myMarkers,
-                      vline.colors = c("red", "red", "green", "blue"),
-                      vline.types = c(1,1,1,1),
                       title = "Summary of Significant GWAS Results")
+# Save
 ggsave("man/figures/GWAS_Summary_01.png", mp, width = 12, height = 4)
 ```
 
 ![](man/figures/GWAS_Summary_01.png)
 
----
-
-```{r eval = F}
-mp <- gg_GWAS_Summary(folder = "GWAS_Results/", 
-                      traits = myTraits,
-                      models = c("MLMM", "FarmCPU", "BLINK"),
-                      colors = c("darkred", "darkorange3", "steelblue"),
-                      threshold = 6.7, sug.threshold = 6, 
-                      hlines = c(1.5,3.5), legend.rows = 2,
-                      vlines = myMarkers,
-                      vline.colors = c("red", "red", "green", "blue"),
-                      vline.types = c(1,1,1,1),
-                      title = "Summary of Significant GWAS Results")
-ggsave("man/figures/GWAS_Summary_02.png", mp, width = 12, height = 4)
-```
-
-![](man/figures/GWAS_Summary_02.png)
+Make it an interactive plot with the following code
 
 ```{r eval = F, echo = F}
-gg_GWAS_plotly(mp, filename = "man/figures/GWAS_Summary.html")
+gg_plotly(mp, filename = "man/figures/GWAS_Summary.html")
 plotly::ggplotly(mp)
 ```
 

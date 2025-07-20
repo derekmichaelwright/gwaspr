@@ -18,11 +18,20 @@ gg_Volcano <- function(
     markers = NULL,
     labels = markers,
     models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-    skyline = NULL
+    skyline = "Kansas"
     ) {
   #
   fnames <- list.files(folder)[grepl("GWAS_Results", list.files(folder))]
   fnames <- fnames[grepl(trait, fnames)]
+  #
+  if(!is.null(skyline)) {
+    if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
+    if(skyline == "Kansas") {
+      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
+      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+    }
+  }
+  #
   xx <- NULL
   #
   for(i in fnames) {
@@ -39,12 +48,7 @@ gg_Volcano <- function(
     xx <- bind_rows(xx, xi)
   }
   #
-  if(!is.null(skyline)) {
-    if(skyline == "NYC")    { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
-    if(skyline == "Kansas") { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
-  }
-  #
-  xx  <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value)))
+  xx  <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model)))
   #
   xx <- xx %>% filter(Model %in% models) %>%
     mutate(Model = factor(Model, levels = models)) %>%

@@ -11,7 +11,7 @@ gg_Volcano(
   markers = NULL,
   labels = markers,
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-  skyline = NULL
+  skyline = "Kansas"
 )
 }
 \arguments{

@@ -24,7 +24,7 @@
 #' @param chrom.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
 #' @param legend.rows Number of rows for the legend.
 #' @param plotHBPvalues Logical, if TRUE, H.B.P.values be uses.
-#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @return A manhattan plot.
 #' @export
 
@@ -52,14 +52,22 @@ gg_Manhattan <- function (
     chrom.unit = "100 Mbp",
     legend.rows = 1,
     plotHBPvalues = F,
-    skyline = NULL
+    skyline = "Kansas"
     ) {
   #
   # Read in files
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste(trait, collapse="|"), fnames)]
   fnames <- fnames[grepl(paste(models, collapse="|"), fnames)]
+  fnames <- fnames[grepl(paste0(trait, c(".csv","\\("), collapse="|"), fnames)]
+  #
+  if(!is.null(skyline)) {
+    if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
+    if(skyline == "Kansas") {
+      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
+      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+    }
+  }
   #
   xx <- NULL
   for(i in fnames) {
@@ -78,12 +86,12 @@ gg_Manhattan <- function (
     xx <- bind_rows(xx, xi)
   }
   #
-  if(!is.null(skyline)) {
-    if(skyline == "NYC")    { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
-    if(skyline == "Kansas") { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
-  }
-  #
-  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value)))
+  #if(!is.null(skyline)) {
+  #  if(skyline == "NYC")    { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
+  #  if(skyline == "Kansas") { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
+  #}
+  # if(is.null(skyline))
+  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model)))
   #
   # Prep data
   #
@@ -245,11 +253,11 @@ gg_Manhattan <- function (
   mp
 }
 
-#folder = "GWAS_Results/"; trait = list_Traits(folder)[1]; title = trait; threshold = NULL; sug.threshold = NULL
+#folder = "GWAS_Results/"; trait = list_Traits(folder)[3]; title = trait; threshold = NULL; sug.threshold = NULL
 #chrom = NULL; markers = NULL; labels = markers
 #vlines = markers; vline.colors = rep("red", length(vlines)); vline.types = rep(1, length(vlines)); vline.legend = T
 #facet = F; addQQ = T; pmax = NULL;
-#models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
+#models = "FarmCPU"#c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
 #models = "BLINK"
 #model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4")
 #highlight.sig = F; sig.color = "darkred"; chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30)

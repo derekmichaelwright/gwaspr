@@ -25,7 +25,7 @@ gg_Manhattan_Traits(
   chrom.unit = "100 Mbp",
   legend.rows = 1,
   plotHBPvalues = F,
-  skyline = NULL
+  skyline = "Kansas"
 )
 }
 \arguments{

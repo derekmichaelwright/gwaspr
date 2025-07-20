@@ -48,7 +48,7 @@ gg_GWAS_Summary <- function(
     legend.position = "bottom",
     legend.rows = 1,
     plotHBPvalues = F,
-    skyline = NULL
+    skyline = "Kansas"
     ) {
   #
   check1 <- is_ran(folder = folder) %>% dropNAcol()
@@ -65,8 +65,16 @@ gg_GWAS_Summary <- function(
   }
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste(traits,collapse="|"),fnames)]
   fnames <- fnames[grepl(paste(models,collapse="|"),fnames)]
+  fnames <- fnames[grepl(paste(c(paste0(traits, ".csv"), paste0(traits, "\\(")), collapse="|"), fnames)]
+  #
+  if(!is.null(skyline)) {
+    if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
+    if(skyline == "Kansas") {
+      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
+      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+    }
+  }
   #
   myP <- NULL
   #
@@ -107,10 +115,10 @@ gg_GWAS_Summary <- function(
   }
   #
   if(!is.null(groups)) {
-    myP <- myP %>% 
+    myP <- myP %>%
       mutate(Group = plyr::mapvalues(Trait, traits, groups),
-             Group = factor(Group, levels = rev(unique(myGroups)))) 
-    myG <- myG %>% 
+             Group = factor(Group, levels = rev(unique(myGroups))))
+    myG <- myG %>%
       mutate(Group = plyr::mapvalues(Trait, traits, groups),
              Group = factor(Group, levels = rev(unique(myGroups))))
   }
@@ -143,13 +151,13 @@ gg_GWAS_Summary <- function(
   mp <- mp +
     geom_point(data = x2,
                size = 0.75, color = "black", alpha = 0.5,
-               aes(y = Trait, shape = Model, fill = Model, 
+               aes(y = Trait, shape = Model, fill = Model,
                    key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP)) +
     geom_point(size = 2.25, color = "black", alpha = 0.5,
-               aes(y = Trait, shape = Model, fill = Model, 
+               aes(y = Trait, shape = Model, fill = Model,
                    key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP))
-  if(!is.null(groups)) { 
-    mp <- mp + facet_grid(Group ~ Chr, scales = "free", space = "free") 
+  if(!is.null(groups)) {
+    mp <- mp + facet_grid(Group ~ Chr, scales = "free", space = "free")
   } else { mp <- mp + facet_grid(. ~ Chr, scales = "free", space = "free") }
   mp <- mp +
     scale_fill_manual(name = NULL, values = colors, breaks = models) +

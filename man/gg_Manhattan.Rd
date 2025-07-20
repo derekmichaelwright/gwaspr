@@ -29,7 +29,7 @@ gg_Manhattan(
   chrom.unit = "100 Mbp",
   legend.rows = 1,
   plotHBPvalues = F,
-  skyline = NULL
+  skyline = "Kansas"
 )
 }
 \arguments{
@@ -79,7 +79,7 @@ gg_Manhattan(
 
 \item{plotHBPvalues}{Logical, if TRUE, H.B.P.values be uses.}
 
-\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.}
 }
 \value{
 A manhattan plot.
