@@ -11,7 +11,7 @@
 #' @param pos1 starting position to plot.
 #' @param pos2 ending position to plot.
 #' @param models Models to read.
-#' @param colors Colors for each model.
+#' @param model.colors Colors for each model.
 #' @param shapes The shape values to use for the different models. e.g., 21:25.
 #' @param vlines Markers to be labelled with a vertical red line.
 #' @param vline.colors colors for each vertical line.
@@ -34,8 +34,8 @@ gg_GWAS_Summary <- function(
     threshold = round(-log10(0.00000005),1),
     sug.threshold = round(-log10(0.000005),1),
     chroms = NULL, pos1 = NULL, pos2 = NULL,
-    models =  c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-    colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
+    models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
+    model.colors = c("darkgreen","darkred", "darkorange3","steelblue", "darkorchid4", "burlywood4", "darkseagreen4"),
     shapes = 21:25,
     hlines = NULL,
     vlines = NULL,
@@ -160,7 +160,7 @@ gg_GWAS_Summary <- function(
     mp <- mp + facet_grid(Group ~ Chr, scales = "free", space = "free")
   } else { mp <- mp + facet_grid(. ~ Chr, scales = "free", space = "free") }
   mp <- mp +
-    scale_fill_manual(name = NULL, values = colors, breaks = models) +
+    scale_fill_manual(name = NULL, values = model.colors, breaks = models) +
     scale_shape_manual(name = NULL, values = shapes, breaks = models) +
     scale_x_continuous(breaks = 0:20) +
     theme_gwaspr(legend.position = legend.position) +
@@ -180,7 +180,7 @@ gg_GWAS_Summary <- function(
 #threshold = round(-log10(0.00000005),1); sug.threshold = round(-log10(0.000005),1)
 #chroms = NULL; pos1 = NULL; pos2 = NULL
 #models =  c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
-#colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4")
+#model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4")
 #shapes = 21:25; hlines = NULL; vlines = NULL; vline.colors = rep("red",length(vlines));
 #vline.types = rep(1, length(vlines)); vline.legend = T; title = "Summary of Significant GWAS Results";
 #caption = paste0("Significant Threshold = ", threshold, " = Large\nSuggestive Threshold = ", sug.threshold," = Small")

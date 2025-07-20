@@ -44,8 +44,8 @@ gg_Manhattan_Zoom <- function(
     vline.types = rep(1, length(vlines)),
     vline.legend = T,
     pmax = NULL,
-    models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-    model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
+    models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
+    model.colors = c("darkgreen","darkred", "darkorange3","steelblue", "darkorchid4", "burlywood4", "darkseagreen4"),
     facet = F,
     highlight.sig = F,
     sig.color = "red",
@@ -84,8 +84,15 @@ gg_Manhattan_Zoom <- function(
   #
   # Prep data
   #
-  xx <- xx %>% mutate(Model = factor(Model, levels = models)) %>%
+  xx <- xx %>%
+    mutate(Model = factor(Model, levels = models)) %>%
     filter(Chr == chrom, Pos > pos1, Pos < pos2, !is.na(Model))
+  #
+  models <- unique(xx$Model)
+  if(paste(models,collapse=",") != "MLM,MLMM,FarmCPU,BLINK,GLM,CMLM,SUPER" &
+     paste(model.colors,collapse=",") == "darkgreen,darkred,darkorange3,steelblue,darkorchid4,burlywood4,darkseagreen4") {
+    model.colors <- model.colors[c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER") %in% models]
+  }
   #
   if(is.null(threshold)) {
     threshold <- -log10(0.05/nrow(xi))

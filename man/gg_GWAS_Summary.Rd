@@ -13,8 +13,8 @@ gg_GWAS_Summary(
   chroms = NULL,
   pos1 = NULL,
   pos2 = NULL,
-  models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-  colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4",
+  models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
+  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
     "burlywood4", "darkseagreen4"),
   shapes = 21:25,
   hlines = NULL,
@@ -51,7 +51,7 @@ gg_GWAS_Summary(
 
 \item{models}{Models to read.}
 
-\item{colors}{Colors for each model.}
+\item{model.colors}{Colors for each model.}
 
 \item{shapes}{The shape values to use for the different models. e.g., 21:25.}
 

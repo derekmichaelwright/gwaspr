@@ -38,8 +38,8 @@ gg_Manhattan_Traits <- function (
     vline.legend = F,
     addQQ = T,
     pmax = NULL,
-    models = c("MLM","MLMM","FarmCPU","BLINK"),
-    trait.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4"),
+    models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
+    trait.colors = c("darkgreen","darkred", "darkorange3","steelblue", "darkorchid4", "burlywood4", "darkseagreen4"),
     chrom.unit = "100 Mbp",
     legend.rows = 1,
     plotHBPvalues = F,
@@ -81,7 +81,7 @@ gg_Manhattan_Traits <- function (
     xx <- bind_rows(xx, xi)
   }
   #
-  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model)))
+  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, Trait)))
   #
   # Prep data
   #
@@ -210,12 +210,13 @@ gg_Manhattan_Traits <- function (
   mp
 }
 
-#folder = "GWAS_Results/"; traits = list_Traits(folder)[3:4];
+#folder = "GWAS_Results/"; traits = list_Traits(folder)[2:4];
 #title = NULL; threshold = 6.8; sug.threshold = 5;
 #chrom = NULL;
 #markers = "Lcu.1GRN.Chr1p352153929"; labels = "352"; vlines = markers;
 #vline.colors = rep("red", length(vlines)); vline.types = rep(1, length(vlines)); vline.legend = F;
 #addQQ = T; pmax = NULL; models = "MLM";
 #highlight.sig = F; sig.col = "darkred";
-#trait.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4")
+#models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER")
+#trait.colors = c("darkgreen","darkred", "darkorange3","steelblue", "darkorchid4", "burlywood4", "darkseagreen4")
 #chrom.unit = "100 Mbp"; legend.rows = 1; plotHBPvalues = F; skyline = NULL

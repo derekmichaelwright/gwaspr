@@ -78,6 +78,13 @@ myResults <- table_GWAS_Results(folder = "GWAS_Results/",
 myResults[1:10,]
 ```
 
+## table_GWAS_Results_Summary()
+
+```{r}
+mySummary <- table_GWAS_Results_Summary(folder = "GWAS_Results/")
+mySummary
+```
+
 ## list_Top_Markers()
 
 ```{r eval = T}
@@ -100,7 +107,9 @@ list_Top_Markers(folder = "GWAS_Results/", trait = "Cotyledon_Color")
 
 ## gg_Manhattan()
 
-### Multi Manhattan Plots
+### Multi-Model Manhattan Plots
+
+This is the default setting for this function: `facet = F`
 
 ```{r eval = F}
 for(i in list_Traits(folder = "GWAS_Results/")) {
@@ -124,9 +133,9 @@ for(i in list_Traits(folder = "GWAS_Results/")) {
 
 ### Facetted Manhattan Plots
 
+facet the plots by setting `facet = T`
+
 ```{r eval = F}
-#i<-"DTF_Sask_2017"
-#i<-"DTF_Sask_2017_b"
 for(i in list_Traits(folder = "GWAS_Results/")) {
   # Plot
   mp <- gg_Manhattan(folder = "GWAS_Results/", trait = i, facet = T)
@@ -146,34 +155,6 @@ for(i in list_Traits(folder = "GWAS_Results/")) {
 
 ---
 
-## gg_Manhattan_Traits()
-
-```{r eval = F}
-# Plot
-mp <- gg_Manhattan_Traits(
-  # Specify a folder with GWAS results
-  folder = "GWAS_Results/",
-  # Select traits to plot
-  traits = c("DTF_Sask_2017", "DTF_Sask_2017_b"),
-  # Specify a title
-  title = "Days to Flower",
-  # Highlight specific markers
-  markers = c("Lcu.1GRN.Chr2p44545877",
-              "Lcu.1GRN.Chr5p1658484",
-              "Lcu.1GRN.Chr6p3269280"),
-  # Create alt labels for the markers
-  labels = c("44Mbp","16Mbp","32Mbp"),
-  # Specify Color for each marker vline
-  vline.colors = c("red","red","blue")
-)
-# Save
-ggsave("man/figures/gg_Man_Traits.png", mp, width = 12, height = 8, bg = "white")
-```
-
-![](man/figures/gg_Man_Traits.png)
-
----
-
 ## gg_Mahattan_Zoom()
 
 ```{r eval = F}
@@ -189,10 +170,9 @@ mp <- gg_Manhattan_Zoom(
   pos2 = 370000000,
   # Highlight specific markers
   markers = c("Lcu.1GRN.Chr1p365986872",
-              "Lcu.1GRN.Chr1p361840399",
-              "Lcu.1GRN.Chr1p362336814"),
+              "Lcu.1GRN.Chr1p361840399"),
   # Create alt labels for the markers
-  labels = c("365Mbp","361Mbp","362Mbp"),
+  labels = c("365Mbp","361Mbp"),
   # Specify Color for each marker vline
   vline.colors = rep("green",3),
   # Should models be facetted
@@ -219,24 +199,50 @@ mp <- gg_Manhattan_Zoom(
   models = c("MLMM","FarmCPU","BLINK"),
   # Highlight specific markers
   markers = c("Lcu.1GRN.Chr1p365986872",
-              "Lcu.1GRN.Chr1p361840399",
-              "Lcu.1GRN.Chr1p362336814"),
+              "Lcu.1GRN.Chr1p361840399"),
   # Create alt labels for the markers
-  labels = c("365Mbp","361Mbp","362Mbp"),
+  labels = c("365Mbp","361Mbp"),
   # Specify Color for each marker vline
   vline.colors = rep("green",3),
   # Should models be facetted
   facet = F,
   # set a max P value
-  pmax = 15
+  pmax = 50
   )
 # Save
-ggsave("man/figures/gg_Man_Zoom2.png", mp, width = 8, height = 8)
+ggsave("man/figures/gg_Man_Zoom2.png", mp, width = 8, height = 4)
 ```
 
 ![](man/figures/gg_Man_Zoom2.png)
 
 ---
+
+## gg_Manhattan_Traits()
+
+```{r eval = F}
+# Plot
+mp <- gg_Manhattan_Traits(
+  # Specify a folder with GWAS results
+  folder = "GWAS_Results/",
+  # Select traits to plot
+  traits = c("DTF_Sask_2017", "DTF_Nepal_2017"),
+  # Specify a title
+  title = "Days to Flower",
+  # Highlight specific markers
+  markers = c("Lcu.1GRN.Chr2p44545877",
+              "Lcu.1GRN.Chr5p1658484",
+              "Lcu.1GRN.Chr6p3269280"),
+  # Create alt labels for the markers
+  labels = c("44Mbp","16Mbp","32Mbp"),
+  # Specify Color for each marker vline
+  vline.colors = c("red","red","blue")
+)
+# Save
+ggsave("man/figures/gg_Man_Traits.png", mp, width = 12, height = 8, bg = "white")
+```
+
+![](man/figures/gg_Man_Traits.png)
+
 
 ## gg_GWAS_Summary()
 
