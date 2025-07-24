@@ -15,7 +15,8 @@
 #' @param vline.legend Logical, whether or not to add a legend for the vlines.
 #' @param facet Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.
 #' @param addQQ Logical, whether or not to add a QQ plot.
-#' @param pmax A max value for the y-axis.
+#' @param pmax A max value for the y-axis. Markers with higher values will be lowered to pmax.. 
+#' @param pmin A min Value for plotting. Markers with lower values will be removed.
 #' @param models Models to read.
 #' @param model.colors Colors for each model. Used if `facet = F`.
 #' @param highlight.sig Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.
@@ -44,6 +45,7 @@ gg_Manhattan <- function (
     facet = F,
     addQQ = T,
     pmax = NULL,
+    pmin = 0,
     models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
     model.colors = c("darkgreen","darkred", "darkorange3","steelblue", "darkorchid4", "burlywood4", "darkseagreen4"),
     highlight.sig = F,
@@ -143,6 +145,7 @@ gg_Manhattan <- function (
   #
   myBreaks <- 0:(round(max(xx$Pos)/x.unit))
   ylabel <- ifelse(plotHBPvalues == T, "-log<sub>10</sub>(*HBp*)", "-log<sub>10</sub>(*p*)")
+  xx <- xx %>% filter(Pvalue >= pmin)
   #
   # Start Plots
   #
@@ -200,7 +203,7 @@ gg_Manhattan <- function (
   #
   if(facet == T) {
     mp1 <- mp1 +
-      geom_point(aes(fill = factor(Chr), size = Sig.level), pch = 21, color = alpha("white", 0)) +
+      geom_point(aes(fill = factor(Chr), size = Sig.level, key1 = SNP), pch = 21, color = alpha("white", 0)) +
       geom_point(data = x2, pch = 21, size = 1.25, color = "black", fill = sig.color, alpha = 0.8) +
       facet_grid(Model ~ Chr, scales = "free", space = "free_x") +
       scale_fill_manual(name = NULL, values = alpha(chrom.colors, 0.8), guide = "none") +
@@ -224,7 +227,7 @@ gg_Manhattan <- function (
     # Plot models together
     #
     mp1 <- mp1 +
-      geom_point(aes(fill = Model, size = Sig.level), pch = 21, color = alpha("white", 0)) +
+      geom_point(aes(fill = Model, size = Sig.level, key1 = SNP), pch = 21, color = alpha("white", 0)) +
       facet_grid(. ~ Chr, scales = "free", space = "free_x") +
       scale_fill_manual(name = NULL, values = alpha(model.colors,0.8)) +
       scale_size_manual(name = NULL, values = c(0.3,1.25,0.75), guide = "none") +

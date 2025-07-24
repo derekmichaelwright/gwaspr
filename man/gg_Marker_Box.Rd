@@ -11,6 +11,7 @@ gg_Marker_Box(
   myncol = NULL,
   markers,
   box.width = 0.1,
+  point.size = 1,
   points = T,
   violin = T,
   marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
@@ -27,6 +28,8 @@ gg_Marker_Box(
 \item{markers}{Markers to plot.}
 
 \item{box.width}{width for the boxplot.}
+
+\item{point.size}{size of points.}
 
 \item{points}{Logical, whether or not to plot points.}
 

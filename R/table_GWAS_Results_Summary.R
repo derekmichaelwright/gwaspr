@@ -11,6 +11,7 @@
 table_GWAS_Results_Summary <- function(xx, onlySig = F, binMarkers = F, binSize = 1000000) {
   #
   if(onlySig == T) { xx <- xx %>% filter(Threshold == "Significant") }
+  xx <- xx %>% arrange(desc(negLog10_P))
   #
   output <- NULL
   #
@@ -41,7 +42,7 @@ table_GWAS_Results_Summary <- function(xx, onlySig = F, binMarkers = F, binSize 
       #
       output <- rbind(output, x1)
       #
-      xx <- xx %>% filter(SNP != x1$SNP)
+      xx <- xx %>% filter(!SNP %in% xi$SNP)
     }
   }
   #
@@ -72,7 +73,7 @@ table_GWAS_Results_Summary <- function(xx, onlySig = F, binMarkers = F, binSize 
       #
       output <- rbind(output, x1)
       #
-      xx <- xx %>% filter(SNP != x1$SNP)
+      xx <- xx %>% filter(SNP != xi$SNP)
     }
   }
   #

@@ -6,6 +6,10 @@
 #' @param traits Traits to plot.
 #' @param markers Markers to plot.
 #' @param marker.colors Color palette.
+#' @param plot.histogram Logical, if true will plot histogram bars.
+#' @param plot.density Logical, if true will plot density bands.
+#' @param plot.counts Logical, if true will make a plot of counts, if false will make a density plot.
+#' @param myncol number of columns for facetting.
 #' @return Marker plot.
 #' @export
 
@@ -14,10 +18,11 @@ gg_Marker_Bar <- function (
     xY,
     traits,
     markers,
-    plot.histogram = T,
-    plot.density = T,
     marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
                       "darkslategray", "maroon4", "purple4", "darkblue"),
+    plot.histogram = T,
+    plot.density = T,
+    plot.counts = F,
     myncol = NULL,
     line.color = F) {
   #
@@ -42,21 +47,24 @@ gg_Marker_Bar <- function (
   #
   yy <- xx %>% filter(Trait == traits[1]) %>% 
     group_by(Alleles) %>%
-    summarise(Value = mean(Value, na.rm = T))
+    summarise(Value = mean(Value, na.rm = T)) %>%
+    arrange(Value)
   xx <- xx %>% 
     mutate(Alleles = factor(Alleles, levels = rev(yy$Alleles)),
            Trait = factor(Trait, levels = traits))
   # Plot
-  mp <- ggplot(xx, aes(x = Value, y=..density.., fill = Alleles))
-  if(plot.histogram == T) { mp <- mp + geom_histogram(position = "dodge", alpha = 0.5, color = line.color) }
+  if(plot.counts == F) { mp <- ggplot(xx, aes(x = Value, y=after_stat(density), fill = Alleles)) }
+  if(plot.counts == T) { mp <- ggplot(xx, aes(x = Value, y=after_stat(count), fill = Alleles)) }
   if(plot.density == T) { mp <- mp + geom_density(alpha = 0.5, color = line.color) }
+  if(plot.histogram == T) { mp <- mp + geom_histogram(position = "dodge", alpha = 0.5, color = line.color) }
   mp <- mp +
     facet_wrap(Trait ~ ., scales = "free", ncol = myncol) +
     scale_fill_manual(name = NULL, values = marker.colors) +
-    theme_gwaspr_col(legend.position = "bottom",
-                     axis.text.y = element_blank(),
-                     axis.ticks.y = element_blank()) +
-    labs(title = title, y = NULL, x = NULL)
+    theme_gwaspr_col(legend.position = "bottom"#,
+                     #axis.text.y = element_blank(),
+                     #axis.ticks.y = element_blank()
+                     ) +
+    labs(title = title, x = NULL)
   mp
 }
 

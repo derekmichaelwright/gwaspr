@@ -16,7 +16,7 @@ order_GWAS_Results <- function(
   x2 <- x2[rowSums(is.na(x2)) > 0,]
   #
   if(nrow(x2) > 0) {
-    files <- files[grepl(x2$Trait, files)]
+    files <- files[grepl(paste(x2$Trait, collapse="|"), files)]
     #
     for(i in files){
       xx <- read.csv(paste0(folder, i)) %>%

@@ -20,6 +20,7 @@ gg_Manhattan(
   facet = F,
   addQQ = T,
   pmax = NULL,
+  pmin = 0,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
     "burlywood4", "darkseagreen4"),
@@ -61,7 +62,9 @@ gg_Manhattan(
 
 \item{addQQ}{Logical, whether or not to add a QQ plot.}
 
-\item{pmax}{A max value for the y-axis.}
+\item{pmax}{A max value for the y-axis. Markers with higher values will be lowered to pmax..}
+
+\item{pmin}{A min Value for plotting. Markers with lower values will be removed.}
 
 \item{models}{Models to read.}
 

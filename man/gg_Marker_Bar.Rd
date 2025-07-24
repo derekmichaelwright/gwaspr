@@ -9,10 +9,11 @@ gg_Marker_Bar(
   xY,
   traits,
   markers,
-  plot.histogram = T,
-  plot.density = T,
   marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
     "darkslategray", "maroon4", "purple4", "darkblue"),
+  plot.histogram = T,
+  plot.density = T,
+  plot.counts = F,
   myncol = NULL,
   line.color = F
 )
@@ -27,6 +28,14 @@ gg_Marker_Bar(
 \item{markers}{Markers to plot.}
 
 \item{marker.colors}{Color palette.}
+
+\item{plot.histogram}{Logical, if true will plot histogram bars.}
+
+\item{plot.density}{Logical, if true will plot density bands.}
+
+\item{plot.counts}{Logical, if true will make a plot of counts, if false will make a density plot.}
+
+\item{myncol}{number of columns for facetting.}
 }
 \value{
 Marker plot.

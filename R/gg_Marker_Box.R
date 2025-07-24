@@ -6,6 +6,7 @@
 #' @param traits Traits to plot.
 #' @param markers Markers to plot.
 #' @param box.width width for the boxplot.
+#' @param point.size size of points.
 #' @param violin Logical, whether or not to plot violin.
 #' @param points Logical, whether or not to plot points.
 #' @param marker.colors Color palette.
@@ -19,6 +20,7 @@ gg_Marker_Box <- function (
     myncol = NULL,
     markers,
     box.width = 0.1,
+    point.size = 1,
     points = T,
     violin = T,
     marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
@@ -45,7 +47,8 @@ gg_Marker_Box <- function (
   #
   yy <- xx %>% filter(Trait == traits[1]) %>% 
     group_by(Alleles) %>%
-    summarise(Value = mean(Value, na.rm = T))
+    summarise(Value = mean(Value, na.rm = T)) %>%
+    arrange(Value)
   xx <- xx %>% 
     mutate(Alleles = factor(Alleles, levels = rev(yy$Alleles)),
            Trait = factor(Trait, levels = traits))
