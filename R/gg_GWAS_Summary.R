@@ -162,6 +162,7 @@ gg_GWAS_Summary <- function(
   mp <- mp +
     scale_fill_manual(name = NULL, values = model.colors, breaks = models) +
     scale_shape_manual(name = NULL, values = shapes, breaks = models) +
+    scale_y_discrete(limits = rev) +
     scale_x_continuous(breaks = 0:20) +
     theme_gwaspr(legend.position = legend.position) +
     guides(shape = guide_legend(nrow = legend.rows, override.aes = list(size = 4)),
