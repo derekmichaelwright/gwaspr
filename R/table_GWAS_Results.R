@@ -48,7 +48,7 @@ table_GWAS_Results <- function(
     output <- bind_rows(output, oi)
   }
   #
-  if(sum(colnames(output)=="nobs")>0) { output <- select(output, -nobs) }
+  if(sum(colnames(output)=="nobs")>0) { output <- dplyr::select(output, -nobs) }
   #
   if(!is.null(skyline)) {
     if(skyline == "NYC")    { output <- output %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }

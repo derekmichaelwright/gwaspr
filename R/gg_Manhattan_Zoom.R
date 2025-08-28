@@ -75,7 +75,7 @@ gg_Manhattan_Zoom <- function(
     mod <- substr(mod, 1, gregexpr("\\.", mod)[[1]][1]-1)
     sky <- substr(i, gregexpr("\\(", i)[[1]][1] + 1, gregexpr("\\)", i)[[1]][1] - 1)
     xi <- read.csv(paste0(folder, i))
-    if(sum(colnames(xi)=="nobs")>0) { xi <- select(xi, -nobs) }
+    if(sum(colnames(xi)=="nobs")>0) { xi <- dplyr::select(xi, -nobs) }
     xi <- xi %>% mutate(Model = mod, Type = sky, negLog10_P = -log10(P.value))
     xx <- bind_rows(xx, xi)
   }

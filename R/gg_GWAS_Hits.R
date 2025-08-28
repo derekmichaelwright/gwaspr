@@ -33,7 +33,7 @@ gg_GWAS_Hits <- function(
     ) {
   #
   xx <- xx %>% filter(Trait %in% traits, Model %in% models) %>% mutate(Hits = NA)
-  xG <- xG %>% select(SNP=1, Chr=3, Pos=4)
+  xG <- xG %>% dplyr::select(SNP=1, Chr=3, Pos=4)
   #
   for(i in 1:nrow(xx)) {
     myChr <- xx$Chr[i]

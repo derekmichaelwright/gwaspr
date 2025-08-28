@@ -52,7 +52,8 @@ gg_GWAS_Summary <- function(
     ) {
   #
   check1 <- is_ran(folder = folder) %>% dropNAcol()
-  check2 <- is_ordered(folder = folder) %>% select(colnames(check1))
+  check2 <- is_ordered(folder = folder) %>%
+    dplyr::select(colnames(check1))
   if(sum(is.na(check2)) > 0) {
     warning("Some of your GWAS results files might not be ordered by pvalue")
     warning("use order_GWAS_Results() before making these summary plots")
@@ -134,7 +135,7 @@ gg_GWAS_Summary <- function(
   if(!is.null(vlines)) {
     myGM <- myG %>% filter(SNP %in% vlines) %>%
       mutate(SNP = factor(SNP, levels = vlines)) %>%
-      select(SNP, Chr, Pos) %>%
+      dplyr::select(SNP, Chr, Pos) %>%
       arrange(SNP)
     #
     mp <- mp +

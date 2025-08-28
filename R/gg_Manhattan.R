@@ -15,7 +15,7 @@
 #' @param vline.legend Logical, whether or not to add a legend for the vlines.
 #' @param facet Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.
 #' @param addQQ Logical, whether or not to add a QQ plot.
-#' @param pmax A max value for the y-axis. Markers with higher values will be lowered to pmax.. 
+#' @param pmax A max value for the y-axis. Markers with higher values will be lowered to pmax..
 #' @param pmin A min Value for plotting. Markers with lower values will be removed.
 #' @param models Models to read.
 #' @param model.colors Colors for each model. Used if `facet = F`.
@@ -78,7 +78,7 @@ gg_Manhattan <- function (
     sky <- substr(i, gregexpr("\\(", i)[[1]][1] + 1, gregexpr("\\)", i)[[1]][1] - 1)
     #
     xi <- read.csv(paste0(folder, i))
-    if(sum(colnames(xi) == "nobs") > 0) { xi <- select(xi, -nobs) }
+    if(sum(colnames(xi) == "nobs") > 0) { xi <- dplyr::select(xi, -nobs) }
     if(sum(colnames(xi) == "effect") > 0) { xi <- rename(xi, Effect=effect) }
     xi <- xi %>%
       mutate(Model = mod,
@@ -164,7 +164,7 @@ gg_Manhattan <- function (
       filter(SNP %in% vlines) %>%
       filter(!duplicated(SNP)) %>%
       mutate(SNP = factor(SNP, levels = vlines)) %>%
-      select(SNP, Chr, Pos)
+      dplyr::select(SNP, Chr, Pos)
     mp1 <- mp1 +
       geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP, lty = SNP), alpha = 0.7)
   }

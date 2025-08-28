@@ -34,7 +34,7 @@ table_GWAS_Results_Summary <- function(xx, onlySig = F, binMarkers = F, binSize 
                max_negLog10_HBP = -log10(min_HBP) )
       #
       x1 <- x1 %>%
-        select(SNP, Chr, Pos, Hits, MAF,
+        dplyr::select(SNP, Chr, Pos, Hits, MAF,
                max_negLog10_P, min_negLog10_P,
                Models, Traits,
                max_negLog10_HBP, min_negLog10_HBP,
@@ -65,7 +65,7 @@ table_GWAS_Results_Summary <- function(xx, onlySig = F, binMarkers = F, binSize 
                max_negLog10_HBP = -log10(min_HBP) )
       #
       x1 <- x1 %>%
-        select(SNP, Chr, Pos, Hits, MAF,
+        dplyr::select(SNP, Chr, Pos, Hits, MAF,
                max_negLog10_P, min_negLog10_P,
                Models, Traits,
                max_negLog10_HBP, min_negLog10_HBP,

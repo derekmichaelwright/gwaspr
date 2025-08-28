@@ -60,7 +60,7 @@ gg_NYCvsKansas <- function (
     sky <- substr(i, gregexpr("\\(", i)[[1]][1] + 1, gregexpr("\\)", i)[[1]][1] - 1)
     #
     xi <- read.csv(paste0(folder, i))
-    if (sum(colnames(xi) == "nobs") > 0) { xi <- select(xi, -nobs) }
+    if (sum(colnames(xi) == "nobs") > 0) { xi <- dplyr::select(xi, -nobs) }
     if (sum(colnames(xi) == "effect") > 0) { xi <- rename(xi, Effect=effect) }
     xi <- xi %>%
       mutate(Model = mod,
@@ -133,7 +133,7 @@ gg_NYCvsKansas <- function (
       filter(SNP %in% vlines) %>%
       filter(!duplicated(SNP)) %>%
       mutate(SNP = factor(SNP, levels = vlines)) %>%
-      select(SNP, Chr, Pos)
+      dplyr::select(SNP, Chr, Pos)
     mp1 <- mp1 +
       geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP, lty = SNP), alpha = 0.7)
   }

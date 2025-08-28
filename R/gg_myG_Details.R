@@ -10,7 +10,7 @@
 gg_myG_Details <- function(filename, myPrefix = "", filetype = "csv") {
   #
   dna <- data.frame(stringsAsFactors = F,
-                    Symbol = c("A", "C", "G", "T", "U", 
+                    Symbol = c("A", "C", "G", "T", "U",
                                "R", "Y", "S", "W", "K", "M", "N"),
                     Value  = c("AA","CC","GG","TT","UU",
                                "AG","CT","GC","AT","GT","AC","NN") )
@@ -18,8 +18,8 @@ gg_myG_Details <- function(filename, myPrefix = "", filetype = "csv") {
   if(filetype == "csv") { xx <- read.csv(filename, header = T) }
   if(filetype == "txt") { xx <- read.table(filename, header = T) }
   #
-  #if(nchar(xx[2,12]) > 1) { 
-  for(i in 12:ncol(xx)) { xx[,i] <- suppressMessages(plyr::mapvalues(xx[,i], dna$Value, dna$Symbol)) } 
+  #if(nchar(xx[2,12]) > 1) {
+  for(i in 12:ncol(xx)) { xx[,i] <- suppressMessages(plyr::mapvalues(xx[,i], dna$Value, dna$Symbol)) }
   #}
   #
   xNames <- colnames(xx)[12:ncol(xx)]
@@ -65,8 +65,8 @@ gg_myG_Details <- function(filename, myPrefix = "", filetype = "csv") {
            MAF = (numMinors*2 + numHet) / (numMinors*2 + numMajor*2 + numHet*2),
            MCF = numN / (numHet + numHomo + numN) )
   xg <- xx %>%
-    select(-xNames, -strand, -assembly, -center, -protLSID, -assayLSID, -panel, -QCcode) %>%
-    select(rs, chrom, pos, alleles, Major, Minors, everything())
+    dplyr::select(-xNames, -strand, -assembly, -center, -protLSID, -assayLSID, -panel, -QCcode) %>%
+    dplyr::select(rs, chrom, pos, alleles, Major, Minors, everything())
   #
   write.csv(xg, paste0(myPrefix, "_01_myG_Markers.csv"), row.names = F)
   # Plot

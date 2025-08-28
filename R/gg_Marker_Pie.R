@@ -16,31 +16,31 @@ gg_Marker_Pie <- function (
     myncol = NULL,
     markers,
     marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
-                      "darkslategray", "maroon4", "purple4", "darkblue") 
+                      "darkslategray", "maroon4", "purple4", "darkblue")
     ) {
  #
  title <- paste(markers, collapse = "\n")
  #
- xY <- xY %>% select(1, myTrait=trait)
+ xY <- xY %>% dplyr::select(1, myTrait=trait)
  xx <- xG %>% rename(SNP=1) %>%
    filter(SNP %in% markers) %>%
-   select(-2,-3,-4,-5,-6,-7,-8,-9,-10,-11) %>%
+   dplyr::select(-2,-3,-4,-5,-6,-7,-8,-9,-10,-11) %>%
    column_to_rownames("SNP") %>%
-   t() %>% as.data.frame() %>% 
+   t() %>% as.data.frame() %>%
    mutate(Alleles = NA)
  for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] }
  #
  for(i in 1:nrow(xx)) { xx$Alleles[i] <- paste(xx[i,1:length(markers)], collapse = "-") }
  #
- xx <- xx %>% 
+ xx <- xx %>%
    rownames_to_column("Name") %>%
    left_join(xY, by = "Name") %>%
-   filter(!is.na(myTrait)) %>% 
-   group_by(Alleles) %>% 
+   filter(!is.na(myTrait)) %>%
+   group_by(Alleles) %>%
    mutate(AlleleCount = n()) %>%
    group_by(Alleles, myTrait) %>%
    mutate(TraitCount = n(),
-          myTrait = factor(myTrait)) %>% 
+          myTrait = factor(myTrait)) %>%
    ungroup() %>%
    mutate(Percent = 100* TraitCount / AlleleCount) %>%
    filter(!duplicated(paste(Alleles, myTrait, TraitCount, AlleleCount, Percent)))
@@ -58,5 +58,5 @@ gg_Marker_Pie <- function (
 
 #xG = myG; xY = myY;  markers = myMarkers[1]
 #trait = "Disease.Score_Ba16"
-#marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4", "darkslategray", "maroon4", "purple4", "darkblue") 
+#marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4", "darkslategray", "maroon4", "purple4", "darkblue")
 #line.color=F; myncol = NULL; plot.histogram = T; plot.density = T
