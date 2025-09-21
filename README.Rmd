@@ -258,9 +258,47 @@ ggsave("man/figures/GWAS_Summary_01.png", mp, width = 12, height = 4)
 
 Make it an interactive plot with the following code
 
-```{r eval = F, echo = F}
+
+```{r, eval = F}
 gg_plotly(mp, filename = "man/figures/GWAS_Summary.html")
-plotly::ggplotly(mp)
+```
+
+---
+
+## gg_Marker_*
+
+```{r}
+myG <- read.csv("myG_hmp.csv")
+myY <- read.csv("myY.csv")
+```
+
+## gg_Marker_Box()
+
+```{r}
+gg_Marker_Box(xG = myG, xY = myY,
+    traits = "DTF_Nepal_2017",
+    markers = c("Lcu.1GRN.Chr2p44545877", "Lcu.1GRN.Chr5p1658484"),
+    plot.violin = T,
+    plot.points = T,
+    box.width = 0.1,
+    point.size = 1,
+    myncol = NULL
+    )
+```
+
+## gg_Marker_Box()
+
+```{r}
+# 
+gg_Marker_Bar(xG = myG, xY = myY,
+              traits = "",
+              markers = "",
+              plot.histogram = T,
+              plot.density = T,
+              plot.counts = F,
+              myncol = NULL,
+              line.color = F
+              )
 ```
 
 ---

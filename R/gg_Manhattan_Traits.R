@@ -39,7 +39,7 @@ gg_Manhattan_Traits <- function (
     addQQ = T,
     pmax = NULL,
     models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
-    trait.colors = c("darkgreen","darkred", "darkorange3","steelblue", "darkorchid4", "burlywood4", "darkseagreen4"),
+    trait.colors = gwaspr_Colors,
     chrom.unit = "100 Mbp",
     legend.rows = 1,
     plotHBPvalues = F,
@@ -49,8 +49,8 @@ gg_Manhattan_Traits <- function (
   # Read in files
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste(models, collapse="|"), fnames)]
-  fnames <- fnames[grepl(paste(c(paste0(traits, ".csv"), paste0(traits, "\\(")), collapse="|"), fnames)]
+  fnames <- fnames[grepl(paste0(models, ".", trait, collapse="|"), fnames)]
+  fnames <- fnames[grepl(paste0(trait, c(".csv","\\("), collapse="|"), fnames)]
   #
   if(!is.null(skyline)) {
     if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
@@ -154,12 +154,15 @@ gg_Manhattan_Traits <- function (
   #
   # Add threshold lines
   #
+  if(is.null(pmax)) { pmax <- max(xx$negLog10_P) }
   mp1 <- mp1 +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
-    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)
+    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5) +
+    scale_y_continuous(limits = c(pmin, pmax), expand = c(0,0.2))
   mp2 <- mp2 +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
-    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)
+    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5) +
+    scale_y_continuous(limits = c(pmin, pmax), expand = c(0,0.2))
   #
   # Add Marker labels
   #

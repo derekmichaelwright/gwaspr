@@ -13,6 +13,6 @@ list_Traits <- function(folder = "GWAS_Results/") {
                  "", fnames)
   fnames <- gsub(".GWAS.Results|Association.GWAS_Results.|\\(Kansas\\)|\\(NYC\\)|.csv",
                  "", fnames)
-  #fnames
+  #
   unique(fnames)
 }

@@ -82,7 +82,6 @@ table_GWAS_Results_Summary <- function(xx, onlySig = F, binMarkers = F, binSize 
 
 #folder = "GWAS_Results/"; fnames = list_Result_Files(folder); nrowstoread = 1000
 #threshold = 6; sug.threshold = NULL
-
 #xx <- table_GWAS_Results("GWAS_Results/", threshold = 6.8, sug.threshold = 5)
 #yy<-xx
 #xx<-yy

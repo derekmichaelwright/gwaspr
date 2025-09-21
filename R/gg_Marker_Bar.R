@@ -1,4 +1,4 @@
-#' gg_Marker
+#' gg_Marker_Bar
 #'
 #' Creates a marker plot with myG and myY objects.
 #' @param xG GWAS genotype object. Note:  needs to be in hapmap format.
@@ -9,7 +9,7 @@
 #' @param plot.histogram Logical, if true will plot histogram bars.
 #' @param plot.density Logical, if true will plot density bands.
 #' @param plot.counts Logical, if true will make a plot of counts, if false will make a density plot.
-#' @param myncol number of columns for facetting.
+#' @param myncol Number of columns for facetting when plotting multiple traits.
 #' @return Marker plot.
 #' @export
 
@@ -18,13 +18,13 @@ gg_Marker_Bar <- function (
     xY,
     traits,
     markers,
-    marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
-                      "darkslategray", "maroon4", "purple4", "darkblue"),
+    marker.colors = gwaspr_Colors,
     plot.histogram = T,
     plot.density = T,
     plot.counts = F,
     myncol = NULL,
-    line.color = F) {
+    line.color = F
+    ) {
   #
   title <- paste(markers, collapse = "\n")
   #
@@ -60,9 +60,7 @@ gg_Marker_Bar <- function (
   mp <- mp +
     facet_wrap(Trait ~ ., scales = "free", ncol = myncol) +
     scale_fill_manual(name = NULL, values = marker.colors) +
-    theme_gwaspr_col(legend.position = "bottom"#,
-                     #axis.text.y = element_blank(),
-                     #axis.ticks.y = element_blank()
+    theme_gwaspr_col(legend.position = "bottom"
                      ) +
     labs(title = title, x = NULL)
   mp
@@ -71,4 +69,4 @@ gg_Marker_Bar <- function (
 #xG = myG; xY = myY;  markers = myMarkers[1]
 #traits = c("Disease.Score_Ba16","Lodging.Score_Ba16", "Stem.Blight_Ba17", "Stem.Blight_Ba16")
 #marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4", "darkslategray", "maroon4", "purple4", "darkblue")
-#line.color=F; myncol = NULL; plot.histogram = T; plot.density = T
+#myncol = NULL; plot.histogram = T; plot.density = T

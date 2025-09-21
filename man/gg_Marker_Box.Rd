@@ -2,20 +2,19 @@
 % Please edit documentation in R/gg_Marker_Box.R
 \name{gg_Marker_Box}
 \alias{gg_Marker_Box}
-\title{gg_Marker}
+\title{gg_Marker_Box}
 \usage{
 gg_Marker_Box(
   xG,
   xY,
   traits,
-  myncol = NULL,
   markers,
+  marker.colors = gwaspr_Colors,
+  plot.violin = T,
+  plot.points = T,
   box.width = 0.1,
   point.size = 1,
-  points = T,
-  violin = T,
-  marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
-    "darkslategray", "maroon4", "purple4", "darkblue")
+  myncol = NULL
 )
 }
 \arguments{
@@ -27,15 +26,17 @@ gg_Marker_Box(
 
 \item{markers}{Markers to plot.}
 
-\item{box.width}{width for the boxplot.}
-
-\item{point.size}{size of points.}
-
-\item{points}{Logical, whether or not to plot points.}
-
-\item{violin}{Logical, whether or not to plot violin.}
-
 \item{marker.colors}{Color palette.}
+
+\item{plot.violin}{Logical, whether or not to plot violin.}
+
+\item{plot.points}{Logical, whether or not to plot points.}
+
+\item{box.width}{Width for the boxplot.}
+
+\item{point.size}{Size for the points.}
+
+\item{myncol}{Number of columns for facetting when plotting multiple traits.}
 }
 \value{
 Marker plot.

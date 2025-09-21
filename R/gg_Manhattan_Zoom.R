@@ -45,7 +45,7 @@ gg_Manhattan_Zoom <- function(
     vline.legend = T,
     pmax = NULL,
     models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
-    model.colors = c("darkgreen","darkred", "darkorange3","steelblue", "darkorchid4", "burlywood4", "darkseagreen4"),
+    model.colors = gwaspr_Colors,
     facet = F,
     highlight.sig = F,
     sig.color = "red",
@@ -57,7 +57,7 @@ gg_Manhattan_Zoom <- function(
   # Read in files
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste(models,collapse="|"),fnames)]
+  fnames <- fnames[grepl(paste0(models, ".", trait, collapse="|"), fnames)]
   fnames <- fnames[grepl(paste0(trait, c(".csv","\\("), collapse="|"), fnames)]
   #
   if(!is.null(skyline)) {
@@ -137,9 +137,11 @@ gg_Manhattan_Zoom <- function(
   #
   # Add threshold lines
   #
+  if(is.null(pmax)) { pmax <- max(xx$negLog10_P) }
   mp <- mp +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
-    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)
+    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5) +
+    scale_y_continuous(limits = c(pmin, pmax), expand = c(0,0.2))
   #
   # Plot the Rest
   #

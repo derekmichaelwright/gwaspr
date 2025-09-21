@@ -1,4 +1,4 @@
-#' gg_Marker
+#' gg_Marker_Pie
 #'
 #' Creates a marker plot with myG and myY objects.
 #' @param xG GWAS genotype object. Note:  needs to be in hapmap format.
@@ -13,10 +13,8 @@ gg_Marker_Pie <- function (
     xG,
     xY,
     trait,
-    myncol = NULL,
     markers,
-    marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
-                      "darkslategray", "maroon4", "purple4", "darkblue")
+    marker.colors = gwaspr_Colors
     ) {
  #
  title <- paste(markers, collapse = "\n")
@@ -56,7 +54,7 @@ gg_Marker_Pie <- function (
  mp
 }
 
-#xG = myG; xY = myY;  markers = myMarkers[1]
+#xG = myG; xY = myY;
 #trait = "Disease.Score_Ba16"
+#markers = myMarkers[1]
 #marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4", "darkslategray", "maroon4", "purple4", "darkblue")
-#line.color=F; myncol = NULL; plot.histogram = T; plot.density = T

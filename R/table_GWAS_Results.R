@@ -20,8 +20,6 @@ table_GWAS_Results <- function(
     skyline = NULL
     ) {
   #
-  #if(removeKansas == T) { fnames <- fnames[!grepl("Kansas", fnames)] }
-  #
   output <- NULL
   #
   for(i in fnames){

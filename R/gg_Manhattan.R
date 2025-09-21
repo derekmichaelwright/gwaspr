@@ -47,7 +47,7 @@ gg_Manhattan <- function (
     pmax = NULL,
     pmin = 0,
     models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
-    model.colors = c("darkgreen","darkred", "darkorange3","steelblue", "darkorchid4", "burlywood4", "darkseagreen4"),
+    model.colors = gwaspr_Colors,
     highlight.sig = F,
     sig.color = "darkred",
     chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
@@ -60,7 +60,7 @@ gg_Manhattan <- function (
   # Read in files
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste(models, collapse="|"), fnames)]
+  fnames <- fnames[grepl(paste0(models, ".", trait, collapse="|"), fnames)]
   fnames <- fnames[grepl(paste0(trait, c(".csv","\\("), collapse="|"), fnames)]
   #
   if(!is.null(skyline)) {
@@ -88,11 +88,6 @@ gg_Manhattan <- function (
     xx <- bind_rows(xx, xi)
   }
   #
-  #if(!is.null(skyline)) {
-  #  if(skyline == "NYC")    { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
-  #  if(skyline == "Kansas") { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
-  #}
-  # if(is.null(skyline))
   xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model)))
   #
   # Prep data
@@ -171,12 +166,15 @@ gg_Manhattan <- function (
   #
   # Add threshold lines
   #
+  if(is.null(pmax)) { pmax <- max(xx$negLog10_P) }
   mp1 <- mp1 +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
-    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)
+    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5) +
+    scale_y_continuous(limits = c(pmin, pmax), expand = c(0,0.2))
   mp2 <- mp2 +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
-    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)
+    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)  +
+    scale_y_continuous(limits = c(pmin, pmax), expand = c(0,0.2))
   #
   # Add Marker labels
   #
@@ -262,11 +260,11 @@ gg_Manhattan <- function (
   mp
 }
 
-#folder = "GWAS_Results/"; trait = list_Traits(folder)[3]; title = trait; threshold = NULL; sug.threshold = NULL
+#folder = "GWAS_Results/"; trait = "DTF_Sask_2017"; title = trait; threshold = NULL; sug.threshold = NULL
 #chrom = NULL; markers = NULL; labels = markers
 #vlines = markers; vline.colors = rep("red", length(vlines)); vline.types = rep(1, length(vlines)); vline.legend = T
-#facet = F; addQQ = T; pmax = NULL;
-#models = c("MLM","FarmCPU")#c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
+#facet = F; addQQ = T; pmax = NULL; pmin = 0
+#models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")#c("MLM")#
 #models = "BLINK"
 #model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4")
 #highlight.sig = F; sig.color = "darkred"; chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30)

@@ -35,7 +35,7 @@ gg_GWAS_Summary <- function(
     sug.threshold = round(-log10(0.000005),1),
     chroms = NULL, pos1 = NULL, pos2 = NULL,
     models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
-    model.colors = c("darkgreen","darkred", "darkorange3","steelblue", "darkorchid4", "burlywood4", "darkseagreen4"),
+    model.colors = gwaspr_Colors,
     shapes = 21:25,
     hlines = NULL,
     vlines = NULL,

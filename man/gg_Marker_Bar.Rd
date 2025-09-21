@@ -2,15 +2,14 @@
 % Please edit documentation in R/gg_Marker_Bar.R
 \name{gg_Marker_Bar}
 \alias{gg_Marker_Bar}
-\title{gg_Marker}
+\title{gg_Marker_Bar}
 \usage{
 gg_Marker_Bar(
   xG,
   xY,
   traits,
   markers,
-  marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
-    "darkslategray", "maroon4", "purple4", "darkblue"),
+  marker.colors = gwaspr_Colors,
   plot.histogram = T,
   plot.density = T,
   plot.counts = F,
@@ -35,7 +34,7 @@ gg_Marker_Bar(
 
 \item{plot.counts}{Logical, if true will make a plot of counts, if false will make a density plot.}
 
-\item{myncol}{number of columns for facetting.}
+\item{myncol}{Number of columns for facetting when plotting multiple traits.}
 }
 \value{
 Marker plot.

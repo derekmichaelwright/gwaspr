@@ -2,17 +2,9 @@
 % Please edit documentation in R/gg_Marker_Pie.R
 \name{gg_Marker_Pie}
 \alias{gg_Marker_Pie}
-\title{gg_Marker}
+\title{gg_Marker_Pie}
 \usage{
-gg_Marker_Pie(
-  xG,
-  xY,
-  trait,
-  myncol = NULL,
-  markers,
-  marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4",
-    "darkslategray", "maroon4", "purple4", "darkblue")
-)
+gg_Marker_Pie(xG, xY, trait, markers, marker.colors = gwaspr_Colors)
 }
 \arguments{
 \item{xG}{GWAS genotype object. Note:  needs to be in hapmap format.}

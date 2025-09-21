@@ -24,7 +24,7 @@ gg_GWAS_Hits <- function(
     title = "",
     sigMin = 0,
     models =  c("BLINK", "FarmCPU", "MLMM", "MLM", "GLM", "CMLM", "SUPER"),
-    model.colors = c("steelblue", "darkorange3", "darkred", "darkgreen", "darkorchid4", "burlywood4", "darkseagreen4"),
+    model.colors = gwaspr_Colors,
     model.shapes = c(21:25,21:22),
     vlines = NULL,
     vline.colors = rep("red", length(vlines)),
