@@ -81,7 +81,7 @@ myResults[1:10,]
 ## table_GWAS_Results_Summary()
 
 ```{r}
-mySummary <- table_GWAS_Results_Summary(folder = "GWAS_Results/")
+mySummary <- table_GWAS_Results_Summary(myResults)
 mySummary
 ```
 
@@ -267,14 +267,14 @@ gg_plotly(mp, filename = "man/figures/GWAS_Summary.html")
 
 ## gg_Marker_*
 
-```{r}
+```{r eval = F}
 myG <- read.csv("myG_hmp.csv")
 myY <- read.csv("myY.csv")
 ```
 
 ## gg_Marker_Box()
 
-```{r}
+```{r eval = F}
 gg_Marker_Box(xG = myG, xY = myY,
     traits = "DTF_Nepal_2017",
     markers = c("Lcu.1GRN.Chr2p44545877", "Lcu.1GRN.Chr5p1658484"),
@@ -288,14 +288,14 @@ gg_Marker_Box(xG = myG, xY = myY,
 
 ## gg_Marker_Box()
 
-```{r}
+```{r eval = F}
 # 
 gg_Marker_Bar(xG = myG, xY = myY,
-              traits = "",
-              markers = "",
+              traits = "CotyledonColor",
+              markers = "Lcu.1GRN.Chr1p365986872",
               plot.histogram = T,
-              plot.density = T,
-              plot.counts = F,
+              plot.density = F,
+              plot.counts = T,
               myncol = NULL,
               line.color = F
               )

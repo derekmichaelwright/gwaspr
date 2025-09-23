@@ -19,6 +19,7 @@ gg_Manhattan_Traits(
   vline.legend = F,
   addQQ = T,
   pmax = NULL,
+  pmin = 0,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
   trait.colors = gwaspr_Colors,
   chrom.unit = "100 Mbp",
@@ -55,6 +56,8 @@ gg_Manhattan_Traits(
 \item{addQQ}{Logical, whether or not to add a QQ plot.}
 
 \item{pmax}{A max value for the y-axis.}
+
+\item{pmin}{A min Value for plotting. Markers with lower values will be removed.}
 
 \item{models}{Model to read.}
 

@@ -15,6 +15,7 @@
 #' @param vline.legend Logical, whether or not to add a legend for the vlines.
 #' @param addQQ Logical, whether or not to add a QQ plot.
 #' @param pmax A max value for the y-axis.
+#' @param pmin A min Value for plotting. Markers with lower values will be removed.
 #' @param models Model to read.
 #' @param trait.colors Colors for each trait.
 #' @param chrom.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
@@ -38,6 +39,7 @@ gg_Manhattan_Traits <- function (
     vline.legend = F,
     addQQ = T,
     pmax = NULL,
+    pmin = 0,
     models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
     trait.colors = gwaspr_Colors,
     chrom.unit = "100 Mbp",
@@ -49,8 +51,8 @@ gg_Manhattan_Traits <- function (
   # Read in files
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste0(models, ".", trait, collapse="|"), fnames)]
-  fnames <- fnames[grepl(paste0(trait, c(".csv","\\("), collapse="|"), fnames)]
+  fnames <- fnames[grepl(paste0(rep(models, each = length(traits)), ".", traits, collapse="|"), fnames)]
+  fnames <- fnames[grepl(paste0(rep(traits, each = 2), c(".csv","\\("), collapse="|"), fnames)]
   #
   if(!is.null(skyline)) {
     if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
@@ -129,6 +131,7 @@ gg_Manhattan_Traits <- function (
   #
   myBreaks <- 0:(round(max(xx$Pos)/x.unit))
   ylabel <- ifelse(plotHBPvalues == T, "-log<sub>10</sub>(*HBp*)", "-log<sub>10</sub>(*p*)")
+  xx <- xx %>% filter(Pvalue >= pmin)
   #
   # Start Plots
   #
@@ -158,11 +161,11 @@ gg_Manhattan_Traits <- function (
   mp1 <- mp1 +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
     geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5) +
-    scale_y_continuous(limits = c(pmin, pmax), expand = c(0,0.2))
+    scale_y_continuous(limits = c(pmin, (pmax+pmax*0.03)), expand = c(0,0))
   mp2 <- mp2 +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
     geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5) +
-    scale_y_continuous(limits = c(pmin, pmax), expand = c(0,0.2))
+    scale_y_continuous(limits = c(pmin, (pmax+pmax*0.03)), expand = c(0,0))
   #
   # Add Marker labels
   #
@@ -218,7 +221,7 @@ gg_Manhattan_Traits <- function (
 #chrom = NULL;
 #markers = "Lcu.1GRN.Chr1p352153929"; labels = "352"; vlines = markers;
 #vline.colors = rep("red", length(vlines)); vline.types = rep(1, length(vlines)); vline.legend = F;
-#addQQ = T; pmax = NULL; models = "MLM";
+#addQQ = T; pmax = NULL; pmin = 0; models = "MLM";
 #highlight.sig = F; sig.col = "darkred";
 #models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER")
 #trait.colors = c("darkgreen","darkred", "darkorange3","steelblue", "darkorchid4", "burlywood4", "darkseagreen4")
