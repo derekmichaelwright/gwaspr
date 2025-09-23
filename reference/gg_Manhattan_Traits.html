@@ -52,6 +52,7 @@
 <span>  vline.legend <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  addQQ <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  pmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pmin <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"GLM"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span>,</span>
 <span>  trait.colors <span class="op">=</span> <span class="va">gwaspr_Colors</span>,</span>
 <span>  chrom.unit <span class="op">=</span> <span class="st">"100 Mbp"</span>,</span>
@@ -119,6 +120,10 @@
 
 <dt id="arg-pmax">pmax<a class="anchor" aria-label="anchor" href="#arg-pmax"></a></dt>
 <dd><p>A max value for the y-axis.</p></dd>
+
+
+<dt id="arg-pmin">pmin<a class="anchor" aria-label="anchor" href="#arg-pmin"></a></dt>
+<dd><p>A min Value for plotting. Markers with lower values will be removed.</p></dd>
 
 
 <dt id="arg-models">models<a class="anchor" aria-label="anchor" href="#arg-models"></a></dt>
