@@ -10,6 +10,9 @@ knitr::opts_chunk$set(echo = T, message = F, warning = F)
 
 `gwaspr`: an `R` package for plotting GWAS results from the `GAPIT` package
 
+> - **GAPIT Website**: [https://www.maizegenetics.net/gapit](https://www.maizegenetics.net/gapit){target="_blank"}
+> - **GAPIT github**: [https://github.com/jiabowang/GAPIT](https://github.com/jiabowang/GAPIT){target="_blank"}
+
 # Installation
 
 ```{r eval = F}
@@ -24,7 +27,7 @@ library(gwaspr)
 
 # GWAS Tutorial
 
-https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial
+> [https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial](https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial){target="_blank"}
 
 # Usage
 
@@ -35,7 +38,7 @@ For best practice, output from GAPIT should be in its own folder. In this case, 
 - **DTF_Sask_2017**: a *quantitative* trait describing days from sowing to flowering in a 2017 Saskatchewan field trial. 
 - **DTF_Sask_2017_b**: same as above but run with the *b* coefficient from a photothermal model (see [Wright *et al*. 2020](https://doi.org/10.1002/ppp3.10158)) used as a covariate. 
 
-Note: for more info check out this [GWAS tutorial](https://derekmichaelwright.github.io/dblogr/academic/gwaspr_tutorial).
+Note: for more info check out this [GWAS tutorial](https://derekmichaelwright.github.io/dblogr/academic/gwaspr_tutorial){target="_blank"}.
 
 # gwaspr Functions
 
@@ -82,7 +85,7 @@ myResults[1:10,]
 
 ```{r}
 mySummary <- table_GWAS_Results_Summary(myResults)
-mySummary
+mySummary[1:10,]
 ```
 
 ## list_Top_Markers()

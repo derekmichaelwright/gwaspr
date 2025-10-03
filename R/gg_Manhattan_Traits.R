@@ -83,7 +83,8 @@ gg_Manhattan_Traits <- function (
     xx <- bind_rows(xx, xi)
   }
   #
-  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, Trait)))
+  xx <- xx %>% filter(is.finite(P.value)) %>%
+    arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, Trait)))
   #
   # Prep data
   #
@@ -129,6 +130,14 @@ gg_Manhattan_Traits <- function (
     x2 <- x2 %>% filter(Chr %in% chrom)
   }
   #
+  if(!is.null(vlines)) {
+    vv <- xx %>%
+      filter(SNP %in% vlines) %>%
+      filter(!duplicated(SNP)) %>%
+      mutate(SNP = factor(SNP, levels = vlines)) %>%
+      dplyr::select(SNP, Chr, Pos)
+  }
+  #
   myBreaks <- 0:(round(max(xx$Pos)/x.unit))
   ylabel <- ifelse(plotHBPvalues == T, "-log<sub>10</sub>(*HBp*)", "-log<sub>10</sub>(*p*)")
   xx <- xx %>% filter(Pvalue >= pmin)
@@ -146,11 +155,6 @@ gg_Manhattan_Traits <- function (
   # Add vlines
   #
   if(!is.null(vlines)) {
-    vv <- xx %>%
-      filter(SNP %in% vlines) %>%
-      filter(!duplicated(SNP)) %>%
-      mutate(SNP = factor(SNP, levels = vlines)) %>%
-      dplyr::select(SNP, Chr, Pos)
     mp1 <- mp1 +
       geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP, lty = SNP), alpha = 0.7)
   }
@@ -191,8 +195,8 @@ gg_Manhattan_Traits <- function (
   # Plot facetted by model
   #
   mp1 <- mp1 +
-    geom_point(aes(fill = Trait, size = Sig.level), pch = 21, color = alpha("white", 0)) +
-    facet_grid(Model ~ Chr, scales = "free", space = "free_x") +
+    geom_point(aes(fill = Model, size = Sig.level), pch = 21, color = alpha("white", 0)) +
+    facet_grid(Trait ~ Chr, scales = "free", space = "free_x") +
     scale_fill_manual(name = NULL, values = alpha(trait.colors, 0.7)) +
     scale_size_manual(name = NULL, values = c(1.25,0.75,0.4), guide = "none") +
     scale_x_continuous(breaks = myBreaks, minor_breaks = myBreaks) +

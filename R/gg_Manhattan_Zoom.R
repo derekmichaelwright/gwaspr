@@ -80,7 +80,8 @@ gg_Manhattan_Zoom <- function(
     xx <- bind_rows(xx, xi)
   }
   #
-  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model)))
+  xx <- xx %>% filter(is.finite(P.value)) %>%
+    arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model)))
   #
   # Prep data
   #

@@ -88,7 +88,8 @@ gg_Manhattan <- function (
     xx <- bind_rows(xx, xi)
   }
   #
-  xx <- xx %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model)))
+  xx <- xx %>% filter(is.finite(P.value)) %>%
+    arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model)))
   #
   # Prep data
   #
@@ -138,6 +139,14 @@ gg_Manhattan <- function (
     x2 <- x2 %>% filter(Chr %in% chrom)
   }
   #
+  if(!is.null(vlines)) {
+    vv <- xx %>%
+      filter(SNP %in% vlines) %>%
+      filter(!duplicated(SNP)) %>%
+      mutate(SNP = factor(SNP, levels = vlines)) %>%
+      dplyr::select(SNP, Chr, Pos)
+  }
+  #
   myBreaks <- 0:(round(max(xx$Pos)/x.unit))
   ylabel <- ifelse(plotHBPvalues == T, "-log<sub>10</sub>(*HBp*)", "-log<sub>10</sub>(*p*)")
   xx <- xx %>% filter(Pvalue >= pmin)
@@ -155,11 +164,6 @@ gg_Manhattan <- function (
   # Add vlines
   #
   if(!is.null(vlines)) {
-    vv <- xx %>%
-      filter(SNP %in% vlines) %>%
-      filter(!duplicated(SNP)) %>%
-      mutate(SNP = factor(SNP, levels = vlines)) %>%
-      dplyr::select(SNP, Chr, Pos)
     mp1 <- mp1 +
       geom_vline(data = vv, aes(xintercept = Pos/x.unit, color = SNP, lty = SNP), alpha = 0.7)
   }
