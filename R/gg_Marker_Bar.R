@@ -10,6 +10,7 @@
 #' @param plot.density Logical, if true will plot density bands.
 #' @param plot.counts Logical, if true will make a plot of counts, if false will make a density plot.
 #' @param myncol Number of columns for facetting when plotting multiple traits.
+#' @param title Title for the plot.
 #' @return Marker plot.
 #' @export
 
@@ -23,10 +24,11 @@ gg_Marker_Bar <- function (
     plot.density = T,
     plot.counts = F,
     myncol = NULL,
-    line.color = F
+    line.color = F,
+    title = NULL
     ) {
   #
-  title <- paste(markers, collapse = "\n")
+  myLab <- paste(markers, collapse = "\n")
   #
   xY <- xY %>% dplyr::select(1, traits) %>%
     gather(Trait, Value, traits)
@@ -35,7 +37,9 @@ gg_Marker_Bar <- function (
     filter(SNP %in% markers) %>%
     dplyr::select(-2,-3,-4,-5,-6,-7,-8,-9,-10,-11) %>%
     column_to_rownames("SNP") %>%
-    t() %>% as.data.frame() %>% mutate(Alleles = NA)
+    t() %>% as.data.frame() %>%
+    select(markers) %>%
+    mutate(Alleles = NA)
   #
   for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] }
   #
@@ -45,24 +49,35 @@ gg_Marker_Bar <- function (
     left_join(xY, by = "Name") %>%
     filter(!is.na(Value))
   #
-  yy <- xx %>% filter(Trait == traits[1]) %>%
-    group_by(Alleles) %>%
-    summarise(Value = mean(Value, na.rm = T)) %>%
-    arrange(Value)
-  xx <- xx %>%
-    mutate(Alleles = factor(Alleles, levels = rev(yy$Alleles)),
-           Trait = factor(Trait, levels = traits))
-  # Plot
-  if(plot.counts == F) { mp <- ggplot(xx, aes(x = Value, y=after_stat(density), fill = Alleles)) }
-  if(plot.counts == T) { mp <- ggplot(xx, aes(x = Value, y=after_stat(count), fill = Alleles)) }
-  if(plot.density == T) { mp <- mp + geom_density(alpha = 0.5, color = line.color) }
-  if(plot.histogram == T) { mp <- mp + geom_histogram(position = "dodge", alpha = 0.5, color = line.color) }
-  mp <- mp +
-    facet_wrap(Trait ~ ., scales = "free", ncol = myncol) +
-    scale_fill_manual(name = NULL, values = marker.colors) +
-    theme_gwaspr_col(legend.position = "bottom"
-                     ) +
-    labs(title = title, x = NULL)
+  if(is.numeric(xx$Value)) {
+    yy <- xx %>% filter(Trait == traits[1]) %>%
+      group_by(Alleles) %>%
+      summarise(Value = mean(Value, na.rm = T)) %>%
+      arrange(Value)
+    xx <- xx %>%
+      mutate(Alleles = factor(Alleles, levels = rev(yy$Alleles)),
+             Trait = factor(Trait, levels = traits))
+    # Plot
+    if(plot.counts == F) { mp <- ggplot(xx, aes(x = Value, y=after_stat(density), fill = Alleles)) }
+    if(plot.counts == T) { mp <- ggplot(xx, aes(x = Value, y=after_stat(count), fill = Alleles)) }
+    if(plot.density == T) { mp <- mp + geom_density(alpha = 0.5, color = line.color) }
+    if(plot.histogram == T) { mp <- mp + geom_histogram(position = "dodge", alpha = 0.5, color = line.color) }
+    mp <- mp +
+      facet_wrap(Trait ~ ., scales = "free", ncol = myncol) +
+      scale_fill_manual(name = NULL, values = marker.colors) +
+      theme_gwaspr_col(legend.position = "bottom") +
+      labs(title = title, x = NULL)
+
+  } else {
+    xx <- xx %>% mutate(Value = factor(Value))
+    # Plot
+    mp <- ggplot(xx, aes(x = Value, fill = Alleles)) +
+      geom_bar(position = "dodge", alpha = 0.5, color = line.color) +
+      facet_wrap(Trait ~ ., scales = "free", ncol = myncol) +
+      scale_fill_manual(name = NULL, values = marker.colors) +
+      theme_gwaspr_col(legend.position = "bottom") +
+      labs(title = title, x = myLab)
+  }
   mp
 }
 

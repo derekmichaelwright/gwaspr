@@ -4,7 +4,14 @@
 \alias{gg_Marker_Pie}
 \title{gg_Marker_Pie}
 \usage{
-gg_Marker_Pie(xG, xY, trait, markers, marker.colors = gwaspr_Colors)
+gg_Marker_Pie(
+  xG,
+  xY,
+  trait,
+  markers,
+  marker.colors = gwaspr_Colors,
+  title = NULL
+)
 }
 \arguments{
 \item{xG}{GWAS genotype object. Note:  needs to be in hapmap format.}
@@ -16,6 +23,8 @@ gg_Marker_Pie(xG, xY, trait, markers, marker.colors = gwaspr_Colors)
 \item{markers}{Markers to plot.}
 
 \item{marker.colors}{Color palette.}
+
+\item{title}{Title for the plot.}
 }
 \value{
 Marker plot.

@@ -14,7 +14,8 @@ gg_Marker_Box(
   plot.points = T,
   box.width = 0.1,
   point.size = 1,
-  myncol = NULL
+  myncol = NULL,
+  title = NULL
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ gg_Marker_Box(
 \item{point.size}{Size for the points.}
 
 \item{myncol}{Number of columns for facetting when plotting multiple traits.}
+
+\item{title}{Title for the plot.}
 }
 \value{
 Marker plot.

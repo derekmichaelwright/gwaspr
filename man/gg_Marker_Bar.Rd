@@ -14,7 +14,8 @@ gg_Marker_Bar(
   plot.density = T,
   plot.counts = F,
   myncol = NULL,
-  line.color = F
+  line.color = F,
+  title = NULL
 )
 }
 \arguments{
@@ -35,6 +36,8 @@ gg_Marker_Bar(
 \item{plot.counts}{Logical, if true will make a plot of counts, if false will make a density plot.}
 
 \item{myncol}{Number of columns for facetting when plotting multiple traits.}
+
+\item{title}{Title for the plot.}
 }
 \value{
 Marker plot.

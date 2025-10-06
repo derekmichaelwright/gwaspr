@@ -6,6 +6,7 @@
 #' @param trait Trait to plot.
 #' @param markers Markers to plot.
 #' @param marker.colors Color palette.
+#' @param title Title for the plot.
 #' @return Marker plot.
 #' @export
 
@@ -14,10 +15,11 @@ gg_Marker_Pie <- function (
     xY,
     trait,
     markers,
-    marker.colors = gwaspr_Colors
+    marker.colors = gwaspr_Colors,
+    title = NULL
     ) {
  #
- title <- paste(markers, collapse = "\n")
+ myLab <- paste(markers, collapse = "\n")
  #
  xY <- xY %>% dplyr::select(1, myTrait=trait)
  xx <- xG %>% rename(SNP=1) %>%
@@ -25,6 +27,7 @@ gg_Marker_Pie <- function (
    dplyr::select(-2,-3,-4,-5,-6,-7,-8,-9,-10,-11) %>%
    column_to_rownames("SNP") %>%
    t() %>% as.data.frame() %>%
+   select(markers) %>%
    mutate(Alleles = NA)
  for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] }
  #
@@ -50,7 +53,7 @@ gg_Marker_Pie <- function (
    facet_grid(. ~ paste0(Alleles,"\nn = ", AlleleCount), scales = "free") +
    scale_fill_manual(name = NULL, values = marker.colors) +
    theme_gwaspr_pie(legend.position = "bottom") +
-   labs(title = title, y = NULL, x = NULL)
+   labs(title = title, y = NULL, x = myLab)
  mp
 }
 

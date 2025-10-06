@@ -12,6 +12,7 @@
 #' @param box.width Width for the boxplot.
 #' @param point.size Size for the points.
 #' @param myncol Number of columns for facetting when plotting multiple traits.
+#' @param title Title for the plot.
 #' @return Marker plot.
 #' @export
 
@@ -25,10 +26,11 @@ gg_Marker_Box <- function (
     plot.points = T,
     box.width = 0.1,
     point.size = 1,
-    myncol = NULL
+    myncol = NULL,
+    title = NULL
     ) {
   #
-  title <- paste(markers, collapse = "\n")
+  myLab <- paste(markers, collapse = "\n")
   #
   xY <- xY %>% dplyr::select(1, traits) %>%
     gather(Trait, Value, traits)
@@ -37,7 +39,9 @@ gg_Marker_Box <- function (
     filter(SNP %in% markers) %>%
     dplyr::select(-2,-3,-4,-5,-6,-7,-8,-9,-10,-11) %>%
     column_to_rownames("SNP") %>%
-    t() %>% as.data.frame() %>% mutate(Alleles = NA)
+    t() %>% as.data.frame() %>%
+    select(markers) %>%
+    mutate(Alleles = NA)
   #
   for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] }
   #
@@ -63,7 +67,7 @@ gg_Marker_Box <- function (
     scale_fill_manual(name = NULL, values = marker.colors) +
     theme_gwaspr(legend.position = "none",
                  axis.text.x = element_text(angle = 45, hjust = 1) ) +
-    labs(title = title, y = NULL, x = NULL)
+    labs(title = title, x = myLab, y = NULL)
   if (plot.points == T) { mp <- mp + geom_quasirandom(size = point.size, alpha = 0.5, pch = 16) }
   mp
 }

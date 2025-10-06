@@ -49,7 +49,8 @@ list_Top_Markers <- function(
     xx$Models[i] <- paste(unique(xi$Model), collapse = "; ")
   }
   #
-  xx %>% arrange(desc(`-log10(p)`)) %>%
+  xx %>% filter(is.finite(P.value)) %>%
+    arrange(desc(`-log10(p)`)) %>%
     filter(!duplicated(SNP)) %>%
     select(SNP, Chr, Pos, Traits, Models, Max_LogP = `-log10(p)`)
 }
