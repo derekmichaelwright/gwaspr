@@ -12,7 +12,7 @@ gg_Marker_Bar(
   marker.colors = gwaspr_Colors,
   plot.histogram = T,
   plot.density = T,
-  plot.counts = F,
+  plot.counts = T,
   myncol = NULL,
   line.color = F,
   title = NULL

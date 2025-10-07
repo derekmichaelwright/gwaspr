@@ -300,7 +300,7 @@ mp <- gg_Marker_Box(xG = myG, xY = myY,
 ggsave("man/figures/gg_Marker_02.png", mp, width = 8, height = 4)
 ```
 
-```{r eval = F}
+```{r eval = F, echo = F}
 gg_Marker_Box(xG = myG, xY = myY,
                     traits = c("DTF_Nepal_2017", "DTF_Sask_2017"),
                     markers = c("Lcu.1GRN.Chr5p1658484")
@@ -309,7 +309,6 @@ gg_Marker_Box(xG = myG, xY = myY,
                     traits = c("DTF_Nepal_2017", "DTF_Sask_2017"),
                     markers = c("Lcu.1GRN.Chr2p44545877")
                     )
-
 ```
 
 ---
@@ -321,45 +320,39 @@ gg_Marker_Box(xG = myG, xY = myY,
 ```{r eval = F}
 mp <- gg_Marker_Bar(xG = myG, xY = myY,
                     traits = c("DTF_Nepal_2017", "DTF_Sask_2017"),
-                    markers = c("Lcu.1GRN.Chr2p44545877", "Lcu.1GRN.Chr5p1658484"),
-                    plot.counts = T
+                    markers = c("Lcu.1GRN.Chr2p44545877", "Lcu.1GRN.Chr5p1658484")
                     )
 ggsave("man/figures/gg_Marker_03.png", mp, width = 8, height = 4)
 ```
 
+---
 
-![](man/figures/gg_Marker_03.png)
+![](man/figures/gg_Marker_04.png)
 
 ```{r eval = F}
 # Plot 
 mp <- gg_Marker_Bar(xG = myG, xY = myY,
                     traits = "CotyledonColor",
                     markers = "Lcu.1GRN.Chr1p365986872",
-                    plot.histogram = T,
-                    plot.density = F,
-                    plot.counts = T,
-                    myncol = NULL,
-                    line.color = F
+                    plot.density = F
                     )
 # Save
-ggsave("man/figures/gg_Marker_03.png", mp, width = 6, height = 4)
+ggsave("man/figures/gg_Marker_04.png", mp, width = 6, height = 4)
 ```
 
-![](man/figures/gg_Marker_03.png)
+---
+
+![](man/figures/gg_Marker_05.png)
 
 ```{r eval = F}
 # Plot 
 mp <- gg_Marker_Bar(xG = myG, xY = myY,
                     traits = "CotyledonColor01",
                     markers = "Lcu.1GRN.Chr1p365986872",
-                    plot.histogram = T,
                     plot.density = F,
-                    plot.counts = T,
-                    myncol = NULL,
-                    line.color = F
                     )
 # Save
-ggsave("man/figures/gg_Marker_04.png", mp, width = 6, height = 4)
+ggsave("man/figures/gg_Marker_05.png", mp, width = 6, height = 4)
 ```
 
 ---

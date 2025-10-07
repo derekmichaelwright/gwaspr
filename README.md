@@ -464,7 +464,7 @@ myG <- read.csv("myG_hmp.csv")
 myY <- read.csv("myY.csv")
 ```
 
-## gg_Marker_Box()
+### gg_Marker_Box()
 
 ![](man/figures/gg_Marker_01.png)
 
@@ -472,11 +472,7 @@ myY <- read.csv("myY.csv")
 mp <- gg_Marker_Box(xG = myG, xY = myY,
                     traits = "DTF_Sask_2017",
                     markers = "Lcu.1GRN.Chr6p3269280",
-                    plot.violin = T,
-                    plot.points = T,
-                    box.width = 0.1,
-                    point.size = 1,
-                    myncol = NULL 
+                    plot.points = F
                     )
 ggsave("man/figures/gg_Marker_01.png", mp, width = 6, height = 4)
 ```
@@ -488,12 +484,7 @@ ggsave("man/figures/gg_Marker_01.png", mp, width = 6, height = 4)
 ``` r
 mp <- gg_Marker_Box(xG = myG, xY = myY,
                     traits = c("DTF_Nepal_2017", "DTF_Sask_2017"),
-                    markers = c("Lcu.1GRN.Chr2p44545877", "Lcu.1GRN.Chr5p1658484"),
-                    plot.violin = T,
-                    plot.points = T,
-                    box.width = 0.1,
-                    point.size = 1,
-                    myncol = NULL 
+                    markers = c("Lcu.1GRN.Chr5p1658484", "Lcu.1GRN.Chr2p44545877")
                     )
 ggsave("man/figures/gg_Marker_02.png", mp, width = 8, height = 4)
 ```
@@ -505,35 +496,41 @@ ggsave("man/figures/gg_Marker_02.png", mp, width = 8, height = 4)
 ![](man/figures/gg_Marker_03.png)
 
 ``` r
+mp <- gg_Marker_Bar(xG = myG, xY = myY,
+                    traits = c("DTF_Nepal_2017", "DTF_Sask_2017"),
+                    markers = c("Lcu.1GRN.Chr2p44545877", "Lcu.1GRN.Chr5p1658484")
+                    )
+ggsave("man/figures/gg_Marker_03.png", mp, width = 8, height = 4)
+```
+
+------------------------------------------------------------------------
+
+![](man/figures/gg_Marker_04.png)
+
+``` r
 # Plot 
 mp <- gg_Marker_Bar(xG = myG, xY = myY,
                     traits = "CotyledonColor",
                     markers = "Lcu.1GRN.Chr1p365986872",
-                    plot.histogram = T,
-                    plot.density = F,
-                    plot.counts = T,
-                    myncol = NULL,
-                    line.color = F
+                    plot.density = F
                     )
 # Save
-ggsave("man/figures/gg_Marker_03.png", mp, width = 6, height = 4)
+ggsave("man/figures/gg_Marker_04.png", mp, width = 6, height = 4)
 ```
 
-![](man/figures/gg_Marker_03.png)
+------------------------------------------------------------------------
+
+![](man/figures/gg_Marker_05.png)
 
 ``` r
 # Plot 
 mp <- gg_Marker_Bar(xG = myG, xY = myY,
                     traits = "CotyledonColor01",
                     markers = "Lcu.1GRN.Chr1p365986872",
-                    plot.histogram = T,
                     plot.density = F,
-                    plot.counts = T,
-                    myncol = NULL,
-                    line.color = F
                     )
 # Save
-ggsave("man/figures/gg_Marker_04.png", mp, width = 6, height = 4)
+ggsave("man/figures/gg_Marker_05.png", mp, width = 6, height = 4)
 ```
 
 ------------------------------------------------------------------------
