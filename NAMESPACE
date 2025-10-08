@@ -2,9 +2,11 @@
 
 export(calc_Threshold)
 export(checkNYCvsKansas)
+export(convert_IUPAC)
 export(dropNAcol)
 export(gg_GWAS_Hits)
 export(gg_GWAS_Summary)
+export(gg_LDheatmap)
 export(gg_Manhattan)
 export(gg_Manhattan_Traits)
 export(gg_Manhattan_Zoom)
