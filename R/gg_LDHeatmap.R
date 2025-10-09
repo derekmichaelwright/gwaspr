@@ -15,8 +15,8 @@
 gg_LDheatmap <- function(xg = myG, chr = 6, pos1 = 0, pos2 = 6000000,
                          myMs = NULL,
                          myTitle = NULL,
-                         axisTextSize = 0.5,
-                         nameTrim = NULL) {
+                         axisTextSize = NULL,
+                         nameTrim = NULL ) {
   #
   print("starting")
   myCaption <- paste(myMs, collapse = "|")
@@ -27,7 +27,10 @@ gg_LDheatmap <- function(xg = myG, chr = 6, pos1 = 0, pos2 = 6000000,
   if(!is.null(nameTrim) & !is.null(myMs)) { myMs <- gsub(nameTrim, "", myMs) }
   #
   xc <- xg %>% select(rs, chrom, pos)
-  xc <- xc %>% mutate(scaled_pos = scales::rescale(1:nrow(xc), to = c(min(xc$pos),max(xc$pos))) )
+  xc <- xc %>% mutate(scaled_pos = scales::rescale(1:nrow(xc), to = c(min(xc$pos),max(xc$pos))),
+                      rank = 1:nrow(xc))
+  myScale <- scales::rescale(c(pos1, xc$pos, pos2), to = c(1,nrow(xc)))
+  xc$scaled_rank <- myScale[c(-1,-length(myScale))]
   #
   dna <- data.frame(stringsAsFactors = F,
                     Symbol = c("A", "C", "G", "T", "U",
@@ -61,39 +64,45 @@ gg_LDheatmap <- function(xg = myG, chr = 6, pos1 = 0, pos2 = 6000000,
            SNP2_d = plyr::mapvalues(SNP2, xc$rs, xc$pos, warn_missing = F) ) %>%
     arrange(SNP1_d)
   #
-  myExpand <- nrow(xx) * 0.0000035
+  myLength <- pos2 - pos1
   xm <- data.frame(SNP1 = myMs, SNP2 = myMs)
   xl <- data.frame(SNP1 = xc$rs, SNP2 = xc$rs)
   #
   print("ploting results")
   mp2 <- ggplot(xx, aes(x = SNP1, y = SNP2)) +
     geom_tile(aes(fill = LD)) +
-    geom_point(data = xm, pch = 8) +
-    scale_fill_gradient(low = "grey90", high = "darkred") +
+    scale_fill_gradient2(low = "grey90", mid = "goldenrod1", high = "darkred", midpoint = 0.5) + #"grey90"
     scale_x_discrete(position = "top") +
-    theme_gwaspr(legend.position = "none",
+    #scale_y_discrete(limits = rev) +
+    theme_gwaspr(legend.position = "bottom",
                  axis.text.x = element_text(angle = 90, vjust = 1),
                  axis.text = element_text(size = axisTextSize)) +
     theme(panel.grid = element_blank()) +
     labs(x = NULL, y = NULL, caption = myCaption)
-  #mp2
-  xm <- xc %>% filter(rs %in% myMs)
+  if(!is.null(myMs)) {
+    mp2 <- mp2 + geom_point(data = xm, pch = 8)
+    xm <- xc %>% filter(rs %in% myMs)
+  }
+  mySubtitle <-paste("Chr", chr, "| pos", format(pos1, scientific = F), "-", format(pos2, scientific = F), "| Length", format(myLength,scientific = F))
   mp1 <- ggplot(xc) +
     geom_hline(yintercept = 0) +
     #geom_hline(yintercept = 1) +
-    geom_segment(aes(x = scaled_pos, xend = pos, y = 1, yend = 0), linewidth = 0.1) +
-    geom_point(data = xm, aes(x = pos, y = 0), pch = 8, color = "darkred") +
-    geom_point(data = xm, aes(x = scaled_pos, y = 1), pch = 8, color = "darkred") +
-    scale_x_continuous(breaks = xc$scaled_pos, labels = xc$rs, expand = c(myExpand,0),
+    geom_segment(aes(x = rank, xend = scaled_rank, y = 1, yend = 0), linewidth = 0.1) +
+    scale_x_continuous(breaks = xc$scaled_pos, labels = xc$rs, expand = c(0,0.5),
                        position = "top") +
     theme_void() +
     theme(panel.grid = element_blank(),
           plot.background = element_rect(fill = "white")) +
     scale_y_reverse() +
     labs(y = NULL, x = NULL, title = myTitle,
-         subtitle = paste("Chr", chr, "| pos", format(pos1, scientific = F), "-", format(pos2, scientific = F)))
-  #mp1
-  ggarrange(mp1, mp2, nrow = 2, ncol = 1, align = "v", heights = c(0.4,1))
+         subtitle = mySubtitle)
+  if(!is.null(myMs)) {
+    mp1 <- mp1 +
+      geom_point(data = xm, aes(x = scaled_rank, y = 0), pch = 8, color = "darkred") +
+      geom_point(data = xm, aes(x = rank, y = 1), pch = 8, color = "darkred")
+  }
+  #
+  ggarrange(mp1, mp2, nrow = 2, ncol = 1, align = "v", heights = c(0.2,1))
 }
 
 #

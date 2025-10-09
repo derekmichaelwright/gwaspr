@@ -1,6 +1,6 @@
 Package: gwaspr
 Title: GWAS plotting in R
-Version: 1.0
+Version: 0.9.0
 Authors@R: person("Derek","Wright", email = "wrightmderek@gmail.com", role = c("aut","cre"))
 Description: Plot and analyse GWAS results with R.
 Depends: R (>= 3.4.2), tidyverse, ggbeeswarm, ggpubr, ggrepel, ggtext
