@@ -83,7 +83,7 @@ gg_Manhattan_Traits <- function (
     xx <- bind_rows(xx, xi)
   }
   #
-  xx <- xx %>% filter(is.finite(P.value)) %>%
+  xx <- xx %>% filter(P.value > 0) %>%
     arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, Trait)))
   #
   # Prep data
