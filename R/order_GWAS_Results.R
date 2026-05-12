@@ -10,8 +10,8 @@ order_GWAS_Results <- function(
     folder = "GWAS_Results/",
     files = list_Result_Files(folder)) {
   #
-  x1 <- is_ran(folder = folder) %>% dropNAcol()
-  x2 <- is_ordered(folder = folder)
+  x1 <- run_Summary(folder = folder) %>% dropNAcol()
+  x2 <- is_Ordered(folder = folder)
   x2 <- x2[,colnames(x1)]
   x2 <- x2[rowSums(is.na(x2)) > 0,]
   #

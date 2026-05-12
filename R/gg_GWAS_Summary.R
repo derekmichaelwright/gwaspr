@@ -51,8 +51,8 @@ gg_GWAS_Summary <- function(
     skyline = "Kansas"
     ) {
   #
-  check1 <- is_ran(folder = folder) %>% dropNAcol()
-  check2 <- is_ordered(folder = folder) %>%
+  check1 <- run_Summary(folder = folder) %>% dropNAcol()
+  check2 <- is_Ordered(folder = folder) %>%
     dplyr::select(colnames(check1))
   if(sum(is.na(check2)) > 0) {
     warning("Some of your GWAS results files might not be ordered by pvalue")
