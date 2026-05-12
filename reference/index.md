@@ -42,6 +42,10 @@
   : gwaspr_Colors
 - [`gwaspr_dna`](https://derekmichaelwright.github.io/gwaspr/reference/gwaspr_dna.md)
   : gwaspr_dna
+- [`is_Ordered()`](https://derekmichaelwright.github.io/gwaspr/reference/is_Ordered.md)
+  : is_Ordered
+- [`is_Ran()`](https://derekmichaelwright.github.io/gwaspr/reference/is_Ran.md)
+  : is_Ran
 - [`list_Result_Files()`](https://derekmichaelwright.github.io/gwaspr/reference/list_Result_Files.md)
   : list_Result_Files
 - [`list_Top_Markers()`](https://derekmichaelwright.github.io/gwaspr/reference/list_Top_Markers.md)
