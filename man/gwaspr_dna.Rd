@@ -8,7 +8,7 @@
 DNA codes
 }
 \section{gwaspr_dna}{
-NA
+
 }
 
 \keyword{data}

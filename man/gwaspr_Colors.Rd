@@ -8,7 +8,7 @@
 Color pallette
 }
 \section{gwaspr_Colors}{
-NA
+
 }
 
 \keyword{data}

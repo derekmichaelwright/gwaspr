@@ -48,6 +48,13 @@ Note: for more info check out this <a
 href="https://derekmichaelwright.github.io/dblogr/academic/gwaspr_tutorial"
 target="_blank">GWAS tutorial</a>.
 
+# Data
+
+``` r
+myG <- read.csv("myG_hmp.csv")
+myY <- read.csv("myY.csv")
+```
+
 # gwaspr Functions
 
 ## list_Traits()
@@ -92,7 +99,17 @@ list_Result_Files(folder = "GWAS_Results/")
 ## is_ran()
 
 ``` r
-is_ran(folder = "GWAS_Results/")
+is_Ran(myY = myY, folder = "GWAS_Results/")
+```
+
+    ##             Traits GWAS
+    ## 1   CotyledonColor     
+    ## 2 CotyledonColor01     
+    ## 3    DTF_Sask_2017    X
+    ## 4   DTF_Nepal_2017    X
+
+``` r
+run_Summary(folder = "GWAS_Results/")
 ```
 
     ##             Trait GLM MLM MLMM FarmCPU BLINK CMLM SUPER
@@ -108,10 +125,10 @@ is_ran(folder = "GWAS_Results/")
 order_GWAS_Results(folder = "GWAS_Results/")
 ```
 
-## is_ordered()
+## is_Ordered()
 
 ``` r
-is_ordered(folder = "GWAS_Results/")
+is_Ordered(folder = "GWAS_Results/")
 ```
 
     ##             Trait GLM MLM MLMM FarmCPU BLINK CMLM SUPER FarmCPU_Kansas
@@ -458,11 +475,6 @@ gg_plotly(mp, filename = "man/figures/GWAS_Summary.html")
 ------------------------------------------------------------------------
 
 ## gg_Marker\_\*
-
-``` r
-myG <- read.csv("myG_hmp.csv")
-myY <- read.csv("myY.csv")
-```
 
 ### gg_Marker_Box()
 
