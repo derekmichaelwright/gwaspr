@@ -1,0 +1,66 @@
+# Package index
+
+## All functions
+
+- [`calc_Threshold()`](https://derekmichaelwright.github.io/gwaspr/reference/calc_Threshold.md)
+  : calc_Threshold.
+- [`checkNYCvsKansas()`](https://derekmichaelwright.github.io/gwaspr/reference/checkNYCvsKansas.md)
+  : checkNYCvsKansas
+- [`convert_IUPAC()`](https://derekmichaelwright.github.io/gwaspr/reference/convert_IUPAC.md)
+  : convert_IUPAC
+- [`dropNAcol()`](https://derekmichaelwright.github.io/gwaspr/reference/dropNAcol.md)
+  : dropNAcol
+- [`gg_GWAS_Hits()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Hits.md)
+  : gg_GWAS_Hits
+- [`gg_GWAS_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary.md)
+  : gg_GWAS_Summary
+- [`gg_LDheatmap()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_LDheatmap.md)
+  : gg_LDHeatmap
+- [`gg_Manhattan()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan.md)
+  : gg_Manhattan
+- [`gg_Manhattan_Traits()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Traits.md)
+  : gg_Manhattan_Traits
+- [`gg_Manhattan_Zoom()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom.md)
+  : gg_Manhattan_Zoom
+- [`gg_Marker_Bar()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Bar.md)
+  : gg_Marker_Bar
+- [`gg_Marker_Box()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Box.md)
+  : gg_Marker_Box
+- [`gg_Marker_Pie()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Pie.md)
+  : gg_Marker_Pie
+- [`gg_NYCvsKansas()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_NYCvsKansas.md)
+  : gg_NYCvsKansas
+- [`gg_QTL_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_QTL_Summary.md)
+  : gg_QTL_Summary
+- [`gg_Volcano()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Volcano.md)
+  : gg_Volcano
+- [`gg_myG_Details()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_myG_Details.md)
+  : gg_myG_Details
+- [`gg_plotly()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_plotly.md)
+  : gg_plotly
+- [`gwaspr_Colors`](https://derekmichaelwright.github.io/gwaspr/reference/gwaspr_Colors.md)
+  : gwaspr_Colors
+- [`gwaspr_dna`](https://derekmichaelwright.github.io/gwaspr/reference/gwaspr_dna.md)
+  : gwaspr_dna
+- [`list_Result_Files()`](https://derekmichaelwright.github.io/gwaspr/reference/list_Result_Files.md)
+  : list_Result_Files
+- [`list_Top_Markers()`](https://derekmichaelwright.github.io/gwaspr/reference/list_Top_Markers.md)
+  : list_Top_Markers
+- [`list_Traits()`](https://derekmichaelwright.github.io/gwaspr/reference/list_Traits.md)
+  : list_Traits
+- [`order_GWAS_Results()`](https://derekmichaelwright.github.io/gwaspr/reference/order_GWAS_Results.md)
+  : order_GWAS_Results
+- [`run_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/run_Summary.md)
+  : run_Summary
+- [`table_GWAS_Results()`](https://derekmichaelwright.github.io/gwaspr/reference/table_GWAS_Results.md)
+  : table_GWAS_Results
+- [`table_GWAS_Results_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/table_GWAS_Results_Summary.md)
+  : table_GWAS_Results_Summary
+- [`theme_gwaspr()`](https://derekmichaelwright.github.io/gwaspr/reference/theme_gwaspr.md)
+  : theme_gwaspr.
+- [`theme_gwaspr2()`](https://derekmichaelwright.github.io/gwaspr/reference/theme_gwaspr2.md)
+  : theme_gwaspr2.
+- [`theme_gwaspr_col()`](https://derekmichaelwright.github.io/gwaspr/reference/theme_gwaspr_col.md)
+  : theme_gwaspr_col.
+- [`theme_gwaspr_pie()`](https://derekmichaelwright.github.io/gwaspr/reference/theme_gwaspr_pie.md)
+  : theme_gwaspr_pie.
