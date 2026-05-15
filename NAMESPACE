@@ -2,6 +2,7 @@
 
 export(calc_Threshold)
 export(checkNYCvsKansas)
+export(clean_GWAS_Results)
 export(convert_IUPAC)
 export(dropNAcol)
 export(gg_GWAS_Hits)

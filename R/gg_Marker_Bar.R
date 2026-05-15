@@ -25,8 +25,11 @@ gg_Marker_Bar <- function (
     plot.counts = T,
     myncol = NULL,
     line.color = F,
-    title = NULL
+    title = NULL,
+    asfactor = F
     ) {
+  #
+  if(asfactor == T) { xY[] <- lapply(xY, as.factor) }
   #
   myLab <- paste(markers, collapse = "\n")
   #
