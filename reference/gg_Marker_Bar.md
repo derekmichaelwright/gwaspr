@@ -16,7 +16,8 @@ gg_Marker_Bar(
   plot.counts = T,
   myncol = NULL,
   line.color = F,
-  title = NULL
+  title = NULL,
+  asfactor = F
 )
 ```
 

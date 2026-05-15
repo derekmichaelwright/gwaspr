@@ -6,6 +6,8 @@
   : calc_Threshold.
 - [`checkNYCvsKansas()`](https://derekmichaelwright.github.io/gwaspr/reference/checkNYCvsKansas.md)
   : checkNYCvsKansas
+- [`clean_GWAS_Results()`](https://derekmichaelwright.github.io/gwaspr/reference/clean_GWAS_Results.md)
+  : clean_GWAS_Results
 - [`convert_IUPAC()`](https://derekmichaelwright.github.io/gwaspr/reference/convert_IUPAC.md)
   : convert_IUPAC
 - [`dropNAcol()`](https://derekmichaelwright.github.io/gwaspr/reference/dropNAcol.md)
