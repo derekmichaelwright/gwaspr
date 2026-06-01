@@ -22,8 +22,12 @@
   : gg_Manhattan
 - [`gg_Manhattan_Traits()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Traits.md)
   : gg_Manhattan_Traits
+- [`gg_Manhattan_Traits1()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Traits1.md)
+  : gg_Manhattan_Traits1
 - [`gg_Manhattan_Zoom()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom.md)
   : gg_Manhattan_Zoom
+- [`gg_Manhattan_Zoom1()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom1.md)
+  : gg_Manhattan_Zoom1
 - [`gg_Marker_Bar()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Bar.md)
   : gg_Marker_Bar
 - [`gg_Marker_Box()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Box.md)
