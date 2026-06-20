@@ -10,7 +10,8 @@ table_GWAS_Results(
   nrowstoread = 1000,
   threshold = 6,
   sug.threshold = NULL,
-  skyline = NULL
+  skyline = NULL,
+  models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER")
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ table_GWAS_Results(
 \item{sug.threshold}{Suggestive threshold.}
 
 \item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
+
+\item{models}{GWAS models to use.}
 
 \item{useHBPvalues}{Logical, if TRUE, H.B.P.Values will be uses.}
 }

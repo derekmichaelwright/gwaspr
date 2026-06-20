@@ -16,6 +16,7 @@ gg_Marker_Bar(
   myncol = NULL,
   line.color = F,
   title = NULL,
+  subtitle = paste(markers, collapse = "\\n"),
   asfactor = F
 )
 }

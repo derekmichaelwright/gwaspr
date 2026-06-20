@@ -2,13 +2,13 @@
 #'
 #' Create a summary using the output from `table_GWAS_Results()`.
 #' @param xx Object from `table_GWAS_Results()`.
-#' @param onlySig Logical, if TRUE, any suggested associations will be removed.
 #' @param binMarkers Logical, if TRUE, markers will be bined based on `binSize`.
 #' @param binSize range on each side of marker to bin. default = 1,000,000.
+#' @param onlySig Logical, if TRUE, any suggested associations will be removed.
 #' @return A table of significant GWAS results.
 #' @export
 
-table_GWAS_Results_Summary <- function(xx, onlySig = F, binMarkers = F, binSize = 1000000) {
+table_GWAS_Results_Summary <- function(xx, binMarkers = F, binSize = 5000000, onlySig = F) {
   #
   if(onlySig == T) { xx <- xx %>% filter(Threshold == "Significant") }
   xx <- xx %>% arrange(desc(negLog10_P))
@@ -18,7 +18,7 @@ table_GWAS_Results_Summary <- function(xx, onlySig = F, binMarkers = F, binSize 
   if(binMarkers == T) {
     while(nrow(xx) > 0) {
       x1 <- xx %>% slice(1)
-      xi <- xx %>% filter(Chr == x1$Chr, Pos >= x1$Pos - binSize, Pos <= x1$Pos + binSize)
+      xi <- xx %>% filter(Chr == x1$Chr, Pos >= x1$Pos - binSize/2, Pos <= x1$Pos + binSize/2)
       x1 <- x1 %>%
         mutate(Hits = nrow(xi),
                min_P = min(xi$P.value),
@@ -28,6 +28,8 @@ table_GWAS_Results_Summary <- function(xx, onlySig = F, binMarkers = F, binSize 
                MAF = mean(MAF),
                Models = paste(unique(xi$Model), collapse=";"),
                Traits = paste(unique(xi$Trait), collapse=";"),
+               min_pos = x1$Pos - binSize/2,
+               max_pos = x1$Pos + binSize/2,
                min_negLog10_P = -log10(max_P),
                max_negLog10_P = -log10(min_P),
                min_negLog10_HBP = -log10(max_HBP),

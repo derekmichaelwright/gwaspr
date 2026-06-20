@@ -4,16 +4,16 @@
 \alias{table_GWAS_Results_Summary}
 \title{table_GWAS_Results_Summary}
 \usage{
-table_GWAS_Results_Summary(xx, onlySig = F, binMarkers = F, binSize = 1e+06)
+table_GWAS_Results_Summary(xx, binMarkers = F, binSize = 5e+06, onlySig = F)
 }
 \arguments{
 \item{xx}{Object from `table_GWAS_Results()`.}
 
-\item{onlySig}{Logical, if TRUE, any suggested associations will be removed.}
-
 \item{binMarkers}{Logical, if TRUE, markers will be bined based on `binSize`.}
 
 \item{binSize}{range on each side of marker to bin. default = 1,000,000.}
+
+\item{onlySig}{Logical, if TRUE, any suggested associations will be removed.}
 }
 \value{
 A table of significant GWAS results.

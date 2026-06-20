@@ -13,6 +13,7 @@
 #' @param point.size Size for the points.
 #' @param myncol Number of columns for facetting when plotting multiple traits.
 #' @param title Title for the plot.
+#' @param legend.rows Number of rows for the legend.
 #' @return Marker plot.
 #' @export
 
@@ -24,10 +25,17 @@ gg_Marker_Box <- function (
     marker.colors = gwaspr_Colors,
     plot.violin = T,
     plot.points = T,
+    plot.box = T,
     box.width = 0.1,
     point.size = 1,
     myncol = NULL,
-    title = NULL
+    title = NULL,
+    legend.rows = 1,
+    subtitle = paste(markers, collapse = "\n"),
+    yLab = traits,
+    xCV = NULL,
+    cv.colors = NULL,
+    cv.label = NULL
     ) {
   #
   myLab <- paste(markers, collapse = "\n")
@@ -58,17 +66,29 @@ gg_Marker_Box <- function (
   xx <- xx %>%
     mutate(Alleles = factor(Alleles, levels = rev(yy$Alleles)),
            Trait = factor(Trait, levels = traits))
+  #
+  if(!is.null(xCV)) { xx <- xx %>% left_join(xCV, by = "Name") %>% filter(!is.na(CV)) }
+  #
   # Plot
   mp <- ggplot(xx, aes(x = Alleles, y = Value))
-  if(plot.violin == T) { mp <- mp + geom_violin(aes(fill = Alleles), alpha = 0.5) }
+  if(plot.violin == T) { mp <- mp + geom_violin(aes(fill = Alleles), alpha = 0.3) }
+  if(plot.box == T) { mp <- mp + geom_boxplot(width = box.width, outlier.shape = NA) }
   mp <- mp +
-    geom_boxplot(width = box.width, outlier.shape = NA) +
     facet_wrap(Trait ~ ., scales = "free_y", ncol = myncol) +
-    scale_fill_manual(name = NULL, values = marker.colors) +
+    scale_fill_manual(name = NULL, values = marker.colors, guide = F) +
     theme_gwaspr(legend.position = "none",
                  axis.text.x = element_text(angle = 45, hjust = 1) ) +
-    labs(title = title, x = myLab, y = NULL)
-  if (plot.points == T) { mp <- mp + geom_quasirandom(size = point.size, alpha = 0.5, pch = 16) }
+    labs(title = title, subtitle = subtitle, x = NULL, y = yLab)
+  if (plot.points == T) {
+    if(is.null(xCV)) {
+      mp <- mp + geom_quasirandom(size = point.size, alpha = 0.7, pch = 16)
+    } else {
+      mp <- mp + geom_quasirandom(aes(color = CV), size = point.size, alpha = 0.7, pch = 16) +
+        scale_color_manual(name = cv.label, values = cv.colors) +
+        theme(legend.position = "bottom") +
+        guides(color = guide_legend(nrow = legend.rows)) #, override.aes = list(size = 2)
+    }
+  }
   mp
 }
 

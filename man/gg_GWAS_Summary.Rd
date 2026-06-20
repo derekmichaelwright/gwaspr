@@ -21,9 +21,9 @@ gg_GWAS_Summary(
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
+  threshold.legend = T,
   title = "Summary of Significant GWAS Results",
-  caption = paste0("Significant Threshold = ", threshold,
-    " = Large\\nSuggestive Threshold = ", sug.threshold, " = Small"),
+  caption = NULL,
   rowread = 2000,
   legend.position = "bottom",
   legend.rows = 1,
@@ -63,6 +63,8 @@ gg_GWAS_Summary(
 \item{vline.types}{lty for each vertical line.}
 
 \item{vline.legend}{Logical, display of vline color legend.}
+
+\item{threshold.legend}{Logical, display of vline color legend.}
 
 \item{title}{A title for the plot.}
 

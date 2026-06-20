@@ -12,10 +12,17 @@ gg_Marker_Box(
   marker.colors = gwaspr_Colors,
   plot.violin = T,
   plot.points = T,
+  plot.box = T,
   box.width = 0.1,
   point.size = 1,
   myncol = NULL,
-  title = NULL
+  title = NULL,
+  legend.rows = 1,
+  subtitle = paste(markers, collapse = "\\n"),
+  yLab = traits,
+  xCV = NULL,
+  cv.colors = NULL,
+  cv.label = NULL
 )
 }
 \arguments{
@@ -40,6 +47,8 @@ gg_Marker_Box(
 \item{myncol}{Number of columns for facetting when plotting multiple traits.}
 
 \item{title}{Title for the plot.}
+
+\item{legend.rows}{Number of rows for the legend.}
 }
 \value{
 Marker plot.

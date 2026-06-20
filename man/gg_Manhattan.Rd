@@ -15,8 +15,10 @@ gg_Manhattan(
   labels = markers,
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
-  vline.types = rep(1, length(vlines)),
-  vline.legend = T,
+  vline.types = rep(1:6, length(vlines)),
+  legend = T,
+  legend.rows = 1,
+  point.sizes = c(0.3, 1.25, 0.75),
   facet = F,
   addQQ = T,
   pmax = NULL,
@@ -27,7 +29,6 @@ gg_Manhattan(
   sig.color = "darkred",
   chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
   chrom.unit = "100 Mbp",
-  legend.rows = 1,
   plotHBPvalues = F,
   skyline = "Kansas"
 )
@@ -55,7 +56,11 @@ gg_Manhattan(
 
 \item{vline.types}{lty for each vertical line.}
 
-\item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
+\item{legend}{Logical, whether or not to add a legend.}
+
+\item{legend.rows}{Number of rows for the legend.}
+
+\item{point.sizes}{Sizes for the points. c("Not Sig", "Sig", "Sug").}
 
 \item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.}
 
@@ -76,8 +81,6 @@ gg_Manhattan(
 \item{chrom.colors}{Colors for each chromosome. Used if `facet = T`.}
 
 \item{chrom.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
-
-\item{legend.rows}{Number of rows for the legend.}
 
 \item{plotHBPvalues}{Logical, if TRUE, H.B.P.values be uses.}
 

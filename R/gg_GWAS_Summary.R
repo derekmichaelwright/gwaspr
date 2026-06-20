@@ -17,6 +17,7 @@
 #' @param vline.colors colors for each vertical line.
 #' @param vline.types lty for each vertical line.
 #' @param vline.legend Logical, display of vline color legend.
+#' @param threshold.legend Logical, display of vline color legend.
 #' @param hlines Locations for horizontal lines. e.g., hlines = c(1.5,2.5).
 #' @param title A title for the plot.
 #' @param caption A caption for the plot.
@@ -42,8 +43,9 @@ gg_GWAS_Summary <- function(
     vline.colors = rep("red",length(vlines)),
     vline.types = rep(1, length(vlines)),
     vline.legend = T,
+    threshold.legend = T,
     title = "Summary of Significant GWAS Results",
-    caption = paste0("Significant Threshold = ", threshold, " = Large\nSuggestive Threshold = ", sug.threshold," = Small"),
+    caption = NULL,
     rowread = 2000,
     legend.position = "bottom",
     legend.rows = 1,
@@ -60,10 +62,10 @@ gg_GWAS_Summary <- function(
     warning("use is_ordered() to check if GWAS results are properly ordered for use with this function")
   }
   #
-  if(is.null(sug.threshold) &
-     caption == paste0("Significant Threshold = ", threshold, " = Large\nSuggestive = ", sug.threshold, " = Small") ) {
-     caption <- paste0("Significant Threshold = ", threshold)
-  }
+  #if(is.null(sug.threshold) &
+  #   caption == paste0("Significant Threshold = ", threshold, " = Large\nSuggestive = ", sug.threshold, " = Small") ) {
+  #   caption <- paste0("Significant Threshold = ", threshold)
+  #}
   #
   fnames <- list_Result_Files(folder)
   fnames <- fnames[grepl(paste(models,collapse="|"),fnames)]
@@ -123,14 +125,12 @@ gg_GWAS_Summary <- function(
       mutate(Group = plyr::mapvalues(Trait, traits, groups),
              Group = factor(Group, levels = rev(unique(myGroups))))
   }
+  myP <- myP %>%
+    mutate(Threshold = ifelse(Threshold == "Significant", paste("Significant =",threshold), Threshold),
+           Threshold = ifelse(Threshold == "Suggestive", paste("Suggestive =",sug.threshold), Threshold),
+           Threshold = factor(Threshold))
   #
-  #
-  x1 <- myP %>% filter(Pvalue >= threshold)
-  x2 <- myP %>% filter(Pvalue < threshold)
-  #
-  if(is.null(sug.threshold)) { x2 <- x2[0,] }
-  #
-  mp <- ggplot(x1, aes(x = Pos / 100000000)) + geom_blank(data = myG)
+  mp <- ggplot(myP, aes(x = Pos / 100000000)) + geom_blank(data = myG)
   #
   if(!is.null(vlines)) {
     myGM <- myG %>% filter(SNP %in% vlines) %>%
@@ -150,19 +150,23 @@ gg_GWAS_Summary <- function(
   }
   #
   mp <- mp +
-    geom_point(data = x2,
-               size = 0.75, color = "black", alpha = 0.5,
-               aes(y = Trait, shape = Model, fill = Model,
-                   key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP)) +
-    geom_point(size = 2.25, color = "black", alpha = 0.5,
-               aes(y = Trait, shape = Model, fill = Model,
+    geom_point(color = "black", alpha = 0.5,
+               aes(y = Trait, shape = Model, fill = Model, size = Threshold,
                    key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP))
+  #geom_point(data = x2,
+   #            size = 0.75, color = "black", alpha = 0.5,
+    #           aes(y = Trait, shape = Model, fill = Model,
+     #              key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP)) +
+    #geom_point(size = 2.25, color = "black", alpha = 0.5,
+    #           aes(y = Trait, shape = Model, fill = Model,
+    #               key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP))
   if(!is.null(groups)) {
     mp <- mp + facet_grid(Group ~ Chr, scales = "free", space = "free")
   } else { mp <- mp + facet_grid(. ~ Chr, scales = "free", space = "free") }
   mp <- mp +
     scale_fill_manual(name = NULL, values = model.colors, breaks = models) +
     scale_shape_manual(name = NULL, values = shapes, breaks = models) +
+    scale_size_manual(name = NULL, values = c(2.25,0.75)) +
     scale_y_discrete(limits = rev, drop = F) +
     scale_x_continuous(breaks = 0:20) +
     theme_gwaspr(legend.position = legend.position) +
@@ -173,6 +177,10 @@ gg_GWAS_Summary <- function(
   #
   if(vline.legend == F) {
     mp <- mp + guides(color = vline.legend)
+  }
+  #
+  if(threshold.legend == F) {
+    mp <- mp + guides(color = threshold.legend)
   }
   #
   mp

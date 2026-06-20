@@ -8,8 +8,8 @@
 run_Summary <- function(folder = "GWAS_Results/") {
   #
   yy <- data.frame(Trait = list_Traits(folder),
-                   GLM = NA, MLM = NA, MLMM = NA,
-                   FarmCPU = NA, BLINK = NA, CMLM = NA, SUPER = NA)
+                   GLM = "", MLM = "", MLMM = "",
+                   FarmCPU = "", BLINK = "", CMLM = "", SUPER = "")
   xx <- list_Result_Files(folder)
   #
   for(i in xx) {

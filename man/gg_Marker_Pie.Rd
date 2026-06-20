@@ -8,8 +8,10 @@ gg_Marker_Pie(
   xG,
   xY,
   trait,
+  trait.label = trait,
   markers,
   marker.colors = gwaspr_Colors,
+  subtitle = paste(markers, collapse = "\\n"),
   title = NULL
 )
 }

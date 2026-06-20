@@ -8,6 +8,7 @@
 #' @param nrowstoread Number of rows to read.
 #' @param useHBPvalues Logical, if TRUE, H.B.P.Values will be uses.
 #' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
+#' @param models GWAS models to use.
 #' @return A table of significant GWAS results.
 #' @export
 
@@ -17,7 +18,8 @@ table_GWAS_Results <- function(
     nrowstoread = 1000,
     threshold = 6,
     sug.threshold = NULL,
-    skyline = NULL
+    skyline = NULL,
+    models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER")
     ) {
   #
   output <- NULL
@@ -53,7 +55,10 @@ table_GWAS_Results <- function(
     if(skyline == "Kansas") { output <- output %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
   }
   #
-  output  <- output %>% arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, P.value)))
+  output  <- output %>%
+    arrange(desc(negLog10_P)) %>%
+    filter(!duplicated(paste(SNP, Model, P.value))) %>%
+    filter(Model %in% models)
   #
   output %>% arrange(desc(negLog10_P))
 }

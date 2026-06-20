@@ -24,7 +24,7 @@ gg_Manhattan_Zoom(
   model.colors = gwaspr_Colors,
   facet = F,
   highlight.sig = F,
-  sig.color = "red",
+  sig.color = "black",
   legend.rows = 1,
   plotHBPvalues = F,
   skyline = "Kansas"

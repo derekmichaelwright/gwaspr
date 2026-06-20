@@ -26,12 +26,11 @@ gg_Marker_Bar <- function (
     myncol = NULL,
     line.color = F,
     title = NULL,
+    subtitle = paste(markers, collapse = "\n"),
     asfactor = F
     ) {
   #
   if(asfactor == T) { xY[] <- lapply(xY, as.factor) }
-  #
-  myLab <- paste(markers, collapse = "\n")
   #
   xY <- xY %>% dplyr::select(1, traits) %>%
     gather(Trait, Value, traits)
@@ -69,7 +68,7 @@ gg_Marker_Bar <- function (
       facet_wrap(Trait ~ ., scales = "free", ncol = myncol) +
       scale_fill_manual(name = NULL, values = marker.colors) +
       theme_gwaspr_col(legend.position = "bottom") +
-      labs(title = title, x = NULL)
+      labs(title = title, subtitle = subtitle, x = NULL)
 
   } else {
     xx <- xx %>% mutate(Value = factor(Value))
@@ -79,7 +78,7 @@ gg_Marker_Bar <- function (
       facet_wrap(Trait ~ ., scales = "free", ncol = myncol) +
       scale_fill_manual(name = NULL, values = marker.colors) +
       theme_gwaspr_col(legend.position = "bottom") +
-      labs(title = title, x = myLab)
+      labs(title = title, subtitle = subtitle)
   }
   mp
 }

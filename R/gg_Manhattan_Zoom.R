@@ -48,7 +48,7 @@ gg_Manhattan_Zoom <- function(
     model.colors = gwaspr_Colors,
     facet = F,
     highlight.sig = F,
-    sig.color = "red",
+    sig.color = "black",
     legend.rows = 1,
     plotHBPvalues = F,
     skyline = "Kansas"
@@ -131,9 +131,8 @@ gg_Manhattan_Zoom <- function(
   #
   if(!is.null(vlines)) {
     mp <- mp +
-      geom_vline(data = x4, aes(xintercept = Pos / 1000000, color = SNP),
-                 alpha = 0.5) +
-      scale_color_manual(name = NULL, values = vline.colors)
+      geom_vline(data = x4, aes(xintercept = Pos / 1000000, color = SNP), alpha = 0.5) +
+      scale_color_manual(name = "Marker", values = vline.colors)
   }
   #
   # Add threshold lines
@@ -141,16 +140,13 @@ gg_Manhattan_Zoom <- function(
   if(is.null(pmax)) { pmax <- max(xx$negLog10_P) }
   mp <- mp +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
-    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5) +
-    scale_y_continuous(limits = c(0, (pmax+pmax*0.03)), expand = c(0,0))
+    geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)
   #
   # Plot the Rest
   #
   mp <- mp +
-    geom_hline(yintercept = threshold, color = "red", alpha = 0.6) +
-    geom_point(aes(fill = Model, size = Sig.level, key1 = SNP),
-               pch = 21, color = alpha("white",0)) +
-    scale_size_manual(name = NULL, values = c(1,2,1.5), guide = "none") +
+    geom_point(aes(fill = Model, size = Sig.level, key1 = SNP), pch = 21, color = alpha("white",0)) +
+    scale_size_manual(values = c(1,2,1.5), guide = "none") +
     guides(color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
     theme_gwaspr(legend.position = "bottom",
                  axis.title.y = element_markdown()) +
@@ -165,16 +161,18 @@ gg_Manhattan_Zoom <- function(
   # Facet plot
   #
   if(facet == T) {
-    mp <- mp + facet_grid(Model ~ Chr, scales = "free") +
+    mp <- mp +
       geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) +
-      scale_fill_manual(name = NULL, values = alpha(model.colors,0.8), guide = "none")
+      facet_grid(Model ~ paste("Chromosome", Chr), scales = "free") +
+      scale_fill_manual(values = alpha(model.colors,0.8), guide = "none")
+    #if(highlight.sig == T) { mp <- mp + geom_point(data = x2, fill = alpha("white", 0), pch = 21, size = 1.25) }
   } else {
     mp <- mp +
-      scale_fill_manual(name = NULL, values = alpha(model.colors,0.8)) +
+      geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) +
+      facet_grid(. ~ paste("Chromosome", Chr)) +
+      scale_fill_manual(values = alpha(model.colors,0.8)) +
       guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)))
-    if(highlight.sig == T) {
-      mp <- mp + geom_point(data = x2, fill = alpha("white", 0), pch = 21, size = 1.25)
-    }
+    #if(highlight.sig == T) { mp <- mp + geom_point(data = x2, fill = alpha("white", 0), pch = 21, size = 1.25) }
   }
   mp
 }

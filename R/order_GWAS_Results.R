@@ -13,7 +13,7 @@ order_GWAS_Results <- function(
   x1 <- run_Summary(folder = folder) %>% dropNAcol()
   x2 <- is_Ordered(folder = folder)
   x2 <- x2[,colnames(x1)]
-  x2 <- x2[rowSums(is.na(x2)) > 0,]
+  x2 <- x2[rowSums(x2=="") > 0,]
   #
   if(nrow(x2) > 0) {
     files <- files[grepl(paste(x2$Trait, collapse="|"), files)]

@@ -8,9 +8,9 @@
 is_Ordered <- function(folder = "GWAS_Results/") {
   #
   yy <- data.frame(Trait = list_Traits(folder),
-                   GLM = NA, MLM = NA, MLMM = NA,
-                   FarmCPU = NA, BLINK = NA, CMLM = NA, SUPER = NA,
-                   FarmCPU_Kansas = NA, BLINK_Kansas = NA)
+                   GLM = "", MLM = "", MLMM = "",
+                   FarmCPU = "", BLINK = "", CMLM = "", SUPER = "",
+                   FarmCPU_Kansas = "", BLINK_Kansas = "")
   xx <- list_Result_Files(folder)
   #
   for(i in xx) {

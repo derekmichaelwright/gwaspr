@@ -18,7 +18,9 @@ gg_GWAS_Hits(
   vlines = NULL,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
-  legend.rows = 1
+  legend.rows = 1,
+  facet = F,
+  caption = T
 )
 }
 \arguments{
@@ -47,6 +49,10 @@ gg_GWAS_Hits(
 \item{vline.types}{lty for each vertical line.}
 
 \item{legend.rows}{Number of rows for the legend.}
+
+\item{facet}{Logical. facet by GWAS model.}
+
+\item{caption}{Logical. should a caption be added.}
 }
 \value{
 A GWAS Hits plot.

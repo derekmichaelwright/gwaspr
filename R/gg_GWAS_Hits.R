@@ -14,6 +14,8 @@
 #' @param vline.colors colors for each vertical line.
 #' @param vline.types lty for each vertical line.
 #' @param legend.rows Number of rows for the legend.
+#' @param facet Logical. facet by GWAS model.
+#' @param caption Logical. should a caption be added.
 #' @return A GWAS Hits plot.
 #' @export
 
@@ -29,7 +31,9 @@ gg_GWAS_Hits <- function(
     vlines = NULL,
     vline.colors = rep("red", length(vlines)),
     vline.types = rep(1, length(vlines)),
-    legend.rows = 1
+    legend.rows = 1,
+    facet = F,
+    caption = T
     ) {
   #
   xx <- xx %>% filter(Trait %in% traits, Model %in% models) %>% mutate(Hits = NA)
@@ -52,8 +56,10 @@ gg_GWAS_Hits <- function(
   if(!is.null(xCV)) { xx <- xx %>% filter(CV %in% xCV) }
   ymax <- max(xx$Hits)
   #
-  mp <- ggplot(xx, aes(x = Pos / 100000000) ) +
-    geom_blank(data = xG)
+  myCaption <- paste("Bin size =", range, "\n", "Traits =",
+                     paste(unique(xx$Trait), collapse = ", "))
+  #
+  mp <- ggplot(xx, aes(x = Pos / 100000000) ) + geom_blank(data = xG)
   #
   if(!is.null(vlines)) {
     xGM <- xG %>%
@@ -69,20 +75,21 @@ gg_GWAS_Hits <- function(
   mp <- mp +
     geom_point(aes(y = Hits, size = Hits, key1 = SNP,
                    fill = Model, shape = Model), alpha = 0.7) +
-    facet_grid(. ~ paste("Chr", Chr), space = "free_x", scales = "free_x") +
+    facet_grid(. ~ paste("Chr", Chr), space = "free_x", scales = "free") +
     scale_shape_manual(values = model.shapes)+
     scale_fill_manual(values = model.colors)+
     scale_size_continuous(range = c(0.5,3)) +
-    scale_y_continuous(labels = scales::label_number(accuracy = 1),
-                       limits = c(0,ymax)) +
     theme_gwaspr() +
     theme(legend.position = "bottom") +
-    #guides(color = F, size = F) +
     guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 1.5)),
            color = guide_legend(nrow = legend.rows, byrow = T),
            size = "none",
            shape = guide_legend(nrow = legend.rows, byrow = T) ) +
-    labs(title = title, x = "100 Mbp", y = "Significant Associations")
+    labs(title = title, x = "100 Mbp", y = "Significant Associations", caption = myCaption)
+  #
+  if(facet == T) {
+    mp <- mp + facet_grid(Model ~ paste("Chr", Chr), space = "free_x", scales = "free")
+  }
   mp
 }
 
