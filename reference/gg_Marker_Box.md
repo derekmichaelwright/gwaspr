@@ -13,10 +13,17 @@ gg_Marker_Box(
   marker.colors = gwaspr_Colors,
   plot.violin = T,
   plot.points = T,
+  plot.box = T,
   box.width = 0.1,
   point.size = 1,
   myncol = NULL,
-  title = NULL
+  title = NULL,
+  legend.rows = 1,
+  subtitle = paste(markers, collapse = "\n"),
+  yLab = traits,
+  xCV = NULL,
+  cv.colors = NULL,
+  cv.label = NULL
 )
 ```
 
@@ -65,6 +72,10 @@ gg_Marker_Box(
 - title:
 
   Title for the plot.
+
+- legend.rows:
+
+  Number of rows for the legend.
 
 ## Value
 

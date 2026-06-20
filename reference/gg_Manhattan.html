@@ -48,8 +48,10 @@
 <span>  labels <span class="op">=</span> <span class="va">markers</span>,</span>
 <span>  vlines <span class="op">=</span> <span class="va">markers</span>,</span>
 <span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  vline.legend <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  point.sizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">1.25</span>, <span class="fl">0.75</span><span class="op">)</span>,</span>
 <span>  facet <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  addQQ <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  pmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -60,7 +62,6 @@
 <span>  sig.color <span class="op">=</span> <span class="st">"darkred"</span>,</span>
 <span>  chrom.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkgoldenrod3"</span><span class="op">)</span>, <span class="fl">30</span><span class="op">)</span>,</span>
 <span>  chrom.unit <span class="op">=</span> <span class="st">"100 Mbp"</span>,</span>
-<span>  legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  plotHBPvalues <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  skyline <span class="op">=</span> <span class="st">"Kansas"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -114,8 +115,16 @@
 <dd><p>lty for each vertical line.</p></dd>
 
 
-<dt id="arg-vline-legend">vline.legend<a class="anchor" aria-label="anchor" href="#arg-vline-legend"></a></dt>
-<dd><p>Logical, whether or not to add a legend for the vlines.</p></dd>
+<dt id="arg-legend">legend<a class="anchor" aria-label="anchor" href="#arg-legend"></a></dt>
+<dd><p>Logical, whether or not to add a legend.</p></dd>
+
+
+<dt id="arg-legend-rows">legend.rows<a class="anchor" aria-label="anchor" href="#arg-legend-rows"></a></dt>
+<dd><p>Number of rows for the legend.</p></dd>
+
+
+<dt id="arg-point-sizes">point.sizes<a class="anchor" aria-label="anchor" href="#arg-point-sizes"></a></dt>
+<dd><p>Sizes for the points. c("Not Sig", "Sig", "Sug").</p></dd>
 
 
 <dt id="arg-facet">facet<a class="anchor" aria-label="anchor" href="#arg-facet"></a></dt>
@@ -156,10 +165,6 @@
 
 <dt id="arg-chrom-unit">chrom.unit<a class="anchor" aria-label="anchor" href="#arg-chrom-unit"></a></dt>
 <dd><p>Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").</p></dd>
-
-
-<dt id="arg-legend-rows">legend.rows<a class="anchor" aria-label="anchor" href="#arg-legend-rows"></a></dt>
-<dd><p>Number of rows for the legend.</p></dd>
 
 
 <dt id="arg-plothbpvalues">plotHBPvalues<a class="anchor" aria-label="anchor" href="#arg-plothbpvalues"></a></dt>

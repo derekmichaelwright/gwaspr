@@ -20,14 +20,14 @@
   : gg_LDHeatmap
 - [`gg_Manhattan()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan.md)
   : gg_Manhattan
-- [`gg_Manhattan_Traits()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Traits.md)
-  : gg_Manhattan_Traits
-- [`gg_Manhattan_Traits1()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Traits1.md)
-  : gg_Manhattan_Traits1
 - [`gg_Manhattan_Zoom()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom.md)
   : gg_Manhattan_Zoom
-- [`gg_Manhattan_Zoom1()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom1.md)
-  : gg_Manhattan_Zoom1
+- [`gg_Manhattan_Zoom_Traits()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom_Traits.md)
+  : gg_Manhattan_Zoom_Traits
+- [`gg_Manhattan_xModels()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_xModels.md)
+  : gg_Manhattan_xModels
+- [`gg_Manhattan_xTraits()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_xTraits.md)
+  : gg_Manhattan_xTraits
 - [`gg_Marker_Bar()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Bar.md)
   : gg_Marker_Bar
 - [`gg_Marker_Box()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Box.md)

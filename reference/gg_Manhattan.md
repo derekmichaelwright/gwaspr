@@ -16,8 +16,10 @@ gg_Manhattan(
   labels = markers,
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
-  vline.types = rep(1, length(vlines)),
-  vline.legend = T,
+  vline.types = rep(1:6, length(vlines)),
+  legend = T,
+  legend.rows = 1,
+  point.sizes = c(0.3, 1.25, 0.75),
   facet = F,
   addQQ = T,
   pmax = NULL,
@@ -28,7 +30,6 @@ gg_Manhattan(
   sig.color = "darkred",
   chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
   chrom.unit = "100 Mbp",
-  legend.rows = 1,
   plotHBPvalues = F,
   skyline = "Kansas"
 )
@@ -80,9 +81,17 @@ gg_Manhattan(
 
   lty for each vertical line.
 
-- vline.legend:
+- legend:
 
-  Logical, whether or not to add a legend for the vlines.
+  Logical, whether or not to add a legend.
+
+- legend.rows:
+
+  Number of rows for the legend.
+
+- point.sizes:
+
+  Sizes for the points. c("Not Sig", "Sig", "Sug").
 
 - facet:
 
@@ -127,10 +136,6 @@ gg_Manhattan(
 
   Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100
   Mbp","Gbp").
-
-- legend.rows:
-
-  Number of rows for the legend.
 
 - plotHBPvalues:
 

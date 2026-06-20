@@ -19,7 +19,9 @@ gg_GWAS_Hits(
   vlines = NULL,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
-  legend.rows = 1
+  legend.rows = 1,
+  facet = F,
+  caption = T
 )
 ```
 
@@ -76,6 +78,14 @@ gg_GWAS_Hits(
 - legend.rows:
 
   Number of rows for the legend.
+
+- facet:
+
+  Logical. facet by GWAS model.
+
+- caption:
+
+  Logical. should a caption be added.
 
 ## Value
 

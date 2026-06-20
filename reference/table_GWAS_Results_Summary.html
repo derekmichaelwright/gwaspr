@@ -37,7 +37,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">table_GWAS_Results_Summary</span><span class="op">(</span><span class="va">xx</span>, onlySig <span class="op">=</span> <span class="cn">F</span>, binMarkers <span class="op">=</span> <span class="cn">F</span>, binSize <span class="op">=</span> <span class="fl">1e+06</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">table_GWAS_Results_Summary</span><span class="op">(</span><span class="va">xx</span>, binMarkers <span class="op">=</span> <span class="cn">F</span>, binSize <span class="op">=</span> <span class="fl">5e+06</span>, onlySig <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -48,16 +48,16 @@
 <dd><p>Object from `table_GWAS_Results()`.</p></dd>
 
 
-<dt id="arg-onlysig">onlySig<a class="anchor" aria-label="anchor" href="#arg-onlysig"></a></dt>
-<dd><p>Logical, if TRUE, any suggested associations will be removed.</p></dd>
-
-
 <dt id="arg-binmarkers">binMarkers<a class="anchor" aria-label="anchor" href="#arg-binmarkers"></a></dt>
 <dd><p>Logical, if TRUE, markers will be bined based on `binSize`.</p></dd>
 
 
 <dt id="arg-binsize">binSize<a class="anchor" aria-label="anchor" href="#arg-binsize"></a></dt>
 <dd><p>range on each side of marker to bin. default = 1,000,000.</p></dd>
+
+
+<dt id="arg-onlysig">onlySig<a class="anchor" aria-label="anchor" href="#arg-onlysig"></a></dt>
+<dd><p>Logical, if TRUE, any suggested associations will be removed.</p></dd>
 
 </dl></div>
     <div class="section level2">
