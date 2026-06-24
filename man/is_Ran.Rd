@@ -4,12 +4,12 @@
 \alias{is_Ran}
 \title{is_Ran}
 \usage{
-is_Ran(myY, folder = "GWAS_Results/")
+is_Ran(folder = "GWAS_Results/", myY)
 }
 \arguments{
-\item{myY}{Phenotype file with traits as column names which will be checked for GWAS results.}
-
 \item{folder}{Folder containing GWAS results.}
+
+\item{myY}{Phenotype file with traits as column names which will be checked for GWAS results.}
 }
 \value{
 A table of which models have been run on each trait.

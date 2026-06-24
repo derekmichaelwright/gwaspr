@@ -8,5 +8,7 @@ docs
 myG_hmp.csv
 
 GWAS_Results/
+vignettes/GWAS_Results/
+vignettes/myG_hmp.csv
 
 extracode.txt

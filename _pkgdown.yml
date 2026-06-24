@@ -1,7 +1,7 @@
 url: https://derekmichaelwright.github.io/gwaspr/
 template:
+  light-switch: true
   bootstrap: 5
   bootswatch: cosmo
   bslib:
     primary: "#1E3D2A"
-

@@ -16,20 +16,28 @@ checkNYCvsKansas <- function(folder = "GWAS_Results/", deleteKansas = F) {
     #
     # FarmCPU
     #
-    f1 <- fnames[grepl(i,fnames) & grepl("\\(NYC\\)",fnames) & grepl("FarmCPU",fnames)]
-    f2 <- fnames[grepl(i,fnames) & grepl("\\(Kansas\\)",fnames) & grepl("FarmCPU",fnames)]
-    x1 <- read.csv(paste0(folder, f1)) %>% select(SNP, P.value) %>% arrange(SNP)
-    x2 <- read.csv(paste0(folder, f2)) %>% select(SNP, P.value) %>% arrange(SNP)
+    f1 <- fnames[grepl(paste0(i,"\\(NYC\\)"),fnames) & grepl("FarmCPU",fnames)]
+    f2 <- fnames[grepl(paste0(i,"\\(Kansas\\)"),fnames) & grepl("FarmCPU",fnames)]
+    if(length(f1)>0) {
+      x1 <- read.csv(paste0(folder, f1)) %>% select(SNP, P.value) %>% arrange(SNP)
+    } else { x1 <- NULL }
+    if(length(f2)>0) {
+      x2 <- read.csv(paste0(folder, f2)) %>% select(SNP, P.value) %>% arrange(SNP)
+    } else { x2 <- NULL }
     diffs <- sum(x1 != x2)
     output$FarmCPU[output$Trait == i] <- diffs
     #if(diffs == 0) { if(deleteKansas == T) { file.remove(paste0(folder, f2)) } }
     #
     # BLINK
     #
-    f1 <- fnames[grepl(i,fnames) & grepl("\\(NYC\\)",fnames) & grepl("BLINK",fnames)]
-    f2 <- fnames[grepl(i,fnames) & grepl("\\(Kansas\\)",fnames) & grepl("BLINK",fnames)]
-    x1 <- read.csv(paste0(folder, f1)) %>% select(SNP, P.value) %>% arrange(SNP)
-    x2 <- read.csv(paste0(folder, f2)) %>% select(SNP, P.value) %>% arrange(SNP)
+    f1 <- fnames[grepl(paste0(i,"\\(NYC\\)"),fnames) & grepl("BLINK",fnames)]
+    f2 <- fnames[grepl(paste0(i,"\\(Kansas\\)"),fnames) & grepl("BLINK",fnames)]
+    if(length(f1)>0) {
+      x1 <- read.csv(paste0(folder, f1)) %>% select(SNP, P.value) %>% arrange(SNP)
+    } else { x1 <- NULL }
+    if(length(f2)>0) {
+      x2 <- read.csv(paste0(folder, f2)) %>% select(SNP, P.value) %>% arrange(SNP)
+    } else { x2 <- NULL }
     diffs <- sum(x1 != x2)
     output$BLINK[output$Trait == i] <- diffs
     #if(diffs == 0) { if(deleteKansas == T) { file.remove(paste0(folder, f2)) } }
