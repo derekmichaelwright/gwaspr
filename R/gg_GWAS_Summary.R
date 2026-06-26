@@ -112,9 +112,15 @@ gg_GWAS_Summary <- function(
            Group = NULL, Model = NULL)
   #
   if(!is.null(chroms)) {
-    myG <- myG %>% filter(Chr %in% chroms, Pos > pos1, Pos < pos2)
-    x1 <- x1 %>% filter(Chr %in% chroms, Pos > pos1, Pos < pos2)
-    x2 <- x2 %>% filter(Chr %in% chroms, Pos > pos1, Pos < pos2)
+    myG <- myG %>% filter(Chr %in% chroms)
+    myP <- myP %>% filter(Chr %in% chroms)
+
+    if(!is.null(pos1)) {
+      myG <- myG %>% filter(Pos > pos1, Pos < pos2)
+      myP <- myP %>% filter(Pos > pos1, Pos < pos2)
+      #x1 <- x1 %>% filter(Pos > pos1, Pos < pos2)
+      #x2 <- x2 %>% filter(Pos > pos1, Pos < pos2)
+    }
   }
   #
   if(!is.null(groups)) {
@@ -141,8 +147,8 @@ gg_GWAS_Summary <- function(
     mp <- mp +
       geom_vline(data = myGM, alpha = 0.5,
                  aes(xintercept = Pos / 100000000, color = SNP)) +
-      scale_color_manual(name = NULL, values = vline.colors) +
-      scale_linetype_manual(name = NULL, values = vline.types)
+      scale_color_manual(name = "Marker", values = vline.colors) +
+      scale_linetype_manual(name = "Marker", values = vline.types)
   }
   #
   if(!is.null(hlines)) {
@@ -164,8 +170,8 @@ gg_GWAS_Summary <- function(
     mp <- mp + facet_grid(Group ~ Chr, scales = "free", space = "free")
   } else { mp <- mp + facet_grid(. ~ Chr, scales = "free", space = "free") }
   mp <- mp +
-    scale_fill_manual(name = NULL, values = model.colors, breaks = models) +
-    scale_shape_manual(name = NULL, values = shapes, breaks = models) +
+    scale_fill_manual(values = model.colors, breaks = models) +
+    scale_shape_manual(values = shapes, breaks = models) +
     scale_size_manual(name = NULL, values = c(2.25,0.75)) +
     scale_y_discrete(limits = rev, drop = F) +
     scale_x_continuous(breaks = 0:20) +
