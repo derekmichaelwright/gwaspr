@@ -11,27 +11,29 @@ gg_Manhattan(
   title = trait,
   threshold = NULL,
   sug.threshold = NULL,
-  chrom = NULL,
+  chr = NULL,
   markers = NULL,
   labels = markers,
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
-  vline.types = rep(1:6, length(vlines)),
+  vline.types = rep(1, length(vlines)),
   legend = T,
   legend.rows = 1,
-  point.sizes = c(0.3, 1.25, 0.75),
-  facet = F,
-  addQQ = T,
+  legend.box = "horizontal",
+  point.sizes = c(0.3, 1, 0.75),
   pmax = NULL,
   pmin = 0,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
-  model.colors = gwaspr_Colors,
+  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
+    "blue2", "magenta3"),
+  facet = F,
   highlight.sig = F,
-  sig.color = "darkred",
-  chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
-  chrom.unit = "100 Mbp",
+  sig.color = "black",
+  chr.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
+  chr.unit = "100 Mbp",
   plotHBPvalues = F,
-  skyline = "Kansas"
+  skyline = "Kansas",
+  addQQ = T
 )
 ```
 
@@ -57,7 +59,7 @@ gg_Manhattan(
 
   Suggested threshold.
 
-- chrom:
+- chr:
 
   Chromosomes to plot. Use if you want to plot a single chromosome.
 
@@ -89,18 +91,14 @@ gg_Manhattan(
 
   Number of rows for the legend.
 
+- legend.box:
+
+  Alignment of the legend. Default is "horizontal", but it can be
+  changed to "vertical".
+
 - point.sizes:
 
   Sizes for the points. c("Not Sig", "Sig", "Sug").
-
-- facet:
-
-  Logical, whether or not to produce a facetted or multi-model plot.
-  Default is \`facet = F\`.
-
-- addQQ:
-
-  Logical, whether or not to add a QQ plot.
 
 - pmax:
 
@@ -119,6 +117,11 @@ gg_Manhattan(
 
   Colors for each model. Used if \`facet = F\`.
 
+- facet:
+
+  Logical, whether or not to produce a facetted or multi-model plot.
+  Default is \`facet = F\`.
+
 - highlight.sig:
 
   Logical, whether or not to highlight significant associations with a
@@ -128,11 +131,11 @@ gg_Manhattan(
 
   Color for significant assoctiations. Used if \`facet = T\`.
 
-- chrom.colors:
+- chr.colors:
 
   Colors for each chromosome. Used if \`facet = T\`.
 
-- chrom.unit:
+- chr.unit:
 
   Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100
   Mbp","Gbp").
@@ -145,6 +148,10 @@ gg_Manhattan(
 
   Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will
   use the highest P.value.
+
+- addQQ:
+
+  Logical, whether or not to add a QQ plot.
 
 ## Value
 

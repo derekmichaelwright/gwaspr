@@ -11,20 +11,23 @@ gg_Manhattan_xTraits(
   title = NULL,
   threshold = NULL,
   sug.threshold = NULL,
-  chrom = NULL,
+  chr = NULL,
   markers = NULL,
   labels = markers,
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
-  vline.types = rep(1:6, length(vlines)),
+  vline.types = rep(1, length(vlines)),
   vline.legend = F,
   addQQ = T,
   pmax = NULL,
   pmin = 0,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
-  trait.colors = gwaspr_Colors,
-  chrom.unit = "100 Mbp",
+  trait.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
+    "blue2", "magenta3"),
+  chr.unit = "100 Mbp",
   legend.rows = 1,
+  legend.box = "horizontal",
+  point.sizes = c(0.3, 1, 0.75),
   plotHBPvalues = F,
   skyline = "Kansas"
 )
@@ -52,7 +55,7 @@ gg_Manhattan_xTraits(
 
   Suggested threshold.
 
-- chrom:
+- chr:
 
   Chromosomes to plot. Use if you want to plot a single chromosome.
 
@@ -100,7 +103,7 @@ gg_Manhattan_xTraits(
 
   Colors for each trait.
 
-- chrom.unit:
+- chr.unit:
 
   Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100
   Mbp","Gbp").
@@ -108,6 +111,15 @@ gg_Manhattan_xTraits(
 - legend.rows:
 
   Number of rows for the legend.
+
+- legend.box:
+
+  Alignment of the legend. Default is "horizontal", but it can be
+  changed to "vertical".
+
+- point.sizes:
+
+  Sizes for the points. c("Not Sig", "Sig", "Sug").
 
 - skyline:
 

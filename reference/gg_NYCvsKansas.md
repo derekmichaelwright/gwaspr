@@ -11,7 +11,7 @@ gg_NYCvsKansas(
   title = trait,
   threshold = NULL,
   sug.threshold = NULL,
-  chrom = NULL,
+  chr = NULL,
   markers = NULL,
   labels = markers,
   vlines = markers,
@@ -22,8 +22,8 @@ gg_NYCvsKansas(
   pmax = NULL,
   models = c("FarmCPU", "BLINK"),
   sig.col = "darkred",
-  chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
-  chrom.unit = "100 Mbp",
+  chr.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
+  chr.unit = "100 Mbp",
   legend.rows = 1,
   plotHBPvalues = F
 )
@@ -51,7 +51,7 @@ gg_NYCvsKansas(
 
   Suggested threshold.
 
-- chrom:
+- chr:
 
   Chromosomes to plot. Use if you want to plot a single chromosome.
 
@@ -93,13 +93,13 @@ gg_NYCvsKansas(
 
 - sig.col:
 
-  Color for significant assoctiations. Used if \`facet = T\`.
+  Color for significant assoctiations.
 
-- chrom.colors:
+- chr.colors:
 
-  Colors for each chromosome. Used if \`facet = T\`.
+  Colors for each chromosome.
 
-- chrom.unit:
+- chr.unit:
 
   Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100
   Mbp","Gbp").

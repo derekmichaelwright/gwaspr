@@ -49,20 +49,23 @@
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sug.threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  chrom <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  chr <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  markers <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  labels <span class="op">=</span> <span class="va">markers</span>,</span>
 <span>  vlines <span class="op">=</span> <span class="va">markers</span>,</span>
 <span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  vline.legend <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  addQQ <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  pmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pmin <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"GLM"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span>,</span>
-<span>  trait.colors <span class="op">=</span> <span class="va">gwaspr_Colors</span>,</span>
-<span>  chrom.unit <span class="op">=</span> <span class="st">"100 Mbp"</span>,</span>
+<span>  trait.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkorchid4"</span>,</span>
+<span>    <span class="st">"blue2"</span>, <span class="st">"magenta3"</span><span class="op">)</span>,</span>
+<span>  chr.unit <span class="op">=</span> <span class="st">"100 Mbp"</span>,</span>
 <span>  legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  legend.box <span class="op">=</span> <span class="st">"horizontal"</span>,</span>
+<span>  point.sizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">1</span>, <span class="fl">0.75</span><span class="op">)</span>,</span>
 <span>  plotHBPvalues <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  skyline <span class="op">=</span> <span class="st">"Kansas"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -92,7 +95,7 @@
 <dd><p>Suggested threshold.</p></dd>
 
 
-<dt id="arg-chrom">chrom<a class="anchor" aria-label="anchor" href="#arg-chrom"></a></dt>
+<dt id="arg-chr">chr<a class="anchor" aria-label="anchor" href="#arg-chr"></a></dt>
 <dd><p>Chromosomes to plot. Use if you want to plot a single chromosome.</p></dd>
 
 
@@ -140,12 +143,20 @@
 <dd><p>Colors for each trait.</p></dd>
 
 
-<dt id="arg-chrom-unit">chrom.unit<a class="anchor" aria-label="anchor" href="#arg-chrom-unit"></a></dt>
+<dt id="arg-chr-unit">chr.unit<a class="anchor" aria-label="anchor" href="#arg-chr-unit"></a></dt>
 <dd><p>Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").</p></dd>
 
 
 <dt id="arg-legend-rows">legend.rows<a class="anchor" aria-label="anchor" href="#arg-legend-rows"></a></dt>
 <dd><p>Number of rows for the legend.</p></dd>
+
+
+<dt id="arg-legend-box">legend.box<a class="anchor" aria-label="anchor" href="#arg-legend-box"></a></dt>
+<dd><p>Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".</p></dd>
+
+
+<dt id="arg-point-sizes">point.sizes<a class="anchor" aria-label="anchor" href="#arg-point-sizes"></a></dt>
+<dd><p>Sizes for the points. c("Not Sig", "Sig", "Sug").</p></dd>
 
 
 <dt id="arg-skyline">skyline<a class="anchor" aria-label="anchor" href="#arg-skyline"></a></dt>
@@ -166,7 +177,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

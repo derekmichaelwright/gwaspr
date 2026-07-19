@@ -16,7 +16,7 @@ order_GWAS_Results(folder = "GWAS_Results/", files = list_Result_Files(folder))
 
 - files:
 
-  The files to read.
+  The files to read. Default will read all files.
 
 ## Value
 

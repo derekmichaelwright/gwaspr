@@ -8,7 +8,7 @@ GAPIT.
 ``` r
 clean_GWAS_Results(
   folder = "GWAS_Results/",
-  remove_nonResults = F,
+  remove_nonResults = T,
   remove_Kansas = F,
   remove_NYC = F
 )

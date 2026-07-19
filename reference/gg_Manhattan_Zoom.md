@@ -1,6 +1,7 @@
 # gg_Manhattan_Zoom
 
-Creates a manhattan plot zoomed in to a particular region.
+Create a manhattan plot for a single trait, zoomed in to a particular
+region.
 
 ## Usage
 
@@ -9,9 +10,10 @@ gg_Manhattan_Zoom(
   folder = "GWAS_Results/",
   trait = list_Traits(folder)[1],
   title = trait,
-  chrom,
-  pos1,
-  pos2,
+  chr = 1,
+  pos1 = NULL,
+  pos2 = NULL,
+  addGenome = T,
   threshold = NULL,
   sug.threshold = NULL,
   markers = NULL,
@@ -20,13 +22,15 @@ gg_Manhattan_Zoom(
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
+  facet = F,
   pmax = NULL,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
-  model.colors = gwaspr_Colors,
-  facet = F,
-  highlight.sig = F,
+  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
+    "blue2", "magenta3"),
   sig.color = "black",
   legend.rows = 1,
+  legend.box = "horizontal",
+  point.sizes = c(0.3, 1, 0.75),
   plotHBPvalues = F,
   skyline = "Kansas"
 )
@@ -46,7 +50,7 @@ gg_Manhattan_Zoom(
 
   A title for the plot.
 
-- chrom:
+- chr:
 
   Chromosome to plot.
 
@@ -90,6 +94,11 @@ gg_Manhattan_Zoom(
 
   Logical, whether or not to add a legend for the vlines.
 
+- facet:
+
+  Logical, whether or not to produce a facetted or multi-model plot.
+  Default is \`facet = F\`.
+
 - pmax:
 
   A max value for the y-axis.
@@ -102,16 +111,6 @@ gg_Manhattan_Zoom(
 
   Colors for each model. Used if \`facet = F\`.
 
-- facet:
-
-  Logical, whether or not to produce a facetted or multi-model plot.
-  Default is \`facet = F\`.
-
-- highlight.sig:
-
-  Logical, whether or not to highlight significant associations with a
-  black circle. Used if \`facet = F\`.
-
 - sig.color:
 
   Color for significant assoctiations.
@@ -119,6 +118,15 @@ gg_Manhattan_Zoom(
 - legend.rows:
 
   Number of rows for the legend.
+
+- legend.box:
+
+  Alignment of the legend. Default is "horizontal", but it can be
+  changed to "vertical".
+
+- point.sizes:
+
+  Sizes for the points. c("Not Sig", "Sig", "Sug").
 
 - plotHBPvalues:
 
@@ -128,19 +136,6 @@ gg_Manhattan_Zoom(
 
   Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it
   will use the highest P.value.
-
-- addQQ:
-
-  Logical, whether or not to add a QQ plot
-
-- chrom.colors:
-
-  Colors for each chromosome. Used if \`facet = T\`.
-
-- chrom.unit:
-
-  Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100
-  Mbp","Gbp").
 
 ## Value
 

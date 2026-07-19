@@ -1,6 +1,7 @@
 # gg_Manhattan_Zoom_Traits
 
-Creates a manhattan plot zoomed in to a particular region.
+Create manhattan plots for multiple traits zoomed in to a particular
+region.
 
 ## Usage
 
@@ -9,9 +10,9 @@ gg_Manhattan_Zoom_Traits(
   folder = "GWAS_Results/",
   traits = list_Traits(folder)[1],
   title = NULL,
-  chrom,
-  pos1,
-  pos2,
+  chr,
+  pos1 = NULL,
+  pos2 = NULL,
   threshold = NULL,
   sug.threshold = NULL,
   markers = NULL,
@@ -21,11 +22,13 @@ gg_Manhattan_Zoom_Traits(
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
   pmax = NULL,
-  models = c("MLM", "FarmCPU", "BLINK"),
-  model.colors = gwaspr_Colors,
-  highlight.sig = F,
+  models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
+  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
+    "blue2", "magenta3"),
   sig.color = "black",
   legend.rows = 1,
+  legend.box = "horizontal",
+  point.sizes = c(0.3, 1, 0.75),
   plotHBPvalues = F,
   skyline = "Kansas"
 )
@@ -45,7 +48,7 @@ gg_Manhattan_Zoom_Traits(
 
   A title for the plot.
 
-- chrom:
+- chr:
 
   Chromosome to plot.
 
@@ -101,11 +104,6 @@ gg_Manhattan_Zoom_Traits(
 
   Colors for each model.
 
-- highlight.sig:
-
-  Logical, whether or not to highlight significant associations with a
-  black circle.
-
 - sig.color:
 
   Color for significant assoctiations.
@@ -113,6 +111,15 @@ gg_Manhattan_Zoom_Traits(
 - legend.rows:
 
   Number of rows for the legend.
+
+- legend.box:
+
+  Alignment of the legend. Default is "horizontal", but it can be
+  changed to "vertical".
+
+- point.sizes:
+
+  Sizes for the points. c("Not Sig", "Sig", "Sug").
 
 - plotHBPvalues:
 
@@ -122,19 +129,6 @@ gg_Manhattan_Zoom_Traits(
 
   Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it
   will use the highest P.value.
-
-- addQQ:
-
-  Logical, whether or not to add a QQ plot
-
-- chrom.colors:
-
-  Colors for each chromosome. Used if \`facet = T\`.
-
-- chrom.unit:
-
-  Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100
-  Mbp","Gbp").
 
 ## Value
 

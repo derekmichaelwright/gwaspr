@@ -5,8 +5,11 @@ Create a table of significant GWAS results.
 ## Usage
 
 ``` r
-table_GWAS_Results(
+table_GWAS_Region(
   folder = "GWAS_Results/",
+  chr = 1,
+  pos1 = 3.5e+08,
+  pos2 = 3.7e+08,
   fnames = list_Result_Files(folder),
   threshold = 6,
   sug.threshold = NULL,
@@ -21,6 +24,18 @@ table_GWAS_Results(
 - folder:
 
   Folder containing GWAS results.
+
+- chr:
+
+  Chromosome to plot.
+
+- pos1:
+
+  Start position on chromosome.
+
+- pos2:
+
+  End position on chromosome.
 
 - fnames:
 
@@ -46,6 +61,10 @@ table_GWAS_Results(
 - models:
 
   GWAS models to use.
+
+- useHBPvalues:
+
+  Logical, if TRUE, H.B.P.Values will be uses.
 
 ## Value
 

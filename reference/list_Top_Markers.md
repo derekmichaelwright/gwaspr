@@ -8,10 +8,10 @@ Finds the markers with the highest association on each chromosome.
 list_Top_Markers(
   folder = "GWAS_Results/",
   traits = list_Traits(folder),
+  chr = 1:50,
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
   threshold = 5,
-  chroms = 1:50,
-  n = 3
+  n = 5
 )
 ```
 
@@ -25,6 +25,10 @@ list_Top_Markers(
 
   GWAS trait.
 
+- chr:
+
+  Chromosomes to include.
+
 - models:
 
   GWAS models to include.
@@ -32,10 +36,6 @@ list_Top_Markers(
 - threshold:
 
   filters results with -log10(p) below threshold.
-
-- chroms:
-
-  Chromosomes to include.
 
 - n:
 

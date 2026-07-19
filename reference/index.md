@@ -14,7 +14,7 @@
   : dropNAcol
 - [`gg_GWAS_Hits()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Hits.md)
   : gg_GWAS_Hits
-- [`gg_GWAS_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary.md)
+- [`gg_GWAS_Summary2()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary2.md)
   : gg_GWAS_Summary
 - [`gg_LDheatmap()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_LDheatmap.md)
   : gg_LDHeatmap
@@ -62,6 +62,8 @@
   : order_GWAS_Results
 - [`run_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/run_Summary.md)
   : run_Summary
+- [`table_GWAS_Region()`](https://derekmichaelwright.github.io/gwaspr/reference/table_GWAS_Region.md)
+  : table_GWAS_Results
 - [`table_GWAS_Results()`](https://derekmichaelwright.github.io/gwaspr/reference/table_GWAS_Results.md)
   : table_GWAS_Results
 - [`table_GWAS_Results_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/table_GWAS_Results_Summary.md)
