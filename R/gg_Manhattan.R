@@ -1,6 +1,6 @@
 #' gg_Manhattan
 #'
-#' Creates a manhattan plot.
+#' [Create manhattan plots from GAPIT GWAS results.](https://derekmichaelwright.github.io/gwaspr/articles/04_gg_Manhattan.html)
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
 #' @param title A title for the plot.
@@ -166,7 +166,7 @@ gg_Manhattan <- function(
   #
   mp2 <- ggplot(xx, aes(y = negLog10_P, x = negLog10_Exp)) +
     theme_gwaspr() +
-    labs(y = NULL, x = "Expected")#title = "",
+    labs(y = NULL, x = "Expected")
   #
   # Add vlines
   #

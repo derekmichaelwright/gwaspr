@@ -16,7 +16,7 @@ gg_QTL_Summary(
 
 \item{myG}{genotype file}
 
-\item{groups}{Grouping for the traits. Should be equal length to `traits`.}
+\item{groups}{Grouping for the traits. Should be equal length to \code{traits}.}
 }
 \value{
 A QTL summary plot.

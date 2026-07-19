@@ -80,5 +80,5 @@ gg_Manhattan_xModels(
 A manhattan plot.
 }
 \description{
-Creates a manhattan plot.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/07_gg_Manhattan_xModels.html}{Create manhattan plots from GAPIT GWAS results for multiple traits and facets them by Model.}
 }

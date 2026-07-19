@@ -1,6 +1,6 @@
 #' gg_Manhattan_Zoom
 #'
-#' Create a manhattan plot for a single trait, zoomed in to a particular region.
+#' [Create manhattan plots from GAPIT GWAS results zoomed into a specific region on a chromosome.](https://derekmichaelwright.github.io/gwaspr/articles/05_gg_Manhattan_Zoom.html)
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
 #' @param title A title for the plot.

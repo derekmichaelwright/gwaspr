@@ -7,9 +7,9 @@
 table_GWAS_Results_Summary(xx, binMarkers = F, binSize = 5e+06, onlySig = F)
 }
 \arguments{
-\item{xx}{Object from `table_GWAS_Results()`.}
+\item{xx}{Object from \code{table_GWAS_Results()}.}
 
-\item{binMarkers}{Logical, if TRUE, markers will be bined based on `binSize`.}
+\item{binMarkers}{Logical, if TRUE, markers will be bined based on \code{binSize}.}
 
 \item{binSize}{range on each side of marker to bin. default = 1,000,000.}
 
@@ -19,5 +19,5 @@ table_GWAS_Results_Summary(xx, binMarkers = F, binSize = 5e+06, onlySig = F)
 A table of significant GWAS results.
 }
 \description{
-Create a summary using the output from `table_GWAS_Results()`.
+Create a summary using the output from \code{table_GWAS_Results()}.
 }

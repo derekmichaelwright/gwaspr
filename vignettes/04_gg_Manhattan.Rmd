@@ -12,8 +12,6 @@ knitr::opts_chunk$set(eval = F, message = F, warning = F)
 library(gwaspr)
 ```
 
-[gg_Manhattan()](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan.html)
-
 The function `gg_Manhattan()` creates manhattan plots from GAPIT GWAS results. 
 
 Specifying a `folder` and `trait` is all that is needed to create manhattan plots.

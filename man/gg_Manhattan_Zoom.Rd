@@ -62,13 +62,13 @@ gg_Manhattan_Zoom(
 
 \item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
 
-\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.}
+\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is \code{facet = F}.}
 
 \item{pmax}{A max value for the y-axis.}
 
 \item{models}{Models to read.}
 
-\item{model.colors}{Colors for each model. Used if `facet = F`.}
+\item{model.colors}{Colors for each model. Used if \code{facet = F}.}
 
 \item{sig.color}{Color for significant assoctiations.}
 
@@ -86,5 +86,5 @@ gg_Manhattan_Zoom(
 A manhattan plot.
 }
 \description{
-Create a manhattan plot for a single trait, zoomed in to a particular region.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/05_gg_Manhattan_Zoom.html}{Create manhattan plots from GAPIT GWAS results zoomed into a specific region on a chromosome.}
 }

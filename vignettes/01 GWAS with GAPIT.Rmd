@@ -5,7 +5,7 @@ output: rmarkdown::html_vignette
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(eval = F, message = F, warning = F)
+knitr::opts_chunk$set(message = F, warning = F)
 ```
 
 ```{r echo = F}
@@ -40,6 +40,10 @@ myG[1:10,1:11]
 myG[1:10,12:17]
 ```
 
+```{r}
+DT::datatable(myG[1:20,1:20])
+```
+
 # Phenotype data (myY)
 
 ```{r}
@@ -53,6 +57,8 @@ DT::datatable(myCV)
 ```
 
 ---
+
+# Run GWAS
 
 Run GWAS on the 3 traits `myY`
 
@@ -69,6 +75,10 @@ myGAPIT <- GAPIT( Y = myY,
                   Random.model = F, Phenotype.View = F
                 )
 ```
+
+---
+
+# GWAS with Covariate
 
 Run GWAS on the `DTF_Sask_2017` trait with `b` as a covariate.
 

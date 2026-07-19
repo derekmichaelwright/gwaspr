@@ -17,5 +17,5 @@ gg_plotly(mp, filename = "my_gg_plotly.html", showlegend = T)
 A plotly summary GWAS plot.
 }
 \description{
-Creates an interactive plotly plot. Note: This function will require `plotly` and `htmlwidgets` packages.
+Creates an interactive plotly plot. Note: This function will require \code{plotly} and \code{htmlwidgets} packages.
 }

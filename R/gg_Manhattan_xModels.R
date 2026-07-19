@@ -1,6 +1,6 @@
 #' gg_Manhattan_xModels
 #'
-#' Creates a manhattan plot.
+#' [Create manhattan plots from GAPIT GWAS results for multiple traits and facets them by Model.](https://derekmichaelwright.github.io/gwaspr/articles/07_gg_Manhattan_xModels.html)
 #' @param folder Folder containing GWAS results.
 #' @param traits The traits to read.
 #' @param title A title for the plot.

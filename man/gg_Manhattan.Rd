@@ -72,15 +72,15 @@ gg_Manhattan(
 
 \item{models}{Models to read.}
 
-\item{model.colors}{Colors for each model. Used if `facet = F`.}
+\item{model.colors}{Colors for each model. Used if \code{facet = F}.}
 
-\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.}
+\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is \code{facet = F}.}
 
-\item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.}
+\item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if \code{facet = F}.}
 
-\item{sig.color}{Color for significant assoctiations. Used if `facet = T`.}
+\item{sig.color}{Color for significant assoctiations. Used if \code{facet = T}.}
 
-\item{chr.colors}{Colors for each chromosome. Used if `facet = T`.}
+\item{chr.colors}{Colors for each chromosome. Used if \code{facet = T}.}
 
 \item{chr.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
 
@@ -94,5 +94,5 @@ gg_Manhattan(
 A manhattan plot.
 }
 \description{
-Creates a manhattan plot.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/04_gg_Manhattan.html}{Create manhattan plots from GAPIT GWAS results.}
 }

@@ -63,7 +63,7 @@ gg_GWAS_Summary2(
 
 \item{traits}{The traits to read.}
 
-\item{groups}{Grouping for the traits. Should be equal length to `traits`.}
+\item{groups}{Grouping for the traits. Should be equal length to \code{traits}.}
 
 \item{threshold}{Significant threshold.}
 

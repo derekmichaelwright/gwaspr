@@ -9,7 +9,7 @@ checkNYCvsKansas(folder = "GWAS_Results/", deleteKansas = F)
 \arguments{
 \item{folder}{Folder containing GWAS results.}
 
-\item{deteleKansas}{Logical, if TRUE, will delete any `Kansas` files with no difference between the `NYC` files.}
+\item{deteleKansas}{Logical, if TRUE, will delete any \code{Kansas} files with no difference between the \code{NYC} files.}
 }
 \value{
 A table of which runs were identical and deleted.
