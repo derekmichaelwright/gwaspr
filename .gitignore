@@ -1,14 +1,12 @@
 .Rproj.user
 .Rhistory
 .RData
-/Vignettes/*.Rmd
+
 inst/doc
 docs
 
-myG_hmp.csv
-
-GWAS_Results/
 vignettes/GWAS_Results/
 vignettes/myG_hmp.csv
+vignettes/myY_old.csv
 
 extracode.txt
