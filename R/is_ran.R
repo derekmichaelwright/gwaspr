@@ -1,8 +1,8 @@
 #' is_Ran
 #'
 #' Create a table of which models have been run on each trait.
-#' @param myY Phenotype file with traits as column names which will be checked for GWAS results.
 #' @param folder Folder containing GWAS results.
+#' @param myY Phenotype file with traits as column names which will be checked for GWAS results.
 #' @return A table of which models have been run on each trait.
 #' @export
 

@@ -2,7 +2,7 @@
 #'
 #' Read in GWAS results, then arrange by P.value and write as csv..
 #' @param folder Folder containing GWAS results.
-#' @param files The files to read.
+#' @param files The files to read. Default will read all files.
 #' @return Rearranged files of GWAS results.
 #' @export
 

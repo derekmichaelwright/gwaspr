@@ -40,15 +40,11 @@ library(gwaspr)
 
 ---
 
-```{r echo = F}
-library("gwaspr")
-```
-
 # list_Traits()
 
 List off the traits which have GWAS results files in the designated folder.
 
-```{r}
+```{r eval = F}
 data_path <- here::here()
 setwd(data_path)
 getwd()
@@ -75,7 +71,7 @@ Check to see which of your `myY` traits have GWAS results files int he designate
 Checks which GWAS models have been run for each trait within the designated folder.
 
 ```{r eval = F}
-run_Summary(folder = "GWAS_Results/")
+run_Summary(folder = "vignettes/GWAS_Results/")
 ```
 
 ---
@@ -85,7 +81,7 @@ run_Summary(folder = "GWAS_Results/")
 Reorders the result files if they are not already arranged by P.value.
 
 ```{r eval = F}
-order_GWAS_Results(folder = "GWAS_Results/")
+order_GWAS_Results(folder = "vignettes/GWAS_Results/")
 ```
 
 ---
@@ -93,7 +89,7 @@ order_GWAS_Results(folder = "GWAS_Results/")
 # is_Ordered()
 
 ```{r eval = F}
-is_Ordered(folder = "GWAS_Results/")
+is_Ordered(folder = "vignettes/GWAS_Results/")
 ```
 
 ---

@@ -9,7 +9,7 @@ order_GWAS_Results(folder = "GWAS_Results/", files = list_Result_Files(folder))
 \arguments{
 \item{folder}{Folder containing GWAS results.}
 
-\item{files}{The files to read.}
+\item{files}{The files to read. Default will read all files.}
 }
 \value{
 Rearranged files of GWAS results.

@@ -10,27 +10,29 @@ gg_Manhattan(
   title = trait,
   threshold = NULL,
   sug.threshold = NULL,
-  chrom = NULL,
+  chr = NULL,
   markers = NULL,
   labels = markers,
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
-  vline.types = rep(1:6, length(vlines)),
+  vline.types = rep(1, length(vlines)),
   legend = T,
   legend.rows = 1,
-  point.sizes = c(0.3, 1.25, 0.75),
-  facet = F,
-  addQQ = T,
+  legend.box = "horizontal",
+  point.sizes = c(0.3, 1, 0.75),
   pmax = NULL,
   pmin = 0,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
-  model.colors = gwaspr_Colors,
+  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
+    "blue2", "magenta3"),
+  facet = F,
   highlight.sig = F,
-  sig.color = "darkred",
-  chrom.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
-  chrom.unit = "100 Mbp",
+  sig.color = "black",
+  chr.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
+  chr.unit = "100 Mbp",
   plotHBPvalues = F,
-  skyline = "Kansas"
+  skyline = "Kansas",
+  addQQ = T
 )
 }
 \arguments{
@@ -44,7 +46,7 @@ gg_Manhattan(
 
 \item{sug.threshold}{Suggested threshold.}
 
-\item{chrom}{Chromosomes to plot. Use if you want to plot a single chromosome.}
+\item{chr}{Chromosomes to plot. Use if you want to plot a single chromosome.}
 
 \item{markers}{Markers to be labelled.}
 
@@ -60,11 +62,9 @@ gg_Manhattan(
 
 \item{legend.rows}{Number of rows for the legend.}
 
+\item{legend.box}{Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".}
+
 \item{point.sizes}{Sizes for the points. c("Not Sig", "Sig", "Sug").}
-
-\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.}
-
-\item{addQQ}{Logical, whether or not to add a QQ plot.}
 
 \item{pmax}{A max value for the y-axis. Markers with higher values will be lowered to pmax..}
 
@@ -74,17 +74,21 @@ gg_Manhattan(
 
 \item{model.colors}{Colors for each model. Used if `facet = F`.}
 
+\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.}
+
 \item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if `facet = F`.}
 
 \item{sig.color}{Color for significant assoctiations. Used if `facet = T`.}
 
-\item{chrom.colors}{Colors for each chromosome. Used if `facet = T`.}
+\item{chr.colors}{Colors for each chromosome. Used if `facet = T`.}
 
-\item{chrom.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
+\item{chr.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
 
 \item{plotHBPvalues}{Logical, if TRUE, H.B.P.values be uses.}
 
 \item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.}
+
+\item{addQQ}{Logical, whether or not to add a QQ plot.}
 }
 \value{
 A manhattan plot.

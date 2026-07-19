@@ -9,18 +9,10 @@
 
 gg_myG_Details <- function(filename, myPrefix = "", filetype = "csv") {
   #
-  dna <- data.frame(stringsAsFactors = F,
-                    Symbol = c("A", "C", "G", "T", "U",
-                               "R", "Y", "S", "W", "K", "M", "N"),
-                    Value  = c("AA","CC","GG","TT","UU",
-                               "AG","CT","GC","AT","GT","AC","NN") )
-  #
   if(filetype == "csv") { xx <- read.csv(filename, header = T) }
   if(filetype == "txt") { xx <- read.table(filename, header = T) }
   #
-  #if(nchar(xx[2,12]) > 1) {
-  for(i in 12:ncol(xx)) { xx[,i] <- suppressMessages(plyr::mapvalues(xx[,i], dna$Value, dna$Symbol)) }
-  #}
+  for(i in 12:ncol(xx)) { xx[,i] <- suppressMessages(plyr::mapvalues(xx[,i], gwaspr_dna$Value, gwaspr_dna$Symbol)) }
   #
   xNames <- colnames(xx)[12:ncol(xx)]
   #

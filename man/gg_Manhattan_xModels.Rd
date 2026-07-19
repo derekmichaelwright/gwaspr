@@ -10,20 +10,23 @@ gg_Manhattan_xModels(
   title = NULL,
   threshold = NULL,
   sug.threshold = NULL,
-  chrom = NULL,
+  chr = NULL,
   markers = NULL,
   labels = markers,
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
-  vline.types = rep(1:6, length(vlines)),
+  vline.types = rep(1, length(vlines)),
   legend = F,
   legend.rows = 1,
+  legend.box = "horizontal",
+  point.sizes = c(0.3, 1, 0.75),
   addQQ = T,
   pmax = NULL,
   pmin = 0,
-  models = "MLM",
-  trait.colors = gwaspr_Colors,
-  chrom.unit = "100 Mbp",
+  models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
+  trait.colors = c("chartreuse4", "firebrick", "steelblue3", "maroon3", "purple3",
+    "darkgoldenrod4", "tomato3", "aquamarine4", "deeppink3"),
+  chr.unit = "100 Mbp",
   plotHBPvalues = F,
   skyline = "Kansas"
 )
@@ -39,7 +42,7 @@ gg_Manhattan_xModels(
 
 \item{sug.threshold}{Suggested threshold.}
 
-\item{chrom}{Chromosomes to plot. Use if you want to plot a single chromosome.}
+\item{chr}{Chromosomes to plot. Use if you want to plot a single chromosome.}
 
 \item{markers}{Markers to be labelled.}
 
@@ -55,6 +58,10 @@ gg_Manhattan_xModels(
 
 \item{legend.rows}{Number of rows for the legend.}
 
+\item{legend.box}{Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".}
+
+\item{point.sizes}{Sizes for the points. c("Not Sig", "Sig", "Sug").}
+
 \item{addQQ}{Logical, whether or not to add a QQ plot.}
 
 \item{pmax}{A max value for the y-axis.}
@@ -65,7 +72,7 @@ gg_Manhattan_xModels(
 
 \item{trait.colors}{Colors for each trait.}
 
-\item{chrom.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
+\item{chr.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
 
 \item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
 }

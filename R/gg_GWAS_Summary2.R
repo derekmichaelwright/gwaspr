@@ -1,4 +1,4 @@
-#' gg_GWAS_Summary
+#' gg_GWAS_Summary2
 #'
 #' Creates a summary GWAS plot of significant associations.
 #' Note: this function requires the GWAS results files to be ordered
@@ -136,7 +136,7 @@ gg_GWAS_Summary2 <- function(
            Threshold = ifelse(Threshold == "Suggestive", paste("Suggestive =",sug.threshold), Threshold),
            Threshold = factor(Threshold))
   #
-  mp <- ggplot(myP, aes(x = Pos / 100000000)) + geom_blank(data = myG)
+  mp <- ggplot(myP, aes(x = Pos / 1000000)) + geom_blank(data = myG)
   #
   if(!is.null(vlines)) {
     myGM <- myG %>% filter(SNP %in% vlines) %>%
@@ -146,7 +146,7 @@ gg_GWAS_Summary2 <- function(
     #
     mp <- mp +
       geom_vline(data = myGM, alpha = 0.5,
-                 aes(xintercept = Pos / 100000000, color = SNP)) +
+                 aes(xintercept = Pos / 1000000, color = SNP)) +
       scale_color_manual(name = "Marker", values = vline.colors) +
       scale_linetype_manual(name = "Marker", values = vline.types)
   }
@@ -168,18 +168,18 @@ gg_GWAS_Summary2 <- function(
     #               key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP))
   if(!is.null(groups)) {
     mp <- mp + facet_grid(Group ~ Chr, scales = "free", space = "free")
-  } else { mp <- mp + facet_grid(. ~ Chr, scales = "free", space = "free") }
+  } else { mp <- mp + facet_grid(Model ~ Chr, scales = "free", space = "free") }
   mp <- mp +
     scale_fill_manual(values = model.colors, breaks = models) +
     scale_shape_manual(values = shapes, breaks = models) +
     scale_size_manual(name = NULL, values = c(2.25,0.75)) +
     scale_y_discrete(limits = rev, drop = F) +
-    scale_x_continuous(breaks = 0:20) +
+    #scale_x_continuous(breaks = 0:20) +
     theme_gwaspr(legend.position = legend.position) +
     guides(shape = guide_legend(nrow = legend.rows, override.aes = list(size = 4)),
            color = guide_legend(nrow = legend.rows),
            fill = guide_legend(nrow = legend.rows)) +
-    labs(title = title, y = NULL, x = "100 Mbp", caption = caption)
+    labs(title = title, y = NULL, x = "Mbp", caption = caption)
   #
   if(vline.legend == F) {
     mp <- mp + guides(color = vline.legend)

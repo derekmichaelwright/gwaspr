@@ -10,10 +10,10 @@
 #' @export
 
 theme_gwaspr_col <- function(x, bgFill = "white", lineColor = "grey90", linesize = 0.75, stripFill = "white", ...) {
-    theme(panel.background = element_rect(color = "black", fill = bgFill, size = linesize),
+    theme(panel.background = element_rect(color = "black", fill = bgFill, linewidth = linesize),
           panel.grid = element_line(color = lineColor),
-          panel.border = element_rect(color = "black", fill = NA, size = linesize),
-          strip.background = element_rect(color = "black", fill = stripFill, size = linesize),
+          panel.border = element_rect(color = "black", fill = NA, linewidth = linesize),
+          strip.background = element_rect(color = "black", fill = stripFill, linewidth = linesize),
           legend.key = element_rect(color = NA),
           panel.grid.major.x = element_blank(),
           panel.grid.minor.x = element_blank(),

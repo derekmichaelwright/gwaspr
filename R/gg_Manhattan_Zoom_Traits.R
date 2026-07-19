@@ -1,10 +1,10 @@
 #' gg_Manhattan_Zoom_Traits
 #'
-#' Creates a manhattan plot zoomed in to a particular region.
+#' Create manhattan plots for multiple traits zoomed in to a particular region.
 #' @param folder Folder containing GWAS results.
 #' @param traits The traits to read.
 #' @param title A title for the plot.
-#' @param chrom Chromosome to plot.
+#' @param chr Chromosome to plot.
 #' @param pos1 Start position on chromosome.
 #' @param pos2 End position on chromosome.
 #' @param threshold Significant Threshold.
@@ -15,15 +15,13 @@
 #' @param vline.colors colors for each vertical line.
 #' @param vline.types lty for each vertical line.
 #' @param vline.legend Logical, whether or not to add a legend for the vlines.
-#' @param addQQ Logical, whether or not to add a QQ plot
 #' @param pmax A max value for the y-axis.
 #' @param models Models to read.
 #' @param model.colors Colors for each model.
-#' @param highlight.sig Logical, whether or not to highlight significant associations with a black circle.
 #' @param sig.color Color for significant assoctiations.
-#' @param chrom.colors Colors for each chromosome. Used if `facet = T`.
-#' @param chrom.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
 #' @param legend.rows Number of rows for the legend.
+#' @param legend.box Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".
+#' @param point.sizes Sizes for the points. c("Not Sig", "Sig", "Sug").
 #' @param plotHBPvalues Logical, should H.B.P.Values be uses.
 #' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
 #' @return A manhattan plot.
@@ -33,7 +31,7 @@ gg_Manhattan_Zoom_Traits <- function(
     folder = "GWAS_Results/",
     traits = list_Traits(folder)[1],
     title = NULL,
-    chrom, pos1, pos2,
+    chr, pos1 = NULL, pos2 = NULL,
     threshold = NULL,
     sug.threshold = NULL,
     markers = NULL,
@@ -43,11 +41,12 @@ gg_Manhattan_Zoom_Traits <- function(
     vline.types = rep(1, length(vlines)),
     vline.legend = T,
     pmax = NULL,
-    models =  c("MLM","FarmCPU","BLINK"),
-    model.colors = gwaspr_Colors,
-    highlight.sig = F,
+    models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
+    model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "blue2", "magenta3"),
     sig.color = "black",
     legend.rows = 1,
+    legend.box = "horizontal",
+    point.sizes = c(0.3,1,0.75),
     plotHBPvalues = F,
     skyline = "Kansas"
     ) {
@@ -55,7 +54,6 @@ gg_Manhattan_Zoom_Traits <- function(
   # Read in files
   #
   fnames <- list_Result_Files(folder)
-  #fnames <- NULL
   fnames <- fnames[grepl(paste0(rep(models, each = length(traits)), ".", traits, collapse="|"), fnames)]
   fnames <- fnames[grepl(paste0(rep(traits, each = 2), c(".csv","\\("), collapse="|"), fnames)]
   #
@@ -84,13 +82,16 @@ gg_Manhattan_Zoom_Traits <- function(
   }
   #
   xx <- xx %>% filter(P.value > 0) %>%
-    arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, Trait)))
+    arrange(desc(P.value)) %>%
+    filter(!duplicated(paste(SNP, Model, Trait)))
   #
   # Prep data
   #
+  if(is.null(pos1)) { pos1 <- 0 }
+  if(is.null(pos2)) { pos2 <- max(xx %>% filter(Chr == chr) %>% pull(Pos)) }
   xx <- xx %>%
     mutate(Model = factor(Model, levels = models)) %>%
-    filter(Chr == chrom, Pos > pos1, Pos < pos2, !is.na(Model))
+    filter(Chr == chr, Pos > pos1, Pos < pos2, !is.na(Model))
   #
   models <- unique(xx$Model)
   if(paste(models,collapse=",") != "MLM,MLMM,FarmCPU,BLINK,GLM,CMLM,SUPER" &
@@ -151,11 +152,10 @@ gg_Manhattan_Zoom_Traits <- function(
   # Plot the Rest
   #
   mp <- mp +
-    geom_point(aes(fill = Model, size = Sig.level, key1 = SNP),
-               pch = 21, color = alpha("white",0)) +
-    scale_size_manual(values = c(1,2,1.5), guide = "none") +
+    geom_point(aes(fill = Model, size = Sig.level, key1 = SNP), pch = 21, color = alpha("white",0)) +
+    scale_size_manual(values = point.sizes, guide = "none") +
     guides(color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
-    theme_gwaspr(legend.position = "bottom",
+    theme_gwaspr(legend.position = "bottom", legend.box=legend.box, legend.margin=margin(),
                  axis.title.y = element_markdown()) +
     labs(title = title, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
   #
@@ -168,10 +168,11 @@ gg_Manhattan_Zoom_Traits <- function(
   # Facet plot
   #
   #if(facet == T) {
-    mp <- mp + facet_grid(Trait ~ paste("Chromosome", Chr), scales = "free") +
-      geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) +
-      scale_fill_manual(values = alpha(model.colors,0.8)) +#, guide = "none"
-      guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)))
+  mp <- mp +
+    facet_grid(Trait ~ paste("Chromosome", Chr), scales = "free") +
+    scale_fill_manual(values = alpha(model.colors,0.8)) +#, guide = "none"
+    guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)))
+  if(nrow(x3)>0) { mp <- mp + geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) }
   #} else {
   #  mp <- mp +
   #    scale_fill_manual(name = NULL, values = alpha(model.colors,0.8)) +
@@ -184,10 +185,12 @@ gg_Manhattan_Zoom_Traits <- function(
 }
 
 #folder = "GWAS_Results/"; trait = "Stem.Blight_Ba16"; title = trait #trait = list_Traits(folder)[1]
-#chrom = 4; pos1 = 400000000; pos2 = 500000000; threshold = NULL; sug.threshold = NULL
+#chr = 4; pos1 = 400000000; pos2 = 500000000; threshold = NULL; sug.threshold = NULL
 #markers = NULL; labels = markers; vlines = markers
 #vline.colors = rep("red", length(vlines)); vline.types = rep(1, length(vlines))
 #vline.legend = T; models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER")
 #model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4")
 #facet = F; highlight.sig = F; sig.color = "red"; legend.rows = 1
 #plotHBPvalues = F; skyline = NULL
+
+#' param highlight.sig Logical, whether or not to highlight significant associations with a black circle.

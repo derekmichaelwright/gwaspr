@@ -9,7 +9,7 @@
 #' @export
 
 clean_GWAS_Results <- function(folder = "GWAS_Results/",
-                               remove_nonResults = F,
+                               remove_nonResults = T,
                                remove_Kansas = F,
                                remove_NYC = F) {
   #

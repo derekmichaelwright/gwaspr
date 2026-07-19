@@ -6,7 +6,7 @@
 #' @param title A title for the plot.
 #' @param threshold Significant Threshold.
 #' @param sug.threshold Suggested threshold.
-#' @param chrom Chromosomes to plot. Use if you want to plot a single chromosome.
+#' @param chr Chromosomes to plot. Use if you want to plot a single chromosome.
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
 #' @param vlines Markers which will be used as a location for a vertical lines.
@@ -14,36 +14,40 @@
 #' @param vline.types lty for each vertical line.
 #' @param legend Logical, whether or not to add a legend.
 #' @param legend.rows Number of rows for the legend.
+#' @param legend.box Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".
+#' @param point.sizes Sizes for the points. c("Not Sig", "Sig", "Sug").
 #' @param addQQ Logical, whether or not to add a QQ plot.
 #' @param pmax A max value for the y-axis.
 #' @param pmin A min Value for plotting. Markers with lower values will be removed.
 #' @param models Model to read.
 #' @param trait.colors Colors for each trait.
-#' @param chrom.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
+#' @param chr.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
 #' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
 #' @return A manhattan plot.
 #' @export
 
-gg_Manhattan_xModels <- function (
+gg_Manhattan_xModels <- function(
     folder = "GWAS_Results/",
     traits = list_Traits(folder)[1:2],
     title = NULL,
     threshold = NULL,
     sug.threshold = NULL,
-    chrom = NULL,
+    chr = NULL,
     markers = NULL,
     labels = markers,
     vlines = markers,
     vline.colors = rep("red", length(vlines)),
-    vline.types = rep(1:6, length(vlines)),
+    vline.types = rep(1, length(vlines)),
     legend = F,
     legend.rows = 1,
+    legend.box = "horizontal",
+    point.sizes = c(0.3,1,0.75),
     addQQ = T,
     pmax = NULL,
     pmin = 0,
-    models =  "MLM",
-    trait.colors = gwaspr_Colors,
-    chrom.unit = "100 Mbp",
+    models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
+    trait.colors = c("chartreuse4", "firebrick", "steelblue3", "maroon3", "purple3", "darkgoldenrod4", "tomato3", "aquamarine4", "deeppink3"),
+    chr.unit = "100 Mbp",
     plotHBPvalues = F,
     skyline = "Kansas"
     ) {
@@ -84,7 +88,8 @@ gg_Manhattan_xModels <- function (
   }
   #
   xx <- xx %>% filter(P.value > 0) %>%
-    arrange(desc(P.value)) %>% filter(!duplicated(paste(SNP, Model, Trait)))
+    arrange(desc(P.value)) %>%
+    filter(!duplicated(paste(SNP, Model, Trait)))
   #
   # Prep data
   #
@@ -92,6 +97,8 @@ gg_Manhattan_xModels <- function (
     mutate(Model = factor(Model, levels = models),
            Trait = factor(Trait, levels = traits)) %>%
     arrange(desc(Model), desc(Trait))
+  #
+  #if(is.null(title)) { title <- paste(traits, collapse = ", ")}
   #
   if(is.null(threshold)) {
     threshold <- -log10(0.05/nrow(xi))
@@ -103,12 +110,11 @@ gg_Manhattan_xModels <- function (
   }
   #
   xx <- xx %>%
-    mutate(Sig.level = ifelse(negLog10_P >= threshold, "Sig","NA"))
+    mutate(Sig.level = ifelse(negLog10_P >= threshold, "Sig","Not Sig"))
   if(!is.null(sug.threshold)) {
     xx <- xx %>%
       mutate(Sig.level = ifelse(negLog10_P < threshold & negLog10_P >= sug.threshold, "Sug", Sig.level))
   }
-  xx <- xx %>% mutate(Sig.level = factor(Sig.level, levels = c("Sig","Sug","NA")))
   #
   if(plotHBPvalues == T) {
     xx <- xx %>% mutate(Pvalue = -log10(H.B.P.Value))
@@ -118,16 +124,16 @@ gg_Manhattan_xModels <- function (
   #
   x2 <- xx %>% filter(negLog10_P > threshold)
   #
-  if(chrom.unit == "kbp")     { x.unit = 1000 }
-  if(chrom.unit == "100 kbp") { x.unit = 100000 }
-  if(chrom.unit == "Mbp")     { x.unit = 1000000 }
-  if(chrom.unit == "100 Mbp") { x.unit = 100000000 }
-  if(chrom.unit == "Gbp")     { x.unit = 1000000000 }
-  if(!chrom.unit %in% c("kbp", "100 kbp", "Mbp", "100 Mbp", "Gbp")) { print("error in chrom.unit") }
+  if(chr.unit == "kbp")     { x.unit = 1000 }
+  if(chr.unit == "100 kbp") { x.unit = 100000 }
+  if(chr.unit == "Mbp")     { x.unit = 1000000 }
+  if(chr.unit == "100 Mbp") { x.unit = 100000000 }
+  if(chr.unit == "Gbp")     { x.unit = 1000000000 }
+  if(!chr.unit %in% c("kbp", "100 kbp", "Mbp", "100 Mbp", "Gbp")) { print("error in chr.unit") }
   #
-  if(!is.null(chrom)) {
-    xx <- xx %>% filter(Chr %in% chrom)
-    x2 <- x2 %>% filter(Chr %in% chrom)
+  if(!is.null(chr)) {
+    xx <- xx %>% filter(Chr %in% chr)
+    x2 <- x2 %>% filter(Chr %in% chr)
   }
   #
   if(!is.null(vlines)) {
@@ -146,11 +152,11 @@ gg_Manhattan_xModels <- function (
   #
   mp1 <- ggplot(xx, aes(x = Pos/x.unit, y = Pvalue)) +
     theme_gwaspr(axis.title.y = element_markdown()) +
-    labs(title = title, y = ylabel, x = chrom.unit)
+    labs(title = title, y = ylabel, x = chr.unit)
   #
   mp2 <- ggplot(xx, aes(y = negLog10_P, x = negLog10_Exp)) +
     theme_gwaspr() +
-    labs(title = "", y = NULL, x = "Expected")
+    labs(y = NULL, x = "Expected")#title = "",
   #
   # Add vlines
   #
@@ -185,22 +191,23 @@ gg_Manhattan_xModels <- function (
   mp1 <- mp1 +
     geom_point(aes(fill = Trait, size = Sig.level), pch = 21, color = alpha("white", 0)) +
     facet_grid(Model ~ Chr, scales = "free", space = "free_x") +
-    scale_fill_manual(values = alpha(trait.colors, 0.7)) +
-    scale_size_manual(values = c(1.25,0.75,0.4), guide = "none") +
+    scale_fill_manual(values = trait.colors) +
+    scale_size_manual(values = point.sizes, guide = "none") +
     scale_color_manual(name = "Marker", values = vline.colors) +
     scale_linetype_manual(name = "Marker", values = vline.types) +
     scale_x_continuous(breaks = myBreaks, minor_breaks = myBreaks) +
-    guides(color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
-    theme(legend.position = "bottom")
+    guides(fill = guide_legend(nrow = legend.rows, order = 1, override.aes = list(size = 2)),
+           color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
+    theme(legend.position = "bottom", legend.box=legend.box, legend.margin=margin())
     #
     if(legend == F) { mp1 <- mp1 + theme(legend.position = "none") }
     #
   if(addQQ == T) {
     mp2 <- mp2 +
-      geom_point(aes(color = Trait), pch = 1, size = 1.25) +
+      geom_point(aes(fill = Trait), pch = 21, size = point.sizes[2], color = alpha("white",0)) +
       geom_abline() +
       facet_grid(Model ~ "QQ", scales = "free_y") +
-      scale_color_manual(name = NULL, values = alpha(trait.colors, 0.7)) +
+      scale_fill_manual(values = alpha(trait.colors, 0.7)) +
       theme(legend.position = "none")
     #
     mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
@@ -214,11 +221,11 @@ gg_Manhattan_xModels <- function (
 
 #folder = "GWAS_Results/"; traits = list_Traits(folder)[2:4];
 #title = NULL; threshold = 6.8; sug.threshold = 5;
-#chrom = NULL;
+#chr = NULL;
 #markers = "Lcu.1GRN.Chr1p352153929"; labels = "352"; vlines = markers;
 #vline.colors = rep("red", length(vlines)); vline.types = rep(1, length(vlines)); vline.legend = F;
 #addQQ = T; pmax = NULL; pmin = 0; models = "MLM";
 #highlight.sig = F; sig.col = "darkred";
 #models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER")
 #trait.colors = c("darkgreen","darkred", "darkorange3","steelblue", "darkorchid4", "burlywood4", "darkseagreen4")
-#chrom.unit = "100 Mbp"; legend.rows = 1; plotHBPvalues = F; skyline = NULL
+#chr.unit = "100 Mbp"; legend.rows = 1; plotHBPvalues = F; skyline = NULL
