@@ -124,3 +124,10 @@ library(gwaspr)
 - [`theme_gwaspr_pie()`](https://derekmichaelwright.github.io/gwaspr/reference/theme_gwaspr_pie.md)
   : theme_gwaspr_pie.
 
+# Articles
+
+### All vignettes
+
+- [gg_manhattan()](https://derekmichaelwright.github.io/gwaspr/articles/2.1_gg_Manhattan.md):
+
+  Create Manhattan plots from GAPIT GWAS results.
