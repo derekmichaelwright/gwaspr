@@ -5,23 +5,36 @@
 \title{gg_QTL_Summary}
 \usage{
 gg_QTL_Summary(
-  xx = myQTLs,
-  myG = myG,
+  myG,
+  myQ,
   title = "Summary of QTL Results",
-  caption = "derek was here"
+  lodFill = F,
+  fillColor = "darkgreen",
+  fillColor_low = "grey50",
+  xLab = "Pos",
+  facetLab = "lg"
 )
 }
 \arguments{
-\item{xx}{Table of QTL results.}
+\item{myG}{Genetic map. Must contain the following 3 columns c("Marker","Chr","Pos").}
 
-\item{myG}{genotype file}
+\item{myQ}{Table of QTL results. Must contain the following 5 columns c("Trait","Chr","Pos","Pos_lo","Pos_hi","lod").}
 
-\item{groups}{Grouping for the traits. Should be equal length to \code{traits}.}
+\item{title}{Custom title for the plot.}
+
+\item{lodFill}{Logical. If true, fill color will be a gradient based on lod values.}
+
+\item{fillColor}{Color for filling points.}
+
+\item{fillColor_low}{If \code{lodfill = T}, This will be the low end of the gradeint color scale for filling points.}
+
+\item{xLab}{Custom x lab.}
+
+\item{facetLab}{Custom label for facets.}
 }
 \value{
 A QTL summary plot.
 }
 \description{
 Creates a summary QTL plot of significant associations.
-Note: this function requires the GWAS results files to be ordered
 }

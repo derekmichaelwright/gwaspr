@@ -5,7 +5,7 @@ output: rmarkdown::html_vignette
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set( eval = F, message = F, warning = F)
+knitr::opts_chunk$set(message = F, warning = F)
 ```
 
 ```{r echo = F}
