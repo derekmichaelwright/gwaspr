@@ -13,3 +13,4 @@ VignetteBuilder: knitr
 URL: https://derekmichaelwright.github.io/gwaspr/
 Config/roxygen2/markdown: TRUE
 Config/roxygen2/version: 8.0.0
+env: FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
