@@ -1,6 +1,8 @@
 # gg_Manhattan_xTraits
 
-Creates a manhattan plot.
+[Create manhattan plots from GAPIT GWAS results for multiple traits and
+facets them by
+Trait.](https://derekmichaelwright.github.io/gwaspr/articles/06_gg_Manhattan_xTraits.html)
 
 ## Usage
 

@@ -26,7 +26,7 @@ gg_QTL_Summary(
 
 - groups:
 
-  Grouping for the traits. Should be equal length to \`traits\`.
+  Grouping for the traits. Should be equal length to `traits`.
 
 ## Value
 

@@ -1,7 +1,7 @@
 # gg_plotly
 
 Creates an interactive plotly plot. Note: This function will require
-\`plotly\` and \`htmlwidgets\` packages.
+`plotly` and `htmlwidgets` packages.
 
 ## Usage
 

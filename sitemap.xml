@@ -1,10 +1,15 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/404.html</loc></url>
-<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/01 GWAS with GAPIT.html</loc></url>
-<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/04 gg_Manhattan().html</loc></url>
-<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/05 gg_Manhattan_Zoom().html</loc></url>
-<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/06 gg_Manhattan_xTraits().html</loc></url>
-<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/07 gg_Manhattan_xModels().html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/1.1_GWAS_with_GAPIT.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/2.1_gg_Manhattan.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/2.2_gg_Manhattan_Zoom.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/2.3_gg_Manhattan_xTraits.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/2.4_gg_Manhattan_xModels.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/2.5_gg_Manhattan_Zoom_Traits.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/3.1_gg_Marker.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/4.1_gg_myG_Details.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/4.2_gg_LDheatmap.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/articles/5.1_gg_QTL_Summary.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/articles/index.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/authors.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/index.html</loc></url>
@@ -14,7 +19,7 @@
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/convert_IUPAC.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/dropNAcol.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Hits.html</loc></url>
-<url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary2.html</loc></url>
+<url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_LDheatmap.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan.html</loc></url>
 <url><loc>https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom.html</loc></url>

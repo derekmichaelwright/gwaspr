@@ -35,11 +35,16 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/01%20GWAS%20with%20GAPIT.html">GWAS with GAPIT</a></li>
-    <li><a class="dropdown-item" href="articles/04%20gg_Manhattan().html">gg_manhattan()</a></li>
-    <li><a class="dropdown-item" href="articles/05%20gg_Manhattan_Zoom().html">gg_Manhattan_Zoom()</a></li>
-    <li><a class="dropdown-item" href="articles/06%20gg_Manhattan_xTraits().html">gg_Manhattan_xTraits()</a></li>
-    <li><a class="dropdown-item" href="articles/07%20gg_Manhattan_xModels().html">gg_Manhattan_xModels()</a></li>
+<li><a class="dropdown-item" href="articles/1.1_GWAS_with_GAPIT.html">GWAS with GAPIT</a></li>
+    <li><a class="dropdown-item" href="articles/2.1_gg_Manhattan.html">gg_manhattan()</a></li>
+    <li><a class="dropdown-item" href="articles/2.2_gg_Manhattan_Zoom.html">gg_Manhattan_Zoom()</a></li>
+    <li><a class="dropdown-item" href="articles/2.3_gg_Manhattan_xTraits.html">gg_Manhattan_xTraits()</a></li>
+    <li><a class="dropdown-item" href="articles/2.4_gg_Manhattan_xModels.html">gg_Manhattan_xModels()</a></li>
+    <li><a class="dropdown-item" href="articles/2.5_gg_Manhattan_Zoom_Traits.html">gg_Manhattan_Zoom_Traits()</a></li>
+    <li><a class="dropdown-item" href="articles/3.1_gg_Marker.html">gg_Marker_*()</a></li>
+    <li><a class="dropdown-item" href="articles/4.1_gg_myG_Details.html">gg_myG_Details()</a></li>
+    <li><a class="dropdown-item" href="articles/4.2_gg_LDheatmap.html">gg_LDheatmap()</a></li>
+    <li><a class="dropdown-item" href="articles/5.1_gg_QTL_Summary.html">gg_QTL_Summary()</a></li>
   </ul>
 </li>
       </ul>
@@ -70,6 +75,22 @@
 <hr>
 </div>
 <div class="section level1">
+<h1 id="instal-gwaspr">Instal gwaspr<a class="anchor" aria-label="anchor" href="#instal-gwaspr"></a>
+</h1>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"derekmichaelwright/gwaspr"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://derekmichaelwright.github.io/gwaspr/">gwaspr</a></span><span class="op">)</span></span></code></pre></div>
+<blockquote>
+<ul>
+<li>
+<strong>dblogr Tutorial</strong>: <a href="https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/" target="_blank" class="external-link">https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/</a>
+</li>
+</ul>
+</blockquote>
+<hr>
+</div>
+<div class="section level1">
 <h1 id="gapit">GAPIT<a class="anchor" aria-label="anchor" href="#gapit"></a>
 </h1>
 <p><code>GAPIT</code>: and <code>R</code> package for performing Genome Wide Association Studies (GWAS)</p>
@@ -86,80 +107,9 @@
 <hr>
 </div>
 <div class="section level1">
-<h1 id="instal-gwaspr">Instal gwaspr<a class="anchor" aria-label="anchor" href="#instal-gwaspr"></a>
-</h1>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"derekmichaelwright/gwaspr"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://derekmichaelwright.github.io/gwaspr/">gwaspr</a></span><span class="op">)</span></span></code></pre></div>
-<hr>
-</div>
-<div class="section level1">
 <h1 id="dependancies">Dependancies<a class="anchor" aria-label="anchor" href="#dependancies"></a>
 </h1>
 <p><code>tidyverse</code>, <code>ggpubr</code>, <code>ggbeeswarm</code>, <code>ggrepel</code>, <code>ggtext</code>, <code>plotly</code>, <code>htmlwidgets</code></p>
-<hr>
-</div>
-<div class="section level1">
-<h1 id="list_traits">list_Traits()<a class="anchor" aria-label="anchor" href="#list_traits"></a>
-</h1>
-<p>List off the traits which have GWAS results files in the designated folder.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_path</span> <span class="op">&lt;-</span> <span class="fu">here</span><span class="fu">::</span><span class="fu">here</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">data_path</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/list_Traits.html">list_Traits</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"vignettes/GWAS_Results/"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/list_Traits.html">list_Traits</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="va">data_path</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/list_Traits.html">list_Traits</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span><span class="op">)</span></span></code></pre></div>
-<hr>
-</div>
-<div class="section level1">
-<h1 id="is_ran">is_Ran()<a class="anchor" aria-label="anchor" href="#is_ran"></a>
-</h1>
-<p>Check to see which of your <code>myY</code> traits have GWAS results files int he designated folder.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#myY &lt;- read.csv("vignettes/myY.csv")</span></span>
-<span><span class="co">#is_Ran(folder = "GWAS_Results/", myY = myY)</span></span></code></pre></div>
-<hr>
-</div>
-<div class="section level1">
-<h1 id="run_summary">run_Summary()<a class="anchor" aria-label="anchor" href="#run_summary"></a>
-</h1>
-<p>Checks which GWAS models have been run for each trait within the designated folder.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/run_Summary.html">run_Summary</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"vignettes/GWAS_Results/"</span><span class="op">)</span></span></code></pre></div>
-<hr>
-</div>
-<div class="section level1">
-<h1 id="order_gwas_results">Order_GWAS_Results()<a class="anchor" aria-label="anchor" href="#order_gwas_results"></a>
-</h1>
-<p>Reorders the result files if they are not already arranged by P.value.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/order_GWAS_Results.html">order_GWAS_Results</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"vignettes/GWAS_Results/"</span><span class="op">)</span></span></code></pre></div>
-<hr>
-</div>
-<div class="section level1">
-<h1 id="is_ordered">is_Ordered()<a class="anchor" aria-label="anchor" href="#is_ordered"></a>
-</h1>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/is_Ordered.html">is_Ordered</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"vignettes/GWAS_Results/"</span><span class="op">)</span></span></code></pre></div>
-<hr>
-</div>
-<div class="section level1">
-<h1 id="list_top_markers">list_Top_Markers()<a class="anchor" aria-label="anchor" href="#list_top_markers"></a>
-</h1>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/list_Top_Markers.html">list_Top_Markers</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, trait <span class="op">=</span> <span class="st">"DTF_Nepal_2017"</span>, chroms <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/list_Top_Markers.html">list_Top_Markers</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, trait <span class="op">=</span> <span class="st">"DTF_Sask_2017"</span>, chroms <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/list_Top_Markers.html">list_Top_Markers</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, trait <span class="op">=</span> <span class="st">"DTF_Sask_2017_b"</span>, chroms <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/list_Top_Markers.html">list_Top_Markers</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, trait <span class="op">=</span> <span class="st">"Cotyledon_Color_RvsY"</span>, chroms <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<hr>
-<p>If you want to remove some of the unnessesary files in the gwas results folder, use the following function to delete all files except the ones with GWAS result data.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/clean_GWAS_Results.html">clean_GWAS_Results</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 

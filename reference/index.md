@@ -14,7 +14,7 @@
   : dropNAcol
 - [`gg_GWAS_Hits()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Hits.md)
   : gg_GWAS_Hits
-- [`gg_GWAS_Summary2()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary2.md)
+- [`gg_GWAS_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary.md)
   : gg_GWAS_Summary
 - [`gg_LDheatmap()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_LDheatmap.md)
   : gg_LDHeatmap

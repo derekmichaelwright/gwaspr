@@ -17,8 +17,8 @@ checkNYCvsKansas(folder = "GWAS_Results/", deleteKansas = F)
 
 - deteleKansas:
 
-  Logical, if TRUE, will delete any \`Kansas\` files with no difference
-  between the \`NYC\` files.
+  Logical, if TRUE, will delete any `Kansas` files with no difference
+  between the `NYC` files.
 
 ## Value
 

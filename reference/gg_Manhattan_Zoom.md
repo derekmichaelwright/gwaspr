@@ -1,7 +1,8 @@
 # gg_Manhattan_Zoom
 
-Create a manhattan plot for a single trait, zoomed in to a particular
-region.
+[Create manhattan plots from GAPIT GWAS results zoomed into a specific
+region on a
+chromosome.](https://derekmichaelwright.github.io/gwaspr/articles/05_gg_Manhattan_Zoom.html)
 
 ## Usage
 
@@ -97,7 +98,7 @@ gg_Manhattan_Zoom(
 - facet:
 
   Logical, whether or not to produce a facetted or multi-model plot.
-  Default is \`facet = F\`.
+  Default is `facet = F`.
 
 - pmax:
 
@@ -109,7 +110,7 @@ gg_Manhattan_Zoom(
 
 - model.colors:
 
-  Colors for each model. Used if \`facet = F\`.
+  Colors for each model. Used if `facet = F`.
 
 - sig.color:
 

@@ -7,18 +7,6 @@ package
 
 ------------------------------------------------------------------------
 
-# GAPIT
-
-`GAPIT`: and `R` package for performing Genome Wide Association Studies
-(GWAS)
-
-> - **GAPIT Website**:
->   [https://www.maizegenetics.net/gapit](https://www.maizegenetics.net/gapit)
-> - **GAPIT github**:
->   [https://github.com/jiabowang/GAPIT](https://github.com/jiabowang/GAPIT)
-
-------------------------------------------------------------------------
-
 # Instal gwaspr
 
 ``` r
@@ -31,109 +19,27 @@ devtools::install_github("derekmichaelwright/gwaspr")
 library(gwaspr)
 ```
 
+> - **dblogr Tutorial**:
+>   [https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/](https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/)
+
+------------------------------------------------------------------------
+
+# GAPIT
+
+`GAPIT`: and `R` package for performing Genome Wide Association Studies
+(GWAS)
+
+> - **GAPIT Website**:
+>   [https://www.maizegenetics.net/gapit](https://www.maizegenetics.net/gapit)
+> - **GAPIT github**:
+>   [https://github.com/jiabowang/GAPIT](https://github.com/jiabowang/GAPIT)
+
 ------------------------------------------------------------------------
 
 # Dependancies
 
 `tidyverse`, `ggpubr`, `ggbeeswarm`, `ggrepel`, `ggtext`, `plotly`,
 `htmlwidgets`
-
-------------------------------------------------------------------------
-
-# list_Traits()
-
-List off the traits which have GWAS results files in the designated
-folder.
-
-``` r
-
-data_path <- here::here()
-setwd(data_path)
-getwd()
-list_Traits(folder = "vignettes/GWAS_Results/")
-list_Traits(folder = data_path)
-list_Traits(folder = "GWAS_Results/")
-```
-
-------------------------------------------------------------------------
-
-# is_Ran()
-
-Check to see which of your `myY` traits have GWAS results files int he
-designated folder.
-
-``` r
-
-#myY <- read.csv("vignettes/myY.csv")
-#is_Ran(folder = "GWAS_Results/", myY = myY)
-```
-
-------------------------------------------------------------------------
-
-# run_Summary()
-
-Checks which GWAS models have been run for each trait within the
-designated folder.
-
-``` r
-
-run_Summary(folder = "vignettes/GWAS_Results/")
-```
-
-------------------------------------------------------------------------
-
-# Order_GWAS_Results()
-
-Reorders the result files if they are not already arranged by P.value.
-
-``` r
-
-order_GWAS_Results(folder = "vignettes/GWAS_Results/")
-```
-
-------------------------------------------------------------------------
-
-# is_Ordered()
-
-``` r
-
-is_Ordered(folder = "vignettes/GWAS_Results/")
-```
-
-------------------------------------------------------------------------
-
-# list_Top_Markers()
-
-``` r
-
-list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Nepal_2017", chroms = c(2,5))
-```
-
-``` r
-
-list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Sask_2017", chroms = 6)
-```
-
-``` r
-
-list_Top_Markers(folder = "GWAS_Results/", trait = "DTF_Sask_2017_b", chroms = 6)
-```
-
-``` r
-
-list_Top_Markers(folder = "GWAS_Results/", trait = "Cotyledon_Color_RvsY", chroms = 1)
-```
-
-------------------------------------------------------------------------
-
-If you want to remove some of the unnessesary files in the gwas results
-folder, use the following function to delete all files except the ones
-with GWAS result data.
-
-``` r
-
-clean_GWAS_Results(folder = "GWAS_Results/")
-```
 
 ------------------------------------------------------------------------
 
@@ -153,7 +59,7 @@ clean_GWAS_Results(folder = "GWAS_Results/")
   : dropNAcol
 - [`gg_GWAS_Hits()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Hits.md)
   : gg_GWAS_Hits
-- [`gg_GWAS_Summary2()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary2.md)
+- [`gg_GWAS_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary.md)
   : gg_GWAS_Summary
 - [`gg_LDheatmap()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_LDheatmap.md)
   : gg_LDHeatmap
@@ -221,22 +127,42 @@ clean_GWAS_Results(folder = "GWAS_Results/")
 ### All vignettes
 
 - [GWAS with
-  GAPIT](https://derekmichaelwright.github.io/gwaspr/articles/01%20GWAS%20with%20GAPIT.md):
+  GAPIT](https://derekmichaelwright.github.io/gwaspr/articles/1.1_GWAS_with_GAPIT.md):
 
   Run GWAS with GAPIT
 
-- [gg_manhattan()](https://derekmichaelwright.github.io/gwaspr/articles/04%20gg_Manhattan().md):
+- [gg_manhattan()](https://derekmichaelwright.github.io/gwaspr/articles/2.1_gg_Manhattan.md):
 
   Create Manhattan plots from GAPIT GWAS results.
 
-- [gg_Manhattan_Zoom()](https://derekmichaelwright.github.io/gwaspr/articles/05%20gg_Manhattan_Zoom().md):
+- [gg_Manhattan_Zoom()](https://derekmichaelwright.github.io/gwaspr/articles/2.2_gg_Manhattan_Zoom.md):
 
   Create …
 
-- [gg_Manhattan_xTraits()](https://derekmichaelwright.github.io/gwaspr/articles/06%20gg_Manhattan_xTraits().md):
+- [gg_Manhattan_xTraits()](https://derekmichaelwright.github.io/gwaspr/articles/2.3_gg_Manhattan_xTraits.md):
 
   Create …
 
-- [gg_Manhattan_xModels()](https://derekmichaelwright.github.io/gwaspr/articles/07%20gg_Manhattan_xModels().md):
+- [gg_Manhattan_xModels()](https://derekmichaelwright.github.io/gwaspr/articles/2.4_gg_Manhattan_xModels.md):
+
+  Create …
+
+- [gg_Manhattan_Zoom_Traits()](https://derekmichaelwright.github.io/gwaspr/articles/2.5_gg_Manhattan_Zoom_Traits.md):
+
+  Create …
+
+- [gg_Marker\_\*()](https://derekmichaelwright.github.io/gwaspr/articles/3.1_gg_Marker.md):
+
+  Create marker plots with the myG and myY input data
+
+- [gg_myG_Details()](https://derekmichaelwright.github.io/gwaspr/articles/4.1_gg_myG_Details.md):
+
+  Create …
+
+- [gg_LDheatmap()](https://derekmichaelwright.github.io/gwaspr/articles/4.2_gg_LDheatmap.md):
+
+  Create …
+
+- [gg_QTL_Summary()](https://derekmichaelwright.github.io/gwaspr/articles/5.1_gg_QTL_Summary.md):
 
   Create …

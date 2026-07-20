@@ -1,6 +1,7 @@
 # table_GWAS_Results_Summary
 
-Create a summary using the output from \`table_GWAS_Results()\`.
+Create a summary using the output from
+[`table_GWAS_Results()`](https://derekmichaelwright.github.io/gwaspr/reference/table_GWAS_Results.md).
 
 ## Usage
 
@@ -12,11 +13,12 @@ table_GWAS_Results_Summary(xx, binMarkers = F, binSize = 5e+06, onlySig = F)
 
 - xx:
 
-  Object from \`table_GWAS_Results()\`.
+  Object from
+  [`table_GWAS_Results()`](https://derekmichaelwright.github.io/gwaspr/reference/table_GWAS_Results.md).
 
 - binMarkers:
 
-  Logical, if TRUE, markers will be bined based on \`binSize\`.
+  Logical, if TRUE, markers will be bined based on `binSize`.
 
 - binSize:
 

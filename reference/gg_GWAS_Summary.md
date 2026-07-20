@@ -12,10 +12,10 @@ gg_GWAS_Summary(
   groups = NULL,
   threshold = round(-log10(5e-08), 1),
   sug.threshold = round(-log10(5e-06), 1),
-  chroms = NULL,
+  chr = NULL,
   pos1 = NULL,
   pos2 = NULL,
-  models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
+  models = c("MLM", "MLMM", "FarmCPU", "BLINK", "CMLM", "SUPER"),
   model.colors = gwaspr_Colors,
   shapes = 21:25,
   hlines = NULL,
@@ -46,7 +46,7 @@ gg_GWAS_Summary(
 
 - groups:
 
-  Grouping for the traits. Should be equal length to \`traits\`.
+  Grouping for the traits. Should be equal length to `traits`.
 
 - threshold:
 
@@ -56,7 +56,7 @@ gg_GWAS_Summary(
 
   Suggestive threshold.
 
-- chroms:
+- chr:
 
   Chromosomes to plot.
 

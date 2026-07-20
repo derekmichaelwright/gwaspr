@@ -1,6 +1,7 @@
 # gg_Manhattan
 
-Creates a manhattan plot.
+[Create manhattan plots from GAPIT GWAS
+results.](https://derekmichaelwright.github.io/gwaspr/articles/04_gg_Manhattan.html)
 
 ## Usage
 
@@ -115,25 +116,25 @@ gg_Manhattan(
 
 - model.colors:
 
-  Colors for each model. Used if \`facet = F\`.
+  Colors for each model. Used if `facet = F`.
 
 - facet:
 
   Logical, whether or not to produce a facetted or multi-model plot.
-  Default is \`facet = F\`.
+  Default is `facet = F`.
 
 - highlight.sig:
 
   Logical, whether or not to highlight significant associations with a
-  black circle. Used if \`facet = F\`.
+  black circle. Used if `facet = F`.
 
 - sig.color:
 
-  Color for significant assoctiations. Used if \`facet = T\`.
+  Color for significant assoctiations. Used if `facet = T`.
 
 - chr.colors:
 
-  Colors for each chromosome. Used if \`facet = T\`.
+  Colors for each chromosome. Used if `facet = T`.
 
 - chr.unit:
 
