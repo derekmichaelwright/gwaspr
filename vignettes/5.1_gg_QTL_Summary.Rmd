@@ -1,0 +1,16 @@
+---
+title: "gg_QTL_Summary()"
+description: "Create ..."
+output: rmarkdown::html_vignette
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(message = F, warning = F)
+```
+
+```{r echo = F}
+library("gwaspr")
+```
+
+## gg_QTL_Summary()
+
