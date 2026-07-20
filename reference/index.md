@@ -38,6 +38,8 @@
   : gg_NYCvsKansas
 - [`gg_QTL_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_QTL_Summary.md)
   : gg_QTL_Summary
+- [`gg_QTL_Summary_Groups()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_QTL_Summary_Groups.md)
+  : gg_QTL_Summary_Groups
 - [`gg_Volcano()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Volcano.md)
   : gg_Volcano
 - [`gg_myG_Details()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_myG_Details.md)

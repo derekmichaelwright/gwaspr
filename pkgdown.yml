@@ -1,18 +1,8 @@
 pandoc: 3.8.3
 pkgdown: 2.2.1
 pkgdown_sha: ~
-articles:
-  1.1_GWAS_with_GAPIT: 1.1_GWAS_with_GAPIT.html
-  2.1_gg_Manhattan: 2.1_gg_Manhattan.html
-  2.2_gg_Manhattan_Zoom: 2.2_gg_Manhattan_Zoom.html
-  2.3_gg_Manhattan_xTraits: 2.3_gg_Manhattan_xTraits.html
-  2.4_gg_Manhattan_xModels: 2.4_gg_Manhattan_xModels.html
-  2.5_gg_Manhattan_Zoom_Traits: 2.5_gg_Manhattan_Zoom_Traits.html
-  3.1_gg_Marker: 3.1_gg_Marker.html
-  4.1_gg_myG_Details: 4.1_gg_myG_Details.html
-  4.2_gg_LDheatmap: 4.2_gg_LDheatmap.html
-  5.1_gg_QTL_Summary: 5.1_gg_QTL_Summary.html
-last_built: 2026-07-20T16:10Z
+articles: {}
+last_built: 2026-07-20T23:51Z
 urls:
   reference: https://derekmichaelwright.github.io/gwaspr/reference
   article: https://derekmichaelwright.github.io/gwaspr/articles
