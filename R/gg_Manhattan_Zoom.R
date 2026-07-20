@@ -145,15 +145,25 @@ gg_Manhattan_Zoom <- function(
     geom_rect(aes(xmin = pos1, xmax = pos2), ymin = 0, ymax = 1,
               fill = "black", alpha = 0.2, color = "black") +
     facet_grid(. ~ paste("Chr", Chr), space = "free_x", scales = "free_x") +
-    theme_void() + labs(subtitle = "Genome")
+    theme_void() +
+    theme(text = element_text(size = 6)) +
+    labs(subtitle = "Genome")
+  #
   mp2 <- ggplot(myChroms %>% filter(!is.na(pos1))) +
     #chr
-    geom_rect(aes(xmin = Reg_min, xmax = Reg_max), ymin = 0, ymax = 1,
+    geom_rect(aes(xmin = Reg_min, xmax = Reg_max / 100000000), ymin = 0, ymax = 1,
               fill = "black", alpha = 0.2, color = "black") +
     #region
-    geom_rect(aes(xmin = pos1, xmax = pos2), ymin = 0, ymax = 1,
+    geom_rect(aes(xmin = pos1 / 100000000, xmax = pos2 / 100000000), ymin = 0, ymax = 1,
               fill = "black", alpha = 0.2, color = "black") +
-    theme_void() + labs(subtitle = paste("Chromsome",chr))
+    theme_void() +
+    theme(text = element_text(size = 6),
+          axis.text.x.top = element_text(),
+          axis.title.x.top = element_text()) +
+    scale_x_continuous(breaks = 0:20, position = "top") +
+    labs(subtitle = paste("Selected Region - Chromsome",chr), x = "100 Mbp")
+    #mp2
+  #
   mp <- ggplot(xx, aes(x = Pos / 1000000, y = Pvalue))
   #
   # Add vlines
@@ -194,14 +204,14 @@ gg_Manhattan_Zoom <- function(
       facet_grid(Model ~ paste("Chromosome", Chr), scales = "free") +
       scale_fill_manual(values = alpha(model.colors,0.8), guide = "none")
     #if(nrow(x3)>0) { mp <- mp + geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) }
-    if(addGenome == T) { mp <- ggarrange(mp, mp2, mp1, ncol = 1, nrow = 3, heights = c(3.5*length(models),1,1.25)) }
+    if(addGenome == T) { mp <- ggarrange(mp, mp2, mp1, ncol = 1, nrow = 3, heights = c(3.5*length(models),1,0.8)) }
   } else {
     mp <- mp +
       facet_grid(. ~ paste("Chromosome", Chr)) +
       scale_fill_manual(values = alpha(model.colors,0.8)) +
       guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)))
     #if(nrow(x3)>0) { mp <- mp + geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) }
-    if(addGenome == T) { mp <- ggarrange(mp, mp2, mp1, ncol = 1, nrow = 3, heights = c(6.75,1,1.25)) }
+    if(addGenome == T) { mp <- ggarrange(mp, mp2, mp1, ncol = 1, nrow = 3, heights = c(7,1,0.8)) }
   }
   mp
 }

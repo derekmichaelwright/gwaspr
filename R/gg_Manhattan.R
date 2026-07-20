@@ -235,7 +235,7 @@ gg_Manhattan <- function(
       scale_color_manual(name = "Marker", values = vline.colors) +
       scale_linetype_manual(name = "Marker", values = vline.types) +
       scale_x_continuous(breaks = myBreaks, minor_breaks = myBreaks) +
-      scale_y_continuous(limits = c(pmin, (pmax+pmax*0.03)), expand = c(0,0)) +
+      scale_y_continuous(limits = c(pmin, (pmax+pmax*0.03))) +#, expand = c(0,0)
       guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)),
              color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
       theme(legend.position = "bottom", legend.box=legend.box, legend.margin=margin())
@@ -249,7 +249,7 @@ gg_Manhattan <- function(
         geom_abline() +
         facet_grid(. ~ "QQ") +
         scale_fill_manual(name = NULL, values = alpha(model.colors,0.8)) +
-        scale_y_continuous(limits = c(pmin, (pmax+pmax*0.03)), expand = c(0,0)) +
+        scale_y_continuous(limits = c(pmin, (pmax+pmax*0.03))) +#, expand = c(0,0)
         guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)),
                color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1)))
       if(highlight.sig == T) { mp2 <- mp2 + geom_point(data = x2, aes(key1 = SNP), pch = 21, size = point.sizes[2], color = sig.color) }

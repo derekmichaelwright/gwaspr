@@ -147,7 +147,7 @@ gg_Manhattan_Zoom_Traits <- function(
   mp <- mp +
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
     geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5) +
-    scale_y_continuous(limits = c(0, (pmax+pmax*0.03)), expand = c(0,0))
+    scale_y_continuous(limits = c(0, (pmax+pmax*0.03)))#, expand = c(0,0)
   #
   # Plot the Rest
   #

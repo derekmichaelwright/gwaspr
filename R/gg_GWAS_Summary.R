@@ -28,14 +28,14 @@
 #' @return A GWAS summary plot.
 #' @export
 
-gg_GWAS_Summary2 <- function(
+gg_GWAS_Summary <- function(
     folder = "GWAS_Results/",
     traits = list_Traits(folder),
     groups = NULL,
     threshold = round(-log10(0.00000005),1),
     sug.threshold = round(-log10(0.000005),1),
     chr = NULL, pos1 = NULL, pos2 = NULL,
-    models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
+    models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "CMLM", "SUPER"),
     model.colors = gwaspr_Colors,
     shapes = 21:25,
     hlines = NULL,
