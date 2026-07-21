@@ -5,10 +5,10 @@ output: rmarkdown::html_vignette
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(eval = F, message = F, warning = F)
+knitr::opts_chunk$set(message = F, warning = F)
 ```
 
-```{r eval = T, echo = F}
+```{r echo = F}
 library("gwaspr")
 ```
 
@@ -25,23 +25,17 @@ Sample Data
 
 Inputting a properly formatted `myG` and `myQ` object is all that is needed to create QTL summary plots.
 
-```{r eval = T}
+```{r}
 # Prep data
 myG <- read.csv("LR-68_gmap.csv") %>% 
   select(Marker=SNP, Chr=lg, Pos=Position)
-```
-
-```{r echo = F}
-DT::datatable(myG)
+head(myG)
 ```
 
 ```{r}
 myQ <- read.csv("myQTL_LR-68_lab_peaks.csv") %>% 
   select(Trait=lodcolumn, Chr=chr, Pos=pos, lod, Pos_lo=ci_lo, Pos_hi=ci_hi)
-```
-
-```{r echo = F}
-DT::datatable(myQ)
+head(myQ)
 ```
 
 ```{r eval = F}
@@ -91,16 +85,13 @@ ggsave("figures/gg_QTL_Summary_02.png", mp, width = 10, height = 4)
 # Prep data
 myG <- read.csv("LR-68_gmap.csv") %>% 
   select(Marker=SNP, Chr=lg, Pos=Position)
-
+head(myG)
 myQ <- read.csv("myQTL_LR-68_lab_peaks.csv") %>% 
   select(Trait=lodcolumn, Chr=chr, Pos=pos, lod, Pos_lo=ci_lo, Pos_hi=ci_hi) %>%
   mutate(y_Group = substr(Trait, regexpr(".BELT", Trait)+6, regexpr("_", Trait)-1 ),
          facet_Group = substr(Trait, 1, regexpr(".BELT", Trait)-1),
          color_Group = facet_Group )
-```
-
-```{r echo = F}
-DT::datatable(myQ)
+head(myQ)
 ```
 
 ```{r eval = F}
@@ -142,7 +133,6 @@ QTL analyses are generally done with linkage groups and their genetic positions.
 # Prep data
 myG <- read.csv("LR-68_gmap.csv") %>% 
   select(Marker=SNP, lg, cM=Position)
-
 myQ <- read.csv("myQTL_LR-68_lab_peaks.csv") %>% 
   rename(Trait=lodcolumn, lg=chr, cM=pos) %>%
   select(Trait, lg, cM, lod, ci_lo, ci_hi) %>%
@@ -153,7 +143,6 @@ myQ <- read.csv("myQTL_LR-68_lab_peaks.csv") %>%
   arrange(lg) %>%
   mutate(Chr = NA, Pos = NA, Pos_lo = NA, Pos_hi = NA)
 #
-i<-9
 for(i in 1:nrow(myQ)) {
   lg_i <- myQ$lg[i]
   myGi <- myG %>% filter(lg == lg_i) 
@@ -186,10 +175,8 @@ for(i in 1:nrow(myQ)) {
 myG <- myG %>%
   mutate(Chr = as.numeric(substr(Marker, regexpr("Chr", Marker)+3, regexpr("_", Marker)-1 )),
          Pos = as.numeric(substr(Marker, regexpr("_", Marker)+1, nchar(Marker))))
-```
-
-```{r echo = F}
-DT::datatable(myQ)
+head(myG)
+head(myQ)
 ```
 
 ```{r eval = F}
@@ -228,7 +215,6 @@ convertPosition <- function(myG_Name = "LR-68_gmap.csv", myQ_Name = "myQTL_LR-68
     arrange(lg) %>%
     mutate(Chr = NA, Pos = NA, Pos_lo = NA, Pos_hi = NA)
   #
-  i<-9
   for(i in 1:nrow(myQ)) {
     lg_i <- myQ$lg[i]
     myGi <- myG %>% filter(lg == lg_i) 
@@ -287,10 +273,8 @@ myLevels <- c("SPG19_LR.68", "Su18_LR.68", "Su19_LR.68", "Su21_LR.68",
               "Pr18_LR.86",  "SPG19_LR.86", "Su18_LR.86", "Su19_LR.86")
 myQ <- myQ %>%
   mutate(y_Group = factor(y_Group, levels = myLevels))
-```
-
-```{r echo = F}
-DT::datatable(myQ)
+head(myG)
+head(myQ)
 ```
 
 ```{r eval = F}
