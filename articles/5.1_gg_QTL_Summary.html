@@ -91,11 +91,27 @@ object is all that is needed to create QTL summary plots.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Prep data</span></span>
 <span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"LR-68_gmap.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span>Marker<span class="op">=</span><span class="va">SNP</span>, Chr<span class="op">=</span><span class="va">lg</span>, Pos<span class="op">=</span><span class="va">Position</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">myQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"myQTL_LR-68_lab_peaks.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span>Trait<span class="op">=</span><span class="va">lodcolumn</span>, Chr<span class="op">=</span><span class="va">chr</span>, Pos<span class="op">=</span><span class="va">pos</span>, <span class="va">lod</span>, Pos_lo<span class="op">=</span><span class="va">ci_lo</span>, Pos_hi<span class="op">=</span><span class="va">ci_hi</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">select</span><span class="op">(</span>Marker<span class="op">=</span><span class="va">SNP</span>, Chr<span class="op">=</span><span class="va">lg</span>, Pos<span class="op">=</span><span class="va">Position</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">myG</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                  Marker Chr    Pos</span></span>
+<span><span class="co">## 1  Lcu.2RBY.Chr1_102694   1 0.0000</span></span>
+<span><span class="co">## 2  Lcu.2RBY.Chr1_437483   1 2.4773</span></span>
+<span><span class="co">## 3  Lcu.2RBY.Chr1_890646   1 6.0548</span></span>
+<span><span class="co">## 4 Lcu.2RBY.Chr1_1003850   1 7.3156</span></span>
+<span><span class="co">## 5 Lcu.2RBY.Chr1_1232402   1 8.6145</span></span>
+<span><span class="co">## 6 Lcu.2RBY.Chr1_1363775   1 9.8648</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">myQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"myQTL_LR-68_lab_peaks.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span>Trait<span class="op">=</span><span class="va">lodcolumn</span>, Chr<span class="op">=</span><span class="va">chr</span>, Pos<span class="op">=</span><span class="va">pos</span>, <span class="va">lod</span>, Pos_lo<span class="op">=</span><span class="va">ci_lo</span>, Pos_hi<span class="op">=</span><span class="va">ci_hi</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">myQ</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                     Trait Chr      Pos       lod   Pos_lo   Pos_hi</span></span>
+<span><span class="co">## 1 l.mean.BELT.SPG19_LR.68   2 149.5610  4.512527 144.0883 155.6161</span></span>
+<span><span class="co">## 2 l.mean.BELT.SPG19_LR.68   3 118.0000  4.357701 114.8143 124.0238</span></span>
+<span><span class="co">## 3 l.mean.BELT.SPG19_LR.68   5  19.0000 15.104322   1.9097  21.3122</span></span>
+<span><span class="co">## 4 a.mean.BELT.SPG19_LR.68   3 121.0030 17.255255 117.5240 121.6203</span></span>
+<span><span class="co">## 5 a.mean.BELT.SPG19_LR.68   5  19.0000  5.080618   1.9097  28.9065</span></span>
+<span><span class="co">## 6 b.mean.BELT.SPG19_LR.68   2 149.0507 11.558914 148.5405 149.9675</span></span></code></pre>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_QTL_Summary.html">gg_QTL_Summary</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genetic map </span></span>
@@ -109,7 +125,7 @@ object is all that is needed to create QTL summary plots.</p>
 <div class="section level2">
 <h2 id="customized-plot">Customized Plot<a class="anchor" aria-label="anchor" href="#customized-plot"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_QTL_Summary.html">gg_QTL_Summary</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genetic map</span></span>
@@ -133,17 +149,40 @@ object is all that is needed to create QTL summary plots.</p>
 <div class="section level2">
 <h2 id="grouping">Grouping<a class="anchor" aria-label="anchor" href="#grouping"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Prep data</span></span>
 <span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"LR-68_gmap.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span>Marker<span class="op">=</span><span class="va">SNP</span>, Chr<span class="op">=</span><span class="va">lg</span>, Pos<span class="op">=</span><span class="va">Position</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">myQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"myQTL_LR-68_lab_peaks.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">myG</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                  Marker Chr    Pos</span></span>
+<span><span class="co">## 1  Lcu.2RBY.Chr1_102694   1 0.0000</span></span>
+<span><span class="co">## 2  Lcu.2RBY.Chr1_437483   1 2.4773</span></span>
+<span><span class="co">## 3  Lcu.2RBY.Chr1_890646   1 6.0548</span></span>
+<span><span class="co">## 4 Lcu.2RBY.Chr1_1003850   1 7.3156</span></span>
+<span><span class="co">## 5 Lcu.2RBY.Chr1_1232402   1 8.6145</span></span>
+<span><span class="co">## 6 Lcu.2RBY.Chr1_1363775   1 9.8648</span></span></code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">myQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"myQTL_LR-68_lab_peaks.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span>Trait<span class="op">=</span><span class="va">lodcolumn</span>, Chr<span class="op">=</span><span class="va">chr</span>, Pos<span class="op">=</span><span class="va">pos</span>, <span class="va">lod</span>, Pos_lo<span class="op">=</span><span class="va">ci_lo</span>, Pos_hi<span class="op">=</span><span class="va">ci_hi</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>y_Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">Trait</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">regexpr</a></span><span class="op">(</span><span class="st">".BELT"</span>, <span class="va">Trait</span><span class="op">)</span><span class="op">+</span><span class="fl">6</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">regexpr</a></span><span class="op">(</span><span class="st">"_"</span>, <span class="va">Trait</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span> <span class="op">)</span>,</span>
 <span>         facet_Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">Trait</span>, <span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">regexpr</a></span><span class="op">(</span><span class="st">".BELT"</span>, <span class="va">Trait</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>,</span>
-<span>         color_Group <span class="op">=</span> <span class="va">facet_Group</span> <span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<span>         color_Group <span class="op">=</span> <span class="va">facet_Group</span> <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">myQ</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                     Trait Chr      Pos       lod   Pos_lo   Pos_hi y_Group</span></span>
+<span><span class="co">## 1 l.mean.BELT.SPG19_LR.68   2 149.5610  4.512527 144.0883 155.6161   SPG19</span></span>
+<span><span class="co">## 2 l.mean.BELT.SPG19_LR.68   3 118.0000  4.357701 114.8143 124.0238   SPG19</span></span>
+<span><span class="co">## 3 l.mean.BELT.SPG19_LR.68   5  19.0000 15.104322   1.9097  21.3122   SPG19</span></span>
+<span><span class="co">## 4 a.mean.BELT.SPG19_LR.68   3 121.0030 17.255255 117.5240 121.6203   SPG19</span></span>
+<span><span class="co">## 5 a.mean.BELT.SPG19_LR.68   5  19.0000  5.080618   1.9097  28.9065   SPG19</span></span>
+<span><span class="co">## 6 b.mean.BELT.SPG19_LR.68   2 149.0507 11.558914 148.5405 149.9675   SPG19</span></span>
+<span><span class="co">##   facet_Group color_Group</span></span>
+<span><span class="co">## 1      l.mean      l.mean</span></span>
+<span><span class="co">## 2      l.mean      l.mean</span></span>
+<span><span class="co">## 3      l.mean      l.mean</span></span>
+<span><span class="co">## 4      a.mean      a.mean</span></span>
+<span><span class="co">## 5      a.mean      a.mean</span></span>
+<span><span class="co">## 6      b.mean      b.mean</span></span></code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_QTL_Summary_Groups.html">gg_QTL_Summary_Groups</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genetic map</span></span>
@@ -177,11 +216,10 @@ object is all that is needed to create QTL summary plots.</p>
 <p>QTL analyses are generally done with linkage groups and their genetic
 positions. However, we may want to convert these into physical positions
 so we can compare with other analyses.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Prep data</span></span>
 <span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"LR-68_gmap.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span>Marker<span class="op">=</span><span class="va">SNP</span>, <span class="va">lg</span>, cM<span class="op">=</span><span class="va">Position</span><span class="op">)</span></span>
-<span></span>
 <span><span class="va">myQ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"myQTL_LR-68_lab_peaks.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">rename</span><span class="op">(</span>Trait<span class="op">=</span><span class="va">lodcolumn</span>, lg<span class="op">=</span><span class="va">chr</span>, cM<span class="op">=</span><span class="va">pos</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">Trait</span>, <span class="va">lg</span>, <span class="va">cM</span>, <span class="va">lod</span>, <span class="va">ci_lo</span>, <span class="va">ci_hi</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -192,7 +230,6 @@ so we can compare with other analyses.</p>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">lg</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Chr <span class="op">=</span> <span class="cn">NA</span>, Pos <span class="op">=</span> <span class="cn">NA</span>, Pos_lo <span class="op">=</span> <span class="cn">NA</span>, Pos_hi <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="co">#</span></span>
-<span><span class="va">i</span><span class="op">&lt;-</span><span class="fl">9</span></span>
 <span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">myQ</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">lg_i</span> <span class="op">&lt;-</span> <span class="va">myQ</span><span class="op">$</span><span class="va">lg</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
 <span>  <span class="va">myGi</span> <span class="op">&lt;-</span> <span class="va">myG</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">lg</span> <span class="op">==</span> <span class="va">lg_i</span><span class="op">)</span> </span>
@@ -224,8 +261,39 @@ so we can compare with other analyses.</p>
 <span><span class="co">#</span></span>
 <span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="va">myG</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Chr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">Marker</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">regexpr</a></span><span class="op">(</span><span class="st">"Chr"</span>, <span class="va">Marker</span><span class="op">)</span><span class="op">+</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">regexpr</a></span><span class="op">(</span><span class="st">"_"</span>, <span class="va">Marker</span><span class="op">)</span><span class="op">-</span><span class="fl">1</span> <span class="op">)</span><span class="op">)</span>,</span>
-<span>         Pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">Marker</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">regexpr</a></span><span class="op">(</span><span class="st">"_"</span>, <span class="va">Marker</span><span class="op">)</span><span class="op">+</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">Marker</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<span>         Pos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substr</a></span><span class="op">(</span><span class="va">Marker</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">regexpr</a></span><span class="op">(</span><span class="st">"_"</span>, <span class="va">Marker</span><span class="op">)</span><span class="op">+</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">Marker</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">myG</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                  Marker lg     cM Chr     Pos</span></span>
+<span><span class="co">## 1  Lcu.2RBY.Chr1_102694  1 0.0000   1  102694</span></span>
+<span><span class="co">## 2  Lcu.2RBY.Chr1_437483  1 2.4773   1  437483</span></span>
+<span><span class="co">## 3  Lcu.2RBY.Chr1_890646  1 6.0548   1  890646</span></span>
+<span><span class="co">## 4 Lcu.2RBY.Chr1_1003850  1 7.3156   1 1003850</span></span>
+<span><span class="co">## 5 Lcu.2RBY.Chr1_1232402  1 8.6145   1 1232402</span></span>
+<span><span class="co">## 6 Lcu.2RBY.Chr1_1363775  1 9.8648   1 1363775</span></span></code></pre>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">myQ</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                     Trait lg       cM       lod    ci_lo    ci_hi</span></span>
+<span><span class="co">## 1 b.mean.BELT.SPG19_LR.68  2 149.0507 11.558914 148.5405 149.9675</span></span>
+<span><span class="co">## 2  b.mean.BELT.Su19_LR.68  2 149.0507 13.115263 148.5405 149.9675</span></span>
+<span><span class="co">## 3 l.mean.BELT.SPG19_LR.68  2 149.5610  4.512527 144.0883 155.6161</span></span>
+<span><span class="co">## 4  l.mean.BELT.Su19_LR.68  2 149.5610  3.713724 135.0521 155.6161</span></span>
+<span><span class="co">## 5  b.mean.BELT.Su21_LR.68  2 149.5610 14.038083 148.5405 149.9675</span></span>
+<span><span class="co">## 6  b.mean.BELT.Su18_LR.68  2 151.2074  4.563619 147.4167 154.1871</span></span>
+<span><span class="co">##                  Marker                   M_lo                  M_hi Chr</span></span>
+<span><span class="co">## 1 Lcu.2RBY.Chr2_8164019  Lcu.2RBY.Chr2_8718338 Lcu.2RBY.Chr2_6573390   2</span></span>
+<span><span class="co">## 2 Lcu.2RBY.Chr2_8164019  Lcu.2RBY.Chr2_8718338 Lcu.2RBY.Chr2_6573390   2</span></span>
+<span><span class="co">## 3 Lcu.2RBY.Chr2_7892959 Lcu.2RBY.Chr2_10344062 Lcu.2RBY.Chr2_3955439   2</span></span>
+<span><span class="co">## 4 Lcu.2RBY.Chr2_7892959 Lcu.2RBY.Chr2_18135317 Lcu.2RBY.Chr2_3955439   2</span></span>
+<span><span class="co">## 5 Lcu.2RBY.Chr2_7892959  Lcu.2RBY.Chr2_8718338 Lcu.2RBY.Chr2_6573390   2</span></span>
+<span><span class="co">## 6 Lcu.2RBY.Chr2_6063672  Lcu.2RBY.Chr2_8818249 Lcu.2RBY.Chr2_5380007   2</span></span>
+<span><span class="co">##       Pos   Pos_lo  Pos_hi</span></span>
+<span><span class="co">## 1 8164019  8718338 6573390</span></span>
+<span><span class="co">## 2 8164019  8718338 6573390</span></span>
+<span><span class="co">## 3 7892959 10344062 3955439</span></span>
+<span><span class="co">## 4 7892959 18135317 3955439</span></span>
+<span><span class="co">## 5 7892959  8718338 6573390</span></span>
+<span><span class="co">## 6 6063672  8818249 5380007</span></span></code></pre>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_QTL_Summary.html">gg_QTL_Summary</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genetic map</span></span>
@@ -242,7 +310,7 @@ so we can compare with other analyses.</p>
 <div class="section level2">
 <h2 id="multiple-populations-groups">Multiple Populations &amp; Groups<a class="anchor" aria-label="anchor" href="#multiple-populations-groups"></a>
 </h2>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create function to get physical position</span></span>
 <span><span class="va">convertPosition</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">myG_Name</span> <span class="op">=</span> <span class="st">"LR-68_gmap.csv"</span>, <span class="va">myQ_Name</span> <span class="op">=</span> <span class="st">"myQTL_LR-68_lab_peaks.csv"</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="co">#</span></span>
@@ -259,7 +327,6 @@ so we can compare with other analyses.</p>
 <span>    <span class="fu">arrange</span><span class="op">(</span><span class="va">lg</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Chr <span class="op">=</span> <span class="cn">NA</span>, Pos <span class="op">=</span> <span class="cn">NA</span>, Pos_lo <span class="op">=</span> <span class="cn">NA</span>, Pos_hi <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span>  <span class="co">#</span></span>
-<span>  <span class="va">i</span><span class="op">&lt;-</span><span class="fl">9</span></span>
 <span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">myQ</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">lg_i</span> <span class="op">&lt;-</span> <span class="va">myQ</span><span class="op">$</span><span class="va">lg</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
 <span>    <span class="va">myGi</span> <span class="op">&lt;-</span> <span class="va">myG</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">lg</span> <span class="op">==</span> <span class="va">lg_i</span><span class="op">)</span> </span>
@@ -317,8 +384,39 @@ so we can compare with other analyses.</p>
 <span>              <span class="st">"Pr18_LR.70"</span>, <span class="st">"SPG19_LR.70"</span>, <span class="st">"Su18_LR.70"</span>, <span class="st">"Su19_LR.70"</span>, <span class="st">"Su21_LR.70"</span>,  </span>
 <span>              <span class="st">"Pr18_LR.86"</span>,  <span class="st">"SPG19_LR.86"</span>, <span class="st">"Su18_LR.86"</span>, <span class="st">"Su19_LR.86"</span><span class="op">)</span></span>
 <span><span class="va">myQ</span> <span class="op">&lt;-</span> <span class="va">myQ</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>y_Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">y_Group</span>, levels <span class="op">=</span> <span class="va">myLevels</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>y_Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">y_Group</span>, levels <span class="op">=</span> <span class="va">myLevels</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">myG</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                  Marker lg     cM Chr     Pos</span></span>
+<span><span class="co">## 1  Lcu.2RBY.Chr1_102694  1 0.0000   1  102694</span></span>
+<span><span class="co">## 2  Lcu.2RBY.Chr1_437483  1 2.4773   1  437483</span></span>
+<span><span class="co">## 3  Lcu.2RBY.Chr1_890646  1 6.0548   1  890646</span></span>
+<span><span class="co">## 4 Lcu.2RBY.Chr1_1003850  1 7.3156   1 1003850</span></span>
+<span><span class="co">## 5 Lcu.2RBY.Chr1_1232402  1 8.6145   1 1232402</span></span>
+<span><span class="co">## 6 Lcu.2RBY.Chr1_1363775  1 9.8648   1 1363775</span></span></code></pre>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">myQ</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                     Trait lg       cM       lod    ci_lo    ci_hi</span></span>
+<span><span class="co">## 1 b.mean.BELT.SPG19_LR.68  2 149.0507 11.558914 148.5405 149.9675</span></span>
+<span><span class="co">## 2  b.mean.BELT.Su19_LR.68  2 149.0507 13.115263 148.5405 149.9675</span></span>
+<span><span class="co">## 3 l.mean.BELT.SPG19_LR.68  2 149.5610  4.512527 144.0883 155.6161</span></span>
+<span><span class="co">## 4  l.mean.BELT.Su19_LR.68  2 149.5610  3.713724 135.0521 155.6161</span></span>
+<span><span class="co">## 5  b.mean.BELT.Su21_LR.68  2 149.5610 14.038083 148.5405 149.9675</span></span>
+<span><span class="co">## 6  b.mean.BELT.Su18_LR.68  2 151.2074  4.563619 147.4167 154.1871</span></span>
+<span><span class="co">##                  Marker                   M_lo                  M_hi Chr</span></span>
+<span><span class="co">## 1 Lcu.2RBY.Chr2_8164019  Lcu.2RBY.Chr2_8718338 Lcu.2RBY.Chr2_6573390   2</span></span>
+<span><span class="co">## 2 Lcu.2RBY.Chr2_8164019  Lcu.2RBY.Chr2_8718338 Lcu.2RBY.Chr2_6573390   2</span></span>
+<span><span class="co">## 3 Lcu.2RBY.Chr2_7892959 Lcu.2RBY.Chr2_10344062 Lcu.2RBY.Chr2_3955439   2</span></span>
+<span><span class="co">## 4 Lcu.2RBY.Chr2_7892959 Lcu.2RBY.Chr2_18135317 Lcu.2RBY.Chr2_3955439   2</span></span>
+<span><span class="co">## 5 Lcu.2RBY.Chr2_7892959  Lcu.2RBY.Chr2_8718338 Lcu.2RBY.Chr2_6573390   2</span></span>
+<span><span class="co">## 6 Lcu.2RBY.Chr2_6063672  Lcu.2RBY.Chr2_8818249 Lcu.2RBY.Chr2_5380007   2</span></span>
+<span><span class="co">##       Pos   Pos_lo  Pos_hi     y_Group facet_Group color_Group</span></span>
+<span><span class="co">## 1 8164019  8718338 6573390 SPG19_LR.68      b.mean       LR.68</span></span>
+<span><span class="co">## 2 8164019  8718338 6573390  Su19_LR.68      b.mean       LR.68</span></span>
+<span><span class="co">## 3 7892959 10344062 3955439 SPG19_LR.68      l.mean       LR.68</span></span>
+<span><span class="co">## 4 7892959 18135317 3955439  Su19_LR.68      l.mean       LR.68</span></span>
+<span><span class="co">## 5 7892959  8718338 6573390  Su21_LR.68      b.mean       LR.68</span></span>
+<span><span class="co">## 6 6063672  8818249 5380007  Su18_LR.68      b.mean       LR.68</span></span></code></pre>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_QTL_Summary_Groups.html">gg_QTL_Summary_Groups</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genetic map</span></span>
