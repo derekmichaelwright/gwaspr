@@ -8,7 +8,7 @@ output: rmarkdown::html_vignette
 knitr::opts_chunk$set(eval = F, message = F, warning = F)
 ```
 
-```{r echo = F}
+```{r eval = T, echo = F}
 library("gwaspr")
 ```
 
@@ -25,7 +25,7 @@ Sample Data
 
 Inputting a properly formatted `myG` and `myQ` object is all that is needed to create QTL summary plots.
 
-```{r}
+```{r eval = T}
 # Prep data
 myG <- read.csv("LR-68_gmap.csv") %>% 
   select(Marker=SNP, Chr=lg, Pos=Position)
