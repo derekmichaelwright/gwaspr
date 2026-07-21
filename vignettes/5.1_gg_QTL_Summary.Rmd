@@ -29,12 +29,12 @@ Inputting a properly formatted `myG` and `myQ` object is all that is needed to c
 # Prep data
 myG <- read.csv("LR-68_gmap.csv") %>% 
   select(Marker=SNP, Chr=lg, Pos=Position)
-head(myG)
+myQ <- read.csv("myQTL_LR-68_lab_peaks.csv") %>% 
+  select(Trait=lodcolumn, Chr=chr, Pos=pos, lod, Pos_lo=ci_lo, Pos_hi=ci_hi)
 ```
 
 ```{r}
-myQ <- read.csv("myQTL_LR-68_lab_peaks.csv") %>% 
-  select(Trait=lodcolumn, Chr=chr, Pos=pos, lod, Pos_lo=ci_lo, Pos_hi=ci_hi)
+head(myG)
 head(myQ)
 ```
 
@@ -85,12 +85,15 @@ ggsave("figures/gg_QTL_Summary_02.png", mp, width = 10, height = 4)
 # Prep data
 myG <- read.csv("LR-68_gmap.csv") %>% 
   select(Marker=SNP, Chr=lg, Pos=Position)
-head(myG)
 myQ <- read.csv("myQTL_LR-68_lab_peaks.csv") %>% 
   select(Trait=lodcolumn, Chr=chr, Pos=pos, lod, Pos_lo=ci_lo, Pos_hi=ci_hi) %>%
   mutate(y_Group = substr(Trait, regexpr(".BELT", Trait)+6, regexpr("_", Trait)-1 ),
          facet_Group = substr(Trait, 1, regexpr(".BELT", Trait)-1),
          color_Group = facet_Group )
+```
+
+```{r}
+head(myG)
 head(myQ)
 ```
 
@@ -175,6 +178,9 @@ for(i in 1:nrow(myQ)) {
 myG <- myG %>%
   mutate(Chr = as.numeric(substr(Marker, regexpr("Chr", Marker)+3, regexpr("_", Marker)-1 )),
          Pos = as.numeric(substr(Marker, regexpr("_", Marker)+1, nchar(Marker))))
+```
+
+```{r}
 head(myG)
 head(myQ)
 ```
@@ -273,6 +279,9 @@ myLevels <- c("SPG19_LR.68", "Su18_LR.68", "Su19_LR.68", "Su21_LR.68",
               "Pr18_LR.86",  "SPG19_LR.86", "Su18_LR.86", "Su19_LR.86")
 myQ <- myQ %>%
   mutate(y_Group = factor(y_Group, levels = myLevels))
+```
+
+```{r}
 head(myG)
 head(myQ)
 ```
