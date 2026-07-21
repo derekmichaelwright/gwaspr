@@ -16,12 +16,12 @@ The function `gg_QTL_Summary()` creates plot summarising the results from multip
 
 Sample Data
 
-- [LR-68_gmap.csv](https://derekmichaelwright.github.io/gwaspr/vignettes/LR-68_gmap.csv)
-- [myQTL_LR-68_lab_peaks.csv](https://derekmichaelwright.github.io/gwaspr/vignettes/myQTL_LR-68_lab_peaks.csv)
-- [LR-70_gmap.csv](https://derekmichaelwright.github.io/gwaspr/vignettes/LR-70_gmap.csv)
-- [myQTL_LR-70_lab_peaks.csv](https://derekmichaelwright.github.io/gwaspr/vignettes/myQTL_LR-70_lab_peaks.csv)
-- [LR-86_gmap.csv](https://derekmichaelwright.github.io/gwaspr/vignettes/LR-86_gmap.csv)
-- [myQTL_LR-86_lab_peaks.csv](https://derekmichaelwright.github.io/gwaspr/vignettes/myQTL_LR-86_lab_peaks.csv)
+- [LR-68_gmap.csv](https://github.com/derekmichaelwright/gwaspr/blob/main/vignettes/LR-68_gmap.csv)
+- [myQTL_LR-68_lab_peaks.csv](https://github.com/derekmichaelwright/gwaspr/blob/main/vignettes/myQTL_LR-68_lab_peaks.csv)
+- [LR-70_gmap.csv](https://github.com/derekmichaelwright/gwaspr/blob/main/vignettes/LR-70_gmap.csv)
+- [myQTL_LR-70_lab_peaks.csv](https://github.com/derekmichaelwright/gwaspr/blob/main/vignettes/myQTL_LR-70_lab_peaks.csv)
+- [LR-86_gmap.csv](https://github.com/derekmichaelwright/gwaspr/blob/main/vignettes/LR-86_gmap.csv)
+- [myQTL_LR-86_lab_peaks.csv](https://github.com/derekmichaelwright/gwaspr/blob/main/vignettes/myQTL_LR-86_lab_peaks.csv)
 
 Inputting a properly formatted `myG` and `myQ` object is all that is needed to create QTL summary plots.
 
