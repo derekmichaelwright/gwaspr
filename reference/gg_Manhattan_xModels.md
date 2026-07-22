@@ -31,7 +31,7 @@ gg_Manhattan_xModels(
     "darkgoldenrod4", "tomato3", "aquamarine4", "deeppink3"),
   chr.unit = "100 Mbp",
   plotHBPvalues = F,
-  skyline = "Kansas"
+  skyline = NULL
 )
 ```
 

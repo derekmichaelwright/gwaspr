@@ -33,7 +33,7 @@ gg_Manhattan(
   chr.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
   chr.unit = "100 Mbp",
   plotHBPvalues = F,
-  skyline = "Kansas",
+  skyline = NULL,
   addQQ = T
 )
 ```
