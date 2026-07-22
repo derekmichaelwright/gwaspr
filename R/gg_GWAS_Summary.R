@@ -50,7 +50,7 @@ gg_GWAS_Summary <- function(
     legend.position = "bottom",
     legend.rows = 1,
     plotHBPvalues = F,
-    skyline = "Kansas"
+    skyline = NULL
     ) {
   #
   check1 <- run_Summary(folder = folder) %>% dropNAcol()
@@ -106,7 +106,7 @@ gg_GWAS_Summary <- function(
     filter(!is.na(Trait)) %>%
     arrange(desc(Model))
   #
-  myG <- read.csv(paste0(folder, fnames[1])) %>%
+  myG <- read.csv(paste0(folder, fnames[grepl(traits[1],fnames)][1])) %>%
     mutate(Trait = myP$Trait[1],
            Trait = factor(Trait, levels = traits),
            Group = NULL, Model = NULL)
@@ -174,7 +174,7 @@ gg_GWAS_Summary <- function(
     scale_shape_manual(values = shapes, breaks = models) +
     scale_size_manual(name = NULL, values = c(2.25,0.75)) +
     scale_y_discrete(limits = rev, drop = F) +
-    scale_x_continuous(breaks = 0:20) +
+    scale_x_continuous(breaks = 0:20, minor_breaks = 0:20) +
     theme_gwaspr(legend.position = legend.position) +
     guides(shape = guide_legend(nrow = legend.rows, override.aes = list(size = 4)),
            color = guide_legend(nrow = legend.rows),

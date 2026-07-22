@@ -28,7 +28,7 @@ gg_GWAS_Summary(
   legend.position = "bottom",
   legend.rows = 1,
   plotHBPvalues = F,
-  skyline = "Kansas"
+  skyline = NULL
 )
 }
 \arguments{

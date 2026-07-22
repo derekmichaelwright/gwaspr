@@ -49,7 +49,7 @@ gg_Manhattan_xModels <- function(
     trait.colors = c("chartreuse4", "firebrick", "steelblue3", "maroon3", "purple3", "darkgoldenrod4", "tomato3", "aquamarine4", "deeppink3"),
     chr.unit = "100 Mbp",
     plotHBPvalues = F,
-    skyline = "Kansas"
+    skyline = NULL
     ) {
   #
   # Read in files

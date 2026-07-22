@@ -30,7 +30,7 @@ gg_Manhattan_Zoom(
   legend.box = "horizontal",
   point.sizes = c(0.3, 1, 0.75),
   plotHBPvalues = F,
-  skyline = "Kansas"
+  skyline = NULL
 )
 }
 \arguments{
