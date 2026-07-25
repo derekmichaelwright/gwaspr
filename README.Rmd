@@ -1,5 +1,4 @@
 ---
-title: gwaspr R Package
 output: github_document
 ---
 
@@ -7,9 +6,9 @@ output: github_document
 knitr::opts_chunk$set(message = F, warning = F)
 ```
 
-`gwaspr`: an `R` package for plotting GWAS results from the `GAPIT` package
+# gwaspr <img src="man/figures/logo_gwaspr.png" align="right" width="100" height="100" />
 
-![](man/figures/logo_gwaspr.png)
+`gwaspr`: an `R` package for plotting GWAS results from the `GAPIT` package
 
 ---
 
@@ -39,5 +38,9 @@ library(gwaspr)
 # Dependancies
 
 `tidyverse`, `ggpubr`, `ggbeeswarm`, `ggrepel`, `ggtext`, `plotly`, `htmlwidgets`
+
+---
+
+![](man/figures/logo_gwaspr.png)
 
 ---

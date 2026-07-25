@@ -5,3 +5,11 @@ template:
   bootswatch: cosmo
   bslib:
     primary: "#1E3D2A"
+navbar:
+  structure:
+    left:  [intro, articles, reference]
+    right: [search, github, lightswitch]
+footer:
+  structure: 
+    left: developed_by
+    right:

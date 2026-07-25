@@ -1,10 +1,8 @@
-gwaspr R Package
-================
+
+# gwaspr <img src="man/figures/logo_gwaspr.png" align="right" width="100" height="100" />
 
 `gwaspr`: an `R` package for plotting GWAS results from the `GAPIT`
 package
-
-![](man/figures/logo_gwaspr.png)
 
 ------------------------------------------------------------------------
 
@@ -40,5 +38,9 @@ library(gwaspr)
 
 `tidyverse`, `ggpubr`, `ggbeeswarm`, `ggrepel`, `ggtext`, `plotly`,
 `htmlwidgets`
+
+------------------------------------------------------------------------
+
+![](man/figures/logo_gwaspr.png)
 
 ------------------------------------------------------------------------
