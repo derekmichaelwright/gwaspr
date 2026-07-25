@@ -6,7 +6,7 @@ output: github_document
 knitr::opts_chunk$set(message = F, warning = F)
 ```
 
-# gwaspr <img src="man/figures/logo_gwaspr.png" align="right" width="100" height="100" />
+# gwaspr <img src="man/figures/logo_gwaspr.png" align="right" width="90" height="100" />
 
 `gwaspr`: an `R` package for plotting GWAS results from the `GAPIT` package
 
@@ -22,7 +22,17 @@ devtools::install_github("derekmichaelwright/gwaspr")
 library(gwaspr)
 ```
 
-> - **dblogr Tutorial**: [https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/](https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/){target="_blank"}
+---
+
+# github
+
+> - **github link**: [https://github.com/derekmichaelwright/gwaspr/](https://github.com/derekmichaelwright/gwaspr/){target="_blank"}
+
+---
+
+# GWAS Tutorial
+
+> - **dblogr GWAS Tutorial**: [https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/](https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/){target="_blank"}
 
 ---
 

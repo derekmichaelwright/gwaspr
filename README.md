@@ -1,5 +1,5 @@
 
-# gwaspr <img src="man/figures/logo_gwaspr.png" align="right" width="100" height="100" />
+# gwaspr <img src="man/figures/logo_gwaspr.png" align="right" width="90" height="100" />
 
 `gwaspr`: an `R` package for plotting GWAS results from the `GAPIT`
 package
@@ -16,7 +16,19 @@ devtools::install_github("derekmichaelwright/gwaspr")
 library(gwaspr)
 ```
 
-> - **dblogr Tutorial**: <a
+------------------------------------------------------------------------
+
+# github
+
+> - **github link**:
+>   <a href="https://github.com/derekmichaelwright/gwaspr/"
+>   target="_blank">https://github.com/derekmichaelwright/gwaspr/</a>
+
+------------------------------------------------------------------------
+
+# GWAS Tutorial
+
+> - **dblogr GWAS Tutorial**: <a
 >   href="https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/"
 >   target="_blank">https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/</a>
 

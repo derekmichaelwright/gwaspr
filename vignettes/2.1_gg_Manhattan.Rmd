@@ -113,9 +113,11 @@ ggsave("figures/gg_Manhattan_03_DTF_Nepal_2017.png",
 
 ---
 
-# Customized Plot
+# Customized Plot {.tabset .tabset-pills}
 
 The default for `gg_Manhattan()` is to set the plot `title = trait`, but this can be changed. You can also adjust the `threshold` and add a`sug.threshold`. If specified, `markers` can be highlighted and have their `labels` customized. Adding `vlines` can be used to aid in comparisons with other manhattan plots or accross GWAS `models`. `vlines` can be customized with `vline.colors` and `vline.types`. You can Select which GWAS `models` to plot and set the colors of each with `model.colors`. Significant associations can also be highlighted by setting `highlight.sig` and `sig.color`. The QQ plot can also be removed by setting `addQQ = F`.
+
+## DTF Nepal 2017 
 
 ```{r eval = F}
 # Plot
@@ -125,7 +127,7 @@ mp <- gg_Manhattan(
   # Select a trait to plot
   trait = "DTF_Nepal_2017",
   # Create a title for the plot
-  title = "DTF Sask 2017",
+  title = "DTF Nepal 2017",
   # Set horizontal thresholds bars
   threshold = 6.7,
   sug.threshold = 5,
@@ -160,6 +162,8 @@ ggsave("figures/gg_Manhattan_04_DTF_Nepal_2017.png",
 ![](figures/gg_Manhattan_04_DTF_Nepal_2017.png)
 
 ---
+
+## DTF Sask 2017 | Covariate = b
 
 ```{r eval = F}
 # Plot

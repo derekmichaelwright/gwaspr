@@ -9,7 +9,3 @@ navbar:
   structure:
     left:  [intro, articles, reference]
     right: [search, github, lightswitch]
-footer:
-  structure: 
-    left: developed_by
-    right:
