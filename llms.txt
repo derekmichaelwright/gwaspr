@@ -17,7 +17,18 @@ devtools::install_github("derekmichaelwright/gwaspr")
 library(gwaspr)
 ```
 
-> - **dblogr Tutorial**:
+------------------------------------------------------------------------
+
+# github
+
+> - **github link**:
+>   [https://github.com/derekmichaelwright/gwaspr/](https://github.com/derekmichaelwright/gwaspr/)
+
+------------------------------------------------------------------------
+
+# GWAS Tutorial
+
+> - **dblogr GWAS Tutorial**:
 >   [https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/](https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/)
 
 ------------------------------------------------------------------------

@@ -6,6 +6,9 @@
 
 ## Citation
 
+Source:
+[`DESCRIPTION`](https://github.com/derekmichaelwright/gwaspr/blob/main/DESCRIPTION)
+
 Wright D (2026). *gwaspr: GWAS plotting in R*. R package version 0.9.0,
 <https://derekmichaelwright.github.io/gwaspr/>.
 
