@@ -1,14 +1,12 @@
 ---
 title: "gg_manhattan()"
-description: "Create Manhattan plots from GAPIT GWAS results."
-output: rmarkdown::html_vignette
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(eval = F, message = F, warning = F)
+knitr::opts_chunk$set(message = F, warning = F)
 ```
 
-```{r echo = F}
+```{r}
 library(gwaspr)
 ```
 
@@ -113,7 +111,7 @@ ggsave("figures/gg_Manhattan_03_DTF_Nepal_2017.png",
 
 ---
 
-# Customized Plot {.tabset .tabset-pills}
+# Customized Plot
 
 The default for `gg_Manhattan()` is to set the plot `title = trait`, but this can be changed. You can also adjust the `threshold` and add a`sug.threshold`. If specified, `markers` can be highlighted and have their `labels` customized. Adding `vlines` can be used to aid in comparisons with other manhattan plots or accross GWAS `models`. `vlines` can be customized with `vline.colors` and `vline.types`. You can Select which GWAS `models` to plot and set the colors of each with `model.colors`. Significant associations can also be highlighted by setting `highlight.sig` and `sig.color`. The QQ plot can also be removed by setting `addQQ = F`.
 
@@ -204,5 +202,3 @@ ggsave("figures/gg_Manhattan_04_DTF_Sask_2017_b.png",
 ```
 
 ![](figures/gg_Manhattan_04_DTF_Sask_2017_b.png)
-
----

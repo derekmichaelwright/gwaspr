@@ -1,7 +1,5 @@
 ---
 title: "gg_QTL_Summary()"
-description: "Create ..."
-output: rmarkdown::html_vignette
 ---
 
 ```{r setup, include = FALSE}

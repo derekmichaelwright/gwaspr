@@ -1,14 +1,12 @@
 ---
 title: "gg_Manhattan_Zoom_Traits()"
-description: "Create ..."
-output: rmarkdown::html_vignette
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(message = F, warning = F)
 ```
 
-```{r echo = F}
+```{r}
 library(gwaspr)
 ```
 
@@ -21,9 +19,11 @@ mp <- gg_Manhattan_Zoom_Traits(
   folder = "GWAS_Results/",
   # Select traits to plot
   traits = c("DTF_Sask_2017","DTF_Sask_2017_b","DTF_Nepal_2017"),
-  # Plot just Chromosome 1
+  # Plot just Chromosome 5
   chr = 5 ) 
-ggsave("figures/gg_Manhattan_Zoom_Traits_01.png", mp, width = 8, height = 6)
+# Save
+ggsave("figures/gg_Manhattan_Zoom_Traits_01.png", 
+       mp, width = 8, height = 6)
 ```
 
 ![](figures/gg_Manhattan_Zoom_Traits_01.png)
@@ -39,7 +39,7 @@ mp <- gg_Manhattan_Zoom_Traits(
   traits = c("DTF_Sask_2017","DTF_Sask_2017_b","DTF_Nepal_2017"),
   # Create a title for the plot
   title = "Days To Flower",
-  # Plot just Chromosome 1
+  # Plot just Chromosome 5
   chr = 5,
   # Set horizontal thresholds bars
   threshold = 6.7,
@@ -48,9 +48,10 @@ mp <- gg_Manhattan_Zoom_Traits(
   markers = "Lcu.1GRN.Chr5p1658484",
   # Plot only certain GWAS models
   models =  c("MLM","MLMM","FarmCPU","BLINK"),
-  model.colors = gwaspr_Colors
-  ) 
-ggsave("figures/gg_Manhattan_Zoom_Traits_02.png", mp, width = 8, height = 6)
+  model.colors = gwaspr_Colors ) 
+# Save
+ggsave("figures/gg_Manhattan_Zoom_Traits_02.png", 
+       mp, width = 8, height = 6)
 ```
 
 ![](figures/gg_Manhattan_Zoom_Traits_02.png)
@@ -66,7 +67,7 @@ mp <- gg_Manhattan_Zoom_Traits(
   traits = c("DTF_Sask_2017","DTF_Sask_2017_b","DTF_Nepal_2017"),
   # Create a title for the plot
   title = "Days To Flower",
-  # Plot just Chromosome 1
+  # Plot just Chromosome 5 (1000000 - 2500000)
   chr = 5, 
   pos1 = 1000000,
   pos2 = 2500000,
@@ -79,9 +80,9 @@ mp <- gg_Manhattan_Zoom_Traits(
   models =  c("MLM","FarmCPU","BLINK"),
   model.colors = gwaspr_Colors
   ) 
-ggsave("figures/gg_Manhattan_Zoom_Traits_03.png", mp, width = 8, height = 6)
+# Save
+ggsave("figures/gg_Manhattan_Zoom_Traits_03.png", 
+       mp, width = 8, height = 6)
 ```
 
 ![](figures/gg_Manhattan_Zoom_Traits_03.png)
-
----

@@ -1,14 +1,12 @@
 ---
 title: "gg_Manhattan_Zoom()"
-description: "Create ..."
-output: rmarkdown::html_vignette
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(message = F, warning = F)
 ```
 
-```{r echo = F}
+```{r}
 library(gwaspr)
 ```
 
@@ -28,7 +26,8 @@ mp <- gg_Manhattan_Zoom(
   # Plot just Chromosome 1
   chr = 1 )
 # Save
-ggsave("figures/gg_Manhattan_Zoom_01.png", mp, width = 6, height = 4, bg = "white")
+ggsave("figures/gg_Manhattan_Zoom_01.png", 
+       mp, width = 6, height = 4, bg = "white")
 ```
 
 ![](figures/gg_Manhattan_Zoom_01.png)
@@ -51,7 +50,8 @@ mp <- gg_Manhattan_Zoom(
   # Should models be facetted
   facet = T )
 # Save
-ggsave("figures/gg_Manhattan_Zoom_02.png", mp, width = 6, height = 8, bg = "white")
+ggsave("figures/gg_Manhattan_Zoom_02.png", 
+       mp, width = 6, height = 8, bg = "white")
 ```
 
 ![](figures/gg_Manhattan_Zoom_02.png)
@@ -83,7 +83,8 @@ mp <- gg_Manhattan_Zoom(
   # Should models be facetted
   facet = T )
 # Save
-ggsave("figures/gg_Manhattan_Zoom_03.png", mp, width = 6, height = 8, bg = "white")
+ggsave("figures/gg_Manhattan_Zoom_03.png",
+       mp, width = 6, height = 8, bg = "white")
 ```
 
 ![](figures/gg_Manhattan_Zoom_03.png)
@@ -111,7 +112,8 @@ mp <- gg_Manhattan_Zoom(
   # Should models be facetted
   facet = T )
 # Save
-ggsave("figures/gg_Manhattan_Zoom_04.png", mp, width = 6, height = 8, bg = "white")
+ggsave("figures/gg_Manhattan_Zoom_04.png", 
+       mp, width = 6, height = 8, bg = "white")
 ```
 
 ![](figures/gg_Manhattan_Zoom_04.png)
@@ -150,9 +152,8 @@ mp <- gg_Manhattan_Zoom(
   #pmax = 40
   )
 # Save
-ggsave("figures/gg_Manhattan_Zoom_05.png", mp, width = 6, height = 4.5, bg = "white")
+ggsave("figures/gg_Manhattan_Zoom_05.png", 
+       mp, width = 6, height = 4.5, bg = "white")
 ```
 
 ![](figures/gg_Manhattan_Zoom_05.png)
-
----

@@ -5,7 +5,7 @@
 \title{gg_LDHeatmap}
 \usage{
 gg_LDheatmap(
-  xg = myG,
+  xG = myG,
   chr = 6,
   pos1 = 0,
   pos2 = 6e+06,
@@ -16,6 +16,8 @@ gg_LDheatmap(
 )
 }
 \arguments{
+\item{xG}{GWAS genotype object. Note: needs to be in hapmap format.}
+
 \item{chr}{Chromosome to plot.}
 
 \item{pos1}{Start position within the selected chromosome.}
@@ -29,8 +31,6 @@ gg_LDheatmap(
 \item{axisTextSize}{Text size for the axis labels (genotype names).}
 
 \item{nameTrim}{String used to trim marker names.}
-
-\item{xG}{GWAS genotype object. Note: needs to be in hapmap format.}
 }
 \value{
 A LD Heatmap plot.

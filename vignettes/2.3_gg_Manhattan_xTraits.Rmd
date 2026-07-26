@@ -1,14 +1,12 @@
 ---
 title: "gg_Manhattan_xTraits()"
-description: "Create ..."
-output: rmarkdown::html_vignette
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(message = F, warning = F)
 ```
 
-```{r echo = F}
+```{r}
 library(gwaspr)
 ```
 
@@ -26,7 +24,8 @@ mp <- gg_Manhattan_xTraits(
   # Select traits to plot
   traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b") )
 # Save
-ggsave("figures/gg_Manhattan_xTraits_01.png", mp, width = 12, height = 8, bg = "white")
+ggsave("figures/gg_Manhattan_xTraits_01.png", 
+       mp, width = 12, height = 8, bg = "white")
 ```
 
 ![](figures/gg_Manhattan_xTraits_01.png)
@@ -58,9 +57,8 @@ mp <- gg_Manhattan_xTraits(
   # Specify GWAS models to plot
   models =  c("MLM","MLMM","FarmCPU","BLINK") )
 # Save
-ggsave("figures/gg_Manhattan_xTraits_02.png", mp, width = 12, height = 8, bg = "white")
+ggsave("figures/gg_Manhattan_xTraits_02.png", 
+       mp, width = 12, height = 8, bg = "white")
 ```
 
 ![](figures/gg_Manhattan_xTraits_02.png)
-
----
