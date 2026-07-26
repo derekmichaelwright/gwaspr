@@ -10,3 +10,5 @@
 - [gg_manhattan()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan.md):
 - [gg_myG_Details()](https://derekmichaelwright.github.io/gwaspr/articles/gg_myG_Details.md):
 - [gg_QTL_Summary()](https://derekmichaelwright.github.io/gwaspr/articles/gg_QTL_Summary.md):
+- [Run GWAS with
+  GAPIT](https://derekmichaelwright.github.io/gwaspr/articles/GWAS_with_GAPIT.md):
