@@ -61,9 +61,21 @@ gg_Marker_Bar(
 
   Number of columns for facetting when plotting multiple traits.
 
+- line.color:
+
+  Color
+
 - title:
 
   Title for the plot.
+
+- subtitle:
+
+  Subtile for the plot. Defaults to the list of markers.
+
+- asfactor:
+
+  Logical, whether or not to plot as a factor or numeric.
 
 ## Value
 

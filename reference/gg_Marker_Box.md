@@ -12,8 +12,8 @@ gg_Marker_Box(
   markers,
   marker.colors = gwaspr_Colors,
   plot.violin = T,
-  plot.points = T,
   plot.box = T,
+  plot.points = T,
   box.width = 0.1,
   point.size = 1,
   myncol = NULL,
@@ -53,6 +53,10 @@ gg_Marker_Box(
 
   Logical, whether or not to plot violin.
 
+- plot.box:
+
+  Logical, whether or not to plot the boxplots.
+
 - plot.points:
 
   Logical, whether or not to plot points.
@@ -76,6 +80,26 @@ gg_Marker_Box(
 - legend.rows:
 
   Number of rows for the legend.
+
+- subtitle:
+
+  Subtitle for the plot. Defaults to the list of markers.
+
+- yLab:
+
+  Label for the y-axis.
+
+- xCV:
+
+  Covariate data.
+
+- cv.colors:
+
+  Covariate colors.
+
+- cv.label:
+
+  Label for the covariate.
 
 ## Value
 

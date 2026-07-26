@@ -12,8 +12,8 @@ gg_Marker_Pie(
   trait.label = trait,
   markers,
   marker.colors = gwaspr_Colors,
-  subtitle = paste(markers, collapse = "\n"),
-  title = NULL
+  title = NULL,
+  subtitle = paste(markers, collapse = "\n")
 )
 ```
 
@@ -31,6 +31,10 @@ gg_Marker_Pie(
 
   Trait to plot.
 
+- trait.label:
+
+  Label for the Trait.
+
 - markers:
 
   Markers to plot.
@@ -42,6 +46,10 @@ gg_Marker_Pie(
 - title:
 
   Title for the plot.
+
+- subtitle:
+
+  Subtitle for the plot. Defaults to the list of markers.
 
 ## Value
 

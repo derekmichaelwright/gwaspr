@@ -1,5 +1,10 @@
 # gg_QTL_Summary()
 
+``` r
+
+library("gwaspr")
+```
+
 The function
 [`gg_QTL_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_QTL_Summary.md)
 creates plot summarising the results from multiple QTL analyses.

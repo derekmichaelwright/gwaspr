@@ -20,16 +20,16 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-vignettes"><li><h6 class="dropdown-header" data-toc-skip>GWAS</h6></li>
     <li><a class="dropdown-item" href="../articles/GWAS_with_GAPIT.html">Run GWAS with GAPIT</a></li>
     <li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Summary Plots</h6></li>
-    <li><a class="dropdown-item" href="../articles/gg_GWAS_Summary.html">gg_GWAS_Summary()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_QTL_Summary.html">gg_QTL_Summary()</a></li>
-    <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Manhattan Plots</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan.html">gg_Manhattan()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan_Zoom.html">gg_Manhattan_Zoom()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan_xTraits.html">gg_Manhattan_xTraits()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan_xModels.html">gg_Manhattan_xModels()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan_Zoom_Traits.html">gg_Manhattan_Zoom_Traits()</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Summary Plots</h6></li>
+    <li><a class="dropdown-item" href="../articles/gg_GWAS_Summary.html">gg_GWAS_Summary()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_QTL_Summary.html">gg_QTL_Summary()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Marker Plots</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_Marker.html">gg_Marker_*()</a></li>
@@ -74,8 +74,8 @@
 <span>  <span class="va">markers</span>,</span>
 <span>  marker.colors <span class="op">=</span> <span class="va">gwaspr_Colors</span>,</span>
 <span>  plot.violin <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>  plot.points <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  plot.box <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  plot.points <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  box.width <span class="op">=</span> <span class="fl">0.1</span>,</span>
 <span>  point.size <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  myncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -117,6 +117,10 @@
 <dd><p>Logical, whether or not to plot violin.</p></dd>
 
 
+<dt id="arg-plot-box">plot.box<a class="anchor" aria-label="anchor" href="#arg-plot-box"></a></dt>
+<dd><p>Logical, whether or not to plot the boxplots.</p></dd>
+
+
 <dt id="arg-plot-points">plot.points<a class="anchor" aria-label="anchor" href="#arg-plot-points"></a></dt>
 <dd><p>Logical, whether or not to plot points.</p></dd>
 
@@ -139,6 +143,26 @@
 
 <dt id="arg-legend-rows">legend.rows<a class="anchor" aria-label="anchor" href="#arg-legend-rows"></a></dt>
 <dd><p>Number of rows for the legend.</p></dd>
+
+
+<dt id="arg-subtitle">subtitle<a class="anchor" aria-label="anchor" href="#arg-subtitle"></a></dt>
+<dd><p>Subtitle for the plot. Defaults to the list of markers.</p></dd>
+
+
+<dt id="arg-ylab">yLab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
+<dd><p>Label for the y-axis.</p></dd>
+
+
+<dt id="arg-xcv">xCV<a class="anchor" aria-label="anchor" href="#arg-xcv"></a></dt>
+<dd><p>Covariate data.</p></dd>
+
+
+<dt id="arg-cv-colors">cv.colors<a class="anchor" aria-label="anchor" href="#arg-cv-colors"></a></dt>
+<dd><p>Covariate colors.</p></dd>
+
+
+<dt id="arg-cv-label">cv.label<a class="anchor" aria-label="anchor" href="#arg-cv-label"></a></dt>
+<dd><p>Label for the covariate.</p></dd>
 
 </dl></div>
     <div class="section level2">
