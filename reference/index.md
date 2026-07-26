@@ -60,6 +60,8 @@
   : list_Top_Markers
 - [`list_Traits()`](https://derekmichaelwright.github.io/gwaspr/reference/list_Traits.md)
   : list_Traits
+- [`mv()`](https://derekmichaelwright.github.io/gwaspr/reference/mv.md)
+  : mv
 - [`order_GWAS_Results()`](https://derekmichaelwright.github.io/gwaspr/reference/order_GWAS_Results.md)
   : order_GWAS_Results
 - [`run_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/run_Summary.md)

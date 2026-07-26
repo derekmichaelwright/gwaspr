@@ -6,7 +6,7 @@ Creates a manhattan plot.
 
 ``` r
 gg_LDheatmap(
-  xg = myG,
+  xG = myG,
   chr = 6,
   pos1 = 0,
   pos2 = 6e+06,
@@ -18,6 +18,10 @@ gg_LDheatmap(
 ```
 
 ## Arguments
+
+- xG:
+
+  GWAS genotype object. Note: needs to be in hapmap format.
 
 - chr:
 
@@ -46,10 +50,6 @@ gg_LDheatmap(
 - nameTrim:
 
   String used to trim marker names.
-
-- xG:
-
-  GWAS genotype object. Note: needs to be in hapmap format.
 
 ## Value
 
