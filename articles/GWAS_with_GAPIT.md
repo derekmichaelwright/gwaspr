@@ -8,16 +8,6 @@ library(gwaspr)
 Before the `gwaspr` package can be used, we first need to run GWAS with
 `GAPIT`.
 
-``` r
-
-# Load our genotype file in hapmap format (note: header = F)
-#myG <- read.csv("myG_hmp.csv", header = F)
-# Load our phenotype file
-myY <- read.csv("myY.csv")
-# Load our covariate file
-myCV <- read.csv("myCV.csv")
-```
-
 ## Genotype data (myG)
 
 Our population, the LDP, was genotyped using an *exome caputure array*
@@ -32,13 +22,75 @@ SNPs, stored in our object `myG`.
 
 ``` r
 
-# Map + marker Info
-#myG[1:10,1:11]
-# genotrype calls
-#myG[1:10,12:17]
+# Load our genotype file in hapmap format (note: header = F)
+myG <- read.csv("myG_hmp.csv", header = F)
 ```
 
+``` r
+
+# Map + marker Info
+myG[1:10,1:11]
+```
+
+    ##                      V1      V2    V3     V4     V5       V6     V7       V8
+    ## 1                    V1      V2    V3     V4     V5       V6     V7       V8
+    ## 2                    rs alleles chrom    pos strand assembly center protLSID
+    ## 3  Lcu.1GRN.Chr1p853882     A/G     1 853882   <NA>     <NA>   <NA>     <NA>
+    ## 4  Lcu.1GRN.Chr1p854117     G/A     1 854117   <NA>     <NA>   <NA>     <NA>
+    ## 5  Lcu.1GRN.Chr1p854159     A/C     1 854159   <NA>     <NA>   <NA>     <NA>
+    ## 6  Lcu.1GRN.Chr1p854174     C/G     1 854174   <NA>     <NA>   <NA>     <NA>
+    ## 7  Lcu.1GRN.Chr1p870836     A/G     1 870836   <NA>     <NA>   <NA>     <NA>
+    ## 8  Lcu.1GRN.Chr1p870898     C/T     1 870898   <NA>     <NA>   <NA>     <NA>
+    ## 9  Lcu.1GRN.Chr1p870903     G/A     1 870903   <NA>     <NA>   <NA>     <NA>
+    ## 10 Lcu.1GRN.Chr1p871108     A/G     1 871108   <NA>     <NA>   <NA>     <NA>
+    ##           V9   V10    V11
+    ## 1         V9   V10    V11
+    ## 2  assayLSID panel QCcode
+    ## 3       <NA>  <NA>   <NA>
+    ## 4       <NA>  <NA>   <NA>
+    ## 5       <NA>  <NA>   <NA>
+    ## 6       <NA>  <NA>   <NA>
+    ## 7       <NA>  <NA>   <NA>
+    ## 8       <NA>  <NA>   <NA>
+    ## 9       <NA>  <NA>   <NA>
+    ## 10      <NA>  <NA>   <NA>
+
+``` r
+
+# genotrype calls
+myG[1:10,12:17]
+```
+
+    ##             V12             V13            V14            V15          V16
+    ## 1           V12             V13            V14            V15          V16
+    ## 2  X3156.11_AGL CDC_Asterix_AGL CDC_Cherie_AGL CDC_Glamis_AGL CDC_Gold_AGL
+    ## 3             G               A              G              A            G
+    ## 4             G               G              G              A            G
+    ## 5             C               C              C              C            C
+    ## 6             G               G              G              G            G
+    ## 7             G               G              N              G            G
+    ## 8             T               C              N              C            T
+    ## 9             G               G              N              A            G
+    ## 10            A               A              A              A            A
+    ##                  V17
+    ## 1                V17
+    ## 2  CDC_Greenstar_AGL
+    ## 3                  A
+    ## 4                  G
+    ## 5                  A
+    ## 6                  C
+    ## 7                  A
+    ## 8                  C
+    ## 9                  G
+    ## 10                 A
+
 ## Phenotype data (myY)
+
+``` r
+
+# Load our phenotype file
+myY <- read.csv("myY.csv")
+```
 
 ``` r
 
@@ -68,6 +120,12 @@ myY[1:20,]
     ## 20   CDC_Rouleau_AGL          55.3          123.7                     1
 
 ## Covariate data (myCV)
+
+``` r
+
+# Load our covariate file
+myCV <- read.csv("myCV.csv")
+```
 
 ``` r
 
