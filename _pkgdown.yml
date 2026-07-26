@@ -8,37 +8,39 @@ template:
 navbar:
   structure:
     left:  [intro, articles, reference]
-    right: [search, github, lightswitch]
+    right: [search, lightswitch, github]
   components:
     articles:
-     text: Tutorials
+     text: Vignettes
      menu:
      - text: GWAS
-     - text: GWAS with GAPIT
-       href: vignettes/GWAS_with_GAPIT.html
+     - text: Run GWAS with GAPIT
+       href: articles/GWAS_with_GAPIT.html
+     - text: gg_GWAS_Summary()
+       href: articles/gg_GWAS_Summary.html
      - text: -------
      - text: "Manhattan Plots"
      - text: gg_Manhattan()
-       href: vignettes/gg_Manhattan.html
+       href: articles/gg_Manhattan.html
      - text: gg_Manhattan_Zoom()
-       href: vignettes/gg_Manhattan_Zoom.html
+       href: articles/gg_Manhattan_Zoom.html
      - text: gg_Manhattan_xTraits()
-       href: vignettes/gg_Manhattan_xTraits.html
+       href: articles/gg_Manhattan_xTraits.html
      - text: gg_Manhattan_xModels()
-       href: vignettes/gg_Manhattan_xModels.html
+       href: articles/gg_Manhattan_xModels.html
      - text: gg_Manhattan_Zoom_Traits()
-       href: vignettes/gg_Manhattan_Zoom_Traits.html
+       href: articles/gg_Manhattan_Zoom_Traits.html
      - text: -------
      - text: "Marker Plots"
      - text: gg_Marker_*()
-       href: vignettes/gg_Marker.html
+       href: articles/gg_Marker.html
      - text: -------
-     - text: "Extra"
+     - text: "Other GWAS Related Plots"
      - text: gg_myG_Details()
-       href: vignettes/gg_myG_Details.html
+       href: articles/gg_myG_Details.html
      - text: gg_LDheatmap()
-       href: vignettes/gg_LDheatmap.html
+       href: articles/gg_LDheatmap.html
      - text: -------
      - text: "QTL Plots"
      - text: gg_QTL_Summary()
-       href: vignettes/gg_QTL_Summary.html
+       href: articles/gg_QTL_Summary.html
