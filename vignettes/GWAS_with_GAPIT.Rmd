@@ -28,7 +28,8 @@ myG <- read.csv("myG_hmp.csv", header = F)
 ```
 
 ```{r echo = F}
-myG <- read.csv("myG_hmp.csv", header = F, nrows = 10)
+myG <- read.csv("myG_hmp_10.csv", header = F)
+#write.csv(myG, "myG_hmp_10.csv", row.names = F)
 ```
 
 ```{r}
