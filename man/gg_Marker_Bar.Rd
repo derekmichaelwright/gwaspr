@@ -39,7 +39,13 @@ gg_Marker_Bar(
 
 \item{myncol}{Number of columns for facetting when plotting multiple traits.}
 
+\item{line.color}{Color}
+
 \item{title}{Title for the plot.}
+
+\item{subtitle}{Subtile for the plot. Defaults to the list of markers.}
+
+\item{asfactor}{Logical, whether or not to plot as a factor or numeric.}
 }
 \value{
 Marker plot.

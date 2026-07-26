@@ -17,12 +17,6 @@ navbar:
      - text: Run GWAS with GAPIT
        href: articles/GWAS_with_GAPIT.html
      - text: -------
-     - text: "Summary Plots"
-     - text: gg_GWAS_Summary()
-       href: articles/gg_GWAS_Summary.html
-     - text: gg_QTL_Summary()
-       href: articles/gg_QTL_Summary.html
-     - text: -------
      - text: "Manhattan Plots"
      - text: gg_Manhattan()
        href: articles/gg_Manhattan.html
@@ -34,6 +28,12 @@ navbar:
        href: articles/gg_Manhattan_xModels.html
      - text: gg_Manhattan_Zoom_Traits()
        href: articles/gg_Manhattan_Zoom_Traits.html
+     - text: -------
+     - text: "Summary Plots"
+     - text: gg_GWAS_Summary()
+       href: articles/gg_GWAS_Summary.html
+     - text: gg_QTL_Summary()
+       href: articles/gg_QTL_Summary.html
      - text: -------
      - text: "Marker Plots"
      - text: gg_Marker_*()

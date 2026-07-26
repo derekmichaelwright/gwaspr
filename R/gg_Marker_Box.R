@@ -6,14 +6,19 @@
 #' @param traits Traits to plot.
 #' @param markers Markers to plot.
 #' @param marker.colors Color palette.
-#' @param point.size size of points.
 #' @param plot.violin Logical, whether or not to plot violin.
+#' @param plot.box Logical, whether or not to plot the boxplots.
 #' @param plot.points Logical, whether or not to plot points.
 #' @param box.width Width for the boxplot.
 #' @param point.size Size for the points.
 #' @param myncol Number of columns for facetting when plotting multiple traits.
 #' @param title Title for the plot.
 #' @param legend.rows Number of rows for the legend.
+#' @param subtitle Subtitle for the plot. Defaults to the list of markers.
+#' @param yLab Label for the y-axis.
+#' @param xCV Covariate data.
+#' @param cv.colors Covariate colors.
+#' @param cv.label Label for the covariate.
 #' @return Marker plot.
 #' @export
 
@@ -24,8 +29,8 @@ gg_Marker_Box <- function (
     markers,
     marker.colors = gwaspr_Colors,
     plot.violin = T,
-    plot.points = T,
     plot.box = T,
+    plot.points = T,
     box.width = 0.1,
     point.size = 1,
     myncol = NULL,

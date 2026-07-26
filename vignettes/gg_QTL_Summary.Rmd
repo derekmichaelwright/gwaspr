@@ -6,7 +6,7 @@ title: "gg_QTL_Summary()"
 knitr::opts_chunk$set(message = F, warning = F)
 ```
 
-```{r echo = F}
+```{r}
 library("gwaspr")
 ```
 

@@ -11,8 +11,8 @@ gg_Marker_Pie(
   trait.label = trait,
   markers,
   marker.colors = gwaspr_Colors,
-  subtitle = paste(markers, collapse = "\\n"),
-  title = NULL
+  title = NULL,
+  subtitle = paste(markers, collapse = "\\n")
 )
 }
 \arguments{
@@ -22,11 +22,15 @@ gg_Marker_Pie(
 
 \item{trait}{Trait to plot.}
 
+\item{trait.label}{Label for the Trait.}
+
 \item{markers}{Markers to plot.}
 
 \item{marker.colors}{Color palette.}
 
 \item{title}{Title for the plot.}
+
+\item{subtitle}{Subtitle for the plot. Defaults to the list of markers.}
 }
 \value{
 Marker plot.

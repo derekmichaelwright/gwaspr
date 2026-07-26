@@ -4,9 +4,11 @@
 #' @param xG GWAS genotype object. Note:  needs to be in hapmap format.
 #' @param xY GWAS phenotype object.
 #' @param trait Trait to plot.
+#' @param trait.label Label for the Trait.
 #' @param markers Markers to plot.
 #' @param marker.colors Color palette.
 #' @param title Title for the plot.
+#' @param subtitle Subtitle for the plot. Defaults to the list of markers.
 #' @return Marker plot.
 #' @export
 
@@ -17,8 +19,8 @@ gg_Marker_Pie <- function (
     trait.label = trait,
     markers,
     marker.colors = gwaspr_Colors,
-    subtitle = paste(markers, collapse = "\n"),
-    title = NULL
+    title = NULL,
+    subtitle = paste(markers, collapse = "\n")
     ) {
  #
  xY <- xY %>% dplyr::select(1, myTrait=trait)

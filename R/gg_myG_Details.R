@@ -65,18 +65,18 @@ gg_myG_Details <- function(filename, myPrefix = "", filetype = "csv") {
   mp1 <- ggplot(xx, aes(x = Het * 100)) +
     geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
     theme_gwaspr() +
-    labs(title = "A) Details by Marker",
-         subtitle = "Heterozygosity", x = NULL, y = NULL)
+    labs(title = "Details by Marker",
+         subtitle = "A) Heterozygosity", x = "Percent", y = "Number of Markers")
   mp2 <- ggplot(xx, aes(x = MAF * 100)) +
     geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
     scale_x_continuous(breaks = seq(5,100, by = 5),
                        minor_breaks = seq(5,100, by = 5)) +
     theme_gwaspr() +
-    labs(subtitle = "Minor Allele Frequency", x = "Percent", y = NULL)
+    labs(subtitle = "B) Minor Allele Frequency", x = "Percent", y = NULL)
   mp3 <- ggplot(xx, aes(x = MCF * 100)) +
     geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
     theme_gwaspr() +
-    labs(subtitle = "Missing Call Frequency", x = NULL, y = NULL)
+    labs(subtitle = "C) Missing Call Frequency", x = "Percent", y = "Number of Markers")
   mpA <- ggarrange(mp1, mp2, mp3, ncol = 3, nrow = 1, align = "h")
   ggsave(paste0(myPrefix, "_04_myG_Markers.png"), mpA, width = 12, height = 4)
   #
@@ -108,15 +108,15 @@ gg_myG_Details <- function(filename, myPrefix = "", filetype = "csv") {
     geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
     theme_gwaspr() +
     labs(title = "Details by Genotype",
-         subtitle = "Heterozygosity", x = NULL, y = NULL)
+         subtitle = "A) Heterozygosity", x = "Percent", y = "Number of Genotypes")
   mp5 <- ggplot(yy, aes(x = MAF * 100)) +
     geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
     theme_gwaspr() +
-    labs(subtitle = "Minor Allele Frequency", x = "Percent", y = NULL)
+    labs(subtitle = "B) Minor Allele Frequency", x = "Percent", y = "Number of Genotypes")
   mp6 <- ggplot(yy, aes(x = MCF * 100)) +
     geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
     theme_gwaspr() +
-    labs(subtitle = "Missing Call Frequency", x = NULL, y = NULL)
+    labs(subtitle = "C) Missing Call Frequency", x = "Percent", y = "Number of Genotypes")
   mpB <- ggarrange(mp4, mp5, mp6, ncol = 3, nrow = 1, align = "h")
   ggsave(paste0(myPrefix,"_05_myG_Genotypes.png"), mpB, width = 12, height = 4)
   #

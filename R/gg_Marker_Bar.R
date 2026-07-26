@@ -10,7 +10,10 @@
 #' @param plot.density Logical, if true will plot density bands.
 #' @param plot.counts Logical, if true will make a plot of counts, if false will make a density plot.
 #' @param myncol Number of columns for facetting when plotting multiple traits.
+#' @param line.color Color
 #' @param title Title for the plot.
+#' @param subtitle Subtile for the plot. Defaults to the list of markers.
+#' @param asfactor Logical, whether or not to plot as a factor or numeric.
 #' @return Marker plot.
 #' @export
 
