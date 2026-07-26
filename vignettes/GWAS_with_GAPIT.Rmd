@@ -14,7 +14,7 @@ Before the `gwaspr` package can be used, we first need to run GWAS with `GAPIT`.
 
 ```{r}
 # Load our genotype file in hapmap format (note: header = F)
-myG <- read.csv("myG_hmp.csv", header = F)
+#myG <- read.csv("myG_hmp.csv", header = F)
 # Load our phenotype file
 myY <- read.csv("myY.csv")
 # Load our covariate file
@@ -33,9 +33,9 @@ Our population, the LDP, was genotyped using an *exome caputure array* and filte
 
 ```{r}
 # Map + marker Info
-myG[1:10,1:11]
+#myG[1:10,1:11]
 # genotrype calls
-myG[1:10,12:17]
+#myG[1:10,12:17]
 ```
 
 # Phenotype data (myY)

@@ -16,8 +16,12 @@ navbar:
      - text: GWAS
      - text: Run GWAS with GAPIT
        href: articles/GWAS_with_GAPIT.html
+     - text: -------
+     - text: "Summary Plots"
      - text: gg_GWAS_Summary()
        href: articles/gg_GWAS_Summary.html
+     - text: gg_QTL_Summary()
+       href: articles/gg_QTL_Summary.html
      - text: -------
      - text: "Manhattan Plots"
      - text: gg_Manhattan()
@@ -35,12 +39,8 @@ navbar:
      - text: gg_Marker_*()
        href: articles/gg_Marker.html
      - text: -------
-     - text: "Other GWAS Related Plots"
+     - text: "Other GWAS Related Plots & Functions"
      - text: gg_myG_Details()
        href: articles/gg_myG_Details.html
      - text: gg_LDheatmap()
        href: articles/gg_LDheatmap.html
-     - text: -------
-     - text: "QTL Plots"
-     - text: gg_QTL_Summary()
-       href: articles/gg_QTL_Summary.html
