@@ -70,13 +70,18 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gg_LDheatmap</span><span class="op">(</span></span>
 <span>  xG <span class="op">=</span> <span class="va">myG</span>,</span>
-<span>  chr <span class="op">=</span> <span class="fl">6</span>,</span>
-<span>  pos1 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>  pos2 <span class="op">=</span> <span class="fl">6e+06</span>,</span>
+<span>  <span class="va">chr</span>,</span>
+<span>  <span class="va">pos1</span>,</span>
+<span>  <span class="va">pos2</span>,</span>
+<span>  metric <span class="op">=</span> <span class="st">"R^2"</span>,</span>
+<span>  threshold <span class="op">=</span> <span class="fl">0.9</span>,</span>
 <span>  myMs <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  myTitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  axisTextSize <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  nameTrim <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  nameTrim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  color.low <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>  color.mid <span class="op">=</span> <span class="st">"goldenrod1"</span>,</span>
+<span>  color.high <span class="op">=</span> <span class="st">"darkred"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -100,6 +105,14 @@
 <dd><p>End position within the selected chromosome.</p></dd>
 
 
+<dt id="arg-metric">metric<a class="anchor" aria-label="anchor" href="#arg-metric"></a></dt>
+<dd><p>Which LD calculation to use. Default is "D'".</p></dd>
+
+
+<dt id="arg-threshold">threshold<a class="anchor" aria-label="anchor" href="#arg-threshold"></a></dt>
+<dd><p>Value for selecting linked markers. default is "0.9".</p></dd>
+
+
 <dt id="arg-myms">myMs<a class="anchor" aria-label="anchor" href="#arg-myms"></a></dt>
 <dd><p>Markers to highlight within the plot.</p></dd>
 
@@ -114,6 +127,18 @@
 
 <dt id="arg-nametrim">nameTrim<a class="anchor" aria-label="anchor" href="#arg-nametrim"></a></dt>
 <dd><p>String used to trim marker names.</p></dd>
+
+
+<dt id="arg-color-low">color.low<a class="anchor" aria-label="anchor" href="#arg-color-low"></a></dt>
+<dd><p>Color for gradient low.</p></dd>
+
+
+<dt id="arg-color-mid">color.mid<a class="anchor" aria-label="anchor" href="#arg-color-mid"></a></dt>
+<dd><p>Color for gradient mid.</p></dd>
+
+
+<dt id="arg-color-high">color.high<a class="anchor" aria-label="anchor" href="#arg-color-high"></a></dt>
+<dd><p>Color for gradient high.</p></dd>
 
 </dl></div>
     <div class="section level2">

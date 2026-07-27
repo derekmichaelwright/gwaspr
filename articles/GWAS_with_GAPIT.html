@@ -229,7 +229,9 @@ of 336,367 SNPs, stored in our object <code>myG</code>.</p>
 </h2>
 <p>Run GWAS on the 3 traits <code>myY</code></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">GAPIT</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="co"># devtools::install_github("jiabowang/GAPIT")</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">GAPIT</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Run GWAS</span></span>
 <span><span class="va">myGAPIT</span> <span class="op">&lt;-</span> <span class="fu">GAPIT</span><span class="op">(</span> </span>
@@ -240,9 +242,7 @@ of 336,367 SNPs, stored in our object <code>myG</code>.</p>
 <span>  <span class="co"># Set PCA number</span></span>
 <span>  PCA.total <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  <span class="co"># Select Models</span></span>
-<span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GLM"</span>,<span class="st">"MLM"</span>,<span class="st">"MLMM"</span>,<span class="st">"FarmCPU"</span>,<span class="st">"BLINK"</span><span class="op">)</span>,</span>
-<span>  <span class="co"># Extra functions to prevent errors</span></span>
-<span>  Random.model <span class="op">=</span> <span class="cn">F</span>, Phenotype.View <span class="op">=</span> <span class="cn">F</span> <span class="op">)</span></span></code></pre></div>
+<span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GLM"</span>,<span class="st">"MLM"</span>,<span class="st">"MLMM"</span>,<span class="st">"FarmCPU"</span>,<span class="st">"BLINK"</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
@@ -266,9 +266,7 @@ as a covariate.</p>
 <span>  <span class="co"># Set PCA number</span></span>
 <span>  PCA.total <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  <span class="co"># Select Models</span></span>
-<span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GLM"</span>,<span class="st">"MLM"</span>,<span class="st">"MLMM"</span>,<span class="st">"FarmCPU"</span>,<span class="st">"BLINK"</span><span class="op">)</span>,</span>
-<span>  <span class="co"># Extra functions to prevent errors</span></span>
-<span>  Random.model <span class="op">=</span> <span class="cn">F</span>, Phenotype.View <span class="op">=</span> <span class="cn">F</span> <span class="op">)</span></span></code></pre></div>
+<span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GLM"</span>,<span class="st">"MLM"</span>,<span class="st">"MLMM"</span>,<span class="st">"FarmCPU"</span>,<span class="st">"BLINK"</span><span class="op">)</span> <span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

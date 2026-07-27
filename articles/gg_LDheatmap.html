@@ -99,18 +99,67 @@
 <span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"myG_hmp.csv"</span>, header <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
 <span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_LDheatmap.html">gg_LDheatmap</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Load genotype data</span></span>
 <span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Select chromosome and region to analyse</span></span>
 <span>  chr <span class="op">=</span> <span class="fl">6</span>, </span>
 <span>  pos1 <span class="op">=</span> <span class="fl">2500000</span>, </span>
 <span>  pos2 <span class="op">=</span> <span class="fl">4000000</span>,</span>
-<span>  myMs <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr6p3269280"</span>, </span>
+<span>  <span class="co"># Select a LD metric</span></span>
+<span>  metric <span class="op">=</span> <span class="st">"R^2"</span>,</span>
+<span>  <span class="co"># Set the threshold for identifying linked markers</span></span>
+<span>  threshold <span class="op">=</span> <span class="fl">0.9</span>,</span>
+<span>  <span class="co"># Select markers to highlight</span></span>
+<span>  myMs <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr6p3269280"</span>,</span>
+<span>  <span class="co"># Set the size of the marker names on the x and y axes</span></span>
 <span>  axisTextSize <span class="op">=</span> <span class="fl">3</span>, </span>
+<span>  <span class="co"># prefix to trim from the marker name</span></span>
 <span>  nameTrim <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr6"</span>,</span>
-<span>  myTitle <span class="op">=</span> <span class="st">"Lentil Diversity Panel"</span> <span class="op">)</span></span>
-<span><span class="co"># Save</span></span>
+<span>  <span class="co"># Set custom title for plot</span></span>
+<span>  myTitle <span class="op">=</span> <span class="st">"Lentil Diversity Panel"</span>,</span>
+<span>  <span class="co"># Select colors for the gradient scale</span></span>
+<span>  color.low <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>  color.mid <span class="op">=</span> <span class="st">"goldenrod1"</span>,</span>
+<span>  color.high <span class="op">=</span> <span class="st">"darkred"</span> <span class="op">)</span></span>
+<span><span class="co"># Save Plot</span></span>
 <span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_LDheatmap_01.png"</span>, </span>
-<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">12</span>, dpi <span class="op">=</span> <span class="fl">600</span> <span class="op">)</span></span></code></pre></div>
+<span>       <span class="va">mp</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">12</span>, dpi <span class="op">=</span> <span class="fl">600</span> <span class="op">)</span></span>
+<span><span class="co"># Save data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="va">mp</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, <span class="st">"figures/LDheatmap_data.csv"</span>, row.names <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
 <p><img src="figures/gg_LDheatmap_01.png"></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"figures/LDheatmap_data.csv"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>,<span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##        SNP1     SNP2          R.2 Chr  SNP1_d  SNP2_d</span></span>
+<span><span class="co">## 1  p2525330 p2525330 0.0000000000   6 2525330 2525330</span></span>
+<span><span class="co">## 2  p2525330 p2556449 0.0009017462   6 2525330 2556449</span></span>
+<span><span class="co">## 3  p2525330 p2556737 0.4896666611   6 2525330 2556737</span></span>
+<span><span class="co">## 4  p2525330 p2557053 0.0050843582   6 2525330 2557053</span></span>
+<span><span class="co">## 5  p2525330 p2557113 0.1313557757   6 2525330 2557113</span></span>
+<span><span class="co">## 6  p2525330 p2558106 0.4561908009   6 2525330 2558106</span></span>
+<span><span class="co">## 7  p2525330 p2624430 0.3253504820   6 2525330 2624430</span></span>
+<span><span class="co">## 8  p2525330 p2624453 0.3463576884   6 2525330 2624453</span></span>
+<span><span class="co">## 9  p2525330 p2747121 0.2089890347   6 2525330 2747121</span></span>
+<span><span class="co">## 10 p2525330 p2747122 0.2089330650   6 2525330 2747122</span></span>
+<span><span class="co">## 11 p2525330 p2747161 0.0226736004   6 2525330 2747161</span></span>
+<span><span class="co">## 12 p2525330 p2747170 0.2914167831   6 2525330 2747170</span></span>
+<span><span class="co">## 13 p2525330 p2747202 0.0218454389   6 2525330 2747202</span></span>
+<span><span class="co">## 14 p2525330 p2747230 0.2890620222   6 2525330 2747230</span></span>
+<span><span class="co">## 15 p2525330 p2747250 0.0240439548   6 2525330 2747250</span></span>
+<span><span class="co">## 16 p2525330 p2747291 0.2394054943   6 2525330 2747291</span></span>
+<span><span class="co">## 17 p2525330 p2747305 0.3787211156   6 2525330 2747305</span></span>
+<span><span class="co">## 18 p2525330 p2747308 0.0203400873   6 2525330 2747308</span></span>
+<span><span class="co">## 19 p2525330 p2747315 0.2690796078   6 2525330 2747315</span></span>
+<span><span class="co">## 20 p2525330 p2747329 0.0026214735   6 2525330 2747329</span></span>
+<span><span class="co">## 21 p2525330 p2747332 0.2658085703   6 2525330 2747332</span></span>
+<span><span class="co">## 22 p2525330 p2747377 0.0043181052   6 2525330 2747377</span></span>
+<span><span class="co">## 23 p2525330 p2747395 0.2726070560   6 2525330 2747395</span></span>
+<span><span class="co">## 24 p2525330 p2747397 0.2198628404   6 2525330 2747397</span></span>
+<span><span class="co">## 25 p2525330 p2747428 0.0144815126   6 2525330 2747428</span></span>
+<span><span class="co">## 26 p2525330 p2747444 0.2404931749   6 2525330 2747444</span></span>
+<span><span class="co">## 27 p2525330 p2747446 0.2393698489   6 2525330 2747446</span></span>
+<span><span class="co">## 28 p2525330 p2747487 0.2296461371   6 2525330 2747487</span></span>
+<span><span class="co">## 29 p2525330 p2747494 0.3048660208   6 2525330 2747494</span></span>
+<span><span class="co">## 30 p2525330 p2747548 0.0227952146   6 2525330 2747548</span></span></code></pre>
   </main>
 </div>
 

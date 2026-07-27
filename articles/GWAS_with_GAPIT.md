@@ -162,6 +162,8 @@ Run GWAS on the 3 traits `myY`
 
 ``` r
 
+# install.packages("devtools")
+# devtools::install_github("jiabowang/GAPIT")
 library(GAPIT)
 ```
 
@@ -176,9 +178,7 @@ myGAPIT <- GAPIT(
   # Set PCA number
   PCA.total = 4,
   # Select Models
-  model = c("GLM","MLM","MLMM","FarmCPU","BLINK"),
-  # Extra functions to prevent errors
-  Random.model = F, Phenotype.View = F )
+  model = c("GLM","MLM","MLMM","FarmCPU","BLINK") )
 ```
 
 ------------------------------------------------------------------------
@@ -204,7 +204,5 @@ myGAPIT <- GAPIT(
   # Set PCA number
   PCA.total = 0,
   # Select Models
-  model = c("GLM","MLM","MLMM","FarmCPU","BLINK"),
-  # Extra functions to prevent errors
-  Random.model = F, Phenotype.View = F )
+  model = c("GLM","MLM","MLMM","FarmCPU","BLINK") )
 ```
