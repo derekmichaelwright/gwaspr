@@ -16,7 +16,8 @@ mp <- gg_GWAS_Summary(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/" )
 # Save
-ggsave("figures/gg_GWAS_Summary_01.png", mp, width = 12, height = 4)
+ggsave("figures/gg_GWAS_Summary_01.png",
+       mp, width = 12, height = 4 )
 ```
 
 ![](figures/gg_GWAS_Summary_01.png)
@@ -33,7 +34,8 @@ mp <- gg_GWAS_Summary(
   # Specify GWAS models to plot
   models = c("MLM","MLMM","FarmCPU","BLINK") )
 # Save
-ggsave("figures/gg_GWAS_Summary_02.png", mp, width = 12, height = 4)
+ggsave("figures/gg_GWAS_Summary_02.png", 
+       mp, width = 12, height = 4 )
 ```
 
 ![](figures/gg_GWAS_Summary_02.png)

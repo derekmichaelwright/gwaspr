@@ -29,7 +29,9 @@ navbar:
      - text: gg_Manhattan_Zoom_Traits()
        href: articles/gg_Manhattan_Zoom_Traits.html
      - text: -------
-     - text: "Summary Plots"
+     - text: "Summary Plots & Tables"
+     - text: table_GWAS_Results()
+       href: articles/table_GWAS_Results.html
      - text: gg_GWAS_Summary()
        href: articles/gg_GWAS_Summary.html
      - text: gg_QTL_Summary()

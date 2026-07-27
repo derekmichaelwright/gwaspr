@@ -10,17 +10,20 @@ gg_Marker_Box(
   traits,
   markers,
   marker.colors = gwaspr_Colors,
+  remove.hets = T,
   plot.violin = T,
   plot.box = T,
   plot.points = T,
   box.width = 0.1,
   point.size = 1,
+  point.beeswarm = F,
   myncol = NULL,
   title = NULL,
   legend.rows = 1,
   subtitle = paste(markers, collapse = "\\n"),
   yLab = traits,
-  xCV = NULL,
+  cv.source = "xG",
+  cv.name = NULL,
   cv.colors = NULL,
   cv.label = NULL
 )
@@ -34,9 +37,11 @@ gg_Marker_Box(
 
 \item{markers}{Markers to plot.}
 
-\item{marker.colors}{Color palette.}
+\item{marker.colors}{Colors to fill in the violin and boxplots.}
 
-\item{plot.violin}{Logical, whether or not to plot violin.}
+\item{remove.hets}{Logical, Whether to remove hets or not. advisded if plotting multiple markers.}
+
+\item{plot.violin}{Logical, whether or not to plot violins.}
 
 \item{plot.box}{Logical, whether or not to plot the boxplots.}
 
@@ -45,6 +50,8 @@ gg_Marker_Box(
 \item{box.width}{Width for the boxplot.}
 
 \item{point.size}{Size for the points.}
+
+\item{point.beeswarm}{Logical. If False (the default), will plot points with \code{geom_quasirandom}. If TRUE, will plot points with \code{geom_beeswarm}.}
 
 \item{myncol}{Number of columns for facetting when plotting multiple traits.}
 
@@ -56,9 +63,11 @@ gg_Marker_Box(
 
 \item{yLab}{Label for the y-axis.}
 
-\item{xCV}{Covariate data.}
+\item{cv.source}{Where to get your \code{cv.name} from. Default is "xG", while "xY" is the other option.}
 
-\item{cv.colors}{Covariate colors.}
+\item{cv.name}{Covariable data for points.}
+
+\item{cv.colors}{Covariable colors for filling points.}
 
 \item{cv.label}{Label for the covariate.}
 }

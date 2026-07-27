@@ -23,7 +23,7 @@ mp <- gg_Manhattan_Zoom_Traits(
   chr = 5 ) 
 # Save
 ggsave("figures/gg_Manhattan_Zoom_Traits_01.png", 
-       mp, width = 8, height = 6)
+       mp, width = 8, height = 6 )
 ```
 
 ![](figures/gg_Manhattan_Zoom_Traits_01.png)
@@ -36,7 +36,7 @@ mp <- gg_Manhattan_Zoom_Traits(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select traits to plot
-  traits = c("DTF_Sask_2017","DTF_Sask_2017_b","DTF_Nepal_2017"),
+  traits = c("DTF_Sask_2017", "DTF_Sask_2017_b", "DTF_Nepal_2017"),
   # Create a title for the plot
   title = "Days To Flower",
   # Plot just Chromosome 5
@@ -47,11 +47,11 @@ mp <- gg_Manhattan_Zoom_Traits(
   # Highlight specific markers
   markers = "Lcu.1GRN.Chr5p1658484",
   # Plot only certain GWAS models
-  models =  c("MLM","MLMM","FarmCPU","BLINK"),
+  models =  c("MLM", "MLMM", "FarmCPU", "BLINK"),
   model.colors = gwaspr_Colors ) 
 # Save
 ggsave("figures/gg_Manhattan_Zoom_Traits_02.png", 
-       mp, width = 8, height = 6)
+       mp, width = 8, height = 6 )
 ```
 
 ![](figures/gg_Manhattan_Zoom_Traits_02.png)
@@ -64,7 +64,7 @@ mp <- gg_Manhattan_Zoom_Traits(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select traits to plot
-  traits = c("DTF_Sask_2017","DTF_Sask_2017_b","DTF_Nepal_2017"),
+  traits = c("DTF_Sask_2017", "DTF_Sask_2017_b", "DTF_Nepal_2017"),
   # Create a title for the plot
   title = "Days To Flower",
   # Plot just Chromosome 5 (1000000 - 2500000)
@@ -78,11 +78,10 @@ mp <- gg_Manhattan_Zoom_Traits(
   markers = "Lcu.1GRN.Chr5p1658484",
   # Plot only certain GWAS models
   models =  c("MLM","FarmCPU","BLINK"),
-  model.colors = gwaspr_Colors
-  ) 
+  model.colors = gwaspr_Colors ) 
 # Save
 ggsave("figures/gg_Manhattan_Zoom_Traits_03.png", 
-       mp, width = 8, height = 6)
+       mp, width = 8, height = 6 )
 ```
 
 ![](figures/gg_Manhattan_Zoom_Traits_03.png)
