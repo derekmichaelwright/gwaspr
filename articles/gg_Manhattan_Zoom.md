@@ -28,7 +28,7 @@ mp <- gg_Manhattan_Zoom(
   chr = 1 )
 # Save
 ggsave("figures/gg_Manhattan_Zoom_01.png", 
-       mp, width = 6, height = 4, bg = "white")
+       mp, width = 6, height = 4, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_Zoom_01.png)
@@ -56,7 +56,7 @@ mp <- gg_Manhattan_Zoom(
   facet = T )
 # Save
 ggsave("figures/gg_Manhattan_Zoom_02.png", 
-       mp, width = 6, height = 8, bg = "white")
+       mp, width = 6, height = 8, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_Zoom_02.png)
@@ -84,14 +84,14 @@ mp <- gg_Manhattan_Zoom(
   markers = c("Lcu.1GRN.Chr1p365986872",
               "Lcu.1GRN.Chr1p361840399"),
   # Create alt labels for the markers
-  labels = c("365Mbp","361Mbp"),
+  labels = c("365Mbp", "361Mbp"),
   # Specify Color for each marker vline
   vline.colors = c("red", "blue"),
   # Should models be facetted
   facet = T )
 # Save
 ggsave("figures/gg_Manhattan_Zoom_03.png",
-       mp, width = 6, height = 8, bg = "white")
+       mp, width = 6, height = 8, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_Zoom_03.png)
@@ -114,14 +114,14 @@ mp <- gg_Manhattan_Zoom(
   markers = c("Lcu.1GRN.Chr1p365986872",
               "Lcu.1GRN.Chr1p361840399"),
   # Create alt labels for the markers
-  labels = c("365Mbp","361Mbp"),
+  labels = c("365Mbp", "361Mbp"),
   # Specify Color for each marker vline
   vline.colors = c("red", "blue"),
   # Should models be facetted
   facet = T )
 # Save
 ggsave("figures/gg_Manhattan_Zoom_04.png", 
-       mp, width = 6, height = 8, bg = "white")
+       mp, width = 6, height = 8, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_Zoom_04.png)
@@ -144,26 +144,25 @@ mp <- gg_Manhattan_Zoom(
   pos1 = 360000000,
   pos2 = 370000000,
   # Plot only certain GWAS models
-  models = c("MLM","MLMM","FarmCPU","BLINK"),
+  models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
   # Set colors for each GWAS model
-  model.colors = c("darkgreen","darkred", "darkorange3", "steelblue"),
+  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
   # Highlight specific markers
   markers = c("Lcu.1GRN.Chr1p365986872",
               "Lcu.1GRN.Chr1p361840399"),
   # Create alt labels for the markers
-  labels = c("365Mbp","361Mbp"),
+  labels = c("365Mbp", "361Mbp"),
   # Specify Color for each marker vline
   vline.colors = c("red", "blue"),
   # Set the number of rows in the legend
   legend.rows = 2,
   # Should models be facetted
-  facet = F
+  facet = F,
   # set a max P value
-  #pmax = 40
-  )
+  pmax = 40 )
 # Save
 ggsave("figures/gg_Manhattan_Zoom_05.png", 
-       mp, width = 6, height = 4.5, bg = "white")
+       mp, width = 6, height = 4.5, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_Zoom_05.png)

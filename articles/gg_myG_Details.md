@@ -5,6 +5,10 @@
 library("gwaspr")
 ```
 
+The function
+[`gg_myG_Details()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_myG_Details.md)
+creates plots and .csv files with details about your genotype data.
+
 ``` r
 
 # Run function

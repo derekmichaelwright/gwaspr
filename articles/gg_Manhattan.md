@@ -22,7 +22,7 @@ mp <- gg_Manhattan(
   trait = "DTF_Nepal_2017" )
 # Save
 ggsave("figures/gg_Manhattan_01_DTF_Nepal_2017.png", 
-       mp, width = 12, height = 3.5, bg = "white")
+       mp, width = 12, height = 3.5, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_01_DTF_Nepal_2017.png)
@@ -46,7 +46,7 @@ for(i in list_Traits(folder = "GWAS_Results/")) {
     trait = i )
   # Save
   ggsave(paste0("figures/gg_Manhattan_01_", i, ".png"), 
-         mp, width = 12, height = 3.5, bg = "white")
+         mp, width = 12, height = 3.5, bg = "white" )
 }
 ```
 
@@ -86,7 +86,7 @@ mp <- gg_Manhattan(
   sig.color = "darkred" )
 # Save
 ggsave("figures/gg_Manhattan_02_Cotyledon_RedvsYellow.png", 
-       mp, width = 12, height = 8, bg = "white")
+       mp, width = 12, height = 8, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_02_Cotyledon_RedvsYellow.png)
@@ -112,7 +112,7 @@ mp <- gg_Manhattan(
   chr.unit = "50 Mbp" )
 # Save
 ggsave("figures/gg_Manhattan_03_DTF_Nepal_2017.png", 
-       mp, width = 7, height = 3.5, bg = "white")
+       mp, width = 7, height = 3.5, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_03_DTF_Nepal_2017.png)
@@ -156,11 +156,11 @@ mp <- gg_Manhattan(
   # Add vertical lines
   vlines = c("Lcu.1GRN.Chr2p44545877",
              "Lcu.1GRN.Chr5p1658484",
-             "Lcu.1GRN.Chr6p3269280"),
-  vline.colors = c("red","red","blue"),
-  vline.types = c(1,1,2),
+             "Lcu.1GRN.Chr6p3269280" ),
+  vline.colors = c("red", "red", "blue"),
+  vline.types = c(1, 1, 2),
   # Change the legend alignment
-  legend.box="vertical",
+  legend.box = "vertical",
   # Select GWAS models
   models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
   # Set colors for each GWAS model
@@ -170,10 +170,10 @@ mp <- gg_Manhattan(
   # Highlight color
   sig.color = "black",
   # Remove the QQ plot
-  addQQ = F)
+  addQQ = F )
 # Save
 ggsave("figures/gg_Manhattan_04_DTF_Nepal_2017.png", 
-       mp, width = 8, height = 3.5, bg = "white")
+       mp, width = 8, height = 3.5, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_04_DTF_Nepal_2017.png)
@@ -201,11 +201,11 @@ mp <- gg_Manhattan(
   # Add vertical lines
   vlines = c("Lcu.1GRN.Chr2p44545877",
              "Lcu.1GRN.Chr5p1658484",
-             "Lcu.1GRN.Chr6p3269280"),
-  vline.colors = c("red","red","blue"),
-  vline.types = c(2,2,1),
+             "Lcu.1GRN.Chr6p3269280" ),
+  vline.colors = c("red", "red", "blue"),
+  vline.types = c(2, 2, 1),
   # Change the legend alignment
-  legend.box="vertical",
+  legend.box = "vertical",
   # Select GWAS models
   models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
   # Set colors for each GWAS model
@@ -215,10 +215,10 @@ mp <- gg_Manhattan(
   # Highlight color
   sig.color = "black",
   # Remove the QQ plot
-  addQQ = F)
+  addQQ = F )
 # Save
 ggsave("figures/gg_Manhattan_04_DTF_Sask_2017_b.png", 
-       mp, width = 8, height = 3.5, bg = "white")
+       mp, width = 8, height = 3.5, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_04_DTF_Sask_2017_b.png)

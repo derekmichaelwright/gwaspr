@@ -42,7 +42,8 @@
     <li><a class="dropdown-item" href="../articles/gg_Manhattan_xModels.html">gg_Manhattan_xModels()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan_Zoom_Traits.html">gg_Manhattan_Zoom_Traits()</a></li>
     <li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Summary Plots</h6></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Summary Plots &amp; Tables</h6></li>
+    <li><a class="dropdown-item" href="../articles/table_GWAS_Results.html">table_GWAS_Results()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_GWAS_Summary.html">gg_GWAS_Summary()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_QTL_Summary.html">gg_QTL_Summary()</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -138,7 +139,8 @@ object is all that is needed to create QTL summary plots.</p>
 <span>  <span class="co"># QTL results</span></span>
 <span>  myG <span class="op">=</span> <span class="va">myG</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
-<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_QTL_Summary_01.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_QTL_Summary_01.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
 <p><img src="figures/gg_QTL_Summary_01.png"></p>
 <hr>
 <div class="section level2">
@@ -161,7 +163,8 @@ object is all that is needed to create QTL summary plots.</p>
 <span>  xLab <span class="op">=</span> <span class="st">"cM"</span>,</span>
 <span>  facetLab <span class="op">=</span> <span class="st">"lg"</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
-<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_QTL_Summary_02.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_QTL_Summary_02.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
 <p><img src="figures/gg_QTL_Summary_02.png"></p>
 <hr>
 </div>
@@ -226,7 +229,8 @@ object is all that is needed to create QTL summary plots.</p>
 <span>  xLab <span class="op">=</span> <span class="st">"cM"</span>,</span>
 <span>  facetLab <span class="op">=</span> <span class="st">"lg"</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
-<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_QTL_Summary_03.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_QTL_Summary_03.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
 <p><img src="figures/gg_QTL_Summary_03.png"></p>
 <hr>
 </div>
@@ -320,11 +324,14 @@ so we can compare with other analyses.</p>
 <span>  <span class="co"># Genetic map</span></span>
 <span>  myG <span class="op">=</span> <span class="va">myG</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Pos <span class="op">=</span> <span class="va">Pos</span> <span class="op">/</span> <span class="fl">100000000</span><span class="op">)</span>,</span>
 <span>  <span class="co"># QTL results</span></span>
-<span>  myQ <span class="op">=</span> <span class="va">myQ</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Pos <span class="op">=</span> <span class="va">Pos</span> <span class="op">/</span> <span class="fl">100000000</span>, Pos_lo <span class="op">=</span> <span class="va">Pos_lo</span> <span class="op">/</span> <span class="fl">100000000</span>, Pos_hi <span class="op">=</span> <span class="va">Pos_hi</span> <span class="op">/</span> <span class="fl">100000000</span><span class="op">)</span>,</span>
+<span>  myQ <span class="op">=</span> <span class="va">myQ</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Pos <span class="op">=</span> <span class="va">Pos</span> <span class="op">/</span> <span class="fl">100000000</span>, </span>
+<span>                       Pos_lo <span class="op">=</span> <span class="va">Pos_lo</span> <span class="op">/</span> <span class="fl">100000000</span>, </span>
+<span>                       Pos_hi <span class="op">=</span> <span class="va">Pos_hi</span> <span class="op">/</span> <span class="fl">100000000</span><span class="op">)</span>,</span>
 <span>  <span class="co"># x-axis label</span></span>
-<span>  xLab <span class="op">=</span> <span class="st">"100 Mbp"</span><span class="op">)</span></span>
+<span>  xLab <span class="op">=</span> <span class="st">"100 Mbp"</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
-<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_QTL_Summary_04.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_QTL_Summary_04.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
 <p><img src="figures/gg_QTL_Summary_04.png"></p>
 <hr>
 </div>
@@ -459,9 +466,10 @@ so we can compare with other analyses.</p>
 <span>  fillColors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkred"</span>,<span class="st">"steelblue4"</span>,<span class="st">"black"</span>, <span class="st">"green"</span><span class="op">)</span>,</span>
 <span>  <span class="co"># Custom labels</span></span>
 <span>  xLab <span class="op">=</span> <span class="st">"100 Mbp"</span>,</span>
-<span>  yLab <span class="op">=</span> <span class="st">"Expt_RIL"</span><span class="op">)</span></span>
+<span>  yLab <span class="op">=</span> <span class="st">"Expt_RIL"</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
-<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_QTL_Summary_05.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_QTL_Summary_05.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">6</span> <span class="op">)</span></span></code></pre></div>
 <p><img src="figures/gg_QTL_Summary_05.png"></p>
 <hr>
 </div>

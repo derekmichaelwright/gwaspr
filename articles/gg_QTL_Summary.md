@@ -65,7 +65,8 @@ mp <- gg_QTL_Summary(
   # QTL results
   myG = myG )
 # Save
-ggsave("figures/gg_QTL_Summary_01.png", mp, width = 10, height = 4)
+ggsave("figures/gg_QTL_Summary_01.png", 
+       mp, width = 10, height = 4 )
 ```
 
 ![](figures/gg_QTL_Summary_01.png)
@@ -92,7 +93,8 @@ mp <- gg_QTL_Summary(
   xLab = "cM",
   facetLab = "lg" )
 # Save
-ggsave("figures/gg_QTL_Summary_02.png", mp, width = 10, height = 4)
+ggsave("figures/gg_QTL_Summary_02.png", 
+       mp, width = 10, height = 4 )
 ```
 
 ![](figures/gg_QTL_Summary_02.png)
@@ -171,7 +173,8 @@ mp <- gg_QTL_Summary_Groups(
   xLab = "cM",
   facetLab = "lg" )
 # Save
-ggsave("figures/gg_QTL_Summary_03.png", mp, width = 10, height = 4)
+ggsave("figures/gg_QTL_Summary_03.png", 
+       mp, width = 10, height = 4 )
 ```
 
 ![](figures/gg_QTL_Summary_03.png)
@@ -280,11 +283,14 @@ mp <- gg_QTL_Summary(
   # Genetic map
   myG = myG %>% mutate(Pos = Pos / 100000000),
   # QTL results
-  myQ = myQ %>% mutate(Pos = Pos / 100000000, Pos_lo = Pos_lo / 100000000, Pos_hi = Pos_hi / 100000000),
+  myQ = myQ %>% mutate(Pos = Pos / 100000000, 
+                       Pos_lo = Pos_lo / 100000000, 
+                       Pos_hi = Pos_hi / 100000000),
   # x-axis label
-  xLab = "100 Mbp")
+  xLab = "100 Mbp" )
 # Save
-ggsave("figures/gg_QTL_Summary_04.png", mp, width = 10, height = 4)
+ggsave("figures/gg_QTL_Summary_04.png", 
+       mp, width = 10, height = 4 )
 ```
 
 ![](figures/gg_QTL_Summary_04.png)
@@ -433,9 +439,10 @@ mp <- gg_QTL_Summary_Groups(
   fillColors = c("darkred","steelblue4","black", "green"),
   # Custom labels
   xLab = "100 Mbp",
-  yLab = "Expt_RIL")
+  yLab = "Expt_RIL" )
 # Save
-ggsave("figures/gg_QTL_Summary_05.png", mp, width = 10, height = 6)
+ggsave("figures/gg_QTL_Summary_05.png", 
+       mp, width = 10, height = 6 )
 ```
 
 ![](figures/gg_QTL_Summary_05.png)

@@ -11,17 +11,20 @@ gg_Marker_Box(
   traits,
   markers,
   marker.colors = gwaspr_Colors,
+  remove.hets = T,
   plot.violin = T,
   plot.box = T,
   plot.points = T,
   box.width = 0.1,
   point.size = 1,
+  point.beeswarm = F,
   myncol = NULL,
   title = NULL,
   legend.rows = 1,
   subtitle = paste(markers, collapse = "\n"),
   yLab = traits,
-  xCV = NULL,
+  cv.source = "xG",
+  cv.name = NULL,
   cv.colors = NULL,
   cv.label = NULL
 )
@@ -47,11 +50,16 @@ gg_Marker_Box(
 
 - marker.colors:
 
-  Color palette.
+  Colors to fill in the violin and boxplots.
+
+- remove.hets:
+
+  Logical, Whether to remove hets or not. advisded if plotting multiple
+  markers.
 
 - plot.violin:
 
-  Logical, whether or not to plot violin.
+  Logical, whether or not to plot violins.
 
 - plot.box:
 
@@ -68,6 +76,11 @@ gg_Marker_Box(
 - point.size:
 
   Size for the points.
+
+- point.beeswarm:
+
+  Logical. If False (the default), will plot points with
+  `geom_quasirandom`. If TRUE, will plot points with `geom_beeswarm`.
 
 - myncol:
 
@@ -89,13 +102,18 @@ gg_Marker_Box(
 
   Label for the y-axis.
 
-- xCV:
+- cv.source:
 
-  Covariate data.
+  Where to get your `cv.name` from. Default is "xG", while "xY" is the
+  other option.
+
+- cv.name:
+
+  Covariable data for points.
 
 - cv.colors:
 
-  Covariate colors.
+  Covariable colors for filling points.
 
 - cv.label:
 

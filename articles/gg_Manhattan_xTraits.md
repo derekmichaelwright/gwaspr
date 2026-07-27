@@ -25,7 +25,7 @@ mp <- gg_Manhattan_xTraits(
   traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b") )
 # Save
 ggsave("figures/gg_Manhattan_xTraits_01.png", 
-       mp, width = 12, height = 8, bg = "white")
+       mp, width = 12, height = 8, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_xTraits_01.png)
@@ -47,19 +47,19 @@ mp <- gg_Manhattan_xTraits(
   # Highlight specific markers
   markers = c("Lcu.1GRN.Chr2p44545877",
               "Lcu.1GRN.Chr5p1658484",
-              "Lcu.1GRN.Chr6p3269280"),
+              "Lcu.1GRN.Chr6p3269280" ),
   # Create alt labels for the markers
-  labels = c("44Mbp","16Mbp","32Mbp"),
+  labels = c("44Mbp", "16Mbp", "32Mbp"),
   # Specify Color for each marker vline
-  vline.colors = c("red","red","blue"),
-  vline.types = c(2,2,1),
+  vline.colors = c("red", "red", "blue"),
+  vline.types = c(2, 2, 1),
   # Change the legend alignment
   legend.box="vertical",
   # Specify GWAS models to plot
-  models =  c("MLM","MLMM","FarmCPU","BLINK") )
+  models =  c("MLM", "MLMM", "FarmCPU", "BLINK") )
 # Save
 ggsave("figures/gg_Manhattan_xTraits_02.png", 
-       mp, width = 12, height = 8, bg = "white")
+       mp, width = 12, height = 8, bg = "white" )
 ```
 
 ![](figures/gg_Manhattan_xTraits_02.png)

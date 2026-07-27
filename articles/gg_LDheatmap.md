@@ -18,11 +18,10 @@ mp <- gg_LDheatmap(
   myMs = "Lcu.1GRN.Chr6p3269280", 
   axisTextSize = 3, 
   nameTrim = "Lcu.1GRN.Chr6",
-  myTitle = "Lentil Diversity Panel"
-  )
+  myTitle = "Lentil Diversity Panel" )
 # Save
 ggsave("figures/gg_LDheatmap_01.png", 
-       mp, width = 12, height = 12, dpi = 600)
+       mp, width = 12, height = 12, dpi = 600 )
 ```
 
 ![](figures/gg_LDheatmap_01.png)
