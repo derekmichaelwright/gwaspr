@@ -1,6 +1,6 @@
-#' gg_LDHeatmap
+#' gg_LD_Heatmap
 #'
-#' Creates a manhattan plot.
+#' Creates a LD heatmap plot.
 #' @param xG GWAS genotype object. Note: needs to be in hapmap format.
 #' @param chr Chromosome to plot.
 #' @param pos1 Start position within the selected chromosome.
@@ -17,7 +17,7 @@
 #' @return A LD Heatmap plot.
 #' @export
 
-gg_LDheatmap <- function(xG = myG,
+gg_LD_Heatmap <- function(xG = myG,
                          chr, pos1, pos2,
                          metric = "R^2",
                          threshold = 0.9,
