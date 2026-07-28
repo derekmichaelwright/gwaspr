@@ -1,6 +1,7 @@
 # gg_LD_Heatmap
 
-Creates a LD heatmap plot.
+[Creates a LD heatmap
+plot.](https://derekmichaelwright.github.io/gwaspr/articles/gg_LD_Heatmap.html)
 
 ## Usage
 

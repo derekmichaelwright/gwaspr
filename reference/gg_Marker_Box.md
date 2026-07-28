@@ -1,6 +1,7 @@
 # gg_Marker_Box
 
-Creates a marker plot with myG and myY objects.
+[Creates a marker plot with myG and myY
+objects.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker.html)
 
 ## Usage
 

@@ -67,7 +67,7 @@
 - [`run_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/run_Summary.md)
   : run_Summary
 - [`table_GWAS_Region()`](https://derekmichaelwright.github.io/gwaspr/reference/table_GWAS_Region.md)
-  : table_GWAS_Results
+  : table_GWAS_Region
 - [`table_GWAS_Results()`](https://derekmichaelwright.github.io/gwaspr/reference/table_GWAS_Results.md)
   : table_GWAS_Results
 - [`table_GWAS_Results_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/table_GWAS_Results_Summary.md)

@@ -1,6 +1,7 @@
 # gg_NYCvsKansas
 
-Creates a manhattan plot comparing the NYC and Kansas results.
+[Creates a manhattan plot comparing the NYC and Kansas
+results.](https://derekmichaelwright.github.io/gwaspr/articles/gg_NYCvsKansas.html)
 
 ## Usage
 

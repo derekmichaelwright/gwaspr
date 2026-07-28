@@ -2,7 +2,7 @@
 
 [Create manhattan plots from GAPIT GWAS results for multiple traits and
 facets them by
-Model.](https://derekmichaelwright.github.io/gwaspr/articles/07_gg_Manhattan_xModels.html)
+Model.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_xModels.html)
 
 ## Usage
 
@@ -31,7 +31,7 @@ gg_Manhattan_xModels(
     "darkgoldenrod4", "tomato3", "aquamarine4", "deeppink3"),
   chr.unit = "100 Mbp",
   plotHBPvalues = F,
-  skyline = NULL
+  skyline = "NYC"
 )
 ```
 
@@ -125,8 +125,8 @@ gg_Manhattan_xModels(
 
 - skyline:
 
-  Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it
-  will use the highest P.value.
+  Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will
+  use the highest P.value.
 
 ## Value
 

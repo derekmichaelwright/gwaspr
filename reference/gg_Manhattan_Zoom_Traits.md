@@ -1,7 +1,7 @@
 # gg_Manhattan_Zoom_Traits
 
-Create manhattan plots for multiple traits zoomed in to a particular
-region.
+[Create manhattan plots for multiple traits zoomed in to a particular
+region.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_Zoom_Traits.html)
 
 ## Usage
 
@@ -30,7 +30,7 @@ gg_Manhattan_Zoom_Traits(
   legend.box = "horizontal",
   point.sizes = c(0.3, 1, 0.75),
   plotHBPvalues = F,
-  skyline = NULL
+  skyline = "NYC"
 )
 ```
 
@@ -127,8 +127,8 @@ gg_Manhattan_Zoom_Traits(
 
 - skyline:
 
-  Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it
-  will use the highest P.value.
+  Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will
+  use the highest P.value.
 
 ## Value
 

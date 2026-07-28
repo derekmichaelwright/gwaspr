@@ -1,7 +1,8 @@
 # gg_myG_Details
 
-Analyses your genotype data and outputs 2 summary files with marker
-details and 3 plots.
+[Analyses your genotype data and outputs 2 summary files with marker
+details and 3
+plots.](https://derekmichaelwright.github.io/gwaspr/articles/gg_myG_Details.html)
 
 ## Usage
 

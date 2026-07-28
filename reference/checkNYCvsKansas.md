@@ -1,7 +1,8 @@
 # checkNYCvsKansas
 
-Check if NYC and Kansas results are identical, if so, the Kansas file
-will be deleted.
+[Check if NYC and Kansas results are identical, if so, the Kansas file
+will be
+deleted.](https://derekmichaelwright.github.io/gwaspr/articles/gg_NYCvsKansas.html)
 
 ## Usage
 

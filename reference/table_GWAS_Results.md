@@ -11,7 +11,7 @@ table_GWAS_Results(
   threshold = 6,
   sug.threshold = NULL,
   nrowstoread = 1000,
-  skyline = NULL,
+  skyline = "NYC",
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER")
 )
 ```
@@ -40,8 +40,8 @@ table_GWAS_Results(
 
 - skyline:
 
-  Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it
-  will use the highest P.value.
+  Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will
+  use the highest P.value.
 
 - models:
 

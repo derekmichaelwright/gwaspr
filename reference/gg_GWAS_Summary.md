@@ -1,7 +1,8 @@
 # gg_GWAS_Summary
 
-Creates a summary GWAS plot of significant associations. Note: this
-function requires the GWAS results files to be ordered
+[Creates a summary GWAS plot of significant
+associations.](https://derekmichaelwright.github.io/gwaspr/articles/gg_GWAS_Summary.html)
+Note: this function requires the GWAS results files to be ordered
 
 ## Usage
 
@@ -30,7 +31,7 @@ gg_GWAS_Summary(
   legend.position = "bottom",
   legend.rows = 1,
   plotHBPvalues = F,
-  skyline = NULL
+  skyline = "NYC"
 )
 ```
 
@@ -126,8 +127,8 @@ gg_GWAS_Summary(
 
 - skyline:
 
-  Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it
-  will use the highest P.value.
+  Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will
+  use the highest P.value.
 
 ## Value
 

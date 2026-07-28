@@ -1,6 +1,7 @@
 # gg_QTL_Summary
 
-Creates a summary QTL plot of significant associations.
+[Creates a summary QTL plot of significant
+associations.](https://derekmichaelwright.github.io/gwaspr/articles/gg_QTL_Summary.html)
 
 ## Usage
 

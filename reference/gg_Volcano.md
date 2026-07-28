@@ -1,6 +1,7 @@
 # gg_Volcano
 
-Creates a volcano plot.
+[Creates a volcano
+plot.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Volvano.html)
 
 ## Usage
 
@@ -12,7 +13,7 @@ gg_Volcano(
   markers = NULL,
   labels = markers,
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-  skyline = "Kansas"
+  skyline = "NYC"
 )
 ```
 
@@ -44,8 +45,8 @@ gg_Volcano(
 
 - skyline:
 
-  Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it
-  will use the highest P.value.
+  Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will
+  use the highest P.value.
 
 ## Value
 

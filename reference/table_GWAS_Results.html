@@ -76,7 +76,7 @@
 <span>  threshold <span class="op">=</span> <span class="fl">6</span>,</span>
 <span>  sug.threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nrowstoread <span class="op">=</span> <span class="fl">1000</span>,</span>
-<span>  skyline <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  skyline <span class="op">=</span> <span class="st">"NYC"</span>,</span>
 <span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"GLM"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -106,7 +106,7 @@
 
 
 <dt id="arg-skyline">skyline<a class="anchor" aria-label="anchor" href="#arg-skyline"></a></dt>
-<dd><p>Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.</p></dd>
+<dd><p>Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.</p></dd>
 
 
 <dt id="arg-models">models<a class="anchor" aria-label="anchor" href="#arg-models"></a></dt>
