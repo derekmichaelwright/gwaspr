@@ -5,7 +5,7 @@
 - [LD
   Decay](https://derekmichaelwright.github.io/gwaspr/articles/gg_LD_Decay.md):
 
-  Create a volcano plot
+- [gg_LDheatmap()](https://derekmichaelwright.github.io/gwaspr/articles/gg_LD_Heatmap.md):
 
 - [gg_Manhattan_xModels()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_xModels.md):
 
