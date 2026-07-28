@@ -2,6 +2,11 @@
 
 ### All vignettes
 
+- [LD
+  Decay](https://derekmichaelwright.github.io/gwaspr/articles/gg_LD_Decay.md):
+
+  Create a volcano plot
+
 - [gg_Manhattan_xModels()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_xModels.md):
 
 - [gg_Manhattan_xTraits()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_xTraits.md):

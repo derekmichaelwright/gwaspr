@@ -1,5 +1,12 @@
 # gg_Volcano()
 
+The function
+[`gg_Volcano()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Volcano.md)
+creates volcano plots from GAPIT GWAS results.
+
+Specifying a `folder` and `trait` is all that is needed to create
+manhattan plots.
+
 ``` r
 
 # Plot
@@ -15,6 +22,8 @@ ggsave("figures/gg_Volcano_01.png", mp, width = 12, height = 4)
 ![](figures/gg_Volcano_01.png)
 
 ------------------------------------------------------------------------
+
+## Customized Plot
 
 ``` r
 
@@ -37,5 +46,3 @@ ggsave("figures/gg_Volcano_02.png", mp, width = 12, height = 4)
 ```
 
 ![](figures/gg_Volcano_02.png)
-
-------------------------------------------------------------------------

@@ -23,7 +23,7 @@ SNPs, stored in our object `myG`.
 ``` r
 
 # Load our genotype file in hapmap format (note: header = F)
-myG <- read.csv("myG_hmp.csv", header = F)
+myG <- read.csv("gwaspr_myG_hmp.csv", header = F)
 ```
 
 ``` r
@@ -89,7 +89,7 @@ myG[1:10,12:17]
 ``` r
 
 # Load our phenotype file
-myY <- read.csv("myY.csv")
+myY <- read.csv("gwaspr_myY.csv")
 ```
 
 ``` r
@@ -124,7 +124,7 @@ myY[1:20,]
 ``` r
 
 # Load our covariate file
-myCV <- read.csv("myCV.csv")
+myCV <- read.csv("gwaspr_myCV.csv")
 ```
 
 ``` r

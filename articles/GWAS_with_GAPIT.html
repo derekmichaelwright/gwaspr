@@ -114,7 +114,7 @@ of 336,367 SNPs, stored in our object <code>myG</code>.</p>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load our genotype file in hapmap format (note: header = F)</span></span>
-<span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"myG_hmp.csv"</span>, header <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myG_hmp.csv"</span>, header <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Map + marker Info</span></span>
 <span><span class="va">myG</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">]</span></span></code></pre></div>
@@ -171,7 +171,7 @@ of 336,367 SNPs, stored in our object <code>myG</code>.</p>
 </h2>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load our phenotype file</span></span>
-<span><span class="va">myY</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"myY.csv"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">myY</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myY.csv"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myY</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##                 Name DTF_Sask_2017 DTF_Nepal_2017 Cotyledon_RedvsYellow</span></span>
@@ -201,7 +201,7 @@ of 336,367 SNPs, stored in our object <code>myG</code>.</p>
 </h2>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load our covariate file</span></span>
-<span><span class="va">myCV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"myCV.csv"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">myCV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myCV.csv"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myCV</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##                 Name        b</span></span>

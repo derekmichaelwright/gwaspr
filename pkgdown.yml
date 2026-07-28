@@ -2,6 +2,7 @@ pandoc: 3.8.3
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
+  gg_LD_Decay: gg_LD_Decay.html
   gg_Manhattan_xModels: gg_Manhattan_xModels.html
   gg_Manhattan_xTraits: gg_Manhattan_xTraits.html
   gg_Manhattan_Zoom_Traits: gg_Manhattan_Zoom_Traits.html
@@ -11,7 +12,7 @@ articles:
   gg_QTL_Summary: gg_QTL_Summary.html
   gg_Volcano: gg_Volcano.html
   GWAS_with_GAPIT: GWAS_with_GAPIT.html
-last_built: 2026-07-28T19:36Z
+last_built: 2026-07-28T20:46Z
 urls:
   reference: https://derekmichaelwright.github.io/gwaspr/reference
   article: https://derekmichaelwright.github.io/gwaspr/articles

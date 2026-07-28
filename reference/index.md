@@ -2,10 +2,14 @@
 
 ## All functions
 
+- [`calc_LD_Decay()`](https://derekmichaelwright.github.io/gwaspr/reference/calc_LD_Decay.md)
+  : calc_LD_Decay
 - [`calc_Threshold()`](https://derekmichaelwright.github.io/gwaspr/reference/calc_Threshold.md)
   : calc_Threshold.
 - [`checkNYCvsKansas()`](https://derekmichaelwright.github.io/gwaspr/reference/checkNYCvsKansas.md)
   : checkNYCvsKansas
+- [`checkTaxaNames()`](https://derekmichaelwright.github.io/gwaspr/reference/checkTaxaNames.md)
+  : checkTaxaNames
 - [`clean_GWAS_Results()`](https://derekmichaelwright.github.io/gwaspr/reference/clean_GWAS_Results.md)
   : clean_GWAS_Results
 - [`convert_IUPAC()`](https://derekmichaelwright.github.io/gwaspr/reference/convert_IUPAC.md)
