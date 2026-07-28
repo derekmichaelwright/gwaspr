@@ -15,6 +15,11 @@ The function `gg_Volcano()` creates volcano plots from GAPIT GWAS results.
 Specifying a `folder` and `trait` is all that is needed to create manhattan plots.
 
 ```{r eval = F}
+# Load genotype file (note: header = T)
+myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
+```
+
+```{r eval = F}
 # Calulate LD decay
 calc_LD_Decay(
   # Load genotype data
@@ -22,7 +27,7 @@ calc_LD_Decay(
   # Specify a folder with GWAS results
   outputFolder = "LD_Decay/",
   # Select the number of markers per chromosome to analyse
-  markerNum = 200 )
+  markerNum = 100 )
 ```
 
 ```{r echo = F, eval = F}
