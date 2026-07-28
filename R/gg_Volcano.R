@@ -7,6 +7,7 @@
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
 #' @param models Models to read.
+#' @param threshold Significant Threshold.
 #' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @return A volcano plot.
 #' @export
@@ -18,6 +19,7 @@ gg_Volcano <- function(
     markers = NULL,
     labels = markers,
     models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+    threshold = NULL,
     skyline = "NYC"
     ) {
   #
@@ -53,9 +55,11 @@ gg_Volcano <- function(
   xx <- xx %>% filter(Model %in% models) %>%
     mutate(Model = factor(Model, levels = models)) %>%
     filter(!is.na(Model), !is.na(Effect))
+  #
   xm <- xx %>% filter(SNP %in% markers) %>%
     mutate(SNP = plyr::mapvalues(SNP, markers, labels))
-  threshold <- -log10(0.05/nrow(xi))
+  #
+  if(is.null(threshold)) { threshold <- -log10(0.05/nrow(xi)) }
   # Volcano plot
   ggplot(xx, aes(x = Effect, y = `-log10(p)`)) +
     geom_hline(yintercept = threshold, color = "red") +
@@ -71,4 +75,4 @@ gg_Volcano <- function(
 
 #folder = "vignettes/GWAS_Results/"; trait = list_Traits(folder)[1];
 #title = trait; markers = NULL; labels = markers;
-#models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"); skyline = "Kansas"
+#models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"); skyline = "NYC"

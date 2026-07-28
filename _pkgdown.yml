@@ -16,6 +16,8 @@ navbar:
      - text: GWAS
      - text: Run GWAS with GAPIT
        href: articles/GWAS_with_GAPIT.html
+     - text: NYC vs Kansas Results
+       href: articles/gg_NYCvsKansas.html
      - text: -------
      - text: "Manhattan Plots"
      - text: gg_Manhattan()

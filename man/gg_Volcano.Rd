@@ -11,6 +11,7 @@ gg_Volcano(
   markers = NULL,
   labels = markers,
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+  threshold = NULL,
   skyline = "NYC"
 )
 }
@@ -26,6 +27,8 @@ gg_Volcano(
 \item{labels}{Labels to be used for markers.}
 
 \item{models}{Models to read.}
+
+\item{threshold}{Significant Threshold.}
 
 \item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.}
 }

@@ -51,6 +51,29 @@ library(gwaspr)
 
 ---
 
+# Example Plots
+
+```{r eval = F, echo = F}
+library(magick)
+im1 <- image_append(c(
+  image_read("vignettes/figures/gg_Manhattan_xTraits_02.png.png"),
+  image_read("vignettes/figures/gg_Manhattan_Zoom_05.png.png"),
+  image_read("vignettes/gg_QTL_Summary_05.png")), 
+  stack = T )
+im2 <- magick::image_append(c(
+  image_read("vignettes/figures/gg_Manhattan_xModels_03.png"),
+  image_read("vignettes/figures/gg_Marker_Box_01.png"),
+  image_read("vignettes/figures/gg_LDheatmap_01.png"),
+  image_read("vignettes/gg_Mangattan_DTF_Nepal_2017.png"),
+  stack = T )
+  im <- image_append(im1,im2)
+image_write(im, "man/figures/featured.png")
+```
+
+![](man/figures/featured.png)
+
+---
+
 ![](man/figures/logo_gwaspr.png)
 
 ---
