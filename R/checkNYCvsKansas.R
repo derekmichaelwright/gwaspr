@@ -1,49 +1,20 @@
-#' checkNYCvsKansas
+#' checkTaxaNames
 #'
-#' [Check if NYC and Kansas results are identical, if so, the Kansas file will be deleted.](https://derekmichaelwright.github.io/gwaspr/articles/gg_NYCvsKansas.html)
-#' @param folder Folder containing GWAS results.
-#' @param deteleKansas Logical, if TRUE, will delete any `Kansas` files with no difference between the `NYC` files.
-#' @return A table indicating the number of markers with different p values between NYC and Kansas files.
+#' Check to see if the names in your myY and myG file match.
+#' @param xG GWAS genotype object. Note:  needs to be in hapmap format and read in with header = F.
+#' @param xY GWAS phenotype object.
+#' @return A list of names not present in both datasets.
 #' @export
 
-checkNYCvsKansas <- function(folder = "GWAS_Results/", deleteKansas = F) {
+checkTaxaNames <- function(xG = myG, xY = myY) {
   #
-  myTraits <- list_Traits(folder)
-  fnames <- list_Result_Files(folder)
-  output <- data.frame(Trait = myTraits, FarmCPU = NA, BLINK = NA)
+  print("The following taxa are not present in your genotype data")
   #
-  for(i in myTraits) {
-    #
-    # FarmCPU
-    #
-    f1 <- fnames[grepl(paste0(i,"\\(NYC\\)"),fnames) & grepl("FarmCPU",fnames)]
-    f2 <- fnames[grepl(paste0(i,"\\(Kansas\\)"),fnames) & grepl("FarmCPU",fnames)]
-    if(length(f1)>0) {
-      x1 <- read.csv(paste0(folder, f1)) %>% select(SNP, P.value) %>% arrange(SNP)
-    } else { x1 <- NULL }
-    if(length(f2)>0) {
-      x2 <- read.csv(paste0(folder, f2)) %>% select(SNP, P.value) %>% arrange(SNP)
-    } else { x2 <- NULL }
-    diffs <- sum(x1 != x2)
-    output$FarmCPU[output$Trait == i] <- diffs
-    #if(diffs == 0) { if(deleteKansas == T) { file.remove(paste0(folder, f2)) } }
-    #
-    # BLINK
-    #
-    f1 <- fnames[grepl(paste0(i,"\\(NYC\\)"),fnames) & grepl("BLINK",fnames)]
-    f2 <- fnames[grepl(paste0(i,"\\(Kansas\\)"),fnames) & grepl("BLINK",fnames)]
-    if(length(f1)>0) {
-      x1 <- read.csv(paste0(folder, f1)) %>% select(SNP, P.value) %>% arrange(SNP)
-    } else { x1 <- NULL }
-    if(length(f2)>0) {
-      x2 <- read.csv(paste0(folder, f2)) %>% select(SNP, P.value) %>% arrange(SNP)
-    } else { x2 <- NULL }
-    diffs <- sum(x1 != x2)
-    output$BLINK[output$Trait == i] <- diffs
-    #if(diffs == 0) { if(deleteKansas == T) { file.remove(paste0(folder, f2)) } }
-  }
+  print( setdiff(xY$Name, t(xG[1,])) ) # should be character(0)
   #
-  output
+  print("The following taxa are not present in your genotype data")
+  #
+  print( setdiff(t(xG[1,12:ncol(xG)]), xY$Name) ) # should show just the first 11 columns of myG
 }
 
 #i <- myTraits[1]

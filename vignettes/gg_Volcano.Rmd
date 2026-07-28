@@ -12,6 +12,10 @@ knitr::opts_chunk$set(message = F, warning = F)
 library("gwaspr")
 ```
 
+The function `gg_Volcano()` creates volcano plots from GAPIT GWAS results. 
+
+Specifying a `folder` and `trait` is all that is needed to create manhattan plots.
+
 ```{r eval = F}
 # Plot
 mp <- gg_Volcano(
@@ -26,6 +30,8 @@ ggsave("figures/gg_Volcano_01.png", mp, width = 12, height = 4)
 ![](figures/gg_Volcano_01.png)
 
 ---
+
+# Customized Plot
 
 ```{r eval = F}
 # Plot
@@ -47,5 +53,3 @@ ggsave("figures/gg_Volcano_02.png", mp, width = 12, height = 4)
 ```
 
 ![](figures/gg_Volcano_02.png)
-
----

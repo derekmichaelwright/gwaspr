@@ -24,11 +24,11 @@ Our population, the LDP, was genotyped using an *exome caputure array* and filte
 
 ```{r eval = F}
 # Load our genotype file in hapmap format (note: header = F)
-myG <- read.csv("myG_hmp.csv", header = F)
+myG <- read.csv("gwaspr_myG_hmp.csv", header = F)
 ```
 
 ```{r echo = F}
-myG <- read.csv("myG_hmp_10.csv", header = F)
+myG <- read.csv("gwaspr_myG_hmp_10.csv", header = F)
 #write.csv(myG, "myG_hmp_10.csv", row.names = F)
 ```
 
@@ -43,7 +43,7 @@ myG[1:10,12:17]
 
 ```{r}
 # Load our phenotype file
-myY <- read.csv("myY.csv")
+myY <- read.csv("gwaspr_myY.csv")
 ```
 
 ```{r}
@@ -54,7 +54,7 @@ myY[1:20,]
 
 ```{r}
 # Load our covariate file
-myCV <- read.csv("myCV.csv")
+myCV <- read.csv("gwaspr_myCV.csv")
 ```
 
 ```{r}
@@ -129,3 +129,9 @@ order_GWAS_Results(folder = "GWAS_Results/")
 # Remove all non-GWAS result files (pdf files)
 clean_GWAS_Results(folder = "GWAS_Results/") 
 ```
+
+```{r eval = F, echo = F}
+setdiff(myY$Name, t(myG[1,])) # should be character(0)
+setdiff(t(myG[1,12:ncol(xG)]), myY$Name) # should show just the first 11 columns of myG
+```
+
