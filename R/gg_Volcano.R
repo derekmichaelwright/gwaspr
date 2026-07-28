@@ -27,8 +27,8 @@ gg_Volcano <- function(
   if(!is.null(skyline)) {
     if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
     if(skyline == "Kansas") {
-      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
-      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("FarmCPU", fnames))]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("BLINK",   fnames))]
     }
   }
   #
@@ -68,3 +68,7 @@ gg_Volcano <- function(
     theme_gwaspr(axis.title.y = element_markdown()) +
     labs(title = title, y = "-log<sub>10</sub>(*p*)")
 }
+
+#folder = "vignettes/GWAS_Results/"; trait = list_Traits(folder)[1];
+#title = trait; markers = NULL; labels = markers;
+#models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"); skyline = "Kansas"

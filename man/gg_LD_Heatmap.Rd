@@ -51,5 +51,5 @@ gg_LD_Heatmap(
 A LD Heatmap plot.
 }
 \description{
-Creates a manhattan plot.
+Creates a LD heatmap plot.
 }

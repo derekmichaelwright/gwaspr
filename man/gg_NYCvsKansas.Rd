@@ -9,22 +9,8 @@ gg_NYCvsKansas(
   trait = list_Traits(folder)[1],
   title = trait,
   threshold = NULL,
-  sug.threshold = NULL,
-  chr = NULL,
-  markers = NULL,
-  labels = markers,
-  vlines = markers,
-  vline.colors = rep("red", length(vlines)),
-  vline.types = rep(1, length(vlines)),
-  vline.legend = T,
-  addQQ = T,
-  pmax = NULL,
-  models = c("FarmCPU", "BLINK"),
-  sig.col = "darkred",
   chr.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
-  chr.unit = "100 Mbp",
-  legend.rows = 1,
-  plotHBPvalues = F
+  chr.unit = "100 Mbp"
 )
 }
 \arguments{
@@ -36,37 +22,9 @@ gg_NYCvsKansas(
 
 \item{threshold}{Significant Threshold.}
 
-\item{sug.threshold}{Suggested threshold.}
-
-\item{chr}{Chromosomes to plot. Use if you want to plot a single chromosome.}
-
-\item{markers}{Markers to be labelled.}
-
-\item{labels}{Labels to be used for markers.}
-
-\item{vlines}{Markers which will be used as a location for a vertical lines.}
-
-\item{vline.colors}{colors for each vertical line.}
-
-\item{vline.types}{lty for each vertical line.}
-
-\item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
-
-\item{addQQ}{Logical, whether or not to add a QQ plot}
-
-\item{pmax}{A max value for the y-axis.}
-
-\item{models}{Models to read.}
-
-\item{sig.col}{Color for significant assoctiations.}
-
 \item{chr.colors}{Colors for each chromosome.}
 
 \item{chr.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
-
-\item{legend.rows}{Number of rows for the legend.}
-
-\item{plotHBPvalues}{Logical, if TRUE, H.B.P.Values be uses.}
 }
 \value{
 A manhattan plot.

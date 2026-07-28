@@ -44,5 +44,9 @@ navbar:
      - text: "Other GWAS Related Plots & Functions"
      - text: gg_myG_Details()
        href: articles/gg_myG_Details.html
-     - text: gg_LDheatmap()
-       href: articles/gg_LDheatmap.html
+     - text: gg_LD_Heatmap()
+       href: articles/gg_LD_Heatmap.html
+     - text: gg_LD_Decay()
+       href: articles/gg_LD_Decay.html
+     - text: gg_Volcano()
+       href: articles/gg_Volcano.html

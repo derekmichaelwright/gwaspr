@@ -94,5 +94,5 @@ gg_Manhattan(
 A manhattan plot.
 }
 \description{
-\href{https://derekmichaelwright.github.io/gwaspr/articles/04_gg_Manhattan.html}{Create manhattan plots from GAPIT GWAS results.}
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan.html}{Create manhattan plots from GAPIT GWAS results.}
 }

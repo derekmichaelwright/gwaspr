@@ -60,8 +60,8 @@ gg_Manhattan_Zoom_Traits <- function(
   if(!is.null(skyline)) {
     if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
     if(skyline == "Kansas") {
-      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
-      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("FarmCPU", fnames))]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("BLINK",   fnames))]
     }
   }
   #

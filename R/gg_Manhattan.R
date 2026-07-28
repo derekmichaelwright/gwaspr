@@ -1,6 +1,6 @@
 #' gg_Manhattan
 #'
-#' [Create manhattan plots from GAPIT GWAS results.](https://derekmichaelwright.github.io/gwaspr/articles/04_gg_Manhattan.html)
+#' [Create manhattan plots from GAPIT GWAS results.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan.html)
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
 #' @param title A title for the plot.
@@ -70,8 +70,8 @@ gg_Manhattan <- function(
   if(!is.null(skyline)) {
     if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
     if(skyline == "Kansas") {
-      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
-      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("FarmCPU", fnames))]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("BLINK",   fnames))]
     }
   }
   #
@@ -264,7 +264,7 @@ gg_Manhattan <- function(
   mp
 }
 
-#folder = "GWAS_Results/"; trait = "DTF_Sask_2017"; title = trait; threshold = NULL; sug.threshold = NULL
+#folder = "vignettes/GWAS_Results/"; trait = "DTF_Sask_2017"; title = trait; threshold = NULL; sug.threshold = NULL
 #chr = NULL; markers = "Lcu.1GRN.Chr1p365986872"; labels = markers
 #vlines = markers; vline.colors = rep("red", length(vlines)); vline.types = rep(1, length(vlines)); legend = T
 #facet = F; addQQ = T; pmax = NULL; pmin = 0
