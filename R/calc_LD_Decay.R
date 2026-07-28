@@ -7,7 +7,7 @@
 #' @return RData files in the outputFolder location of LD data.
 #' @export
 
-calc_LD_Decay <- function(xG = myG, outputFolder, markerNum = 200 ) {
+calc_LD_Decay <- function(xG = myG, outputFolder, markerNum = 1000 ) {
   #
   dna <- data.frame(stringsAsFactors = F,
                     Symbol = c("A", "C", "G", "T", "U",
@@ -50,4 +50,4 @@ calc_LD_Decay <- function(xG = myG, outputFolder, markerNum = 200 ) {
 }
 
 #myG <- read.csv("vignettes/gwaspr_myG_hmp.csv", header = T)
-#xG = myG; chr = 1; outputFolder = "vignettes/LD_Decay/"
+#xG = myG; outputFolder = "vignettes/LD_Decay/"; markerNum = 200

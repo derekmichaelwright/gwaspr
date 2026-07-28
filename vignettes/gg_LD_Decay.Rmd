@@ -6,7 +6,7 @@ title: "LD Decay"
 knitr::opts_chunk$set(message = F, warning = F)
 ```
 
-```{r echo = F}
+```{r}
 library("gwaspr")
 ```
 
@@ -27,18 +27,20 @@ calc_LD_Decay(
   # Specify a folder with GWAS results
   outputFolder = "LD_Decay/",
   # Select the number of markers per chromosome to analyse
-  markerNum = 100 )
+  markerNum = 1000 )
 ```
 
-```{r echo = F, eval = F}
+```{r eval = F}
 # Plot
 mp <- gg_LD_Decay(
+  # Load genotype data
+  xG = myG,
   # Specify a folder with GWAS results
-  folder = "GWAS_Results/", 
-  # Select a trait to plot
-  trait = "DTF_Nepal_2017" )
+  outputFolder = "LD_Decay/",
+  # Select the number of markers per chromosome to analyse
+  markerNum = 1000 )
 # Save
 ggsave("figures/gg_LD_Decay.png", mp, width = 12, height = 4 )
-#![](figures/gg_Volcano_01.png)
 ```
 
+![](figures/gg_LD_Decay.png)
