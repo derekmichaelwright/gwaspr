@@ -20,6 +20,8 @@
   : gg_GWAS_Hits
 - [`gg_GWAS_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary.md)
   : gg_GWAS_Summary
+- [`gg_LD_Decay()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_LD_Decay.md)
+  : gg_LD_Decay
 - [`gg_LD_Heatmap()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_LD_Heatmap.md)
   : gg_LD_Heatmap
 - [`gg_Manhattan()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan.md)

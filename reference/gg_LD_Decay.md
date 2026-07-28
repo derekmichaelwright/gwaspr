@@ -1,11 +1,11 @@
-# calc_LD_Decay
+# gg_LD_Decay
 
-Calculates pairwise LD for markers within your myG genotype file.
+Creates a number of LD decay plots.
 
 ## Usage
 
 ``` r
-calc_LD_Decay(xG = myG, outputFolder, markerNum = 1000)
+gg_LD_Decay(xG = myG, outputFolder, markerNum = 1000)
 ```
 
 ## Arguments
@@ -24,4 +24,4 @@ calc_LD_Decay(xG = myG, outputFolder, markerNum = 1000)
 
 ## Value
 
-RData files in the outputFolder location of LD data.
+LD decay plots.
