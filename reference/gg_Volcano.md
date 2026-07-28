@@ -13,6 +13,7 @@ gg_Volcano(
   markers = NULL,
   labels = markers,
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
+  threshold = NULL,
   skyline = "NYC"
 )
 ```
@@ -42,6 +43,10 @@ gg_Volcano(
 - models:
 
   Models to read.
+
+- threshold:
+
+  Significant Threshold.
 
 - skyline:
 
