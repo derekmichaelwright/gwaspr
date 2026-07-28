@@ -1,0 +1,51 @@
+---
+title: "gg_LDheatmap()"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(message = F, warning = F)
+```
+
+```{r}
+library("gwaspr")
+```
+
+```{r eval = F}
+# Load genotype file (note: header = T)
+myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
+# Plot
+mp <- gg_LD_Heatmap(
+  # Load genotype data
+  xG = myG, 
+  # Select chromosome and region to analyse
+  chr = 6, 
+  pos1 = 2500000, 
+  pos2 = 4000000,
+  # Select a LD metric
+  metric = "R^2",
+  # Set the threshold for identifying linked markers
+  threshold = 0.9,
+  # Select markers to highlight
+  myMs = "Lcu.1GRN.Chr6p3269280",
+  # Set the size of the marker names on the x and y axes
+  axisTextSize = 3, 
+  # prefix to trim from the marker name
+  nameTrim = "Lcu.1GRN.Chr6",
+  # Set custom title for plot
+  myTitle = "Lentil Diversity Panel",
+  # Select colors for the gradient scale
+  color.low = "white",
+  color.mid = "goldenrod1",
+  color.high = "darkred" )
+# Save Plot
+ggsave("figures/gg_LD_Heatmap_01.png", 
+       mp[[1]], width = 12, height = 12, dpi = 600 )
+# Save data
+write.csv(mp[[2]], "figures/LD_Heatmap_data.csv", row.names = F)
+```
+
+![](figures/gg_LD_Heatmap_01.png)
+
+```{r eval = T}
+read.csv("figures/LD_Heatmap_data.csv")[1:30,]
+```
