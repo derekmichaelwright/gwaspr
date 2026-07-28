@@ -6,7 +6,7 @@
 #' @param threshold Significant threshold.
 #' @param sug.threshold Suggestive threshold.
 #' @param nrowstoread Number of rows to read.
-#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @param models GWAS models to use.
 #' @return A table of significant GWAS results.
 #' @export
@@ -17,7 +17,7 @@ table_GWAS_Results <- function(
     threshold = 6,
     sug.threshold = NULL,
     nrowstoread = 1000,
-    skyline = NULL,
+    skyline = "NYC",
     models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER")
     ) {
   #

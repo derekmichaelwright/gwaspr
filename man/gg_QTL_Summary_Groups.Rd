@@ -45,5 +45,5 @@ gg_QTL_Summary_Groups(
 A QTL summary plot.
 }
 \description{
-Creates a summary QTL plot of significant associations.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_QTL_Summary.html}{Creates a summary QTL plot of significant associations.}
 }

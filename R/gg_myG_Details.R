@@ -1,6 +1,6 @@
 #' gg_myG_Details
 #'
-#' Analyses your genotype data and outputs 2 summary files with marker details and 3 plots.
+#' [Analyses your genotype data and outputs 2 summary files with marker details and 3 plots.](https://derekmichaelwright.github.io/gwaspr/articles/gg_myG_Details.html)
 #' @param filename GWAS genotype object. Note: needs to be in hapmap format.
 #' @param myPrefix Prefix for file names.
 #' @param filetype default is "csv". other option is "txt".

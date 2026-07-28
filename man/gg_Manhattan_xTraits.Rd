@@ -28,7 +28,7 @@ gg_Manhattan_xTraits(
   legend.box = "horizontal",
   point.sizes = c(0.3, 1, 0.75),
   plotHBPvalues = F,
-  skyline = NULL
+  skyline = "NYC"
 )
 }
 \arguments{
@@ -74,11 +74,11 @@ gg_Manhattan_xTraits(
 
 \item{point.sizes}{Sizes for the points. c("Not Sig", "Sig", "Sug").}
 
-\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.}
 }
 \value{
 A manhattan plot.
 }
 \description{
-\href{https://derekmichaelwright.github.io/gwaspr/articles/06_gg_Manhattan_xTraits.html}{Create manhattan plots from GAPIT GWAS results for multiple traits and facets them by Trait.}
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_xTraits.html}{Create manhattan plots from GAPIT GWAS results for multiple traits and facets them by Trait.}
 }

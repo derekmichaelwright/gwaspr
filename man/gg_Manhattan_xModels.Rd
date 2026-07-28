@@ -28,7 +28,7 @@ gg_Manhattan_xModels(
     "darkgoldenrod4", "tomato3", "aquamarine4", "deeppink3"),
   chr.unit = "100 Mbp",
   plotHBPvalues = F,
-  skyline = NULL
+  skyline = "NYC"
 )
 }
 \arguments{
@@ -74,11 +74,11 @@ gg_Manhattan_xModels(
 
 \item{chr.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
 
-\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.}
 }
 \value{
 A manhattan plot.
 }
 \description{
-\href{https://derekmichaelwright.github.io/gwaspr/articles/07_gg_Manhattan_xModels.html}{Create manhattan plots from GAPIT GWAS results for multiple traits and facets them by Model.}
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_xModels.html}{Create manhattan plots from GAPIT GWAS results for multiple traits and facets them by Model.}
 }

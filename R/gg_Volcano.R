@@ -1,13 +1,13 @@
 #' gg_Volcano
 #'
-#' Creates a volcano plot.
+#' [Creates a volcano plot.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Volvano.html)
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
 #' @param title A title for the plot.
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
 #' @param models Models to read.
-#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @return A volcano plot.
 #' @export
 
@@ -18,7 +18,7 @@ gg_Volcano <- function(
     markers = NULL,
     labels = markers,
     models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-    skyline = "Kansas"
+    skyline = "NYC"
     ) {
   #
   fnames <- list.files(folder)[grepl("GWAS_Results", list.files(folder))]

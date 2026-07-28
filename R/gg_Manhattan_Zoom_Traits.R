@@ -1,6 +1,6 @@
 #' gg_Manhattan_Zoom_Traits
 #'
-#' Create manhattan plots for multiple traits zoomed in to a particular region.
+#' [Create manhattan plots for multiple traits zoomed in to a particular region.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_Zoom_Traits.html)
 #' @param folder Folder containing GWAS results.
 #' @param traits The traits to read.
 #' @param title A title for the plot.
@@ -23,7 +23,7 @@
 #' @param legend.box Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".
 #' @param point.sizes Sizes for the points. c("Not Sig", "Sig", "Sug").
 #' @param plotHBPvalues Logical, should H.B.P.Values be uses.
-#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @return A manhattan plot.
 #' @export
 
@@ -48,7 +48,7 @@ gg_Manhattan_Zoom_Traits <- function(
     legend.box = "horizontal",
     point.sizes = c(0.3,1,0.75),
     plotHBPvalues = F,
-    skyline = NULL
+    skyline = "NYC"
     ) {
   #
   # Read in files

@@ -1,6 +1,6 @@
 #' gg_LD_Heatmap
 #'
-#' Creates a LD heatmap plot.
+#' [Creates a LD heatmap plot.](https://derekmichaelwright.github.io/gwaspr/articles/gg_LD_Heatmap.html)
 #' @param xG GWAS genotype object. Note: needs to be in hapmap format.
 #' @param chr Chromosome to plot.
 #' @param pos1 Start position within the selected chromosome.

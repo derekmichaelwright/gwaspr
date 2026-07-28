@@ -1,4 +1,4 @@
-#' table_GWAS_Results
+#' table_GWAS_Region
 #'
 #' Create a table of significant GWAS results.
 #' @param folder Folder containing GWAS results.
@@ -10,7 +10,7 @@
 #' @param sug.threshold Suggestive threshold.
 #' @param nrowstoread Number of rows to read.
 #' @param useHBPvalues Logical, if TRUE, H.B.P.Values will be uses.
-#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @param models GWAS models to use.
 #' @return A table of significant GWAS results.
 #' @export
@@ -24,7 +24,7 @@ table_GWAS_Region <- function(
     threshold = 6,
     sug.threshold = NULL,
     nrowstoread = 1000,
-    skyline = NULL,
+    skyline = "NYC",
     models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER")
     ) {
   #

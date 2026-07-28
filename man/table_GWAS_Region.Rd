@@ -2,7 +2,7 @@
 % Please edit documentation in R/table_GWAS_Region.R
 \name{table_GWAS_Region}
 \alias{table_GWAS_Region}
-\title{table_GWAS_Results}
+\title{table_GWAS_Region}
 \usage{
 table_GWAS_Region(
   folder = "GWAS_Results/",
@@ -13,7 +13,7 @@ table_GWAS_Region(
   threshold = 6,
   sug.threshold = NULL,
   nrowstoread = 1000,
-  skyline = NULL,
+  skyline = "NYC",
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER")
 )
 }
@@ -34,7 +34,7 @@ table_GWAS_Region(
 
 \item{nrowstoread}{Number of rows to read.}
 
-\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.}
 
 \item{models}{GWAS models to use.}
 

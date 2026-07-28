@@ -1,6 +1,6 @@
 #' gg_Manhattan_Zoom
 #'
-#' [Create manhattan plots from GAPIT GWAS results zoomed into a specific region on a chromosome.](https://derekmichaelwright.github.io/gwaspr/articles/05_gg_Manhattan_Zoom.html)
+#' [Create manhattan plots from GAPIT GWAS results zoomed into a specific region on a chromosome.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_Zoom.html)
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
 #' @param title A title for the plot.
@@ -24,7 +24,7 @@
 #' @param legend.box Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".
 #' @param point.sizes Sizes for the points. c("Not Sig", "Sig", "Sug").
 #' @param plotHBPvalues Logical, should H.B.P.Values be uses.
-#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @return A manhattan plot.
 #' @export
 
@@ -51,7 +51,7 @@ gg_Manhattan_Zoom <- function(
     legend.box = "horizontal",
     point.sizes = c(0.3,1,0.75),
     plotHBPvalues = F,
-    skyline = NULL
+    skyline = "NYC"
     ) {
   #
   # Read in files
@@ -63,8 +63,8 @@ gg_Manhattan_Zoom <- function(
   if(!is.null(skyline)) {
     if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
     if(skyline == "Kansas") {
-      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
-      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("FarmCPU", fnames))]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("BLINK",   fnames))]
     }
   }
   #

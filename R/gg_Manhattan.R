@@ -57,7 +57,7 @@ gg_Manhattan <- function(
     chr.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
     chr.unit = "100 Mbp",
     plotHBPvalues = F,
-    skyline = NULL,
+    skyline = "NYC",
     addQQ = T
     ) {
   #

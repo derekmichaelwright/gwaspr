@@ -1,6 +1,6 @@
 #' checkNYCvsKansas
 #'
-#' Check if NYC and Kansas results are identical, if so, the Kansas file will be deleted.
+#' [Check if NYC and Kansas results are identical, if so, the Kansas file will be deleted.](https://derekmichaelwright.github.io/gwaspr/articles/gg_NYCvsKansas.html)
 #' @param folder Folder containing GWAS results.
 #' @param deteleKansas Logical, if TRUE, will delete any `Kansas` files with no difference between the `NYC` files.
 #' @return A table indicating the number of markers with different p values between NYC and Kansas files.

@@ -1,6 +1,6 @@
 #' gg_Manhattan_xTraits
 #'
-#' [Create manhattan plots from GAPIT GWAS results for multiple traits and facets them by Trait.](https://derekmichaelwright.github.io/gwaspr/articles/06_gg_Manhattan_xTraits.html)
+#' [Create manhattan plots from GAPIT GWAS results for multiple traits and facets them by Trait.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_xTraits.html)
 #' @param folder Folder containing GWAS results.
 #' @param traits The traits to read.
 #' @param title A title for the plot.
@@ -22,7 +22,7 @@
 #' @param legend.rows Number of rows for the legend.
 #' @param legend.box Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".
 #' @param point.sizes Sizes for the points. c("Not Sig", "Sig", "Sug").
-#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @return A manhattan plot.
 #' @export
 
@@ -49,7 +49,7 @@ gg_Manhattan_xTraits <- function (
     legend.box = "horizontal",
     point.sizes = c(0.3,1,0.75),
     plotHBPvalues = F,
-    skyline = NULL
+    skyline = "NYC"
     ) {
   #
   # Read in files
@@ -61,8 +61,8 @@ gg_Manhattan_xTraits <- function (
   if(!is.null(skyline)) {
     if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
     if(skyline == "Kansas") {
-      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
-      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("FarmCPU", fnames))]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("BLINK",   fnames))]
     }
   }
   #

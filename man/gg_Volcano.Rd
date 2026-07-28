@@ -11,7 +11,7 @@ gg_Volcano(
   markers = NULL,
   labels = markers,
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
-  skyline = "Kansas"
+  skyline = "NYC"
 )
 }
 \arguments{
@@ -27,11 +27,11 @@ gg_Volcano(
 
 \item{models}{Models to read.}
 
-\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.}
 }
 \value{
 A volcano plot.
 }
 \description{
-Creates a volcano plot.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_Volvano.html}{Creates a volcano plot.}
 }

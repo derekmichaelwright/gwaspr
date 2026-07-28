@@ -30,5 +30,5 @@ gg_NYCvsKansas(
 A manhattan plot.
 }
 \description{
-Creates a manhattan plot comparing the NYC and Kansas results.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_NYCvsKansas.html}{Creates a manhattan plot comparing the NYC and Kansas results.}
 }

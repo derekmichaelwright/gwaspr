@@ -28,7 +28,7 @@ gg_Manhattan_Zoom_Traits(
   legend.box = "horizontal",
   point.sizes = c(0.3, 1, 0.75),
   plotHBPvalues = F,
-  skyline = NULL
+  skyline = "NYC"
 )
 }
 \arguments{
@@ -76,11 +76,11 @@ gg_Manhattan_Zoom_Traits(
 
 \item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
 
-\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.}
 }
 \value{
 A manhattan plot.
 }
 \description{
-Create manhattan plots for multiple traits zoomed in to a particular region.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_Zoom_Traits.html}{Create manhattan plots for multiple traits zoomed in to a particular region.}
 }

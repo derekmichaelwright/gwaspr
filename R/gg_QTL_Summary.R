@@ -1,6 +1,6 @@
 #' gg_QTL_Summary
 #'
-#' Creates a summary QTL plot of significant associations.
+#' [Creates a summary QTL plot of significant associations.](https://derekmichaelwright.github.io/gwaspr/articles/gg_QTL_Summary.html)
 #' @param myG Genetic map. Must contain the following 3 columns c("Marker","Chr","Pos").
 #' @param myQ Table of QTL results. Must contain the following 5 columns c("Trait","Chr","Pos","Pos_lo","Pos_hi","lod").
 #' @param title Custom title for the plot.

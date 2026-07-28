@@ -51,5 +51,5 @@ gg_LD_Heatmap(
 A LD Heatmap plot.
 }
 \description{
-Creates a LD heatmap plot.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_LD_Heatmap.html}{Creates a LD heatmap plot.}
 }

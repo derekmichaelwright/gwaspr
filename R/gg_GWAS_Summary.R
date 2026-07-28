@@ -1,6 +1,6 @@
 #' gg_GWAS_Summary
 #'
-#' Creates a summary GWAS plot of significant associations.
+#' [Creates a summary GWAS plot of significant associations.](https://derekmichaelwright.github.io/gwaspr/articles/gg_GWAS_Summary.html)
 #' Note: this function requires the GWAS results files to be ordered
 #' @param folder Folder containing GWAS results.
 #' @param traits The traits to read.
@@ -24,7 +24,7 @@
 #' @param rowread Number of rows to read for each GWAS results file.
 #' @param legend.rows Number of rows for the legend.
 #' @param plotHBPvalues Logical, should H.B.P.Values be uses.
-#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @return A GWAS summary plot.
 #' @export
 
@@ -50,7 +50,7 @@ gg_GWAS_Summary <- function(
     legend.position = "bottom",
     legend.rows = 1,
     plotHBPvalues = F,
-    skyline = NULL
+    skyline = "NYC"
     ) {
   #
   check1 <- run_Summary(folder = folder) %>% dropNAcol()
@@ -74,8 +74,8 @@ gg_GWAS_Summary <- function(
   if(!is.null(skyline)) {
     if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
     if(skyline == "Kansas") {
-      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
-      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("FarmCPU", fnames))]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("BLINK",   fnames))]
     }
   }
   #

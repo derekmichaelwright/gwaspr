@@ -1,6 +1,6 @@
 #' gg_Manhattan_xModels
 #'
-#' [Create manhattan plots from GAPIT GWAS results for multiple traits and facets them by Model.](https://derekmichaelwright.github.io/gwaspr/articles/07_gg_Manhattan_xModels.html)
+#' [Create manhattan plots from GAPIT GWAS results for multiple traits and facets them by Model.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_xModels.html)
 #' @param folder Folder containing GWAS results.
 #' @param traits The traits to read.
 #' @param title A title for the plot.
@@ -22,7 +22,7 @@
 #' @param models Model to read.
 #' @param trait.colors Colors for each trait.
 #' @param chr.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
-#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.
+#' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @return A manhattan plot.
 #' @export
 
@@ -49,7 +49,7 @@ gg_Manhattan_xModels <- function(
     trait.colors = c("chartreuse4", "firebrick", "steelblue3", "maroon3", "purple3", "darkgoldenrod4", "tomato3", "aquamarine4", "deeppink3"),
     chr.unit = "100 Mbp",
     plotHBPvalues = F,
-    skyline = NULL
+    skyline = "NYC"
     ) {
   #
   # Read in files
@@ -61,8 +61,8 @@ gg_Manhattan_xModels <- function(
   if(!is.null(skyline)) {
     if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
     if(skyline == "Kansas") {
-      fnames <- fnames[!grepl("\\(NYC\\)&FarmCPU", fnames)]
-      fnames <- fnames[!grepl("\\(NYC\\)&BLINK", fnames)]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("FarmCPU", fnames))]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("BLINK",   fnames))]
     }
   }
   #

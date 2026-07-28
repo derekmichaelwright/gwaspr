@@ -28,7 +28,7 @@ gg_GWAS_Summary(
   legend.position = "bottom",
   legend.rows = 1,
   plotHBPvalues = F,
-  skyline = NULL
+  skyline = "NYC"
 )
 }
 \arguments{
@@ -76,12 +76,12 @@ gg_GWAS_Summary(
 
 \item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
 
-\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.}
 }
 \value{
 A GWAS summary plot.
 }
 \description{
-Creates a summary GWAS plot of significant associations.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_GWAS_Summary.html}{Creates a summary GWAS plot of significant associations.}
 Note: this function requires the GWAS results files to be ordered
 }

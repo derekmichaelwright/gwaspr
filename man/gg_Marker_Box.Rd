@@ -75,5 +75,5 @@ gg_Marker_Box(
 Marker plot.
 }
 \description{
-Creates a marker plot with myG and myY objects.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker.html}{Creates a marker plot with myG and myY objects.}
 }

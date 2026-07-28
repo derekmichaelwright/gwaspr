@@ -17,5 +17,5 @@ gg_myG_Details(filename, myPrefix = "", filetype = "csv")
 2 .csv files with marker details & 3 Marker plots.
 }
 \description{
-Analyses your genotype data and outputs 2 summary files with marker details and 3 plots.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_myG_Details.html}{Analyses your genotype data and outputs 2 summary files with marker details and 3 plots.}
 }

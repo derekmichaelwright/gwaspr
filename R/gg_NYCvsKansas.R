@@ -1,6 +1,6 @@
 #' gg_NYCvsKansas
 #'
-#' Creates a manhattan plot comparing the NYC and Kansas results.
+#' [Creates a manhattan plot comparing the NYC and Kansas results.](https://derekmichaelwright.github.io/gwaspr/articles/gg_NYCvsKansas.html)
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
 #' @param title A title for the plot.

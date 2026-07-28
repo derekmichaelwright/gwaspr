@@ -30,7 +30,7 @@ gg_Manhattan_Zoom(
   legend.box = "horizontal",
   point.sizes = c(0.3, 1, 0.75),
   plotHBPvalues = F,
-  skyline = NULL
+  skyline = "NYC"
 )
 }
 \arguments{
@@ -80,11 +80,11 @@ gg_Manhattan_Zoom(
 
 \item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
 
-\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If left NULL, it will use the highest P.value.}
+\item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.}
 }
 \value{
 A manhattan plot.
 }
 \description{
-\href{https://derekmichaelwright.github.io/gwaspr/articles/05_gg_Manhattan_Zoom.html}{Create manhattan plots from GAPIT GWAS results zoomed into a specific region on a chromosome.}
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_Zoom.html}{Create manhattan plots from GAPIT GWAS results zoomed into a specific region on a chromosome.}
 }
