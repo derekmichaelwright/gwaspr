@@ -16,8 +16,8 @@
   : gg_GWAS_Hits
 - [`gg_GWAS_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary.md)
   : gg_GWAS_Summary
-- [`gg_LDheatmap()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_LDheatmap.md)
-  : gg_LDHeatmap
+- [`gg_LD_Heatmap()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_LD_Heatmap.md)
+  : gg_LD_Heatmap
 - [`gg_Manhattan()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan.md)
   : gg_Manhattan
 - [`gg_Manhattan_Zoom()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom.md)
