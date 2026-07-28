@@ -14,7 +14,7 @@ The functions `gg_Marker_Box()`, `gg_Marker_Bar()`, and `gg_Marker_Pie()` create
 
 # Load data
 
-```{r}
+```{r eval = F}
 # Load genotype file (note: header = T)
 myG <- read.csv("myG_hmp.csv", header = T)
 ```
@@ -37,7 +37,7 @@ myY[1:15,]
 
 Specifying a `trait` and a `marker` along with your genotype and phenotype data as `xG` and `xY` is needed to create marker plots.
 
-```{r}
+```{r eval = F}
 # Plot
 mp <- gg_Marker_Box(
   # Genotype data
@@ -63,7 +63,7 @@ ggsave("figures/gg_Marker_Box_01.png",
 
 ### Boxplots 
 
-```{r}
+```{r eval = F}
 # Plot
 mp <- gg_Marker_Box(
   # Genotype data
@@ -95,7 +95,7 @@ ggsave("figures/gg_Marker_Box_02.png",
 
 ### Violin + points
 
-```{r}
+```{r eval = F}
 # Plot
 mp <- gg_Marker_Box(
   # Genotype data
@@ -129,7 +129,7 @@ ggsave("figures/gg_Marker_Box_03.png",
 
 #### myG covariable
 
-```{r}
+```{r eval = F}
 # Plot
 mp <- gg_Marker_Box(
   # Genotype data
@@ -169,7 +169,7 @@ ggsave("figures/gg_Marker_Box_04.png",
 
 #### myY covariable
 
-```{r}
+```{r eval = F}
 # Plot
 mp <- gg_Marker_Box(
   # Genotype data
@@ -209,7 +209,7 @@ ggsave("figures/gg_Marker_Box_05.png",
 
 ## Multiple markers, multiple traits
 
-```{r}
+```{r eval = F}
 # Plot
 mp <- gg_Marker_Box(
   # Genotype data
@@ -233,7 +233,7 @@ ggsave("figures/gg_Marker_Box_06.png",
 
 ## Single marker, single trait
 
-```{r}
+```{r eval = F}
 # Plot
 mp <- gg_Marker_Bar(
   # Genotype data
@@ -257,7 +257,7 @@ ggsave("figures/gg_Marker_Bar_01.png",
 
 ### Histogram
 
-```{r}
+```{r eval = F}
 # Plot
 mp <- gg_Marker_Bar(
   # Genotype data
@@ -284,7 +284,7 @@ ggsave("figures/gg_Marker_Bar_02.png",
 
 ### Density
 
-```{r}
+```{r eval = F}
 # Plot
 mp <- gg_Marker_Bar(
   # Genotype data
@@ -311,7 +311,7 @@ ggsave("figures/gg_Marker_Bar_03.png",
 
 ## Multiple markers, multiple traits
 
-```{r}
+```{r eval = F}
 # Plot
 mp <- gg_Marker_Bar(
   # Genotype data
@@ -335,7 +335,7 @@ ggsave("figures/gg_Marker_Bar_04.png",
 
 ### Numeric format
 
-```{r}
+```{r eval = F}
 # Plot 
 mp <- gg_Marker_Bar(
   # Genotype data
@@ -362,7 +362,7 @@ ggsave("figures/gg_Marker_Bar_05.png",
 
 ### Factor format
 
-```{r}
+```{r eval = F}
 # Plot 
 mp <- gg_Marker_Bar(
   # Genotype data
@@ -389,7 +389,7 @@ ggsave("figures/gg_Marker_Bar_06.png",
 
 # gg_Marker_Pie()
 
-```{r}
+```{r eval = F}
 # Plot 
 mp <- gg_Marker_Pie(
   # Genotype data
