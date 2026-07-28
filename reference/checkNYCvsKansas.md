@@ -22,4 +22,5 @@ checkNYCvsKansas(folder = "GWAS_Results/", deleteKansas = F)
 
 ## Value
 
-A table of which runs were identical and deleted.
+A table indicating the number of markers with different p values between
+NYC and Kansas files.

@@ -37,7 +37,9 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Other GWAS Related Plots &amp; Functions</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_myG_Details.html">gg_myG_Details()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_LDheatmap.html">gg_LDheatmap()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_LD_Heatmap.html">gg_LD_Heatmap()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_LD_Decay.html">gg_LD_Decay()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_Volcano.html">gg_Volcano()</a></li>
   </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -73,22 +75,8 @@
 <span>  trait <span class="op">=</span> <span class="fu"><a href="list_Traits.html">list_Traits</a></span><span class="op">(</span><span class="va">folder</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
 <span>  title <span class="op">=</span> <span class="va">trait</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  sug.threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  chr <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  markers <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  labels <span class="op">=</span> <span class="va">markers</span>,</span>
-<span>  vlines <span class="op">=</span> <span class="va">markers</span>,</span>
-<span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  vline.legend <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>  addQQ <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>  pmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span><span class="op">)</span>,</span>
-<span>  sig.col <span class="op">=</span> <span class="st">"darkred"</span>,</span>
 <span>  chr.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkgoldenrod3"</span><span class="op">)</span>, <span class="fl">30</span><span class="op">)</span>,</span>
-<span>  chr.unit <span class="op">=</span> <span class="st">"100 Mbp"</span>,</span>
-<span>  legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  plotHBPvalues <span class="op">=</span> <span class="cn">F</span></span>
+<span>  chr.unit <span class="op">=</span> <span class="st">"100 Mbp"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -112,68 +100,12 @@
 <dd><p>Significant Threshold.</p></dd>
 
 
-<dt id="arg-sug-threshold">sug.threshold<a class="anchor" aria-label="anchor" href="#arg-sug-threshold"></a></dt>
-<dd><p>Suggested threshold.</p></dd>
-
-
-<dt id="arg-chr">chr<a class="anchor" aria-label="anchor" href="#arg-chr"></a></dt>
-<dd><p>Chromosomes to plot. Use if you want to plot a single chromosome.</p></dd>
-
-
-<dt id="arg-markers">markers<a class="anchor" aria-label="anchor" href="#arg-markers"></a></dt>
-<dd><p>Markers to be labelled.</p></dd>
-
-
-<dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
-<dd><p>Labels to be used for markers.</p></dd>
-
-
-<dt id="arg-vlines">vlines<a class="anchor" aria-label="anchor" href="#arg-vlines"></a></dt>
-<dd><p>Markers which will be used as a location for a vertical lines.</p></dd>
-
-
-<dt id="arg-vline-colors">vline.colors<a class="anchor" aria-label="anchor" href="#arg-vline-colors"></a></dt>
-<dd><p>colors for each vertical line.</p></dd>
-
-
-<dt id="arg-vline-types">vline.types<a class="anchor" aria-label="anchor" href="#arg-vline-types"></a></dt>
-<dd><p>lty for each vertical line.</p></dd>
-
-
-<dt id="arg-vline-legend">vline.legend<a class="anchor" aria-label="anchor" href="#arg-vline-legend"></a></dt>
-<dd><p>Logical, whether or not to add a legend for the vlines.</p></dd>
-
-
-<dt id="arg-addqq">addQQ<a class="anchor" aria-label="anchor" href="#arg-addqq"></a></dt>
-<dd><p>Logical, whether or not to add a QQ plot</p></dd>
-
-
-<dt id="arg-pmax">pmax<a class="anchor" aria-label="anchor" href="#arg-pmax"></a></dt>
-<dd><p>A max value for the y-axis.</p></dd>
-
-
-<dt id="arg-models">models<a class="anchor" aria-label="anchor" href="#arg-models"></a></dt>
-<dd><p>Models to read.</p></dd>
-
-
-<dt id="arg-sig-col">sig.col<a class="anchor" aria-label="anchor" href="#arg-sig-col"></a></dt>
-<dd><p>Color for significant assoctiations.</p></dd>
-
-
 <dt id="arg-chr-colors">chr.colors<a class="anchor" aria-label="anchor" href="#arg-chr-colors"></a></dt>
 <dd><p>Colors for each chromosome.</p></dd>
 
 
 <dt id="arg-chr-unit">chr.unit<a class="anchor" aria-label="anchor" href="#arg-chr-unit"></a></dt>
 <dd><p>Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").</p></dd>
-
-
-<dt id="arg-legend-rows">legend.rows<a class="anchor" aria-label="anchor" href="#arg-legend-rows"></a></dt>
-<dd><p>Number of rows for the legend.</p></dd>
-
-
-<dt id="arg-plothbpvalues">plotHBPvalues<a class="anchor" aria-label="anchor" href="#arg-plothbpvalues"></a></dt>
-<dd><p>Logical, if TRUE, H.B.P.Values be uses.</p></dd>
 
 </dl></div>
     <div class="section level2">

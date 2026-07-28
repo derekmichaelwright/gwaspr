@@ -1,7 +1,7 @@
 # gg_Manhattan
 
 [Create manhattan plots from GAPIT GWAS
-results.](https://derekmichaelwright.github.io/gwaspr/articles/04_gg_Manhattan.html)
+results.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan.html)
 
 ## Usage
 

@@ -1,6 +1,6 @@
 # gg_LD_Heatmap
 
-Creates a manhattan plot.
+Creates a LD heatmap plot.
 
 ## Usage
 
