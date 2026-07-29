@@ -14,7 +14,8 @@ articles:
   gg_QTL_Summary: gg_QTL_Summary.html
   gg_Volcano: gg_Volcano.html
   GWAS_with_GAPIT: GWAS_with_GAPIT.html
-last_built: 2026-07-28T22:59Z
+  table_GWAS_Results: table_GWAS_Results.html
+last_built: 2026-07-29T01:01Z
 urls:
   reference: https://derekmichaelwright.github.io/gwaspr/reference
   article: https://derekmichaelwright.github.io/gwaspr/articles
