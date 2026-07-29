@@ -19,7 +19,7 @@ The functions `gg_Marker_Box()`, `gg_Marker_Bar()`, and `gg_Marker_Pie()` create
 myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
 ```
 
-```{r}
+```{r eval = F}
 # Load phenotype file
 myY <- read.csv("gwaspr_myY.csv")
 # Convert our nominal trait from numeric to factor.
