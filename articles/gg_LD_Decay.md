@@ -2,7 +2,7 @@
 
 ``` r
 
-library("gwaspr")
+library(gwaspr)
 ```
 
 The function
@@ -41,7 +41,7 @@ mp <- gg_LD_Decay(
   # Select the number of markers per chromosome to analyse
   markerNum = 2000 )
 # Save
-ggsave("figures/gg_LD_Decay.png", mp, width = 12, height = 4 )
+ggsave("figures/gg_LD_Decay.png", mp, width = 12, height = 10 )
 ```
 
 ![](figures/gg_LD_Decay.png)

@@ -2,7 +2,7 @@
 
 ``` r
 
-library("gwaspr")
+library(gwaspr)
 ```
 
 ``` r
