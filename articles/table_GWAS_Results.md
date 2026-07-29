@@ -2,7 +2,7 @@
 
 ``` r
 
-library("gwaspr")
+library(gwaspr)
 ```
 
 ## table_GWAS_Results()

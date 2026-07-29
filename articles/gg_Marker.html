@@ -96,7 +96,7 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://derekmichaelwright.github.io/gwaspr/">"gwaspr"</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://derekmichaelwright.github.io/gwaspr/">gwaspr</a></span><span class="op">)</span></span></code></pre></div>
 <p>The functions <code><a href="../reference/gg_Marker_Box.html">gg_Marker_Box()</a></code>,
 <code><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar()</a></code>, and <code><a href="../reference/gg_Marker_Pie.html">gg_Marker_Pie()</a></code> create
 marker plots with your <code>myY</code> and <code>myG</code> GWAS input
@@ -111,10 +111,26 @@ files.</p>
 <code class="sourceCode R"><span><span class="co"># Load phenotype file</span></span>
 <span><span class="va">myY</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myY.csv"</span><span class="op">)</span></span>
 <span><span class="co"># Convert our nominal trait from numeric to factor.</span></span>
-<span><span class="va">myY</span> <span class="op">&lt;-</span> <span class="va">myY</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Cotyledon_Color <span class="op">=</span> <span class="fu"><a href="../reference/mv.html">mv</a></span><span class="op">(</span><span class="va">Cotyledon_RedvsYellow</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Green"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>         Cotyledon_Color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">Cotyledon_Color</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Green"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#myY &lt;- myY %&gt;% </span></span>
+<span><span class="co">#  mutate(Cotyledon_Color = mv(Cotyledon_RedvsYellow, c(1, 0, NA), c("Red", "Yellow", "Green")),</span></span>
+<span><span class="co">#         Cotyledon_Color = factor(Cotyledon_Color, levels = c("Red", "Yellow", "Green")))</span></span>
 <span><span class="va">myY</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span>,<span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##                 Name DTF_Sask_2017 DTF_Nepal_2017 Cotyledon_RedvsYellow</span></span>
+<span><span class="co">## 1    CDC_Asterix_AGL          54.7          128.0                     0</span></span>
+<span><span class="co">## 2      CDC_Rosie_AGL          59.0          123.3                     1</span></span>
+<span><span class="co">## 3       X3156.11_AGL          60.7          125.3                     1</span></span>
+<span><span class="co">## 4  CDC_Greenstar_AGL          56.7          121.0                     0</span></span>
+<span><span class="co">## 5     CDC_Cherie_AGL          54.3          125.3                     1</span></span>
+<span><span class="co">## 6     CDC_Glamis_AGL          59.0          123.0                     0</span></span>
+<span><span class="co">## 7       CDC_Gold_AGL          54.0          125.3                     0</span></span>
+<span><span class="co">## 8       CDC_Imax_AGL          53.0          128.7                     1</span></span>
+<span><span class="co">## 9    CDC_Impower_AGL          57.0          123.3                     0</span></span>
+<span><span class="co">## 10      CDC_KR.1_AGL          57.0          121.7                     1</span></span>
+<span><span class="co">## 11     CDC_LeMay_AGL          55.7          126.7                     0</span></span>
+<span><span class="co">## 12     CDC_Maxim_AGL          54.3          125.7                     1</span></span>
+<span><span class="co">## 13      CDC_QG.1_AGL          57.7          126.7                    NA</span></span>
+<span><span class="co">## 14 CDC_Red_Rider_AGL          57.0          123.5                     1</span></span>
+<span><span class="co">## 15   CDC_Redcoat_AGL          57.7          126.7                     1</span></span></code></pre>
 <hr>
 </div>
 <div class="section level2">
@@ -126,7 +142,7 @@ files.</p>
 <p>Specifying a <code>trait</code> and a <code>marker</code> along with
 your genotype and phenotype data as <code>xG</code> and <code>xY</code>
 is needed to create marker plots.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
