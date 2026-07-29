@@ -7,7 +7,7 @@ knitr::opts_chunk$set(message = F, warning = F)
 ```
 
 ```{r}
-library("gwaspr")
+library(gwaspr)
 ```
 
 The function `gg_QTL_Summary()` creates plot summarising the results from multiple QTL analyses. 

@@ -7,7 +7,7 @@ knitr::opts_chunk$set(message = F, warning = F)
 ```
 
 ```{r}
-library("gwaspr")
+library(gwaspr)
 ```
 
 The functions `gg_Marker_Box()`, `gg_Marker_Bar()`, and `gg_Marker_Pie()` create marker plots with your `myY` and `myG` GWAS input files.

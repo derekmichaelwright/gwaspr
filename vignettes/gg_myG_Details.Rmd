@@ -7,7 +7,7 @@ knitr::opts_chunk$set(message = F, warning = F)
 ```
 
 ```{r}
-library("gwaspr")
+library(gwaspr)
 ```
 
 The function `gg_myG_Details()` creates plots and .csv files with details about your genotype data.

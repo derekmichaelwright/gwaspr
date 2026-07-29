@@ -7,7 +7,7 @@ knitr::opts_chunk$set(message = F, warning = F)
 ```
 
 ```{r}
-library("gwaspr")
+library(gwaspr)
 ```
 
 `GAPIT` 

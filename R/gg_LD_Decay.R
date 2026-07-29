@@ -33,20 +33,20 @@ gg_LD_Decay <- function(xG = myG, outputFolder, markerNum = 1000) {
     #
     xi <- xi %>%
       mutate(Moving_Avg = movingAverage(LD, n = 100),
-             Loess_Chr = ifelse(Distance < 1000000, predict(myloess), NA))
+             Loess_Chr = ifelse(Distance < 1000000, predict(myloess), NA) )
     #
     xx <- bind_rows(xx, xi)
   }
   #
   x1 <- xx %>% group_by(Chr) %>%
-    summarise(Mean_LD = mean(Moving_Avg, na.rm = T))
+    summarise(Mean_LD = mean(LD, na.rm = T))
   x2 <- xx %>% filter(Loess_Chr < 0.2) %>% group_by(Chr) %>%
     summarise(Threshold_0.2 = min(Distance, na.rm = T))
-  #x3 <- xx %>% left_join(x1, by = "Chr") %>%
-  #  group_by(Chr) %>% filter(Moving_Avg < Mean_LD) %>%
-  #  summarise(Threshold_0.1 = min(Distance, na.rm = T))
-  myChr <-  x1 %>% left_join(x2, by = "Chr") #%>%
-  #left_join(x3, by = "Chr")
+  x3 <- xx %>% left_join(x1, by = "Chr") %>%
+    group_by(Chr) %>% filter(Moving_Avg < Mean_LD) %>%
+    summarise(Threshold_0.1 = min(Distance, na.rm = T))
+  myChr <-  x1 %>% left_join(x2, by = "Chr") %>%
+    left_join(x3, by = "Chr")
   #
   xx <- left_join(xx, myChr, by = "Chr") %>%
     mutate(Chr = as.factor(Chr))
@@ -63,42 +63,45 @@ gg_LD_Decay <- function(xG = myG, outputFolder, markerNum = 1000) {
   myGeno <- cross_join(x1, x2)
   # Plot first 1 Mbp
   mp1 <- ggplot(yy, aes(x = Distance/1000)) +
-    geom_point(aes(y = LD), size = 0.3, pch = 15, alpha = 0.3) +
+    geom_point(aes(y = LD), size = 0.3, pch = 15, alpha = 0.1) +
     geom_line(aes(y = Moving_Avg), alpha = 0.7) +
-    geom_line(aes(y = Loess_Geno)) +
-    geom_hline(yintercept = 0.2, color = "blue", lty = 2) +
-    geom_hline(data = myGeno, aes(yintercept = Mean_LD), color = "red", lty = 2) +
-    geom_vline(data = myGeno, lty = 2, linewidth = 0.3, alpha = 0.8,
+    #geom_line(aes(y = Loess_Geno)) +
+    geom_hline(yintercept = 0.2, color = "blue", lty = 1) +
+    geom_hline(data = myGeno, aes(yintercept = Mean_LD), color = "red", lty = 1) +
+    geom_vline(data = myGeno, lty = 2, linewidth = 0.3,
                aes(xintercept = Threshold_0.2/1000)) +
     scale_x_continuous(seq(0, 1000, by = 100), expand = c(0,10)) +
-    facet_wrap(paste("Threshold = ", myGeno$Threshold_0.2)) +
+    facet_wrap(paste("Threshold = ", myGeno$Threshold_0.2) ~ .) +
     theme_gwaspr(legend.position = "none",
                  axis.title.y = ggtext::element_markdown()) +
-    labs(title = "LD of all markers within 1 Mbp", y = "r^2", x = "Kbp")
+    labs(title = paste("LD Decay based on", markerNum, "randomly selected markers per chromosome"),
+         subtitle = "A) LD of all markers within 1 Mbp", y = "r<sup>2</sup>", x = "Kbp")
   # Plot first 1 Mbp
-  mp2 <- ggplot(yy, aes(x = Distance/1000, y = Loess_Chr)) +
+  mp2 <- ggplot(yy, aes(x = Distance/1000)) +
     geom_line(aes(y = Moving_Avg), alpha = 0.5) +
-    geom_line() +
-    geom_hline(data = myChr, aes(yintercept = Mean_LD), color = "red", lty = 2) +
-    geom_hline(yintercept = 0.2, color = "blue", lty = 2) +
+    geom_line(aes(y = Loess_Chr)) +
+    geom_hline(data = myChr, aes(yintercept = Mean_LD), color = "red", lty = 1) +
+    geom_hline(yintercept = 0.2, color = "blue", lty = 1) +
     scale_y_continuous(breaks = seq(0, 0.5, by = 0.1), limits = c(0,0.5)) +
-    facet_wrap(paste("Chr =", Chr) + paste("Threshold =", Threshold_0.2) ~ .,
+    facet_wrap(paste("Chr", Chr) + paste(Threshold_0.2, "bp") ~ .,
                ncol = 7, scales = "free_x") +
-    geom_vline(data = myChr, lty = 2, size = 0.3, alpha = 0.8,
+    geom_vline(data = myChr, lty = 2, linewidth = 0.3, alpha = 0.8,
                aes(xintercept = Threshold_0.2/1000)) +
     theme_gwaspr(legend.position = "none",
                  axis.title.y = ggtext::element_markdown()) +
-    labs(title = "By Chromosome", y = "r^2", x = "Kbp")
+    labs(title = "B) LD By Chromosome for markers within 1 Mbp", y = "r<sup>2</sup>", x = "Kbp",
+         caption = "Threshold = loess curve (black line) crosses 0.2 (blue line)")
   # Plot full chromsomes
-  mp3 <- ggplot(xx, aes(x = Distance/1000000, y = Moving_Avg)) +
-    geom_line(size = 0.5, alpha = 0.5) +
+  mp3 <- ggplot(xx, aes(x = Distance/1000000)) +
+    geom_line(aes(y = Moving_Avg), size = 0.5, alpha = 0.5) +
     geom_hline(data = myChr, aes(yintercept = Mean_LD), color = "red", lty = 2) +
     geom_hline(yintercept = 0.2, color = "blue", lty = 2) +
     scale_y_continuous(breaks = seq(0, 0.5, by = 0.1), limits = c(0,0.5)) +
-    facet_wrap(paste("Chr =", Chr) ~ ., ncol = 7, scales = "free_x") +
+    facet_wrap(paste("Chr", Chr) + paste(Threshold_0.1, "bp") ~ ., ncol = 7, scales = "free_x") +
     theme_gwaspr(legend.position = "none",
                  axis.title.y = ggtext::element_markdown()) +
-    labs(title = "All Markers", y = "r^2", x = "Mbp")
+    labs(title = "C) LD of full chromosomes", y = "r<sup>2</sup>", x = "Mbp",
+         caption = "Threshold = moving average (grey line) crosses chromosome average (red line)")
   #yy <- yy %>% filter(Distance < 10000)
   # Append
   mp <- ggarrange(mp1, mp2, mp3, ncol = 1, nrow = 3)
@@ -106,4 +109,4 @@ gg_LD_Decay <- function(xG = myG, outputFolder, markerNum = 1000) {
 }
 
 #myG <- read.csv("vignettes/gwaspr_myG_hmp.csv", header = T)
-#xG = myG; outputFolder = "vignettes/LD_Decay/"; markerNum = 1000
+#xG = myG; outputFolder = "vignettes/LD_Decay/"; markerNum = 2000
