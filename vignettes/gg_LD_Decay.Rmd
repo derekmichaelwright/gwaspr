@@ -27,7 +27,7 @@ calc_LD_Decay(
   # Specify a folder with GWAS results
   outputFolder = "LD_Decay/",
   # Select the number of markers per chromosome to analyse
-  markerNum = 1000 )
+  markerNum = 2000 )
 ```
 
 ```{r eval = F}
@@ -38,7 +38,7 @@ mp <- gg_LD_Decay(
   # Specify a folder with GWAS results
   outputFolder = "LD_Decay/",
   # Select the number of markers per chromosome to analyse
-  markerNum = 1000 )
+  markerNum = 2000 )
 # Save
 ggsave("figures/gg_LD_Decay.png", mp, width = 12, height = 4 )
 ```
