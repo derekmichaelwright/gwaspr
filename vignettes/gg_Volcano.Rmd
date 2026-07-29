@@ -1,7 +1,5 @@
 ---
 title: "gg_Volcano()"
-description: "Create a volcano plot"
-output: rmarkdown::html_vignette
 ---
 
 ```{r setup, include = FALSE}
