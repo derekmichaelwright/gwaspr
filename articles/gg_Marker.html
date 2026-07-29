@@ -96,7 +96,7 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://derekmichaelwright.github.io/gwaspr/">gwaspr</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://derekmichaelwright.github.io/gwaspr/">"gwaspr"</a></span><span class="op">)</span></span></code></pre></div>
 <p>The functions <code><a href="../reference/gg_Marker_Box.html">gg_Marker_Box()</a></code>,
 <code><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar()</a></code>, and <code><a href="../reference/gg_Marker_Pie.html">gg_Marker_Pie()</a></code> create
 marker plots with your <code>myY</code> and <code>myG</code> GWAS input
@@ -111,10 +111,9 @@ files.</p>
 <code class="sourceCode R"><span><span class="co"># Load phenotype file</span></span>
 <span><span class="va">myY</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myY.csv"</span><span class="op">)</span></span>
 <span><span class="co"># Convert our nominal trait from numeric to factor.</span></span>
-<span><span class="co">#myY &lt;- myY %&gt;% </span></span>
-<span><span class="co">#  mutate(Cotyledon_Color = mv(Cotyledon_RedvsYellow, c(1, 0, NA), c("Red", "Yellow", "Green")),</span></span>
-<span><span class="co">#         Cotyledon_Color = factor(Cotyledon_Color, levels = c("Red", "Yellow", "Green")))</span></span>
-<span><span class="va">myY</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span>,<span class="op">]</span></span></code></pre></div>
+<span><span class="va">myY</span> <span class="op">&lt;-</span> <span class="va">myY</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Cotyledon_Color <span class="op">=</span> <span class="fu"><a href="../reference/mv.html">mv</a></span><span class="op">(</span><span class="va">Cotyledon_RedvsYellow</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Green"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         Cotyledon_Color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">Cotyledon_Color</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Green"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##                 Name DTF_Sask_2017 DTF_Nepal_2017 Cotyledon_RedvsYellow</span></span>
 <span><span class="co">## 1    CDC_Asterix_AGL          54.7          128.0                     0</span></span>
 <span><span class="co">## 2      CDC_Rosie_AGL          59.0          123.3                     1</span></span>
@@ -157,7 +156,345 @@ is needed to create marker plots.</p>
 <span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Box_01.png"</span>, </span>
 <span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
 <p><img src="figures/gg_Marker_Box_01.png"></p>
+<hr>
 </div>
+<div class="section level3">
+<h3 id="customized-plots">Customized Plots<a class="anchor" aria-label="anchor" href="#customized-plots"></a>
+</h3>
+<div class="section level4">
+<h4 id="boxplots">Boxplots<a class="anchor" aria-label="anchor" href="#boxplots"></a>
+</h4>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"DTF_Sask_2017"</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr6p3269280"</span>,</span>
+<span>  <span class="co"># Select marker colors</span></span>
+<span>  marker.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Choose what should be plotted</span></span>
+<span>  plot.violin <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  plot.box <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  plot.points <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  <span class="co"># Change the width of the boxplots</span></span>
+<span>  box.width <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>  <span class="co"># Create a custom label for the y-axis</span></span>
+<span>  yLab <span class="op">=</span> <span class="st">"Days from sowing to flower"</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Box_02.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Box_02.png"></p>
+<hr>
+</div>
+<div class="section level4">
+<h4 id="violin-points">Violin + points<a class="anchor" aria-label="anchor" href="#violin-points"></a>
+</h4>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"DTF_Sask_2017"</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr6p3269280"</span>,</span>
+<span>  <span class="co"># Select marker colors</span></span>
+<span>  marker.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Choose what should be plotted</span></span>
+<span>  plot.violin <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  plot.box <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  plot.points <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  <span class="co"># Set the point size</span></span>
+<span>  point.size <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  <span class="co"># Create a custom label for the y-axis</span></span>
+<span>  yLab <span class="op">=</span> <span class="st">"Days from sowing to flower"</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Box_03.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Box_03.png"></p>
+<hr>
+</div>
+<div class="section level4">
+<h4 id="covariable-point-color">Covariable Point Color<a class="anchor" aria-label="anchor" href="#covariable-point-color"></a>
+</h4>
+<div class="section level5">
+<h5 id="myg-covariable">myG covariable<a class="anchor" aria-label="anchor" href="#myg-covariable"></a>
+</h5>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"DTF_Sask_2017"</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr6p3269280"</span>,</span>
+<span>  <span class="co"># Select marker colors</span></span>
+<span>  marker.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkorange3"</span>, <span class="st">"darkseagreen4"</span>, <span class="st">"steelblue"</span>, <span class="st">"burlywood4"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Keep heterozygous markers</span></span>
+<span>  remove.hets <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  <span class="co"># Choose what should be plotted</span></span>
+<span>  plot.violin <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  plot.box <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  plot.points <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  <span class="co"># Set the point size</span></span>
+<span>  point.size <span class="op">=</span> <span class="fl">0.75</span>,</span>
+<span>  <span class="co"># Plot with geom_beeswarm instead of quasirandom</span></span>
+<span>  point.beeswarm <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  <span class="co"># Select Covariable trait for points</span></span>
+<span>  cv.name <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr2p44545877"</span>, </span>
+<span>  <span class="co"># Select colors for the covariable</span></span>
+<span>  cv.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkslategray4"</span>, <span class="st">"maroon3"</span>, <span class="st">"purple3"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Set a custom label for the covariable legend</span></span>
+<span>  cv.label <span class="op">=</span> <span class="st">"Chr2p44545877"</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Box_04.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Box_04.png"></p>
+<hr>
+</div>
+<div class="section level5">
+<h5 id="myy-covariable">myY covariable<a class="anchor" aria-label="anchor" href="#myy-covariable"></a>
+</h5>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"DTF_Sask_2017"</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr6p3269280"</span>,</span>
+<span>  <span class="co"># Select marker colors</span></span>
+<span>  marker.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Choose what should be plotted</span></span>
+<span>  plot.violin <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  plot.box <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  plot.points <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  <span class="co"># Set the point size</span></span>
+<span>  point.size <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  <span class="co"># Plot with geom_beeswarm instead of quasirandom</span></span>
+<span>  point.beeswarm <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  <span class="co"># Select covariable source</span></span>
+<span>  cv.source <span class="op">=</span> <span class="st">"xY"</span>,</span>
+<span>  <span class="co"># Select Covariable trait for points</span></span>
+<span>  cv.name <span class="op">=</span> <span class="st">"Cotyledon_Color"</span>, </span>
+<span>  <span class="co"># Select colors for the covariable</span></span>
+<span>  cv.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkred"</span>, <span class="st">"darkgoldenrod2"</span>, <span class="st">"darkgreen"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Set a custom label for the covariable legend</span></span>
+<span>  cv.label <span class="op">=</span> <span class="st">"Cotyledon Color"</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Box_05.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Box_05.png"></p>
+<hr>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="multiple-markers-multiple-traits">Multiple markers, multiple traits<a class="anchor" aria-label="anchor" href="#multiple-markers-multiple-traits"></a>
+</h3>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>,</span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DTF_Nepal_2017"</span>, <span class="st">"DTF_Sask_2017"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr5p1658484"</span>, <span class="st">"Lcu.1GRN.Chr2p44545877"</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Box_06.png"</span>,</span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Box_06.png"></p>
+<hr>
+</div>
+</div>
+<div class="section level2">
+<h2 id="gg_marker_bar">gg_Marker_Bar<a class="anchor" aria-label="anchor" href="#gg_marker_bar"></a>
+</h2>
+<div class="section level3">
+<h3 id="single-marker-single-trait-1">Single marker, single trait<a class="anchor" aria-label="anchor" href="#single-marker-single-trait-1"></a>
+</h3>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"DTF_Sask_2017"</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr6p3269280"</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Bar_01.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Bar_01.png"></p>
+<hr>
+</div>
+<div class="section level3">
+<h3 id="customized-plots-1">Customized Plots<a class="anchor" aria-label="anchor" href="#customized-plots-1"></a>
+</h3>
+<div class="section level4">
+<h4 id="histogram">Histogram<a class="anchor" aria-label="anchor" href="#histogram"></a>
+</h4>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"DTF_Sask_2017"</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr6p3269280"</span>,</span>
+<span>  <span class="co"># Select marker colors</span></span>
+<span>  marker.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Choose what should be plotted</span></span>
+<span>  plot.histogram <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  plot.density <span class="op">=</span> <span class="cn">F</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Bar_02.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Bar_02.png"></p>
+<hr>
+</div>
+<div class="section level4">
+<h4 id="density">Density<a class="anchor" aria-label="anchor" href="#density"></a>
+</h4>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"DTF_Sask_2017"</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr6p3269280"</span>,</span>
+<span>  <span class="co"># Select marker colors</span></span>
+<span>  marker.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Choose what should be plotted</span></span>
+<span>  plot.histogram <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  plot.density <span class="op">=</span> <span class="cn">T</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Bar_03.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Bar_03.png"></p>
+<hr>
+</div>
+</div>
+<div class="section level3">
+<h3 id="multiple-markers-multiple-traits-1">Multiple markers, multiple traits<a class="anchor" aria-label="anchor" href="#multiple-markers-multiple-traits-1"></a>
+</h3>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DTF_Nepal_2017"</span>, <span class="st">"DTF_Sask_2017"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr2p44545877"</span>, <span class="st">"Lcu.1GRN.Chr5p1658484"</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Bar_04.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Bar_04.png"></p>
+<hr>
+</div>
+<div class="section level3">
+<h3 id="factor-data">Factor data<a class="anchor" aria-label="anchor" href="#factor-data"></a>
+</h3>
+<div class="section level4">
+<h4 id="numeric-format">Numeric format<a class="anchor" aria-label="anchor" href="#numeric-format"></a>
+</h4>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot </span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"Cotyledon_RedvsYellow"</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr1p365986872"</span>,</span>
+<span>  <span class="co"># Select marker colors</span></span>
+<span>  marker.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkred"</span>, <span class="st">"darkgoldenrod2"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Choose what should be plotted</span></span>
+<span>  plot.histogram <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  plot.density <span class="op">=</span> <span class="cn">F</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Bar_05.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Bar_05.png"></p>
+<hr>
+</div>
+<div class="section level4">
+<h4 id="factor-format">Factor format<a class="anchor" aria-label="anchor" href="#factor-format"></a>
+</h4>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot </span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"Cotyledon_Color"</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr1p365986872"</span>,</span>
+<span>  <span class="co"># Select marker colors</span></span>
+<span>  marker.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkred"</span>, <span class="st">"darkgoldenrod2"</span>, <span class="st">"darkgreen"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Choose what should be plotted</span></span>
+<span>  plot.histogram <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  plot.density <span class="op">=</span> <span class="cn">F</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Bar_06.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Bar_06.png"></p>
+<hr>
+</div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="gg_marker_pie">gg_Marker_Pie<a class="anchor" aria-label="anchor" href="#gg_marker_pie"></a>
+</h2>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot </span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Pie.html">gg_Marker_Pie</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Genotype data</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  <span class="co"># Phenotype data</span></span>
+<span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  trait <span class="op">=</span> <span class="st">"Cotyledon_Color"</span>,</span>
+<span>  <span class="co"># Select markers to plot</span></span>
+<span>  markers <span class="op">=</span> <span class="st">"Lcu.1GRN.Chr1p365986872"</span>,</span>
+<span>  <span class="co"># Select marker colors</span></span>
+<span>  marker.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkred"</span>, <span class="st">"darkgoldenrod2"</span>, <span class="st">"darkgreen"</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Pie_01.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Marker_Pie_01.png"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
