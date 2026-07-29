@@ -10,13 +10,14 @@ articles:
   gg_Manhattan_Zoom_Traits: gg_Manhattan_Zoom_Traits.html
   gg_Manhattan_Zoom: gg_Manhattan_Zoom.html
   gg_Manhattan: gg_Manhattan.html
+  gg_Marker: gg_Marker.html
   gg_myG_Details: gg_myG_Details.html
   gg_NYCvsKansas: gg_NYCvsKansas.html
   gg_QTL_Summary: gg_QTL_Summary.html
   gg_Volcano: gg_Volcano.html
   GWAS_with_GAPIT: GWAS_with_GAPIT.html
   table_GWAS_Results: table_GWAS_Results.html
-last_built: 2026-07-29T02:51Z
+last_built: 2026-07-29T14:13Z
 urls:
   reference: https://derekmichaelwright.github.io/gwaspr/reference
   article: https://derekmichaelwright.github.io/gwaspr/articles
