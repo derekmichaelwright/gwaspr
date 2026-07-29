@@ -2,6 +2,8 @@
 
 ### All vignettes
 
+- [gg_GWAS_Summary()](https://derekmichaelwright.github.io/gwaspr/articles/gg_GWAS_Summary.md):
+
 - [LD
   Decay](https://derekmichaelwright.github.io/gwaspr/articles/gg_LD_Decay.md):
 
