@@ -57,25 +57,26 @@ gg_LD_Decay <- function(xG = myG, outputFolder, markerNum = 1000) {
     mutate(Moving_Avg = movingAverage(LD, n = 100),
            Loess_Geno = ifelse(Distance < 1000000, predict(myloess), NA))
   #
-  x1 <- yy %>% summarise(Mean_LD = mean(Moving_Avg, na.rm = T))
-  x2 <- yy %>% filter(Loess_Chr < 0.2) %>%
+  x1 <- yy %>% summarise(Mean_LD = mean(LD, na.rm = T))
+  x2 <- yy %>% filter(Loess_Geno < 0.2) %>%
     summarise(Threshold_0.2 = min(Distance, na.rm = T))
   myGeno <- cross_join(x1, x2)
   # Plot first 1 Mbp
   mp1 <- ggplot(yy, aes(x = Distance/1000)) +
     geom_point(aes(y = LD), size = 0.3, pch = 15, alpha = 0.1) +
     geom_line(aes(y = Moving_Avg), alpha = 0.7) +
-    #geom_line(aes(y = Loess_Geno)) +
+    geom_line(aes(y = Loess_Geno)) +
     geom_hline(yintercept = 0.2, color = "blue", lty = 1) +
     geom_hline(data = myGeno, aes(yintercept = Mean_LD), color = "red", lty = 1) +
     geom_vline(data = myGeno, lty = 2, linewidth = 0.3,
                aes(xintercept = Threshold_0.2/1000)) +
-    scale_x_continuous(seq(0, 1000, by = 100), expand = c(0,10)) +
+    scale_x_continuous(breaks = seq(0, 1000, by = 100), expand = c(0,10)) +
     facet_wrap(paste("Threshold = ", myGeno$Threshold_0.2) ~ .) +
     theme_gwaspr(legend.position = "none",
                  axis.title.y = ggtext::element_markdown()) +
     labs(title = paste("LD Decay based on", markerNum, "randomly selected markers per chromosome"),
-         subtitle = "A) LD of all markers within 1 Mbp", y = "r<sup>2</sup>", x = "Kbp")
+         subtitle = "A) LD of all markers within 1 Mbp", y = "r<sup>2</sup>", x = "Kbp",
+         caption = "Threshold = loess curve (black line) crosses 0.2 (blue line)")
   # Plot first 1 Mbp
   mp2 <- ggplot(yy, aes(x = Distance/1000)) +
     geom_line(aes(y = Moving_Avg), alpha = 0.5) +
