@@ -29,7 +29,9 @@ myY <- myY %>%
 ```
 
 ```{r eval = T, echo = F}
-myY <- read.csv("gwaspr_myY.csv")
+myY <- read.csv("gwaspr_myY.csv") %>% 
+  mutate(Cotyledon_Color = mv(Cotyledon_RedvsYellow, c(1, 0, NA), c("Red", "Yellow", "Green")),
+         Cotyledon_Color = factor(Cotyledon_Color, levels = c("Red", "Yellow", "Green")))
 myY[1:15,]
 ```
 

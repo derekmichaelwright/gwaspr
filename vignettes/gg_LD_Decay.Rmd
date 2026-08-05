@@ -10,9 +10,11 @@ knitr::opts_chunk$set(message = F, warning = F)
 library(gwaspr)
 ```
 
-The function `gg_Volcano()` creates volcano plots from GAPIT GWAS results. 
+The function `gg_LD_Decay()` creates Linkage Disequilibrium (LD) Decay plots from GAPIT GWAS results. 
 
-Specifying a `folder` and `trait` is all that is needed to create manhattan plots.
+Specifying a `myG` object, an `outputFolder`, and a `markerNum` is all that is needed to calculate and plot LD decay.
+
+> **Note:** this is a computation heavy function and the larger you set `markerNum` the longer the computation will take. Start by setting to a lower number such as `100`.
 
 ```{r eval = F}
 # Load genotype file (note: header = T)
