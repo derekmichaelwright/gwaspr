@@ -4,7 +4,7 @@
 \alias{calc_LD_Decay}
 \title{calc_LD_Decay}
 \usage{
-calc_LD_Decay(xG = myG, outputFolder, markerNum = 1000)
+calc_LD_Decay(xG = myG, outputFolder, markerNum = 200)
 }
 \arguments{
 \item{xG}{GWAS genotype object. Note: needs to be in hapmap format.}

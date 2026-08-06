@@ -10,6 +10,10 @@ knitr::opts_chunk$set(message = F, warning = F)
 library(gwaspr)
 ```
 
+The function `gg_GWAS_Summary()` creates summary plots showing significant association from your GWAS analyses. 
+
+Specifying a `folder` is all that is needed to create summary GWAS plots.
+
 ```{r eval = F}
 # Plot
 mp <- gg_GWAS_Summary(

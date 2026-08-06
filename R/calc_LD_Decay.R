@@ -7,7 +7,7 @@
 #' @return RData files in the outputFolder location of LD data.
 #' @export
 
-calc_LD_Decay <- function(xG = myG, outputFolder, markerNum = 1000 ) {
+calc_LD_Decay <- function(xG = myG, outputFolder, markerNum = 200 ) {
   #
   dna <- data.frame(stringsAsFactors = F,
                     Symbol = c("A", "C", "G", "T", "U",

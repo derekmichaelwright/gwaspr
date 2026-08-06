@@ -7,7 +7,7 @@
 #' @return LD decay plots.
 #' @export
 
-gg_LD_Decay <- function(xG = myG, outputFolder, markerNum = 1000) {
+gg_LD_Decay <- function(xG = myG, outputFolder, markerNum = 200) {
   #
   # Create function
   movingAverage <- function(x, n = 5) {

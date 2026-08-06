@@ -10,6 +10,10 @@ knitr::opts_chunk$set(message = F, warning = F)
 library(gwaspr)
 ```
 
+The function `gg_LD_Heatmap()` creates a linkage disequilibrium (LD) heatmap plot for a specific region on a chromosome.
+
+... (under construction)
+
 ```{r eval = F}
 # Load genotype file (note: header = T)
 myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
