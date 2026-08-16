@@ -10,6 +10,7 @@ theme_gwaspr_pie(
   lineColor = "grey95",
   linesize = 0.75,
   stripFill = "white",
+  caption.adj = 1,
   ...
 )
 }
