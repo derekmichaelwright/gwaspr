@@ -11,6 +11,7 @@ theme_gwaspr2(
   lineSize = 0.75,
   stripFill = "white",
   caption.adj = 1,
+  caption.size = 7,
   ...
 )
 }
@@ -26,6 +27,8 @@ theme_gwaspr2(
 \item{stripFill}{strip background color}
 
 \item{caption.adj}{hjust for the caption}
+
+\item{caption.size}{size of the caption}
 }
 \value{
 ggplot with gwaspr theme

@@ -10,6 +10,7 @@ theme_gwaspr_pie(
   lineSize = 0.75,
   stripFill = "white",
   caption.adj = 1,
+  caption.size = 7,
   ...
 )
 }
@@ -23,6 +24,8 @@ theme_gwaspr_pie(
 \item{stripFill}{strip background color}
 
 \item{caption.adj}{hjust for the caption}
+
+\item{caption.size}{size of the caption}
 }
 \value{
 ggplot with agData theme for pie graphs
