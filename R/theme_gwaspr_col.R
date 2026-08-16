@@ -2,20 +2,22 @@
 #'
 #' ggplot theme.
 #' @param x ggplot
-#' @param linesize border line size
 #' @param bgFill background fill color
-#' @param stripFill strip background color
 #' @param lineColor color of axis lines
+#' @param lineSize border line size
+#' @param stripFill strip background color
+#' @param caption.adj hjust for the caption
 #' @return ggplot with gwaspr theme
 #' @export
 
-theme_gwaspr_col <- function(x, bgFill = "white", lineColor = "grey90", linesize = 0.75, stripFill = "white", ...) {
-    theme(panel.background = element_rect(color = "black", fill = bgFill, linewidth = linesize),
+theme_gwaspr_col <- function(x, bgFill = "white", lineColor = "grey90", lineSize = 0.75, stripFill = "white", caption.adj = 1, ...) {
+    theme(panel.background = element_rect(color = "black", fill = bgFill, linewidth = lineSize),
           panel.grid = element_line(color = lineColor),
-          panel.border = element_rect(color = "black", fill = NA, linewidth = linesize),
-          strip.background = element_rect(color = "black", fill = stripFill, linewidth = linesize),
+          panel.border = element_rect(color = "black", fill = NA, linewidth = lineSize),
+          strip.background = element_rect(color = "black", fill = stripFill, linewidth = lineSize),
           legend.key = element_rect(color = NA),
           panel.grid.major.x = element_blank(),
           panel.grid.minor.x = element_blank(),
+          plot.caption = element_text(hjust = caption.adj),
           ...)
 }

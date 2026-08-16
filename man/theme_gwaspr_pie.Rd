@@ -7,8 +7,7 @@
 theme_gwaspr_pie(
   x,
   bgFill = "white",
-  lineColor = "grey95",
-  linesize = 0.75,
+  lineSize = 0.75,
   stripFill = "white",
   caption.adj = 1,
   ...
@@ -16,6 +15,14 @@ theme_gwaspr_pie(
 }
 \arguments{
 \item{x}{ggplot}
+
+\item{bgFill}{background fill color}
+
+\item{lineSize}{border line size}
+
+\item{stripFill}{strip background color}
+
+\item{caption.adj}{hjust for the caption}
 }
 \value{
 ggplot with agData theme for pie graphs

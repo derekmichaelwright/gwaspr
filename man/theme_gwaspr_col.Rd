@@ -8,8 +8,9 @@ theme_gwaspr_col(
   x,
   bgFill = "white",
   lineColor = "grey90",
-  linesize = 0.75,
+  lineSize = 0.75,
   stripFill = "white",
+  caption.adj = 1,
   ...
 )
 }
@@ -20,9 +21,11 @@ theme_gwaspr_col(
 
 \item{lineColor}{color of axis lines}
 
-\item{linesize}{border line size}
+\item{lineSize}{border line size}
 
 \item{stripFill}{strip background color}
+
+\item{caption.adj}{hjust for the caption}
 }
 \value{
 ggplot with gwaspr theme
