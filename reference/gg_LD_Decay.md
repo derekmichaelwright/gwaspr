@@ -5,7 +5,7 @@ Creates a number of LD decay plots.
 ## Usage
 
 ``` r
-gg_LD_Decay(xG = myG, outputFolder, markerNum = 1000)
+gg_LD_Decay(xG = myG, outputFolder, markerNum = 200)
 ```
 
 ## Arguments

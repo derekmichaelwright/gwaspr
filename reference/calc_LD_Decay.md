@@ -5,7 +5,7 @@ Calculates pairwise LD for markers within your myG genotype file.
 ## Usage
 
 ``` r
-calc_LD_Decay(xG = myG, outputFolder, markerNum = 1000)
+calc_LD_Decay(xG = myG, outputFolder, markerNum = 200)
 ```
 
 ## Arguments

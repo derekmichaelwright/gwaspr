@@ -9,8 +9,10 @@ theme_gwaspr2(
   x,
   bgFill = "grey95",
   lineColor = "white",
-  linesize = 0.75,
+  lineSize = 0.75,
   stripFill = "white",
+  caption.adj = 1,
+  caption.size = 7,
   ...
 )
 ```
@@ -29,13 +31,21 @@ theme_gwaspr2(
 
   color of axis lines
 
-- linesize:
+- lineSize:
 
   border line size
 
 - stripFill:
 
   strip background color
+
+- caption.adj:
+
+  hjust for the caption
+
+- caption.size:
+
+  size of the caption
 
 ## Value
 
