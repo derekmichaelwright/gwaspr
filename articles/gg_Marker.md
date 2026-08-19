@@ -22,6 +22,12 @@ myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
 
 ``` r
 
+myG <- read.csv("gwaspr_myG_hmp_10.csv", header = F)
+#write.csv(myG, "myG_hmp_10.csv", row.names = F)
+```
+
+``` r
+
 # Load phenotype file
 myY <- read.csv("gwaspr_myY.csv")
 # Convert our nominal trait from numeric to factor.
@@ -29,23 +35,6 @@ myY <- myY %>%
   mutate(Cotyledon_Color = mv(Cotyledon_RedvsYellow, c(1, 0, NA), c("Red", "Yellow", "Green")),
          Cotyledon_Color = factor(Cotyledon_Color, levels = c("Red", "Yellow", "Green")))
 ```
-
-    ##                 Name DTF_Sask_2017 DTF_Nepal_2017 Cotyledon_RedvsYellow
-    ## 1    CDC_Asterix_AGL          54.7          128.0                     0
-    ## 2      CDC_Rosie_AGL          59.0          123.3                     1
-    ## 3       X3156.11_AGL          60.7          125.3                     1
-    ## 4  CDC_Greenstar_AGL          56.7          121.0                     0
-    ## 5     CDC_Cherie_AGL          54.3          125.3                     1
-    ## 6     CDC_Glamis_AGL          59.0          123.0                     0
-    ## 7       CDC_Gold_AGL          54.0          125.3                     0
-    ## 8       CDC_Imax_AGL          53.0          128.7                     1
-    ## 9    CDC_Impower_AGL          57.0          123.3                     0
-    ## 10      CDC_KR.1_AGL          57.0          121.7                     1
-    ## 11     CDC_LeMay_AGL          55.7          126.7                     0
-    ## 12     CDC_Maxim_AGL          54.3          125.7                     1
-    ## 13      CDC_QG.1_AGL          57.7          126.7                    NA
-    ## 14 CDC_Red_Rider_AGL          57.0          123.5                     1
-    ## 15   CDC_Redcoat_AGL          57.7          126.7                     1
 
 ------------------------------------------------------------------------
 
