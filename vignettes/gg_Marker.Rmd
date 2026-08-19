@@ -19,35 +19,18 @@ The functions `gg_Marker_Box()`, `gg_Marker_Bar()`, and `gg_Marker_Pie()` create
 myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
 ```
 
-```{r echo = F}
+```{r eval = F}
 myG <- read.csv("gwaspr_myG_hmp_10.csv", header = F)
 #write.csv(myG, "myG_hmp_10.csv", row.names = F)
 ```
 
-```{r}
-# Map + marker Info
-myG[1:10,1:11]
-# genotrype calls
-myG[1:10,12:17]
-```
-
-```{r}
+```{r eval = F}
 # Load phenotype file
 myY <- read.csv("gwaspr_myY.csv")
 # Convert our nominal trait from numeric to factor.
 myY <- myY %>% 
   mutate(Cotyledon_Color = mv(Cotyledon_RedvsYellow, c(1, 0, NA), c("Red", "Yellow", "Green")),
          Cotyledon_Color = factor(Cotyledon_Color, levels = c("Red", "Yellow", "Green")))
-```
-
-```{r eval = T, echo = F}
-myY <- read.csv("gwaspr_myY.csv") %>% 
-  mutate(Cotyledon_Color = mv(Cotyledon_RedvsYellow, c(1, 0, NA), c("Red", "Yellow", "Green")),
-         Cotyledon_Color = factor(Cotyledon_Color, levels = c("Red", "Yellow", "Green")))
-```
-
-```{r}
-myY[1:15,]
 ```
 
 ---
