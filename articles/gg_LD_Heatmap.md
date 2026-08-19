@@ -5,6 +5,13 @@
 library(gwaspr)
 ```
 
+The function
+[`gg_LD_Heatmap()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_LD_Heatmap.md)
+creates a linkage disequilibrium (LD) heatmap plot for a specific region
+on a chromosome.
+
+… (under construction)
+
 ``` r
 
 # Load genotype file (note: header = T)
