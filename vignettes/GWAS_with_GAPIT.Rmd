@@ -27,7 +27,7 @@ Our population, the LDP, was genotyped using an *exome caputure array* and filte
 myG <- read.csv("gwaspr_myG_hmp.csv", header = F)
 ```
 
-```{r echo = F}
+```{r echo = T}
 myG <- read.csv("gwaspr_myG_hmp_10.csv", header = F)
 #write.csv(myG, "myG_hmp_10.csv", row.names = F)
 ```
