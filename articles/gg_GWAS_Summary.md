@@ -5,6 +5,14 @@
 library(gwaspr)
 ```
 
+The function
+[`gg_GWAS_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_GWAS_Summary.md)
+creates summary plots showing significant association from your GWAS
+analyses.
+
+Specifying a `folder` is all that is needed to create summary GWAS
+plots.
+
 ``` r
 
 # Plot
