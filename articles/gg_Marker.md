@@ -22,8 +22,10 @@ myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
 
 ``` r
 
-myG <- read.csv("gwaspr_myG_hmp_10.csv", header = F)
-#write.csv(myG, "myG_hmp_10.csv", row.names = F)
+# Map + marker Info
+myG[1:10,1:11]
+# genotrype calls
+myG[1:10,12:17]
 ```
 
 ``` r
@@ -34,6 +36,11 @@ myY <- read.csv("gwaspr_myY.csv")
 myY <- myY %>% 
   mutate(Cotyledon_Color = mv(Cotyledon_RedvsYellow, c(1, 0, NA), c("Red", "Yellow", "Green")),
          Cotyledon_Color = factor(Cotyledon_Color, levels = c("Red", "Yellow", "Green")))
+```
+
+``` r
+
+myY[1:20,]
 ```
 
 ------------------------------------------------------------------------

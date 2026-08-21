@@ -34,7 +34,6 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-vignettes">
 <li><h6 class="dropdown-header" data-toc-skip>GWAS</h6></li>
     <li><a class="dropdown-item" href="../articles/GWAS_with_GAPIT.html">Run GWAS with GAPIT</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_NYCvsKansas.html">NYC vs Kansas Results</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Manhattan Plots</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan.html">gg_Manhattan()</a></li>
@@ -56,6 +55,7 @@
     <li><a class="dropdown-item" href="../articles/gg_LD_Heatmap.html">gg_LD_Heatmap()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_LD_Decay.html">gg_LD_Decay()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Volcano.html">gg_Volcano()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_NYCvsKansas.html">NYC vs Kansas Results</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
@@ -108,8 +108,10 @@ files.</p>
 <code class="sourceCode R"><span><span class="co"># Load genotype file (note: header = T)</span></span>
 <span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myG_hmp.csv"</span>, header <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myG_hmp_10.csv"</span>, header <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
-<span><span class="co">#write.csv(myG, "myG_hmp_10.csv", row.names = F)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Map + marker Info</span></span>
+<span><span class="va">myG</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">]</span></span>
+<span><span class="co"># genotrype calls</span></span>
+<span><span class="va">myG</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">12</span><span class="op">:</span><span class="fl">17</span><span class="op">]</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load phenotype file</span></span>
 <span><span class="va">myY</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myY.csv"</span><span class="op">)</span></span>
@@ -117,6 +119,8 @@ files.</p>
 <span><span class="va">myY</span> <span class="op">&lt;-</span> <span class="va">myY</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Cotyledon_Color <span class="op">=</span> <span class="fu"><a href="../reference/mv.html">mv</a></span><span class="op">(</span><span class="va">Cotyledon_RedvsYellow</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Green"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>         Cotyledon_Color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">Cotyledon_Color</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Green"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">myY</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="op">]</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
@@ -128,7 +132,7 @@ files.</p>
 <p>Specifying a <code>trait</code> and a <code>marker</code> along with
 your genotype and phenotype data as <code>xG</code> and <code>xY</code>
 is needed to create marker plots.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -151,7 +155,7 @@ is needed to create marker plots.</p>
 <div class="section level4">
 <h4 id="boxplots">Boxplots<a class="anchor" aria-label="anchor" href="#boxplots"></a>
 </h4>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -181,7 +185,7 @@ is needed to create marker plots.</p>
 <div class="section level4">
 <h4 id="violin-points">Violin + points<a class="anchor" aria-label="anchor" href="#violin-points"></a>
 </h4>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -214,7 +218,7 @@ is needed to create marker plots.</p>
 <div class="section level5">
 <h5 id="myg-covariable">myG covariable<a class="anchor" aria-label="anchor" href="#myg-covariable"></a>
 </h5>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -252,7 +256,7 @@ is needed to create marker plots.</p>
 <div class="section level5">
 <h5 id="myy-covariable">myY covariable<a class="anchor" aria-label="anchor" href="#myy-covariable"></a>
 </h5>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -292,7 +296,7 @@ is needed to create marker plots.</p>
 <div class="section level3">
 <h3 id="multiple-markers-multiple-traits">Multiple markers, multiple traits<a class="anchor" aria-label="anchor" href="#multiple-markers-multiple-traits"></a>
 </h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -316,7 +320,7 @@ is needed to create marker plots.</p>
 <div class="section level3">
 <h3 id="single-marker-single-trait-1">Single marker, single trait<a class="anchor" aria-label="anchor" href="#single-marker-single-trait-1"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -339,7 +343,7 @@ is needed to create marker plots.</p>
 <div class="section level4">
 <h4 id="histogram">Histogram<a class="anchor" aria-label="anchor" href="#histogram"></a>
 </h4>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -364,7 +368,7 @@ is needed to create marker plots.</p>
 <div class="section level4">
 <h4 id="density">Density<a class="anchor" aria-label="anchor" href="#density"></a>
 </h4>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -390,7 +394,7 @@ is needed to create marker plots.</p>
 <div class="section level3">
 <h3 id="multiple-markers-multiple-traits-1">Multiple markers, multiple traits<a class="anchor" aria-label="anchor" href="#multiple-markers-multiple-traits-1"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -413,7 +417,7 @@ is needed to create marker plots.</p>
 <div class="section level4">
 <h4 id="numeric-format">Numeric format<a class="anchor" aria-label="anchor" href="#numeric-format"></a>
 </h4>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot </span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -438,7 +442,7 @@ is needed to create marker plots.</p>
 <div class="section level4">
 <h4 id="factor-format">Factor format<a class="anchor" aria-label="anchor" href="#factor-format"></a>
 </h4>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot </span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
@@ -465,7 +469,7 @@ is needed to create marker plots.</p>
 <div class="section level2">
 <h2 id="gg_marker_pie">gg_Marker_Pie<a class="anchor" aria-label="anchor" href="#gg_marker_pie"></a>
 </h2>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot </span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Pie.html">gg_Marker_Pie</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Genotype data</span></span>
