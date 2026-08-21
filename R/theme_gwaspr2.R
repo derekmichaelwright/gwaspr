@@ -18,6 +18,6 @@ theme_gwaspr2 <- function(x, bgFill = "grey95", lineColor = "white", lineSize = 
         panel.border = element_rect(color = "black", fill = NA, linewidth = lineSize),
         strip.background = element_rect(color = "black", fill = stripFill, linewidth = lineSize),
         legend.key = element_rect(color = NA),
-        plot.caption = element_text(hjust = caption.adj, size = caption.size),
+        plot.caption = element_markdown(hjust = caption.adj, size = caption.size),
         ...)
 }

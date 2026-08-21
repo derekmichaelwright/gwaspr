@@ -11,5 +11,5 @@ Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
 Config/roxygen2/markdown: TRUE
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0
 URL: https://derekmichaelwright.github.io/gwaspr/, https://github.com/derekmichaelwright/gwaspr/

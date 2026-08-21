@@ -24,7 +24,7 @@ myG <- read.csv("gwaspr_myG_hmp_10.csv", header = T)
 #write.csv(myG, "myG_hmp_10.csv", row.names = F)
 ```
 
-```{r eval = F}
+```{r eval = T}
 # Map + marker Info
 myG[1:10,1:11]
 # genotrype calls

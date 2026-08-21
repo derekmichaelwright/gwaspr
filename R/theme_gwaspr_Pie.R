@@ -20,6 +20,6 @@ theme_gwaspr_pie <- function(x, bgFill = "white", lineSize = 0.75, stripFill = "
         axis.ticks = element_blank(),
         axis.text = element_blank(),
         legend.key = element_rect(color = NA),
-        plot.caption = element_text(hjust = caption.adj, size = caption.size),
+        plot.caption = element_markdown(hjust = caption.adj, size = caption.size),
         ...)
 }
