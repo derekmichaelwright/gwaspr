@@ -19,7 +19,7 @@ The functions `gg_Marker_Box()`, `gg_Marker_Bar()`, and `gg_Marker_Pie()` create
 myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
 ```
 
-```{r eval = F, echo = F}
+```{r eval = T, echo = F}
 myG <- read.csv("gwaspr_myG_hmp_10.csv", header = T)
 #write.csv(myG, "myG_hmp_10.csv", row.names = F)
 ```
