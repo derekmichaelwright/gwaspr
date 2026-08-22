@@ -55,8 +55,6 @@ library(gwaspr)
 
 # Example Plots
 
-![](man/figures/featured.png)
-
 ------------------------------------------------------------------------
 
 ![](man/figures/logo_gwaspr.png)
