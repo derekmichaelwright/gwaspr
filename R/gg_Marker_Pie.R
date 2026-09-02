@@ -9,6 +9,7 @@
 #' @param marker.colors Color palette.
 #' @param title Title for the plot.
 #' @param subtitle Subtitle for the plot. Defaults to the list of markers.
+#' @param ncol number of columns for facetting.
 #' @return Marker plot.
 #' @export
 
@@ -20,10 +21,11 @@ gg_Marker_Pie <- function (
     markers,
     marker.colors = gwaspr_Colors,
     title = NULL,
-    subtitle = paste(markers, collapse = "\n")
+    subtitle = paste(markers, collapse = "\n"),
+    ncol = NULL
     ) {
  #
- xY <- xY %>% dplyr::select(1, myTrait=trait)
+ xY <- xY %>% dplyr::select(Name=1, myTrait=trait)
  xx <- xG %>% rename(SNP=1) %>%
    filter(SNP %in% markers) %>%
    dplyr::select(-2,-3,-4,-5,-6,-7,-8,-9,-10,-11) %>%
@@ -48,16 +50,20 @@ gg_Marker_Pie <- function (
    mutate(Percent = 100* TraitCount / AlleleCount) %>%
    filter(!duplicated(paste(Alleles, myTrait, TraitCount, AlleleCount, Percent)))
  #
- xx <- xx %>% #mutate(TraitPos = TraitCount / 2) %>%
-   group_by(Alleles) %>% mutate(TraitPos = cumsum(TraitCount))
+ xx <- xx %>%
+   group_by(Alleles) %>%
+   mutate(TraitPos = cumsum(TraitCount),
+          myTrait = factor(myTrait))
  #
  # Plot
- mp <- ggplot(xx, aes(x = "", y = Percent)) +
-   geom_col(aes(fill = myTrait), stat = "identity",  color = "black", alpha = 0.7) +
+ mp <- ggplot(xx, aes(x = "x", y = Percent, fill = myTrait)) +
+   geom_col(alpha = 0.7) +
    geom_text(aes(label = TraitCount), position = position_stack(vjust = 0.5)) +
+   geom_text(aes(label = paste("n =",AlleleCount), x = "x_empty"), y = 50) +
    coord_polar("y", start = 0) +
-   facet_grid(. ~ paste0(Alleles,"\nn = ", AlleleCount), scales = "free") +
+   facet_wrap(. ~ Alleles, scales = "free", ncol = ncol) +
    scale_fill_manual(name = trait.label, values = marker.colors) +
+   scale_x_discrete(limits = c("x_empty", "x")) +
    theme_gwaspr_pie(legend.position = "bottom") +
    labs(title = title, subtitle = subtitle, y = NULL)
  mp

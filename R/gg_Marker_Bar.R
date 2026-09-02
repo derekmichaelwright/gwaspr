@@ -9,8 +9,8 @@
 #' @param plot.histogram Logical, if true will plot histogram bars.
 #' @param plot.density Logical, if true will plot density bands.
 #' @param plot.counts Logical, if true will make a plot of counts, if false will make a density plot.
-#' @param myncol Number of columns for facetting when plotting multiple traits.
-#' @param line.color Color
+#' @param ncol Number of columns for facetting when plotting multiple traits.
+#' @param line.color Color of the border lines.
 #' @param title Title for the plot.
 #' @param subtitle Subtile for the plot. Defaults to the list of markers.
 #' @param asfactor Logical, whether or not to plot as a factor or numeric.
@@ -26,7 +26,7 @@ gg_Marker_Bar <- function (
     plot.histogram = T,
     plot.density = T,
     plot.counts = T,
-    myncol = NULL,
+    ncol = NULL,
     line.color = F,
     title = NULL,
     subtitle = paste(markers, collapse = "\n"),
@@ -35,7 +35,7 @@ gg_Marker_Bar <- function (
   #
   if(asfactor == T) { xY[] <- lapply(xY, as.factor) }
   #
-  xY <- xY %>% dplyr::select(1, traits) %>%
+  xY <- xY %>% dplyr::select(Name=1, traits) %>%
     gather(Trait, Value, traits)
   #
   xx <- xG %>% rename(SNP=1) %>%
@@ -68,7 +68,7 @@ gg_Marker_Bar <- function (
     if(plot.density == T) { mp <- mp + geom_density(alpha = 0.5, color = line.color) }
     if(plot.histogram == T) { mp <- mp + geom_histogram(position = "dodge", alpha = 0.5, color = line.color) }
     mp <- mp +
-      facet_wrap(Trait ~ ., scales = "free", ncol = myncol) +
+      facet_wrap(Trait ~ ., scales = "free", ncol = ncol) +
       scale_fill_manual(name = NULL, values = marker.colors) +
       theme_gwaspr_col(legend.position = "bottom") +
       labs(title = title, subtitle = subtitle, x = NULL)
@@ -78,7 +78,7 @@ gg_Marker_Bar <- function (
     # Plot
     mp <- ggplot(xx, aes(x = Value, fill = Alleles)) +
       geom_bar(position = "dodge", alpha = 0.5, color = line.color) +
-      facet_wrap(Trait ~ ., scales = "free", ncol = myncol) +
+      facet_wrap(Trait ~ ., scales = "free", ncol = ncol) +
       scale_fill_manual(name = NULL, values = marker.colors) +
       theme_gwaspr_col(legend.position = "bottom") +
       labs(title = title, subtitle = subtitle)
@@ -89,4 +89,4 @@ gg_Marker_Bar <- function (
 #xG = myG; xY = myY;  markers = myMarkers[1]
 #traits = c("Disease.Score_Ba16","Lodging.Score_Ba16", "Stem.Blight_Ba17", "Stem.Blight_Ba16")
 #marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4", "darkslategray", "maroon4", "purple4", "darkblue")
-#myncol = NULL; plot.histogram = T; plot.density = T
+#ncol = NULL; plot.histogram = T; plot.density = T

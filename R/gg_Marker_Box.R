@@ -13,7 +13,7 @@
 #' @param box.width Width for the boxplot.
 #' @param point.size Size for the points.
 #' @param point.beeswarm Logical. If False (the default), will plot points with `geom_quasirandom`. If TRUE, will plot points with `geom_beeswarm`.
-#' @param myncol Number of columns for facetting when plotting multiple traits.
+#' @param ncol Number of columns for facetting when plotting multiple traits.
 #' @param title Title for the plot.
 #' @param legend.rows Number of rows for the legend.
 #' @param subtitle Subtitle for the plot. Defaults to the list of markers.
@@ -38,7 +38,7 @@ gg_Marker_Box <- function (
     box.width = 0.1,
     point.size = 1,
     point.beeswarm = F,
-    myncol = NULL,
+    ncol = NULL,
     title = NULL,
     legend.rows = 1,
     subtitle = paste(markers, collapse = "\n"),
@@ -113,7 +113,7 @@ gg_Marker_Box <- function (
     mp <- mp + geom_boxplot(aes(fill = Alleles), alpha = 0.5, width = box.width, outlier.shape = NA)
   }
   mp <- mp +
-    facet_wrap(Trait ~ ., scales = "free_y", ncol = myncol) +
+    facet_wrap(Trait ~ ., scales = "free_y", ncol = ncol) +
     scale_fill_manual(name = NULL, values = marker.colors, guide = F) +
     theme_gwaspr(legend.position = "none",
                  axis.text.x = element_text(angle = 45, hjust = 1) ) +
@@ -144,6 +144,6 @@ gg_Marker_Box <- function (
 #traits = c("Canopy.Height_Ba16", "Canopy.Width_Ba16", "Canopy.Height_Ba17", "Canopy.Width_Ba17")
 #markers = myMarkers
 #marker.colors = c("darkgreen", "darkgoldenrod3", "darkred", "steelblue4", "darkslategray", "maroon4", "purple4", "darkblue")
-#box.width = 0.1; plot.points = T; plot.violin = F; plot.box = T; myncol = 4
+#box.width = 0.1; plot.points = T; plot.violin = F; plot.box = T; ncol = 4
 #yLab = ""; subtitle = ""; point.size = 2; title = ""; cv.colors = gwaspr_Colors; cv.label = "CV"
 #legend.rows = 1; point.beeswarm = F; remove.hets = T;

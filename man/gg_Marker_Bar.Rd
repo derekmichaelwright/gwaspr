@@ -13,7 +13,7 @@ gg_Marker_Bar(
   plot.histogram = T,
   plot.density = T,
   plot.counts = T,
-  myncol = NULL,
+  ncol = NULL,
   line.color = F,
   title = NULL,
   subtitle = paste(markers, collapse = "\\n"),
@@ -37,9 +37,9 @@ gg_Marker_Bar(
 
 \item{plot.counts}{Logical, if true will make a plot of counts, if false will make a density plot.}
 
-\item{myncol}{Number of columns for facetting when plotting multiple traits.}
+\item{ncol}{Number of columns for facetting when plotting multiple traits.}
 
-\item{line.color}{Color}
+\item{line.color}{Color of the border lines.}
 
 \item{title}{Title for the plot.}
 
