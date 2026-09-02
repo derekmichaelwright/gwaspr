@@ -19,7 +19,7 @@ gg_Marker_Box(
   box.width = 0.1,
   point.size = 1,
   point.beeswarm = F,
-  myncol = NULL,
+  ncol = NULL,
   title = NULL,
   legend.rows = 1,
   subtitle = paste(markers, collapse = "\n"),
@@ -83,7 +83,7 @@ gg_Marker_Box(
   Logical. If False (the default), will plot points with
   `geom_quasirandom`. If TRUE, will plot points with `geom_beeswarm`.
 
-- myncol:
+- ncol:
 
   Number of columns for facetting when plotting multiple traits.
 

@@ -15,7 +15,7 @@ gg_Marker_Bar(
   plot.histogram = T,
   plot.density = T,
   plot.counts = T,
-  myncol = NULL,
+  ncol = NULL,
   line.color = F,
   title = NULL,
   subtitle = paste(markers, collapse = "\n"),
@@ -58,13 +58,13 @@ gg_Marker_Bar(
   Logical, if true will make a plot of counts, if false will make a
   density plot.
 
-- myncol:
+- ncol:
 
   Number of columns for facetting when plotting multiple traits.
 
 - line.color:
 
-  Color
+  Color of the border lines.
 
 - title:
 

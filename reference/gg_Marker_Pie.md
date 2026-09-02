@@ -14,7 +14,8 @@ gg_Marker_Pie(
   markers,
   marker.colors = gwaspr_Colors,
   title = NULL,
-  subtitle = paste(markers, collapse = "\n")
+  subtitle = paste(markers, collapse = "\n"),
+  ncol = NULL
 )
 ```
 
@@ -51,6 +52,10 @@ gg_Marker_Pie(
 - subtitle:
 
   Subtitle for the plot. Defaults to the list of markers.
+
+- ncol:
+
+  number of columns for facetting.
 
 ## Value
 
