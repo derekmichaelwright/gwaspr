@@ -83,9 +83,9 @@ myG[1:10,12:17]
 # Load phenotype file
 myY <- read.csv("gwaspr_myY.csv")
 # Convert our nominal trait from numeric to factor.
-#myY <- myY %>% 
-#  mutate(Cotyledon_Color = mv(Cotyledon_RedvsYellow, c(1, 0, NA), c("Red", "Yellow", "Green")),
-#         Cotyledon_Color = factor(Cotyledon_Color, levels = c("Red", "Yellow", "Green")))
+myY <- myY %>% 
+  mutate(Cotyledon_Color = mv(Cotyledon_RedvsYellow, c(1, 0, NA), c("Red", "Yellow", "Green")),
+         Cotyledon_Color = factor(Cotyledon_Color, levels = c("Red", "Yellow", "Green")))
 ```
 
 ``` r
@@ -114,6 +114,27 @@ myY[1:20,]
     ## 18   CDC_Rosebud_AGL          54.7          121.3                     1
     ## 19  CDC_Rosetown_AGL          57.7          123.7                     1
     ## 20   CDC_Rouleau_AGL          55.3          123.7                     1
+    ##    Cotyledon_Color
+    ## 1           Yellow
+    ## 2              Red
+    ## 3              Red
+    ## 4           Yellow
+    ## 5              Red
+    ## 6           Yellow
+    ## 7           Yellow
+    ## 8              Red
+    ## 9           Yellow
+    ## 10             Red
+    ## 11          Yellow
+    ## 12             Red
+    ## 13           Green
+    ## 14             Red
+    ## 15             Red
+    ## 16             Red
+    ## 17             Red
+    ## 18             Red
+    ## 19             Red
+    ## 20             Red
 
 ------------------------------------------------------------------------
 
