@@ -6,6 +6,10 @@ title: "gg_Marker_*()"
 knitr::opts_chunk$set(message = F, warning = F)
 ```
 
+```{r echo = F}
+library(tidyverse)
+```
+
 ```{r}
 library(gwaspr)
 ```
