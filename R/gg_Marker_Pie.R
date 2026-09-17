@@ -4,7 +4,8 @@
 #' @param xG GWAS genotype object. Note:  needs to be in hapmap format.
 #' @param xY GWAS phenotype object.
 #' @param trait Trait to plot.
-#' @param trait.label Label for the Trait.
+#' @param trait.label Label for the trait.
+#' @param trait.levels Factor levels for the trait.
 #' @param markers Markers to plot.
 #' @param marker.colors Color palette.
 #' @param title Title for the plot.
@@ -18,6 +19,7 @@ gg_Marker_Pie <- function (
     xY,
     trait,
     trait.label = trait,
+    trait.levels = NULL,
     markers,
     marker.colors = gwaspr_Colors,
     title = NULL,
@@ -50,10 +52,18 @@ gg_Marker_Pie <- function (
    mutate(Percent = 100* TraitCount / AlleleCount) %>%
    filter(!duplicated(paste(Alleles, myTrait, TraitCount, AlleleCount, Percent)))
  #
- xx <- xx %>%
-   group_by(Alleles) %>%
-   mutate(TraitPos = cumsum(TraitCount),
-          myTrait = factor(myTrait))
+ if(is.null(trait.levels)) {
+   xx <- xx %>%
+     group_by(Alleles) %>%
+     mutate(TraitPos = cumsum(TraitCount),
+            myTrait = factor(myTrait))
+ }
+ if(!is.null(trait.levels)) {
+   xx <- xx %>%
+     group_by(Alleles) %>%
+     mutate(TraitPos = cumsum(TraitCount),
+            myTrait = factor(myTrait, levels = trait.levels))
+ }
  #
  # Plot
  mp <- ggplot(xx, aes(x = "x", y = Percent, fill = myTrait)) +
@@ -65,6 +75,7 @@ gg_Marker_Pie <- function (
    scale_fill_manual(name = trait.label, values = marker.colors) +
    scale_x_discrete(limits = c("x_empty", "x")) +
    theme_gwaspr_pie(legend.position = "bottom") +
+   guides(fill = guide_legend(nrow = 1)) +
    labs(title = title, subtitle = subtitle, y = NULL)
  mp
 }

@@ -9,6 +9,7 @@ gg_Marker_Pie(
   xY,
   trait,
   trait.label = trait,
+  trait.levels = NULL,
   markers,
   marker.colors = gwaspr_Colors,
   title = NULL,
@@ -23,7 +24,9 @@ gg_Marker_Pie(
 
 \item{trait}{Trait to plot.}
 
-\item{trait.label}{Label for the Trait.}
+\item{trait.label}{Label for the trait.}
+
+\item{trait.levels}{Factor levels for the trait.}
 
 \item{markers}{Markers to plot.}
 
