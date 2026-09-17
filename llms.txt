@@ -128,6 +128,8 @@ library(gwaspr)
   : list_Top_Markers
 - [`list_Traits()`](https://derekmichaelwright.github.io/gwaspr/reference/list_Traits.md)
   : list_Traits
+- [`movingAverage()`](https://derekmichaelwright.github.io/gwaspr/reference/movingAverage.md)
+  : movingAverage.
 - [`mv()`](https://derekmichaelwright.github.io/gwaspr/reference/mv.md)
   : mv
 - [`order_GWAS_Results()`](https://derekmichaelwright.github.io/gwaspr/reference/order_GWAS_Results.md)
@@ -140,6 +142,8 @@ library(gwaspr)
   : table_GWAS_Results
 - [`table_GWAS_Results_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/table_GWAS_Results_Summary.md)
   : table_GWAS_Results_Summary
+- [`table_LD_Decay()`](https://derekmichaelwright.github.io/gwaspr/reference/table_LD_Decay.md)
+  : table_LD_Decay
 - [`theme_gwaspr()`](https://derekmichaelwright.github.io/gwaspr/reference/theme_gwaspr.md)
   : theme_gwaspr.
 - [`theme_gwaspr2()`](https://derekmichaelwright.github.io/gwaspr/reference/theme_gwaspr2.md)

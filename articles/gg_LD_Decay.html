@@ -163,6 +163,30 @@ is the default.</p>
 <span><span class="co"># Save</span></span>
 <span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_LD_Decay_02.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">10</span> <span class="op">)</span></span></code></pre></div>
 <p><img src="figures/gg_LD_Decay_02.png"></p>
+<hr>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">xx</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/table_LD_Decay.html">table_LD_Decay</a></span><span class="op">(</span></span>
+<span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
+<span>  outputFolder <span class="op">=</span> <span class="st">"LD_Decay/"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="va">xx</span>, <span class="st">"LD_Summary_Table.csv"</span>, row.names <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   Chr   X200  X2000</span></span>
+<span><span class="co">## 1   1  79592 104896</span></span>
+<span><span class="co">## 2   2 130852 113954</span></span>
+<span><span class="co">## 3   3 273983 128719</span></span>
+<span><span class="co">## 4   4 349679 157730</span></span>
+<span><span class="co">## 5   5  63173  74786</span></span>
+<span><span class="co">## 6   6 215886 152284</span></span>
+<span><span class="co">## 7   7  62221  56477</span></span></code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">xx</span> <span class="op">&lt;-</span> <span class="va">xx</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">gather</span><span class="op">(</span><span class="va">Num</span>, <span class="va">Value</span>, <span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">xx</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Chr</span>, y <span class="op">=</span> <span class="va">Value</span>, fill <span class="op">=</span> <span class="va">Num</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_col</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span>, alpha <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/theme_gwaspr_col.html">theme_gwaspr_col</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"LD decay"</span>, y <span class="op">=</span> <span class="st">"Pos"</span><span class="op">)</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_LD_Decay_03.png"</span>, <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">10</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_LD_Decay_03.png"></p>
+<hr>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

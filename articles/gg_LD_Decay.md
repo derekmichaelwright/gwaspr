@@ -83,3 +83,37 @@ ggsave("figures/gg_LD_Decay_02.png", mp, width = 12, height = 10 )
 ```
 
 ![](figures/gg_LD_Decay_02.png)
+
+------------------------------------------------------------------------
+
+``` r
+
+xx <- table_LD_Decay(
+  xG = myG, 
+  outputFolder = "LD_Decay/")
+write.csv(xx, "LD_Summary_Table.csv", row.names = F)
+```
+
+    ##   Chr   X200  X2000
+    ## 1   1  79592 104896
+    ## 2   2 130852 113954
+    ## 3   3 273983 128719
+    ## 4   4 349679 157730
+    ## 5   5  63173  74786
+    ## 6   6 215886 152284
+    ## 7   7  62221  56477
+
+``` r
+
+xx <- xx %>% gather(Num, Value, 2:ncol(.))
+# Plot
+mp <- ggplot(xx, aes(x = Chr, y = Value, fill = Num)) +
+  geom_col(position = "dodge", alpha = 0.8) +
+  theme_gwaspr_col(legend.position = "bottom") +
+  labs(title = "LD decay", y = "Pos")
+ggsave("figures/gg_LD_Decay_03.png", mp, width = 12, height = 10 )
+```
+
+![](figures/gg_LD_Decay_03.png)
+
+------------------------------------------------------------------------
