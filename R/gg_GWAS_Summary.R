@@ -126,10 +126,10 @@ gg_GWAS_Summary <- function(
   if(!is.null(groups)) {
     myP <- myP %>%
       mutate(Group = plyr::mapvalues(Trait, traits, groups),
-             Group = factor(Group, levels = rev(unique(myGroups))))
+             Group = factor(Group, levels = unique(groups)))
     myG <- myG %>%
       mutate(Group = plyr::mapvalues(Trait, traits, groups),
-             Group = factor(Group, levels = rev(unique(myGroups))))
+             Group = factor(Group, levels = unique(groups)))
   }
   myP <- myP %>%
     mutate(Threshold = ifelse(Threshold == "Significant", paste("Significant =",threshold), Threshold),
@@ -169,11 +169,12 @@ gg_GWAS_Summary <- function(
   if(!is.null(groups)) {
     mp <- mp + facet_grid(Group ~ Chr, scales = "free", space = "free")
   } else { mp <- mp + facet_grid(. ~ Chr, scales = "free", space = "free") }
+  #
   mp <- mp +
     scale_fill_manual(values = model.colors, breaks = models) +
     scale_shape_manual(values = shapes, breaks = models) +
     scale_size_manual(name = NULL, values = c(2.25,0.75)) +
-    scale_y_discrete(limits = rev, drop = F) +
+    scale_y_discrete(limits = rev) + # drop = F
     scale_x_continuous(breaks = 0:20, minor_breaks = 0:20) +
     theme_gwaspr(legend.position = legend.position) +
     guides(shape = guide_legend(nrow = legend.rows, override.aes = list(size = 4)),

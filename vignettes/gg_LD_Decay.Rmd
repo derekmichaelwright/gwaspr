@@ -78,3 +78,31 @@ ggsave("figures/gg_LD_Decay_02.png", mp, width = 12, height = 10 )
 ```
 
 ![](figures/gg_LD_Decay_02.png)
+
+---
+
+```{r eval = F}
+xx <- table_LD_Decay(
+  xG = myG, 
+  outputFolder = "LD_Decay/")
+write.csv(xx, "LD_Summary_Table.csv", row.names = F)
+```
+
+```{r echo = F}
+xx <- read.csv("LD_Summary_Table.csv")
+xx
+```
+
+```{r eval = F}
+xx <- xx %>% gather(Num, Value, 2:ncol(.))
+# Plot
+mp <- ggplot(xx, aes(x = Chr, y = Value, fill = Num)) +
+  geom_col(position = "dodge", alpha = 0.8) +
+  theme_gwaspr_col(legend.position = "bottom") +
+  labs(title = "LD decay", y = "Pos")
+ggsave("figures/gg_LD_Decay_03.png", mp, width = 12, height = 10 )
+```
+
+![](figures/gg_LD_Decay_03.png)
+
+---

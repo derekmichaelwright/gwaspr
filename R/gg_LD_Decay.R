@@ -70,7 +70,8 @@ gg_LD_Decay <- function(xG = myG, outputFolder, markerNum = 200) {
     geom_hline(data = myGeno, aes(yintercept = Mean_LD), color = "red", lty = 1) +
     geom_vline(data = myGeno, lty = 2, linewidth = 0.3,
                aes(xintercept = Threshold_0.2/1000)) +
-    scale_x_continuous(breaks = seq(0, 1000, by = 100), expand = c(0,10)) +
+    scale_x_continuous(breaks = seq(0, 1000, by = 100)) +#, expand = c(0,10)
+    scale_y_continous(breaks = seq(0, 1, by = 0.2)) +
     facet_wrap(paste("Threshold = ", myGeno$Threshold_0.2) ~ .) +
     theme_gwaspr(legend.position = "none",
                  axis.title.y = ggtext::element_markdown()) +
@@ -95,7 +96,7 @@ gg_LD_Decay <- function(xG = myG, outputFolder, markerNum = 200) {
   # Plot full chromsomes
   mp3 <- ggplot(xx, aes(x = Distance/1000000)) +
     geom_line(aes(y = Moving_Avg), size = 0.5, alpha = 0.5) +
-    geom_hline(data = myChr, aes(yintercept = Mean_LD), color = "red", lty = 2) +
+    geom_hline(data = myChr, aes(yintercept = Mean_LD), color = "red") +
     geom_hline(yintercept = 0.2, color = "blue", lty = 2) +
     scale_y_continuous(breaks = seq(0, 0.5, by = 0.1), limits = c(0,0.5)) +
     facet_wrap(paste("Chr", Chr) + paste(Threshold_0.1, "bp") ~ ., ncol = 7, scales = "free_x") +
