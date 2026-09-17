@@ -11,6 +11,7 @@ gg_Marker_Pie(
   xY,
   trait,
   trait.label = trait,
+  trait.levels = NULL,
   markers,
   marker.colors = gwaspr_Colors,
   title = NULL,
@@ -35,7 +36,11 @@ gg_Marker_Pie(
 
 - trait.label:
 
-  Label for the Trait.
+  Label for the trait.
+
+- trait.levels:
+
+  Factor levels for the trait.
 
 - markers:
 
