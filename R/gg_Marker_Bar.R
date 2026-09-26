@@ -6,6 +6,7 @@
 #' @param traits Traits to plot.
 #' @param markers Markers to plot.
 #' @param marker.colors Color palette.
+#' @param remove.hets Logical, Whether to remove hets or not. advised if plotting multiple markers.
 #' @param plot.histogram Logical, if true will plot histogram bars.
 #' @param plot.density Logical, if true will plot density bands.
 #' @param plot.counts Logical, if true will make a plot of counts, if false will make a density plot.
@@ -23,6 +24,7 @@ gg_Marker_Bar <- function (
     traits,
     markers,
     marker.colors = gwaspr_Colors,
+    remove.hets = T,
     plot.histogram = T,
     plot.density = T,
     plot.counts = T,
@@ -46,7 +48,8 @@ gg_Marker_Bar <- function (
     select(markers) %>%
     mutate(Alleles = NA)
   #
-  for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] }
+  if(remove.hets == T) { for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] } }
+  if(remove.hets == F) { for(i in 1:length(markers)) { xx <- xx[!xx[,i] %in% c("N","NN"),] } }
   #
   for(i in 1:nrow(xx)) { xx$Alleles[i] <- paste(xx[i,1:length(markers)], collapse = "-") }
   #

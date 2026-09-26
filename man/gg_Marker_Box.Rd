@@ -25,7 +25,8 @@ gg_Marker_Box(
   cv.source = "xG",
   cv.name = NULL,
   cv.colors = NULL,
-  cv.label = NULL
+  cv.label = NULL,
+  groupByCV = F
 )
 }
 \arguments{
@@ -39,7 +40,7 @@ gg_Marker_Box(
 
 \item{marker.colors}{Colors to fill in the violin and boxplots.}
 
-\item{remove.hets}{Logical, Whether to remove hets or not. advisded if plotting multiple markers.}
+\item{remove.hets}{Logical, Whether to remove hets or not. advised if plotting multiple markers.}
 
 \item{plot.violin}{Logical, whether or not to plot violins.}
 
@@ -70,6 +71,8 @@ gg_Marker_Box(
 \item{cv.colors}{Covariable colors for filling points.}
 
 \item{cv.label}{Label for the covariate.}
+
+\item{groupByCV}{Logical, if TRUE, will plots of each CV instead of each marker.}
 }
 \value{
 Marker plot.

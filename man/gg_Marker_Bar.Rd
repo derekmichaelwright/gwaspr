@@ -10,6 +10,7 @@ gg_Marker_Bar(
   traits,
   markers,
   marker.colors = gwaspr_Colors,
+  remove.hets = T,
   plot.histogram = T,
   plot.density = T,
   plot.counts = T,
@@ -30,6 +31,8 @@ gg_Marker_Bar(
 \item{markers}{Markers to plot.}
 
 \item{marker.colors}{Color palette.}
+
+\item{remove.hets}{Logical, Whether to remove hets or not. advised if plotting multiple markers.}
 
 \item{plot.histogram}{Logical, if true will plot histogram bars.}
 

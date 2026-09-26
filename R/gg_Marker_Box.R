@@ -6,7 +6,7 @@
 #' @param traits Traits to plot.
 #' @param markers Markers to plot.
 #' @param marker.colors Colors to fill in the violin and boxplots.
-#' @param remove.hets Logical, Whether to remove hets or not. advisded if plotting multiple markers.
+#' @param remove.hets Logical, Whether to remove hets or not. advised if plotting multiple markers.
 #' @param plot.violin Logical, whether or not to plot violins.
 #' @param plot.box Logical, whether or not to plot the boxplots.
 #' @param plot.points Logical, whether or not to plot points.
@@ -22,6 +22,7 @@
 #' @param cv.name Covariable data for points.
 #' @param cv.colors Covariable colors for filling points.
 #' @param cv.label Label for the covariate.
+#' @param groupByCV Logical, if TRUE, will plots of each CV instead of each marker.
 #' @return Marker plot.
 #' @export
 
@@ -46,7 +47,8 @@ gg_Marker_Box <- function (
     cv.source = "xG",
     cv.name = NULL,
     cv.colors = NULL,
-    cv.label = NULL
+    cv.label = NULL,
+    groupByCV = F
     ) {
   #
   myLab <- paste(markers, collapse = "\n")
@@ -62,9 +64,8 @@ gg_Marker_Box <- function (
     select(markers) %>%
     mutate(Alleles = NA)
   #
-  if(remove.hets == T) {
-    for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] }
-  }
+  if(remove.hets == T) { for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] } }
+  if(remove.hets == F) { for(i in 1:length(markers)) { xx <- xx[!xx[,i] %in% c("N","NN"),] } }
   #
   for(i in 1:nrow(xx)) { xx$Alleles[i] <- paste(xx[i,1:length(markers)], collapse = "-") }
   #
@@ -101,38 +102,70 @@ gg_Marker_Box <- function (
   }
   #
   # Plot
-  mp <- ggplot(xx, aes(x = Alleles, y = Value))
-  if(plot.violin == T & plot.box == T) {
-    mp <- mp + geom_violin(aes(fill = Alleles), alpha = 0.3) +
-      geom_boxplot(fill = "white", width = box.width, outlier.shape = NA)
-  }
-  if(plot.violin == T & plot.box == F) {
-    mp <- mp + geom_violin(aes(fill = Alleles), alpha = 0.3)
-  }
-  if(plot.violin == F & plot.box == T) {
-    mp <- mp + geom_boxplot(aes(fill = Alleles), alpha = 0.5, width = box.width, outlier.shape = NA)
-  }
-  mp <- mp +
-    facet_wrap(Trait ~ ., scales = "free_y", ncol = ncol) +
-    scale_fill_manual(name = NULL, values = marker.colors, guide = F) +
-    theme_gwaspr(legend.position = "none",
-                 axis.text.x = element_text(angle = 45, hjust = 1) ) +
-    labs(title = title, subtitle = subtitle, x = NULL, y = yLab)
-  if (plot.points == T) {
-    if(is.null(cv.name)) {
-      if(point.beeswarm == T) {
-        mp <- mp + geom_beeswarm(size = point.size, alpha = 0.8, pch = 16, method = "center")
-      } else {
-        mp <- mp + geom_quasirandom(size = point.size, alpha = 0.8, pch = 16)
+  if(groupByCV == F) {
+    mp <- ggplot(xx, aes(x = Alleles, y = Value))
+    if(plot.violin == T & plot.box == T) {
+      mp <- mp + geom_violin(aes(fill = Alleles), alpha = 0.3) +
+        geom_boxplot(fill = "white", width = box.width, outlier.shape = NA)
       }
-    } else {
-      if(point.beeswarm == T) {
-        mp <- mp + geom_beeswarm(aes(color = get(cv.name)), size = point.size, alpha = 0.8, pch = 16, method = "center")
-      } else {
-        mp <- mp + geom_quasirandom(aes(color = get(cv.name)), size = point.size, alpha = 0.8, pch = 16)
+    if(plot.violin == T & plot.box == F) {
+      mp <- mp + geom_violin(aes(fill = Alleles), alpha = 0.3)
       }
+    if(plot.violin == F & plot.box == T) {
+      mp <- mp + geom_boxplot(aes(fill = Alleles), alpha = 0.5, width = box.width, outlier.shape = NA)
+      }
+    mp <- mp +
+      facet_wrap(Trait ~ ., scales = "free_y", ncol = ncol) +
+      scale_fill_manual(name = NULL, values = marker.colors, guide = F) +
+      theme_gwaspr(legend.position = "none",
+                   axis.text.x = element_text(angle = 45, hjust = 1) ) +
+      labs(title = title, subtitle = subtitle, x = NULL, y = yLab)
+    if (plot.points == T) {
+      if(is.null(cv.name)) {
+        if(point.beeswarm == T) {
+          mp <- mp + geom_beeswarm(size = point.size, alpha = 0.8, pch = 16, method = "center")
+          } else {
+            mp <- mp + geom_quasirandom(size = point.size, alpha = 0.8, pch = 16)
+            }
+        } else {
+          if(point.beeswarm == T) {
+            mp <- mp + geom_beeswarm(aes(color = get(cv.name)), size = point.size, alpha = 0.8, pch = 16, method = "center")
+            } else {
+              mp <- mp + geom_quasirandom(aes(color = get(cv.name)), size = point.size, alpha = 0.8, pch = 16)
+              }
+          mp <- mp +
+            scale_color_manual(name = cv.label, values = cv.colors) +
+            theme(legend.position = "bottom") +
+            guides(color = guide_legend(nrow = legend.rows)) #, override.aes = list(size = 2)
+        }
+    }
+  }
+  if(groupByCV == T) {
+    mp <- ggplot(xx, aes(x = get(cv.name), y = Value))
+    if(plot.violin == T & plot.box == T) {
+      mp <- mp + geom_violin(aes(fill = Alleles), alpha = 0.3, position = position_dodge(0.9)) +
+        geom_boxplot(aes(fill = Alleles), width = box.width, outlier.shape = NA, position = position_dodge(0.9))
+    }
+    if(plot.violin == T & plot.box == F) {
+      mp <- mp + geom_violin(aes(fill = Alleles), alpha = 0.3)
+    }
+    if(plot.violin == F & plot.box == T) {
+      mp <- mp + geom_boxplot(aes(fill = Alleles), alpha = 0.5, width = box.width, outlier.shape = NA, position = position_dodge(0.5))
+    }
+    mp <- mp +
+      facet_wrap(Trait ~ ., scales = "free_y", ncol = ncol) +
+      scale_fill_manual(name = NULL, values = marker.colors, guide = F) +
+      theme_gwaspr(legend.position = "none",
+                   axis.text.x = element_text(angle = 45, hjust = 1) ) +
+      labs(title = title, subtitle = subtitle, x = NULL, y = yLab)
+    if (plot.points == T) {
+      if(point.beeswarm == T) {
+        mp <- mp + geom_beeswarm(aes(color = Alleles), size = point.size, alpha = 0.8, pch = 16, dodge.width=0.5)
+        } else {
+          mp <- mp + geom_quasirandom(aes(color = Alleles), size = point.size, alpha = 0.8, pch = 16, dodge.width=0.5)
+        }
       mp <- mp +
-        scale_color_manual(name = cv.label, values = cv.colors) +
+        scale_color_manual(name = cv.label, values = marker.colors) +
         theme(legend.position = "bottom") +
         guides(color = guide_legend(nrow = legend.rows)) #, override.aes = list(size = 2)
     }

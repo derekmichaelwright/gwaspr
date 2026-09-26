@@ -8,9 +8,12 @@
 #' @param trait.levels Factor levels for the trait.
 #' @param markers Markers to plot.
 #' @param marker.colors Color palette.
+#' @param remove.hets Logical, Whether to remove hets or not. advised if plotting multiple markers.
 #' @param title Title for the plot.
 #' @param subtitle Subtitle for the plot. Defaults to the list of markers.
 #' @param ncol number of columns for facetting.
+#' @param legend.rows number of rows in legend.
+#' @param groupByTrait Logical, if TRUE, will make pies of each trait instead of each marker.
 #' @return Marker plot.
 #' @export
 
@@ -22,9 +25,13 @@ gg_Marker_Pie <- function (
     trait.levels = NULL,
     markers,
     marker.colors = gwaspr_Colors,
+    remove.hets = T,
     title = NULL,
     subtitle = paste(markers, collapse = "\n"),
-    ncol = NULL
+    ncol = NULL,
+    legend.rows = 1,
+    removeHets = T,
+    groupByTrait = F
     ) {
  #
  xY <- xY %>% dplyr::select(Name=1, myTrait=trait)
@@ -35,7 +42,9 @@ gg_Marker_Pie <- function (
    t() %>% as.data.frame() %>%
    select(markers) %>%
    mutate(Alleles = NA)
- for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] }
+ #
+ if(remove.hets == T) { for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] } }
+ if(remove.hets == F) { for(i in 1:length(markers)) { xx <- xx[!xx[,i] %in% c("N","NN"),] } }
  #
  for(i in 1:nrow(xx)) { xx$Alleles[i] <- paste(xx[i,1:length(markers)], collapse = "-") }
  #
@@ -45,12 +54,14 @@ gg_Marker_Pie <- function (
    filter(!is.na(myTrait)) %>%
    group_by(Alleles) %>%
    mutate(AlleleCount = n()) %>%
-   group_by(Alleles, myTrait) %>%
-   mutate(TraitCount = n(),
+   ungroup() %>% group_by(Alleles, myTrait) %>%
+   mutate(TraitAlleleCount = n(),
           myTrait = factor(myTrait)) %>%
+   ungroup() %>% group_by(myTrait) %>%
+   mutate(TraitCount = n()) %>%
    ungroup() %>%
    mutate(Percent = 100* TraitCount / AlleleCount) %>%
-   filter(!duplicated(paste(Alleles, myTrait, TraitCount, AlleleCount, Percent)))
+   filter(!duplicated(paste(Alleles, myTrait, TraitAlleleCount, AlleleCount, Percent)))
  #
  if(is.null(trait.levels)) {
    xx <- xx %>%
@@ -66,17 +77,32 @@ gg_Marker_Pie <- function (
  }
  #
  # Plot
- mp <- ggplot(xx, aes(x = "x", y = Percent, fill = myTrait)) +
-   geom_col(alpha = 0.7) +
-   geom_text(aes(label = TraitCount), position = position_stack(vjust = 0.5)) +
-   geom_text(aes(label = paste("n =",AlleleCount), x = "x_empty"), y = 50) +
-   coord_polar("y", start = 0) +
-   facet_wrap(. ~ Alleles, scales = "free", ncol = ncol) +
-   scale_fill_manual(name = trait.label, values = marker.colors) +
-   scale_x_discrete(limits = c("x_empty", "x")) +
-   theme_gwaspr_pie(legend.position = "bottom") +
-   guides(fill = guide_legend(nrow = 1)) +
-   labs(title = title, subtitle = subtitle, y = NULL)
+ if(groupByTrait == F) {
+   mp <- ggplot(xx, aes(x = "x", y = Percent, fill = myTrait)) +
+     geom_col(alpha = 0.7) +
+     geom_text(aes(label = TraitAlleleCount), position = position_stack(vjust = 0.5)) +
+     geom_text(aes(label = paste("n =",AlleleCount), x = "x_empty"), y = 50) +
+     coord_polar("y", start = 0) +
+     facet_wrap(. ~ Alleles, scales = "free", ncol = ncol) +
+     scale_fill_manual(name = trait.label, values = marker.colors) +
+     scale_x_discrete(limits = c("x_empty", "x")) +
+     theme_gwaspr_pie(legend.position = "bottom") +
+     guides(fill = guide_legend(nrow = legend.rows)) +
+     labs(title = title, subtitle = subtitle, y = NULL)
+ }
+ if(groupByTrait == T) {
+   mp <- ggplot(xx, aes(x = "x", y = Percent, fill = Alleles)) +
+     geom_col(alpha = 0.7) +
+     geom_text(aes(label = TraitAlleleCount), position = position_stack(vjust = 0.5)) +
+     geom_text(aes(label = paste("n =", TraitCount), x = "x_empty"), y = 50) +
+     coord_polar("y", start = 0) +
+     facet_wrap(. ~ myTrait, scales = "free", ncol = ncol) +
+     scale_fill_manual(name = trait.label, values = marker.colors) +
+     scale_x_discrete(limits = c("x_empty", "x")) +
+     theme_gwaspr_pie(legend.position = "bottom") +
+     guides(fill = guide_legend(nrow = legend.rows)) +
+     labs(title = title, subtitle = subtitle, y = NULL)
+ }
  mp
 }
 
