@@ -65,7 +65,7 @@ gg_Marker_Pie <- function (
    mutate(myTrait = factor(myTrait),
           AllelePercent = 100 * TraitAlleleCount / AlleleCount,
           TraitPercent = 100 * TraitAlleleCount / TraitCount) %>%
-   filter(!duplicated(paste(Alleles, myTrait, TraitCount, AlleleCount, TraitAlleleCount, AllelePercent, TraitPercent))) #
+   filter(!duplicated(paste(Alleles, myTrait, TraitCount, AlleleCount, TraitAlleleCount, AllelePercent, TraitPercent)))
  #
  if(!is.null(trait.levels)) {
    xx <- xx %>% group_by(Alleles) %>%

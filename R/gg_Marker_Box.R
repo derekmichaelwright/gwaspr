@@ -136,7 +136,7 @@ gg_Marker_Box <- function (
           mp <- mp +
             scale_color_manual(name = cv.label, values = cv.colors) +
             theme(legend.position = "bottom") +
-            guides(color = guide_legend(nrow = legend.rows)) #, override.aes = list(size = 2)
+            guides(color = guide_legend(nrow = legend.rows, override.aes = list(size = 2)))
         }
     }
   }
@@ -150,7 +150,7 @@ gg_Marker_Box <- function (
       mp <- mp + geom_violin(aes(fill = Alleles), alpha = 0.3)
     }
     if(plot.violin == F & plot.box == T) {
-      mp <- mp + geom_boxplot(aes(fill = Alleles), alpha = 0.5, width = box.width, outlier.shape = NA, position = position_dodge(0.5))
+      mp <- mp + geom_boxplot(aes(fill = Alleles), alpha = 0.5, width = box.width, outlier.shape = NA, position = position_dodge(0.9))
     }
     mp <- mp +
       facet_wrap(Trait ~ ., scales = "free_y", ncol = ncol) +
@@ -167,7 +167,7 @@ gg_Marker_Box <- function (
       mp <- mp +
         scale_color_manual(name = cv.label, values = marker.colors) +
         theme(legend.position = "bottom") +
-        guides(color = guide_legend(nrow = legend.rows)) #, override.aes = list(size = 2)
+        guides(color = guide_legend(nrow = legend.rows, override.aes = list(size = 2)))
     }
   }
   mp
