@@ -318,6 +318,49 @@ ggsave("figures/gg_Marker_Box_05.png",
 
 ------------------------------------------------------------------------
 
+##### Grouped by myY covariable
+
+``` r
+
+# Plot
+mp <- gg_Marker_Box(
+  # Genotype data
+  xG = myG, 
+  # Phenotype data
+  xY = myY,
+  # Select traits to plot
+  traits = "DTF_Sask_2017",
+  # Select markers to plot
+  markers = "Lcu.1GRN.Chr6p3269280",
+  # Select marker colors
+  marker.colors = c("darkorange3", "steelblue"),
+  # Choose what should be plotted
+  plot.violin = T,
+  plot.box = F,
+  plot.points = T,
+  # Set the point size
+  point.size = 1.5,
+  # Plot with geom_beeswarm instead of quasirandom
+  point.beeswarm = T,
+  # Select covariable source
+  cv.source = "xY",
+  # Select Covariable trait for points
+  cv.name = "Cotyledon_Color", 
+  # Select colors for the covariable
+  cv.colors = c("darkred", "darkgoldenrod2", "darkgreen"),
+  # Set a custom label for the covariable legend
+  cv.label = "Cotyledon Color",
+  # Plot CV on x-axis instead of marker
+  groupByCV = T)
+# Save
+ggsave("figures/gg_Marker_Box_06.png", 
+       mp, width = 6, height = 4 )
+```
+
+![](figures/gg_Marker_Box_06.png)
+
+------------------------------------------------------------------------
+
 ### Multiple markers, multiple traits
 
 ``` r
@@ -333,11 +376,11 @@ mp <- gg_Marker_Box(
   # Select markers to plot
   markers = c("Lcu.1GRN.Chr5p1658484", "Lcu.1GRN.Chr2p44545877") )
 # Save
-ggsave("figures/gg_Marker_Box_06.png",
+ggsave("figures/gg_Marker_Box_07.png",
        mp, width = 8, height = 4 )
 ```
 
-![](figures/gg_Marker_Box_06.png)
+![](figures/gg_Marker_Box_07.png)
 
 ------------------------------------------------------------------------
 
@@ -527,3 +570,31 @@ ggsave("figures/gg_Marker_Pie_01.png",
 ```
 
 ![](figures/gg_Marker_Pie_01.png)
+
+------------------------------------------------------------------------
+
+``` r
+
+# Plot 
+mp <- gg_Marker_Pie(
+  # Genotype data
+  xG = myG, 
+  # Phenotype data
+  xY = myY,
+  # Select traits to plot
+  trait = "Cotyledon_Color",
+  # Select markers to plot
+  markers = "Lcu.1GRN.Chr1p365986872",
+  # Select marker colors
+  marker.colors = c("steelblue", "darkblue"),
+  # Make pies of each trait instead of each marker
+  groupByTrait = T)
+mp
+# Save
+ggsave("figures/gg_Marker_Pie_02.png", 
+       mp, width = 6, height = 4 )
+```
+
+![](figures/gg_Marker_Pie_02.png)
+
+------------------------------------------------------------------------

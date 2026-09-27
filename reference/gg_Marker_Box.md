@@ -27,7 +27,7 @@ gg_Marker_Box(
   cv.source = "xG",
   cv.name = NULL,
   cv.colors = NULL,
-  cv.label = NULL,
+  cv.label = cv.name,
   groupByCV = F
 )
 ```
@@ -123,7 +123,7 @@ gg_Marker_Box(
 
 - groupByCV:
 
-  Logical, if TRUE, will plots of each CV instead of each marker.
+  Logical, if TRUE, will plot CV on x-axis instead of marker.
 
 ## Value
 
