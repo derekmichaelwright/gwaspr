@@ -14,9 +14,13 @@ gg_Marker_Pie(
   trait.levels = NULL,
   markers,
   marker.colors = gwaspr_Colors,
+  remove.hets = T,
   title = NULL,
   subtitle = paste(markers, collapse = "\n"),
-  ncol = NULL
+  ncol = NULL,
+  legend.rows = 1,
+  removeHets = T,
+  groupByTrait = F
 )
 ```
 
@@ -50,6 +54,11 @@ gg_Marker_Pie(
 
   Color palette.
 
+- remove.hets:
+
+  Logical, Whether to remove hets or not. advised if plotting multiple
+  markers.
+
 - title:
 
   Title for the plot.
@@ -61,6 +70,14 @@ gg_Marker_Pie(
 - ncol:
 
   number of columns for facetting.
+
+- legend.rows:
+
+  number of rows in legend.
+
+- groupByTrait:
+
+  Logical, if TRUE, will make pies of each trait instead of each marker.
 
 ## Value
 

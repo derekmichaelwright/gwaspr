@@ -27,7 +27,8 @@ gg_Marker_Box(
   cv.source = "xG",
   cv.name = NULL,
   cv.colors = NULL,
-  cv.label = NULL
+  cv.label = NULL,
+  groupByCV = F
 )
 ```
 
@@ -55,7 +56,7 @@ gg_Marker_Box(
 
 - remove.hets:
 
-  Logical, Whether to remove hets or not. advisded if plotting multiple
+  Logical, Whether to remove hets or not. advised if plotting multiple
   markers.
 
 - plot.violin:
@@ -119,6 +120,10 @@ gg_Marker_Box(
 - cv.label:
 
   Label for the covariate.
+
+- groupByCV:
+
+  Logical, if TRUE, will plots of each CV instead of each marker.
 
 ## Value
 

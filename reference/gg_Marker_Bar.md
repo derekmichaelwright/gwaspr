@@ -12,6 +12,7 @@ gg_Marker_Bar(
   traits,
   markers,
   marker.colors = gwaspr_Colors,
+  remove.hets = T,
   plot.histogram = T,
   plot.density = T,
   plot.counts = T,
@@ -44,6 +45,11 @@ gg_Marker_Bar(
 - marker.colors:
 
   Color palette.
+
+- remove.hets:
+
+  Logical, Whether to remove hets or not. advised if plotting multiple
+  markers.
 
 - plot.histogram:
 
