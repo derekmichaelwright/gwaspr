@@ -22,7 +22,7 @@
 #' @param cv.name Covariable data for points.
 #' @param cv.colors Covariable colors for filling points.
 #' @param cv.label Label for the covariate.
-#' @param groupByCV Logical, if TRUE, will plots of each CV instead of each marker.
+#' @param groupByCV Logical, if TRUE, will plot CV on x-axis instead of marker.
 #' @return Marker plot.
 #' @export
 
@@ -47,7 +47,7 @@ gg_Marker_Box <- function (
     cv.source = "xG",
     cv.name = NULL,
     cv.colors = NULL,
-    cv.label = NULL,
+    cv.label = cv.name,
     groupByCV = F
     ) {
   #
@@ -160,9 +160,9 @@ gg_Marker_Box <- function (
       labs(title = title, subtitle = subtitle, x = NULL, y = yLab)
     if (plot.points == T) {
       if(point.beeswarm == T) {
-        mp <- mp + geom_beeswarm(aes(color = Alleles), size = point.size, alpha = 0.8, pch = 16, dodge.width=0.5)
+        mp <- mp + geom_beeswarm(aes(color = Alleles), size = point.size, alpha = 0.8, pch = 16, dodge.width=0.9)
         } else {
-          mp <- mp + geom_quasirandom(aes(color = Alleles), size = point.size, alpha = 0.8, pch = 16, dodge.width=0.5)
+          mp <- mp + geom_quasirandom(aes(color = Alleles), size = point.size, alpha = 0.8, pch = 16, dodge.width=0.9)
         }
       mp <- mp +
         scale_color_manual(name = cv.label, values = marker.colors) +

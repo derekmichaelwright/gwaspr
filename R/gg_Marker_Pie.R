@@ -34,7 +34,8 @@ gg_Marker_Pie <- function (
     groupByTrait = F
     ) {
  #
- xY <- xY %>% dplyr::select(Name=1, myTrait=trait)
+ xY <- xY %>% rename(Name=1)
+ xY <- xY %>% select(Name, myTrait=trait)
  xx <- xG %>% rename(SNP=1) %>%
    filter(SNP %in% markers) %>%
    dplyr::select(-2,-3,-4,-5,-6,-7,-8,-9,-10,-11) %>%
@@ -54,34 +55,29 @@ gg_Marker_Pie <- function (
    filter(!is.na(myTrait)) %>%
    group_by(Alleles) %>%
    mutate(AlleleCount = n()) %>%
-   ungroup() %>% group_by(Alleles, myTrait) %>%
-   mutate(TraitAlleleCount = n(),
-          myTrait = factor(myTrait)) %>%
-   ungroup() %>% group_by(myTrait) %>%
+   ungroup() %>%
+   group_by(Alleles, myTrait) %>%
+   mutate(TraitAlleleCount = n()) %>%
+   ungroup() %>%
+   group_by(myTrait) %>%
    mutate(TraitCount = n()) %>%
    ungroup() %>%
-   mutate(Percent = 100* TraitCount / AlleleCount) %>%
-   filter(!duplicated(paste(Alleles, myTrait, TraitAlleleCount, AlleleCount, Percent)))
+   mutate(myTrait = factor(myTrait),
+          AllelePercent = 100 * TraitAlleleCount / AlleleCount,
+          TraitPercent = 100 * TraitAlleleCount / TraitCount) %>%
+   filter(!duplicated(paste(Alleles, myTrait, TraitCount, AlleleCount, TraitAlleleCount, AllelePercent, TraitPercent))) #
  #
- if(is.null(trait.levels)) {
-   xx <- xx %>%
-     group_by(Alleles) %>%
-     mutate(TraitPos = cumsum(TraitCount),
-            myTrait = factor(myTrait))
- }
  if(!is.null(trait.levels)) {
-   xx <- xx %>%
-     group_by(Alleles) %>%
-     mutate(TraitPos = cumsum(TraitCount),
-            myTrait = factor(myTrait, levels = trait.levels))
+   xx <- xx %>% group_by(Alleles) %>%
+     mutate(myTrait = factor(myTrait, levels = trait.levels))
  }
  #
  # Plot
  if(groupByTrait == F) {
-   mp <- ggplot(xx, aes(x = "x", y = Percent, fill = myTrait)) +
+   mp <- ggplot(xx, aes(x = "x", y = AllelePercent, fill = myTrait)) +
      geom_col(alpha = 0.7) +
      geom_text(aes(label = TraitAlleleCount), position = position_stack(vjust = 0.5)) +
-     geom_text(aes(label = paste("n =",AlleleCount), x = "x_empty"), y = 50) +
+     geom_text(aes(label = paste("n =", AlleleCount), x = "x_empty"), y = 50) +
      coord_polar("y", start = 0) +
      facet_wrap(. ~ Alleles, scales = "free", ncol = ncol) +
      scale_fill_manual(name = trait.label, values = marker.colors) +
@@ -91,13 +87,13 @@ gg_Marker_Pie <- function (
      labs(title = title, subtitle = subtitle, y = NULL)
  }
  if(groupByTrait == T) {
-   mp <- ggplot(xx, aes(x = "x", y = Percent, fill = Alleles)) +
+   mp <- ggplot(xx, aes(x = "x", y = TraitPercent, fill = Alleles)) +
      geom_col(alpha = 0.7) +
      geom_text(aes(label = TraitAlleleCount), position = position_stack(vjust = 0.5)) +
      geom_text(aes(label = paste("n =", TraitCount), x = "x_empty"), y = 50) +
      coord_polar("y", start = 0) +
      facet_wrap(. ~ myTrait, scales = "free", ncol = ncol) +
-     scale_fill_manual(name = trait.label, values = marker.colors) +
+     scale_fill_manual(values = marker.colors) +
      scale_x_discrete(limits = c("x_empty", "x")) +
      theme_gwaspr_pie(legend.position = "bottom") +
      guides(fill = guide_legend(nrow = legend.rows)) +
