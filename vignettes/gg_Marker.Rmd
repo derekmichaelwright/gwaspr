@@ -489,7 +489,6 @@ mp <- gg_Marker_Pie(
   marker.colors = c("steelblue", "darkblue"),
   # Make pies of each trait instead of each marker
   groupByTrait = T)
-mp
 # Save
 ggsave("figures/gg_Marker_Pie_02.png", 
        mp, width = 6, height = 4 )

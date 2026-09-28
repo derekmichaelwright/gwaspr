@@ -165,7 +165,7 @@ gg_Marker_Box <- function (
           mp <- mp + geom_quasirandom(aes(color = Alleles), size = point.size, alpha = 0.8, pch = 16, dodge.width=0.9)
         }
       mp <- mp +
-        scale_color_manual(name = cv.label, values = marker.colors) +
+        scale_color_manual(values = marker.colors) +
         theme(legend.position = "bottom") +
         guides(color = guide_legend(nrow = legend.rows, override.aes = list(size = 2)))
     }
