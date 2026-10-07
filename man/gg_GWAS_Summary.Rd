@@ -27,6 +27,7 @@ gg_GWAS_Summary(
   rowread = 2000,
   legend.position = "bottom",
   legend.rows = 1,
+  chr.unit = "100 Mbp",
   plotHBPvalues = F,
   skyline = "NYC"
 )
@@ -73,6 +74,8 @@ gg_GWAS_Summary(
 \item{rowread}{Number of rows to read for each GWAS results file.}
 
 \item{legend.rows}{Number of rows for the legend.}
+
+\item{chr.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
 
 \item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
 

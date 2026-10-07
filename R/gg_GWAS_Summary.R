@@ -23,6 +23,7 @@
 #' @param caption A caption for the plot.
 #' @param rowread Number of rows to read for each GWAS results file.
 #' @param legend.rows Number of rows for the legend.
+#' @param chr.unit Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").
 #' @param plotHBPvalues Logical, should H.B.P.Values be uses.
 #' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @return A GWAS summary plot.
@@ -49,6 +50,7 @@ gg_GWAS_Summary <- function(
     rowread = 2000,
     legend.position = "bottom",
     legend.rows = 1,
+    chr.unit = "100 Mbp",
     plotHBPvalues = F,
     skyline = "NYC"
     ) {
@@ -97,6 +99,17 @@ gg_GWAS_Summary <- function(
     myP <- myP %>% mutate(Pvalue = negLog10_P)
   }
   #
+  if(chr.unit == "1 kbp")   { x.unit = 1000 }
+  if(chr.unit == "10 kbp")  { x.unit = 10000 }
+  if(chr.unit == "50 kbp")  { x.unit = 50000 }
+  if(chr.unit == "100 kbp") { x.unit = 100000 }
+  if(chr.unit == "1 Mbp")   { x.unit = 1000000 }
+  if(chr.unit == "10 Mbp")  { x.unit = 10000000 }
+  if(chr.unit == "50 Mbp")  { x.unit = 50000000 }
+  if(chr.unit == "100 Mbp") { x.unit = 100000000 }
+  if(chr.unit == "1 Gbp")   { x.unit = 1000000000 }
+  if(!chr.unit %in% c("1 kbp", "10 kbp", "50 kbp", "100 kbp", "1 Mbp", "10 Mbp", "50 Mbp", "100 Mbp", "1 Gbp")) { print("error in chr.unit") }
+  #
   myP <- myP %>%
     filter(!is.na(SNP)) %>%
     arrange(Chr, Pos, P.value, Trait) %>%
@@ -136,7 +149,9 @@ gg_GWAS_Summary <- function(
            Threshold = ifelse(Threshold == "Suggestive", paste("Suggestive =",sug.threshold), Threshold),
            Threshold = factor(Threshold))
   #
-  mp <- ggplot(myP, aes(x = Pos / 100000000)) + geom_blank(data = myG)
+  myBreaks <- 0:(round(max(myP$Pos)/x.unit))
+  #
+  mp <- ggplot(myP, aes(x = Pos / x.unit)) + geom_blank(data = myG)
   #
   if(!is.null(vlines)) {
     myGM <- myG %>% filter(SNP %in% vlines) %>%
@@ -146,7 +161,7 @@ gg_GWAS_Summary <- function(
     #
     mp <- mp +
       geom_vline(data = myGM, alpha = 0.5,
-                 aes(xintercept = Pos / 100000000, color = SNP)) +
+                 aes(xintercept = Pos / x.unit, color = SNP)) +
       scale_color_manual(name = "Marker", values = vline.colors) +
       scale_linetype_manual(name = "Marker", values = vline.types)
   }
@@ -175,12 +190,13 @@ gg_GWAS_Summary <- function(
     scale_shape_manual(values = shapes, breaks = models) +
     scale_size_manual(name = NULL, values = c(2.25,0.75)) +
     scale_y_discrete(limits = rev) + # drop = F
-    scale_x_continuous(breaks = 0:20, minor_breaks = 0:20) +
+    #scale_x_continuous(breaks = 0:20, minor_breaks = 0:20) +
+    scale_x_continuous(breaks = myBreaks, minor_breaks = myBreaks) +
     theme_gwaspr(legend.position = legend.position) +
     guides(shape = guide_legend(nrow = legend.rows, override.aes = list(size = 4)),
            color = guide_legend(nrow = legend.rows),
            fill = guide_legend(nrow = legend.rows)) +
-    labs(title = title, y = NULL, x = "100 Mbp", caption = caption)
+    labs(title = title, y = NULL, x = chr.unit, caption = caption)
   #
   if(vline.legend == F) {
     mp <- mp + guides(color = vline.legend)
