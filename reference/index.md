@@ -40,6 +40,8 @@
   : gg_Marker_Box
 - [`gg_Marker_Pie()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Pie.md)
   : gg_Marker_Pie
+- [`gg_Marker_Scatter()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Scatter.md)
+  : gg_Marker_Scatter
 - [`gg_NYCvsKansas()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_NYCvsKansas.md)
   : gg_NYCvsKansas
 - [`gg_QTL_Summary()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_QTL_Summary.md)
