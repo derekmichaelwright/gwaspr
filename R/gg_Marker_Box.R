@@ -1,12 +1,13 @@
 #' gg_Marker_Box
 #'
-#' [Creates a marker plot with myG and myY objects.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker.html)
+#' [Creates a marker plot with myG and myY objects.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker_Box.html)
 #' @param xG GWAS genotype object. Note: needs to be in hapmap format.
 #' @param xY GWAS phenotype object.
 #' @param traits Traits to plot.
 #' @param markers Markers to plot.
 #' @param marker.colors Colors to fill in the violin and boxplots.
 #' @param remove.hets Logical, Whether to remove hets or not. advised if plotting multiple markers.
+#' @param remove.N Logical, Whether to remove N or NN.
 #' @param plot.violin Logical, whether or not to plot violins.
 #' @param plot.box Logical, whether or not to plot the boxplots.
 #' @param plot.points Logical, whether or not to plot points.
@@ -14,10 +15,9 @@
 #' @param point.size Size for the points.
 #' @param point.beeswarm Logical. If False (the default), will plot points with `geom_quasirandom`. If TRUE, will plot points with `geom_beeswarm`.
 #' @param ncol Number of columns for facetting when plotting multiple traits.
-#' @param title Title for the plot.
 #' @param legend.rows Number of rows for the legend.
+#' @param title Title for the plot.
 #' @param subtitle Subtitle for the plot. Defaults to the list of markers.
-#' @param yLab Label for the y-axis.
 #' @param cv.source Where to get your `cv.name` from. Default is "xG", while "xY" is the other option.
 #' @param cv.name Covariable data for points.
 #' @param cv.colors Covariable colors for filling points.
@@ -32,7 +32,8 @@ gg_Marker_Box <- function (
     traits,
     markers,
     marker.colors = gwaspr_Colors,
-    remove.hets = T,
+    remove.hets = F,
+    remove.N = T,
     plot.violin = T,
     plot.box = T,
     plot.points = T,
@@ -40,18 +41,15 @@ gg_Marker_Box <- function (
     point.size = 1,
     point.beeswarm = F,
     ncol = NULL,
-    title = NULL,
     legend.rows = 1,
+    title = NULL,
     subtitle = paste(markers, collapse = "\n"),
-    yLab = traits,
     cv.source = "xG",
     cv.name = NULL,
     cv.colors = NULL,
     cv.label = cv.name,
     groupByCV = F
     ) {
-  #
-  myLab <- paste(markers, collapse = "\n")
   #
   xT <- xY %>% select(Name=1, traits) %>%
     gather(Trait, Value, traits)
@@ -65,7 +63,7 @@ gg_Marker_Box <- function (
     mutate(Alleles = NA)
   #
   if(remove.hets == T) { for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] } }
-  if(remove.hets == F) { for(i in 1:length(markers)) { xx <- xx[!xx[,i] %in% c("N","NN"),] } }
+  if(remove.N == T) { for(i in 1:length(markers)) { xx <- xx[!xx[,i] %in% c("N","NN"),] } }
   #
   for(i in 1:nrow(xx)) { xx$Alleles[i] <- paste(xx[i,1:length(markers)], collapse = "-") }
   #
@@ -119,7 +117,7 @@ gg_Marker_Box <- function (
       scale_fill_manual(name = NULL, values = marker.colors, guide = F) +
       theme_gwaspr(legend.position = "none",
                    axis.text.x = element_text(angle = 45, hjust = 1) ) +
-      labs(title = title, subtitle = subtitle, x = NULL, y = yLab)
+      labs(title = title, subtitle = subtitle, x = NULL, y = NULL)
     if (plot.points == T) {
       if(is.null(cv.name)) {
         if(point.beeswarm == T) {
@@ -157,7 +155,7 @@ gg_Marker_Box <- function (
       scale_fill_manual(name = NULL, values = marker.colors, guide = F) +
       theme_gwaspr(legend.position = "none",
                    axis.text.x = element_text(angle = 45, hjust = 1) ) +
-      labs(title = title, subtitle = subtitle, x = NULL, y = yLab)
+      labs(title = title, subtitle = subtitle, x = NULL, y = NULL)
     if (plot.points == T) {
       if(point.beeswarm == T) {
         mp <- mp + geom_beeswarm(aes(color = Alleles), size = point.size, alpha = 0.8, pch = 16, dodge.width=0.9)

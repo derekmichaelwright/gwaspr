@@ -38,8 +38,14 @@ navbar:
        href: articles/gg_QTL_Summary.html
      - text: -------
      - text: "Marker Plots"
-     - text: gg_Marker_*()
-       href: articles/gg_Marker.html
+     - text: gg_Marker_Box()
+       href: articles/gg_Marker_Box.html
+     - text: gg_Marker_Box()
+       href: articles/gg_Marker_Bar.html
+     - text: gg_Marker_Box()
+       href: articles/gg_Marker_Pie.html
+     - text: gg_Marker_Box()
+       href: articles/gg_Marker_Bubble.html
      - text: -------
      - text: "Other GWAS Related Plots & Functions"
      - text: gg_myG_Details()

@@ -1,6 +1,6 @@
 #' gg_Marker_Pie
 #'
-#' [Creates a marker plot with myG and myY objects.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker.html)
+#' [Creates a marker plot with myG and myY objects.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker_Pie.html)
 #' @param xG GWAS genotype object. Note:  needs to be in hapmap format.
 #' @param xY GWAS phenotype object.
 #' @param trait Trait to plot.
@@ -9,6 +9,7 @@
 #' @param markers Markers to plot.
 #' @param marker.colors Color palette.
 #' @param remove.hets Logical, Whether to remove hets or not. advised if plotting multiple markers.
+#' @param remove.N Logical, Whether to remove N or NN.
 #' @param title Title for the plot.
 #' @param subtitle Subtitle for the plot. Defaults to the list of markers.
 #' @param ncol number of columns for facetting.
@@ -25,7 +26,8 @@ gg_Marker_Pie <- function (
     trait.levels = NULL,
     markers,
     marker.colors = gwaspr_Colors,
-    remove.hets = T,
+    remove.hets = F,
+    remove.N = T,
     title = NULL,
     subtitle = paste(markers, collapse = "\n"),
     ncol = NULL,
@@ -45,7 +47,7 @@ gg_Marker_Pie <- function (
    mutate(Alleles = NA)
  #
  if(remove.hets == T) { for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] } }
- if(remove.hets == F) { for(i in 1:length(markers)) { xx <- xx[!xx[,i] %in% c("N","NN"),] } }
+ if(remove.hets == T) { for(i in 1:length(markers)) { xx <- xx[!xx[,i] %in% c("N","NN"),] } }
  #
  for(i in 1:nrow(xx)) { xx$Alleles[i] <- paste(xx[i,1:length(markers)], collapse = "-") }
  #
