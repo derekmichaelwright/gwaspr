@@ -43,6 +43,11 @@ library(gwaspr)
 > - **GAPIT github**:
 >   [https://github.com/jiabowang/GAPIT](https://github.com/jiabowang/GAPIT)
 
+``` r
+
+devtools::install_github("jiabowang/GAPIT")
+```
+
 ------------------------------------------------------------------------
 
 # Dependancies
@@ -54,8 +59,26 @@ library(gwaspr)
 
 # Example Plots
 
+![](articles/figures/gg_Manhattan_04_DTF_Nepal_2017.png)
+
+![](articles/figures/gg_Manhattan_02_Cotyledon_RedvsYellow.png)
+
+![](articles/figures/gg_Manhattan_xModels_03.png)
+
+![](articles/figures/gg_Manhattan_xTraits_02.png)
+
+![](articles/figures/gg_Manhattan_Zoom_01.png)
+
+![](articles/figures/gg_Marker_Box_03.png)
+
+![](articles/figures/gg_Marker_Pie_02.png)
+
+![](articles/figures/gg_Marker_Bubble_03.png)
+
+![](articles/figures/gg_myG_Details_03_myG_Details.png)
+
+![](articles/figures/gg_LD_decay_02.png)
+
 ------------------------------------------------------------------------
 
 ![](reference/figures/logo_gwaspr.png)
-
-------------------------------------------------------------------------
