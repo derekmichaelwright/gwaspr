@@ -44,6 +44,8 @@ navbar:
        href: articles/gg_Marker_Bar.html
      - text: gg_Marker_Pie()
        href: articles/gg_Marker_Pie.html
+     - text: gg_Marker_Bubble()
+       href: articles/gg_Marker_Bubble.html
      - text: -------
      - text: "Other GWAS Related Plots & Functions"
      - text: gg_myG_Details()
