@@ -21,18 +21,6 @@ The function `gg_Marker_Box()` creates marker plots with your `myY` and `myG` GW
 myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
 ```
 
-```{r echo = F}
-myG <- read.csv("gwaspr_myG_hmp_10.csv", header = T)
-#write.csv(myG, "myG_hmp_10.csv", row.names = F)
-```
-
-```{r}
-# Map + marker Info
-myG[1:10,1:11]
-# genotrype calls
-myG[1:10,12:17]
-```
-
 ```{r eval = F}
 # Load phenotype file
 myY <- read.csv("gwaspr_myY.csv")
@@ -81,6 +69,8 @@ ggsave("figures/gg_Marker_Box_01.png",
 ---
 
 # All Options
+
+`gg_Marker_Bar()` contains a number of different options for customizing the marker plots.
 
 ```{r eval = F}
 # Prep data
@@ -319,5 +309,3 @@ ggsave("figures/gg_Marker_Box_08.png",
 ```
 
 ![](figures/gg_Marker_Box_08.png)
-
----

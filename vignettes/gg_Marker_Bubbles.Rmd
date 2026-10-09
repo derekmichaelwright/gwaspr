@@ -26,13 +26,6 @@ myG <- read.csv("gwaspr_myG_hmp_10.csv", header = T)
 #write.csv(myG, "myG_hmp_10.csv", row.names = F)
 ```
 
-```{r}
-# Map + marker Info
-myG[1:10,1:11]
-# genotrype calls
-myG[1:10,12:17]
-```
-
 ```{r eval = F}
 # Load phenotype file
 myY <- read.csv("gwaspr_myY.csv")
@@ -55,11 +48,11 @@ myY[1:10,]
 ```
 
 ```{r}
-myO <- read.csv("gwaspr_myO.csv")
+myCV <- read.csv("gwaspr_myCV.csv")
 ```
 
 ```{r}
-myY <- myY %>% left_join(myO, by = "Name")
+myY <- myY %>% left_join(myCV, by = "Name")
 ```
 
 ---
@@ -89,6 +82,8 @@ ggsave("figures/gg_Marker_Bubble_01.png",
 ---
 
 # All Options
+
+`gg_Marker_Bubbles()` contains a number of different options for customizing the marker plots.
 
 Note: one of `trait.x`, `trait.y`, `facet.rows`, `facet.cols` must be set to `= "Alleles"`. 
 
@@ -132,14 +127,14 @@ mp <- gg_Marker_Bubble(
   # Phenotype data
   xY = myY,
   # Select traits to plot
-  trait.x = "Origin",
+  trait.x = "Testa.Color",
   # Select markers to plot
   markers = "Lcu.1GRN.Chr1p365986872",
   # Select a trait for col facetting
   facet.cols = "Cotyledon_Color" )
 # Save
 ggsave("figures/gg_Marker_Bubble_03.png", 
-       mp, width = 10, height = 4 )
+       mp, width = 8, height = 4 )
 ```
 
 ![](figures/gg_Marker_Bubble_03.png)
@@ -156,7 +151,7 @@ mp <- gg_Marker_Bubble(
   # Phenotype data
   xY = myY,
   # Select traits to plot
-  trait.x = "Origin",
+  trait.x = "Testa.Color",
   # Select markers to plot
   markers = "Lcu.1GRN.Chr1p365986872",
   # Select a trait for col facetting
@@ -165,9 +160,7 @@ mp <- gg_Marker_Bubble(
   facet.rows = "Region" )
 # Save
 ggsave("figures/gg_Marker_Bubble_04.png", 
-       mp, width = 10, height = 8 )
+       mp, width = 8, height = 8 )
 ```
 
 ![](figures/gg_Marker_Bubble_04.png)
-
----

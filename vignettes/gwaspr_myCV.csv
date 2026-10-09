@@ -1,325 +1,649 @@
-"Name","b"
-"CDC_Asterix_AGL",0.00047
-"CDC_Rosie_AGL",0.000335
-"X3156.11_AGL",0.000369
-"CDC_Greenstar_AGL",0.000521
-"CDC_Cherie_AGL",0.000416
-"CDC_Glamis_AGL",0.000498
-"CDC_Gold_AGL",0.000543
-"CDC_Imax_AGL",0.000259
-"CDC_Impower_AGL",0.000497
-"CDC_KR.1_AGL",0.000746
-"CDC_LeMay_AGL",0.000411
-"CDC_Maxim_AGL",0.000405
-"CDC_QG.1_AGL",0.000468
-"CDC_Red_Rider_AGL",0.000251
-"CDC_Redcoat_AGL",0.000185
-"CDC_Redwing_AGL",0.000225
-"CDC_Robin_AGL",0.000461
-"CDC_Rosebud_AGL",0.00073
-"CDC_Rosetown_AGL",0.00023
-"CDC_Rouleau_AGL",0.000348
-"CDC_Royale_AGL",0.000457
-"CDC_Ruby_AGL",0.000668
-"CDC_SB.1_AGL",0.000606
-"CDC_Sedley_AGL",0.000519
-"CDC_Vantage_AGL",0.000594
-"CN_105604_AGL",0.000361
-"CN_105605_AGL",0.00067
-"CN_105715_AGL",0.000501
-"CN_105732_AGL",0.000706
-"CN_105767_AGL",0.000624
-"CN_105777_AGL",0.000527
-"CN_105789_AGL",0.000228
-"CN_105791_AGL",0.000753
-"CN_105862_AGL",0.000293
-"CN_105863_AGL",0.000278
-"CN_105864_AGL",0.000318
-"CN_105865_AGL",0.000327
-"CN_105895_AGL",0.000408
-"CN_106265_AGL",0.000222
-"CN_108369_AGL",0.000464
-"CN_108370_AGL",0.000551
-"Crimson_AGL",0.000591
-"DPL_62_AGL",0.000428
-"Eston_AGL",0.000514
-"Gudo_AGL",0.000234
-"IG_1046_AGL",0.000617
-"IG_1706_AGL",0.000497
-"IG_1959_AGL",0.000592
-"IG_4258_AGL",0.000323
-"IG_4781_AGL",0.000176
-"IG_858_AGL",0.000701
-"ILL_10657_AGL",0.000436
-"ILL_10748_AGL",0.000654
-"ILL_11547_AGL",0.000572
-"ILL_11548_AGL",0.00062
-"ILL_11553_AGL",0.000339
-"ILL_11555_AGL",0.000607
-"ILL_11557_AGL",0.000628
-"ILL_11558_AGL",0.000504
-"ILL_1220_AGL",0.000586
-"ILL_1553_AGL",0.000526
-"ILL_1762_AGL",0.000165
-"ILL_1983_AGL",0.000334
-"ILL_213_AGL",0.000252
-"ILL_2194_AGL",0.000257
-"PI_431893_LSP_AGL",0.000699
-"ILL_2507_AGL",0.00035
-"ILL_2580_AGL",0.000304
-"ILL_28_AGL",0.000263
-"ILL_3025_AGL",0.000315
-"ILL_313_AGL",0.000318
-"ILL_3347_AGL",0.000334
-"ILL_358_AGL",0.000341
-"ILL_3597_AGL",0.000249
-"ILL_4164_AGL",0.000215
-"ILL_4400_AGL",0.000535
-"ILL_4605_AGL",0.000732
-"ILL_4609_AGL",0.000253
-"ILL_4665_AGL",0.000592
-"ILL_4671_AGL",0.000219
-"ILL_4768_AGL",0.000267
-"ILL_4782_AGL",0.000265
-"ILL_4783_AGL",0.000437
-"ILL_4804_AGL",0.000188
-"ILL_4875_AGL",0.000466
-"ILL_4956_AGL",0.000497
-"ILL_5058_AGL",0.000169
-"ILL_5151_AGL",0.00019
-"ILL_5209_AGL",5.9e-05
-"ILL_5480_AGL",0.000567
-"ILL_5639_AGL",0.000485
-"ILL_5722_AGL",0.000808
-"ILL_5883_AGL",0.000266
-"ILL_5888_AGL",0.001385
-"ILL_5945_AGL",0.000321
-"ILL_6002_AGL",0.000691
-"ILL_618_AGL",0.000603
-"ILL_6182_AGL",0.000216
-"ILL_6211_AGL",0.000614
-"ILL_624_AGL",0.000302
-"ILL_6821_AGL",0.000208
-"ILL_6853_AGL",1.6e-05
-"ILL_7089_AGL",0.000593
-"ILL_7558_AGL",0.000794
-"ILL_7663_AGL",0.001152
-"ILL_7668_AGL",0.00044
-"ILL_7716_AGL",0.000754
-"ILL_7747_AGL",0.000189
-"ILL_7946_AGL",0.000242
-"ILL_7978_AGL",0.000312
-"ILL_7979_AGL",0.000313
-"ILL_8007_AGL",0.000584
-"ILL_8009_AGL",0.000484
-"ILL_8010_AGL",0.000571
-"ILL_8072_AGL",0.00051
-"ILL_8174_AGL",0.000724
-"ILL_8595_AGL",0.000856
-"ILL_9_AGL",0.000536
-"ILL_975_AGL",1.1e-05
-"ILL_9888_AGL",0.000373
-"ILL_9932_AGL",0.000296
-"ILL_9945_AGL",0.000137
-"ILL_9977_AGL",0.000393
-"ILL_9997_AGL",0.000441
-"ILWL_118_AGL",0.000684
-"Indianhead_AGL",0.00042
-"IPL_220_AGL",0.000459
-"Laird_AGL",0.000527
-"LIRL.22.46_AGL",0.000852
-"PI_163589_AGL",0.000212
-"PI_169534_LSP_AGL",0.000665
-"PI_175754_LSP_AGL",0.000533
-"PI_177430_LSP_AGL",0.000389
-"PI_178939_LSP_AGL",0.000496
-"PI_178952_AGL",0.000591
-"PI_178971_LSP_AGL",0.000381
-"PI_179324_LSP_AGL",-2.4e-05
-"PI_179330_AGL",0.000414
-"PI_181771_LSP_AGL",0.000347
-"PI_181886_LSP_AGL",3.7e-05
-"PI_182217_LSP_AGL",4e-04
-"PI_193546_AGL",0.000262
-"PI_193547_LSP_AGL",0.000391
-"PI_193548_LSP_AGL",0.000337
-"PI_193550_AGL",0.000468
-"PI_207492_LSP_AGL",0.000382
-"PI_518731_LSP_AGL",0.00051
-"PI_209858_LSP_AGL",0.000203
-"PI_211052_LSP_AGL",0.000259
-"PI_212100_LSP_AGL",0.000283
-"PI_212610_LSP_AGL",0.000286
-"PI_217949_LSP_AGL",0.000318
-"PI_238758_LSP_AGL",0.000671
-"PI_244046_AGL",0.000616
-"PI_250156_LSP_AGL",0.000203
-"PI_250158_LSP_AGL",0.000339
-"PI_251248_LSP_AGL",0.000598
-"PI_273664_LSP_AGL",0.000286
-"PI_280686_AGL",0.000471
-"PI_283604_LSP_AGL",0.000284
-"PI_289066_AGL",0.000184
-"PI_289073_LSP_AGL",0.000327
-"PI_289079_LSP_AGL",0.000358
-"PI_290716_LSP_AGL",0.000291
-"PI_297285_LSP_AGL",0.000358
-"PI_297287_AGL",0.000408
-"PI_297754_LSP_AGL",0.000524
-"PI_297767_AGL",0.000197
-"PI_297772_LSP_AGL",0.000274
-"PI_297783_AGL",0.000384
-"PI_297787_LSP_AGL",0.000564
-"PI_298023_LSP_AGL",0.000621
-"PI_298121_LSP_AGL",0.000644
-"PI_298122_LSP_AGL",0.000459
-"PI_298357_LSP_AGL",0.000655
-"PI_298631_LSP_AGL",0.000366
-"PI_298644_LSP_AGL",0.000405
-"PI_298645_AGL",0.000385
-"PI_298921_AGL",0.000118
-"PI_298922_LSP_AGL",0.00032
-"PI_298923_LSP_AGL",0.000564
-"PI_299116_LSP_AGL",0.000504
-"PI_299120_LSP_AGL",0.000618
-"PI_299121_LSP_AGL",0.000445
-"PI_299126_LSP_AGL",0.000214
-"PI_299163_LSP_AGL",0.000382
-"PI_299164_LSP_AGL",0.000367
-"PI_299165_AGL",8.2e-05
-"PI_299177_LSP_AGL",0.000243
-"PI_299237_LSP_AGL",0.000525
-"PI_299289_AGL",0.000399
-"PI_299312_AGL",0.000395
-"PI_299345_AGL",0.000168
-"PI_299351_LSP_AGL",0.000527
-"PI_299366_LSP_AGL",0.000343
-"PI_299375_LSP_AGL",0.00036
-"PI_300250_LSP_AGL",0.000376
-"PI_302398_LSP_AGL",0.000385
-"PI_308614_LSP_AGL",1e-05
-"PI_311107_LSP_AGL",-7e-06
-"PI_312175_LSP_AGL",0.000161
-"PI_320935_LSP_AGL",0.000408
-"PI_320936_LSP_AGL",0.000417
-"PI_320937_LSP_AGL",0.000588
-"CN_105866_AGL",0.000185
-"PI_320941_LSP_AGL",0.000301
-"PI_320945_LSP_AGL",0.000364
-"PI_320946_LSP_AGL",0.000361
-"PI_320952_LSP_AGL",0.000347
-"PI_320953_LSP_AGL",0.000252
-"PI_320954_LSP_AGL",0.000314
-"PI_329157_LSP_AGL",0.000559
-"PI_329167_LSP_AGL",0.000503
-"PI_339266_LSP_AGL",0.000565
-"PI_339283_LSP_AGL",0.000269
-"PI_339285_AGL",0.000168
-"PI_339289_LSP_AGL",0.000641
-"PI_339292_LSP_AGL",0.000611
-"PI_339296_AGL",0.000717
-"ILL_618_AGL",0.000554
-"PI_345627_LSP_AGL",0.000406
-"PI_358602_LSP_AGL",0.000513
-"PI_368647_LSP_AGL",0.00045
-"PI_368651_LSP_AGL",0.000403
-"PI_370481_LSP_AGL",0.000292
-"PI_374116_LSP_AGL",0.000377
-"PI_374117_LSP_AGL",0.000372
-"PI_374118_AGL",0.000106
-"PI_374120_LSP_AGL",0.000481
-"PI_374121_AGL",0.000595
-"PI_379368_LSP_AGL",0.000485
-"PI_383682_LSP_AGL",0.000481
-"PI_420818_AGL",-3.1e-05
-"PI_420924_LSP_AGL",0.000239
-"PI_420925_LSP_AGL",-8e-05
-"PI_420929_LSP_AGL",-4.3e-05
-"PI_426202_LSP_AGL",0.000341
-"PI_426778_LSP_AGL",0.000457
-"PI_426784_LSP_AGL",0.00031
-"PI_426797_LSP_AGL",0.000246
-"PI_426807_LSP_AGL",9.4e-05
-"PI_431618_LSP_AGL",0.00056
-"PI_431622_LSP_AGL",0.000393
-"PI_431630_LSP_AGL",0.00037
-"PI_431633_LSP_AGL",0.000472
-"PI_431636_LSP_AGL",0.000421
-"PI_431643_LSP_AGL",0.000447
-"PI_431662_LSP_AGL",0.000409
-"PI_431663_LSP_AGL",0.000472
-"IG_1046_AGL",0.000614
-"PI_431684_LSP_AGL",0.000265
-"PI_431705_LSP_AGL",0.00047
-"PI_431710_LSP_AGL",0.000485
-"PI_431714_LSP_AGL",0.000439
-"PI_431717_LSP_AGL",0.000352
-"PI_431728_LSP_AGL",0.000517
-"PI_431731_LSP_AGL",0.000375
-"PI_431739_LSP_AGL",0.00047
-"PI_431753_LSP_AGL",0.00053
-"PI_431756_LSP_AGL",0.000384
-"PI_431809_LSP_AGL",0.000408
-"PI_431824_LSP_AGL",4e-04
-"PI_431863_LSP_AGL",0.000394
-"PI_431873_LSP_AGL",0.000292
-"PI_431884_LSP_AGL",0.000456
-"PI_431888_LSP_AGL",0.000152
-"PI_431923_LSP_AGL",0.000328
-"PI_431980_LSP_AGL",0.00049
-"PI_432000_LSP_AGL",0.000258
-"PI_432001_LSP_AGL",0.000307
-"PI_432002_LSP_AGL",0.000202
-"PI_432005_LSP_AGL",0.000229
-"PI_432028_LSP_AGL",0.00034
-"PI_432033_LSP_AGL",0.000481
-"PI_432085_LSP_AGL",0.000226
-"PI_432106_LSP_AGL",0.000488
-"PI_432124_LSP_AGL",0.000455
-"PI_432145_LSP_AGL",0.000368
-"PI_432147_LSP_AGL",0.000549
-"PI_432184_LSP_AGL",0.000468
-"PI_432188_LSP_AGL",0.000506
-"PI_432190_LSP_AGL",0.000474
-"PI_432201_LSP_AGL",0.000543
-"PI_432212_LSP_AGL",0.000502
-"PI_432236_LSP_AGL",0.000423
-"PI_432245_LSP_AGL",0.000399
-"PI_432271_LSP_AGL",0.000595
-"PI_432286_LSP_AGL",0.000182
-"PI_451763_LSP_AGL",0.00078
-"PI_458503_LSP_AGL",0.000385
-"PI_468900_LSP_AGL",0.000326
-"PI_468901_AGL",0.000325
-"PI_468902_LSP_AGL",0.000389
-"PI_472136_LSP_AGL",0.000437
-"PI_472205_LSP_AGL",0.00057
-"PI_472213_LSP_AGL",0.00054
-"PI_472327_LSP_AGL",0.000328
-"PI_472380_LSP_AGL",0.00039
-"PI_472416_LSP_AGL",0.000221
-"PI_472488_LSP_AGL",0.000238
-"PI_472559_LSP_AGL",0.000137
-"PI_472561_LSP_AGL",0.000222
-"PI_472569_LSP_AGL",0.000288
-"PI_472588_LSP_AGL",0.000332
-"PI_472590_LSP_AGL",0.000299
-"PI_472615_LSP_AGL",0.000249
-"PI_472629_LSP_AGL",0.000572
-"PI_477921_LSP_AGL",0.000921
-"PI_490288_LSP_AGL",0.000491
-"PI_490289_LSP_AGL",0.00033
-"PI_508090_AGL",0.000718
-"PI_518733_LSP_AGL",0.000339
-"PI_518734_LSP_AGL",0.000323
-"PI_533688_LSP_AGL",0.000206
-"PI_533693_LSP_AGL",0.000422
-"PI_612875_AGL",-5.1e-05
-"PI_643451_AGL",0.000219
-"PI_643452_AGL",0.000148
-"Shasta_AGL",0.000673
-"W6_27754_LSP_AGL",0.000478
-"W6_27760_LSP_AGL",0.000525
-"W6_27763_LSP_AGL",-1.3e-05
-"W6_27766_LSP_AGL",0.000351
-"W6_27767_LSP_AGL",8e-05
+"Name","b","Testa.Color","Origin","SubRegion","Region"
+"CDC_Asterix_AGL",0.000337218421340274,"Green","Canada","Northern America","Americas"
+"CDC_Asterix_AGL",-0.00120170671575862,"Green","Canada","Northern America","Americas"
+"CDC_Rosie_AGL",0.000352470560585572,"Grey","Canada","Northern America","Americas"
+"CDC_Rosie_AGL",-0.00175206235807338,"Grey","Canada","Northern America","Americas"
+"X3156.11_AGL",0.000356250257589655,"Grey","Canada","Northern America","Americas"
+"X3156.11_AGL",-0.00111492554971737,"Grey","Canada","Northern America","Americas"
+"CDC_Greenstar_AGL",0.000429344832951,"Green","Canada","Northern America","Americas"
+"CDC_Greenstar_AGL",-5.60704037560358e-05,"Green","Canada","Northern America","Americas"
+"CDC_Cherie_AGL",0.000394818141746095,"Grey","Canada","Northern America","Americas"
+"CDC_Cherie_AGL",-0.000704085348511522,"Grey","Canada","Northern America","Americas"
+"CDC_Glamis_AGL",0.00038250619332076,"Green","Canada","Northern America","Americas"
+"CDC_Glamis_AGL",-0.00123476483510481,"Green","Canada","Northern America","Americas"
+"CDC_Gold_AGL",0.000414708187995799,"Green","Canada","Northern America","Americas"
+"CDC_Gold_AGL",-9.8533317252894e-05,"Green","Canada","Northern America","Americas"
+"CDC_Imax_AGL",0.000279758748490445,"Grey","Canada","Northern America","Americas"
+"CDC_Imax_AGL",-0.0012107794841023,"Grey","Canada","Northern America","Americas"
+"CDC_Impower_AGL",0.000382788043520127,"Green","Canada","Northern America","Americas"
+"CDC_Impower_AGL",-0.00139660619698693,"Green","Canada","Northern America","Americas"
+"CDC_KR.1_AGL",0.000588140365103193,"Brown","Canada","Northern America","Americas"
+"CDC_KR.1_AGL",-0.00079863297936607,"Brown","Canada","Northern America","Americas"
+"CDC_LeMay_AGL",0.00035474807515231,"Green","Canada","Northern America","Americas"
+"CDC_LeMay_AGL",-0.00159878390724547,"Green","Canada","Northern America","Americas"
+"CDC_Maxim_AGL",0.000372200386744099,"Grey","Canada","Northern America","Americas"
+"CDC_Maxim_AGL",-0.00089505448196181,"Grey","Canada","Northern America","Americas"
+"CDC_QG.1_AGL",0.000407096290008721,"Dark Green","Canada","Northern America","Americas"
+"CDC_QG.1_AGL",-0.000956660252018079,"Dark Green","Canada","Northern America","Americas"
+"CDC_Red_Rider_AGL",0.000386581084973854,"Grey","Canada","Northern America","Americas"
+"CDC_Red_Rider_AGL",-0.00123325697516942,"Grey","Canada","Northern America","Americas"
+"CDC_Redcoat_AGL",0.000281315026245441,"Grey","Canada","Northern America","Americas"
+"CDC_Redcoat_AGL",-0.00123104864748075,"Grey","Canada","Northern America","Americas"
+"CDC_Redwing_AGL",0.000284316106967889,"Green","Canada","Northern America","Americas"
+"CDC_Redwing_AGL",-0.00171687954087183,"Green","Canada","Northern America","Americas"
+"CDC_Robin_AGL",0.000397759215981779,"Brown","Canada","Northern America","Americas"
+"CDC_Robin_AGL",-0.00122619406465772,"Brown","Canada","Northern America","Americas"
+"CDC_Rosebud_AGL",0.00059592786675994,"Tan","Canada","Northern America","Americas"
+"CDC_Rosebud_AGL",-0.000846876972628178,"Tan","Canada","Northern America","Americas"
+"CDC_Rosetown_AGL",0.000334793059682081,"Brown","Canada","Northern America","Americas"
+"CDC_Rosetown_AGL",-0.00107519749071609,"Brown","Canada","Northern America","Americas"
+"CDC_Rouleau_AGL",0.000334689508490782,"Grey","Canada","Northern America","Americas"
+"CDC_Rouleau_AGL",-0.00109796169287963,"Grey","Canada","Northern America","Americas"
+"CDC_Royale_AGL",0.000427069056254193,"Dark Green","Canada","Northern America","Americas"
+"CDC_Royale_AGL",-0.000969579689645165,"Dark Green","Canada","Northern America","Americas"
+"CDC_Ruby_AGL",0.000619346711971303,"Grey","Canada","Northern America","Americas"
+"CDC_Ruby_AGL",-0.000690683744089913,"Grey","Canada","Northern America","Americas"
+"CDC_SB.1_AGL",0.000495237115560387,"Grey","Canada","Northern America","Americas"
+"CDC_SB.1_AGL",-0.000656151349103541,"Grey","Canada","Northern America","Americas"
+"CDC_Sedley_AGL",0.000432090013778777,"Green","Canada","Northern America","Americas"
+"CDC_Sedley_AGL",-0.00081360797280692,"Green","Canada","Northern America","Americas"
+"CDC_Vantage_AGL",0.000524694850369989,"Green","Canada","Northern America","Americas"
+"CDC_Vantage_AGL",-0.000692778565564579,"Green","Canada","Northern America","Americas"
+"CN_105604_AGL",0.000428111779003268,"Black","Ethiopia","Eastern Africa","Africa"
+"CN_105604_AGL",0.000660531493380079,"Black","Ethiopia","Eastern Africa","Africa"
+"CN_105605_AGL",0.000566577746760854,"Grey","Eritrea","Eastern Africa","Africa"
+"CN_105605_AGL",0.000590732339409789,"Grey","Eritrea","Eastern Africa","Africa"
+"CN_105715_AGL",0.000477412577712177,"Green","Ethiopia","Eastern Africa","Africa"
+"CN_105715_AGL",0.000142690375999784,"Green","Ethiopia","Eastern Africa","Africa"
+"CN_105732_AGL",0.000558988289902811,"Green","Ethiopia","Eastern Africa","Africa"
+"CN_105732_AGL",0.000298321663991408,"Green","Ethiopia","Eastern Africa","Africa"
+"CN_105767_AGL",0.000586641111655561,"Grey","Libya","Northern Africa","Africa"
+"CN_105767_AGL",2.95226837835983e-05,"Grey","Libya","Northern Africa","Africa"
+"CN_105777_AGL",0.000625955284960711,"Brown","Egypt","Northern Africa","Africa"
+"CN_105777_AGL",0.00119584536747672,"Brown","Egypt","Northern Africa","Africa"
+"CN_105789_AGL",0.000435887677817185,"Brown","Ethiopia","Eastern Africa","Africa"
+"CN_105789_AGL",-0.000394107443188173,"Brown","Ethiopia","Eastern Africa","Africa"
+"CN_105791_AGL",0.00082362032789461,"Grey","Egypt","Northern Africa","Africa"
+"CN_105791_AGL",0.000817826829344731,"Grey","Egypt","Northern Africa","Africa"
+"CN_105862_AGL",0.000312546588339948,"Green","Tunisia","Northern Africa","Africa"
+"CN_105862_AGL",-0.000368944195305916,"Green","Tunisia","Northern Africa","Africa"
+"CN_105863_AGL",0.000251636877108399,"Green","Tunisia","Northern Africa","Africa"
+"CN_105863_AGL",-0.000914093176858173,"Green","Tunisia","Northern Africa","Africa"
+"CN_105864_AGL",0.000228021845194476,"Grey","Tunisia","Northern Africa","Africa"
+"CN_105864_AGL",-0.00078001095797349,"Grey","Tunisia","Northern Africa","Africa"
+"CN_105865_AGL",0.000275616625684726,"Green","Tunisia","Northern Africa","Africa"
+"CN_105865_AGL",-0.000439817000125405,"Green","Tunisia","Northern Africa","Africa"
+"CN_105895_AGL",0.000498972481159658,"Brown","Egypt","Northern Africa","Africa"
+"CN_105895_AGL",0.000750256513584419,"Brown","Egypt","Northern Africa","Africa"
+"CN_106265_AGL",0.000365320725312842,"Grey","Egypt","Northern Africa","Africa"
+"CN_106265_AGL",-0.000872612381956207,"Grey","Egypt","Northern Africa","Africa"
+"CN_108369_AGL",0.000418944518643289,"Green","Libya","Northern Africa","Africa"
+"CN_108369_AGL",-0.000207852915277584,"Green","Libya","Northern Africa","Africa"
+"CN_108370_AGL",0.00047313661501811,"Green","Libya","Northern Africa","Africa"
+"CN_108370_AGL",-0.00142294703517462,"Green","Libya","Northern Africa","Africa"
+"Crimson_AGL",0.000507412144928306,"Brown","USA","Northern America","Americas"
+"Crimson_AGL",-0.000929152439999876,"Brown","USA","Northern America","Americas"
+"DPL_62_AGL",0.00055364317906423,"Grey","India","Southern Asia","Asia"
+"DPL_62_AGL",0.00177583642731532,"Grey","India","Southern Asia","Asia"
+"Eston_AGL",0.000394776078535258,"Green","Canada","Northern America","Americas"
+"Eston_AGL",-0.000790985148867488,"Green","Canada","Northern America","Americas"
+"Gudo_AGL",0.000266592644113004,"Green","Ethiopia","Eastern Africa","Africa"
+"Gudo_AGL",-0.000625940172436495,"Green","Ethiopia","Eastern Africa","Africa"
+"IG_1046_AGL",0.00046816438062412,"Green","Egypt","Northern Africa","Africa"
+"IG_1046_AGL",-0.000643464399047102,"Green","Egypt","Northern Africa","Africa"
+"IG_1706_AGL",0.000401223915753453,"Grey","Ethiopia","Eastern Africa","Africa"
+"IG_1706_AGL",0.000136250914335657,"Grey","Ethiopia","Eastern Africa","Africa"
+"IG_1959_AGL",0.000414821287694001,"Tan","Ethiopia","Eastern Africa","Africa"
+"IG_1959_AGL",0.000315977579347634,"Tan","Ethiopia","Eastern Africa","Africa"
+"IG_4258_AGL",0.0004077373844909,"Grey","India","Southern Asia","Asia"
+"IG_4258_AGL",0.000779781378884844,"Grey","India","Southern Asia","Asia"
+"IG_4781_AGL",0.000357959038976618,"Green","Algeria","Northern Africa","Africa"
+"IG_4781_AGL",-0.000753779114547425,"Green","Algeria","Northern Africa","Africa"
+"IG_858_AGL",0.000426322306123265,"Grey","Algeria","Northern Africa","Africa"
+"IG_858_AGL",8.8323522483349e-05,"Grey","Algeria","Northern Africa","Africa"
+"ILL_10657_AGL",0.000496294220651698,"Grey","Turkey","Western Asia","Asia"
+"ILL_10657_AGL",0.00117719913657084,"Grey","Turkey","Western Asia","Asia"
+"ILL_10748_AGL",0.000680954357120068,"Green","ICARDA","NA","NA"
+"ILL_10748_AGL",0.00174159540774273,"Green","ICARDA","NA","NA"
+"ILL_11547_AGL",0.000604448050671315,"Brown","Ethiopia","Eastern Africa","Africa"
+"ILL_11547_AGL",0.0025788094362424,"Brown","Ethiopia","Eastern Africa","Africa"
+"ILL_11548_AGL",0.000689471591605811,"Tan","Ethiopia","Eastern Africa","Africa"
+"ILL_11548_AGL",0.000670594446785882,"Tan","Ethiopia","Eastern Africa","Africa"
+"ILL_11553_AGL",0.000467160271417891,"Grey","India","Southern Asia","Asia"
+"ILL_11553_AGL",0.00131784315779654,"Grey","India","Southern Asia","Asia"
+"ILL_11555_AGL",0.000634162671737381,"Green","India","Southern Asia","Asia"
+"ILL_11555_AGL",0.00192795083485032,"Green","India","Southern Asia","Asia"
+"ILL_11557_AGL",0.000683847825529876,"Grey","India","Southern Asia","Asia"
+"ILL_11557_AGL",0.00142258097544744,"Grey","India","Southern Asia","Asia"
+"ILL_11558_AGL",0.000651109520184028,"Grey","India","Southern Asia","Asia"
+"ILL_11558_AGL",0.00125945437604447,"Grey","India","Southern Asia","Asia"
+"ILL_1220_AGL",0.000449677066690225,"Grey","Iran","Southern Asia","Asia"
+"ILL_1220_AGL",-0.000454665807500051,"Grey","Iran","Southern Asia","Asia"
+"ILL_1553_AGL",0.000502638408834135,"Green","Iran","Southern Asia","Asia"
+"ILL_1553_AGL",-0.000351932177294698,"Green","Iran","Southern Asia","Asia"
+"ILL_1762_AGL",0.000285079080938885,"Brown","Afghanistan","Southern Asia","Asia"
+"ILL_1762_AGL",-0.000696887281392874,"Brown","Afghanistan","Southern Asia","Asia"
+"ILL_1983_AGL",0.000365323058952336,"Brown","Ethiopia","Eastern Africa","Africa"
+"ILL_1983_AGL",0.000306757765174803,"Brown","Ethiopia","Eastern Africa","Africa"
+"ILL_213_AGL",0.000325047840567313,"Grey","Afghanistan","Southern Asia","Asia"
+"ILL_213_AGL",3.11314877266009e-05,"Grey","Afghanistan","Southern Asia","Asia"
+"ILL_2194_AGL",0.000226612471930388,"Green","Pakistan","Southern Asia","Asia"
+"ILL_2194_AGL",-0.0020765135784467,"Green","Pakistan","Southern Asia","Asia"
+"PI_431893_LSP_AGL",0.000641735642109948,"Grey","Iran","Southern Asia","Asia"
+"PI_431893_LSP_AGL",-0.000815240907616207,"Grey","Iran","Southern Asia","Asia"
+"ILL_2507_AGL",0.000454564381425879,"Grey","India","Southern Asia","Asia"
+"ILL_2507_AGL",0.000827501870093231,"Grey","India","Southern Asia","Asia"
+"ILL_2580_AGL",0.0003531784290291,"Brown","India","Southern Asia","Asia"
+"ILL_2580_AGL",0.000832205025418089,"Brown","India","Southern Asia","Asia"
+"ILL_28_AGL",0.000249843193812161,"Green","Syria","Western Asia","Asia"
+"ILL_28_AGL",-0.000375090426199758,"Green","Syria","Western Asia","Asia"
+"ILL_3025_AGL",0.000383589760948331,"Grey","India","Southern Asia","Asia"
+"ILL_3025_AGL",0.0005851272016769,"Grey","India","Southern Asia","Asia"
+"ILL_313_AGL",0.000293963191091365,"Green","Israel","Western Asia","Asia"
+"ILL_313_AGL",6.51974852480884e-05,"Green","Israel","Western Asia","Asia"
+"ILL_3347_AGL",0.000437812758421594,"Grey","India","Southern Asia","Asia"
+"ILL_3347_AGL",0.00111604009991965,"Grey","India","Southern Asia","Asia"
+"ILL_358_AGL",0.000311160193034609,"Green","Ethiopia","Eastern Africa","Africa"
+"ILL_358_AGL",0.000191928011340319,"Green","Ethiopia","Eastern Africa","Africa"
+"ILL_3597_AGL",0.000335144554487024,"Grey","India","Southern Asia","Asia"
+"ILL_3597_AGL",-0.000269007835493516,"Grey","India","Southern Asia","Asia"
+"ILL_4164_AGL",0.000224187102819672,"Brown","India","Southern Asia","Asia"
+"ILL_4164_AGL",-0.000629716388964222,"Brown","India","Southern Asia","Asia"
+"ILL_4400_AGL",0.000308645014939964,"Green","Syria","Western Asia","Asia"
+"ILL_4400_AGL",-0.000486818814542746,"Green","Syria","Western Asia","Asia"
+"ILL_4605_AGL",0.000698806402896576,"Green","Argentina","South America","Americas"
+"ILL_4605_AGL",0.00179126186748701,"Green","Argentina","South America","Americas"
+"ILL_4609_AGL",0.000243819170694588,"Grey","Netherlands","Western Europe","Europe"
+"ILL_4609_AGL",0.000253590338214041,"Grey","Netherlands","Western Europe","Europe"
+"ILL_4665_AGL",0.000361151037965179,"Green","Hungary","Eastern Europe","Europe"
+"ILL_4665_AGL",-0.00100228723270438,"Green","Hungary","Eastern Europe","Europe"
+"ILL_4671_AGL",0.000282210117493365,"Green","USA","Northern America","Americas"
+"ILL_4671_AGL",-0.000303235956595123,"Green","USA","Northern America","Americas"
+"ILL_4768_AGL",0.000417841038148608,"Brown","Yemen","Western Asia","Asia"
+"ILL_4768_AGL",-5.50117304819953e-05,"Brown","Yemen","Western Asia","Asia"
+"ILL_4782_AGL",0.000450765163724212,"Brown","Unknown","NA","NA"
+"ILL_4782_AGL",0.00029536060313173,"Brown","Unknown","NA","NA"
+"ILL_4783_AGL",0.00035861271372547,"Green","Czech Republic","Eastern Europe","Europe"
+"ILL_4783_AGL",-0.00187913166065898,"Green","Czech Republic","Eastern Europe","Europe"
+"ILL_4804_AGL",0.000292975481741178,"Brown","Libya","Northern Africa","Africa"
+"ILL_4804_AGL",0.000202275579726267,"Brown","Libya","Northern Africa","Africa"
+"ILL_4875_AGL",0.00038699076021458,"Grey","Uzbekistan","Central Asia","Asia"
+"ILL_4875_AGL",-0.000961344755556945,"Grey","Uzbekistan","Central Asia","Asia"
+"ILL_4956_AGL",0.000421643702100093,"Green","Portugal","Southern Europe","Europe"
+"ILL_4956_AGL",-0.0015055199737346,"Green","Portugal","Southern Europe","Europe"
+"ILL_5058_AGL",0.000281138688804235,"Green","Spain","Southern Europe","Europe"
+"ILL_5058_AGL",0.000456339922325586,"Green","Spain","Southern Europe","Europe"
+"ILL_5151_AGL",0.000235101955764912,"Brown","India","Southern Asia","Asia"
+"ILL_5151_AGL",-0.000463038564955833,"Brown","India","Southern Asia","Asia"
+"ILL_5209_AGL",0.000232911616839259,"Green","Jordan","Western Asia","Asia"
+"ILL_5209_AGL",-0.000122792240723481,"Green","Jordan","Western Asia","Asia"
+"ILL_5480_AGL",0.000413105976712591,"Green","Czech Republic","Eastern Europe","Europe"
+"ILL_5480_AGL",-0.00111052284000537,"Green","Czech Republic","Eastern Europe","Europe"
+"ILL_5639_AGL",0.00038309385967882,"Green","Ethiopia","Eastern Africa","Africa"
+"ILL_5639_AGL",0.00044379828693392,"Green","Ethiopia","Eastern Africa","Africa"
+"ILL_5722_AGL",0.000701509817461331,"Grey","Turkey","Western Asia","Asia"
+"ILL_5722_AGL",0.00100987569058263,"Grey","Turkey","Western Asia","Asia"
+"ILL_5883_AGL",0.000265796875195395,"Green","Jordan","Western Asia","Asia"
+"ILL_5883_AGL",0.000236348156726612,"Green","Jordan","Western Asia","Asia"
+"ILL_5888_AGL",0.00143241681362331,"Green","Bangladesh","Southern Asia","Asia"
+"ILL_5888_AGL",0.00284220655366149,"Green","Bangladesh","Southern Asia","Asia"
+"ILL_5945_AGL",0.000453155121530744,"Brown","Ethiopia","Eastern Africa","Africa"
+"ILL_5945_AGL",0.00123835258693792,"Brown","Ethiopia","Eastern Africa","Africa"
+"ILL_6002_AGL",0.000712459710795806,"Green","ICARDA","NA","NA"
+"ILL_6002_AGL",0.00136420947403512,"Green","ICARDA","NA","NA"
+"ILL_618_AGL",0.000468460808480405,"Tan","Tajikistan","Central Asia","Asia"
+"ILL_618_AGL",-0.00021595531588588,"Tan","Tajikistan","Central Asia","Asia"
+"ILL_6182_AGL",0.000274830416614088,"Grey","Tunisia","Northern Africa","Africa"
+"ILL_6182_AGL",-8.8806517215658e-05,"Grey","Tunisia","Northern Africa","Africa"
+"ILL_6211_AGL",0.000642615610023463,"Green","ICARDA","NA","NA"
+"ILL_6211_AGL",0.00260401454809558,"Green","ICARDA","NA","NA"
+"ILL_624_AGL",0.000382710972640678,"Grey","Macedonia","Southern Europe","Europe"
+"ILL_624_AGL",-0.000934604632391414,"Grey","Macedonia","Southern Europe","Europe"
+"ILL_6821_AGL",0.000180116673610184,"Tan","Ethiopia","Eastern Africa","Africa"
+"ILL_6821_AGL",-0.000162055298071335,"Tan","Ethiopia","Eastern Africa","Africa"
+"ILL_6853_AGL",0.00021421429018847,"Green","Syria","Western Asia","Asia"
+"ILL_6853_AGL",0.000191382723174059,"Green","Syria","Western Asia","Asia"
+"ILL_7089_AGL",0.000495187130771283,"Green","Russia","Eastern Europe","Europe"
+"ILL_7089_AGL",0.00017296387767237,"Green","Russia","Eastern Europe","Europe"
+"ILL_7558_AGL",0.00061995399408683,"Green","India","Southern Asia","Asia"
+"ILL_7558_AGL",0.000662567751134992,"Green","India","Southern Asia","Asia"
+"ILL_7663_AGL",0.00120122543774318,"Green","ICARDA","NA","NA"
+"ILL_7663_AGL",0.00187827049232658,"Green","ICARDA","NA","NA"
+"ILL_7668_AGL",0.000476742556525433,"Grey","ICARDA","NA","NA"
+"ILL_7668_AGL",0.000428615492008567,"Grey","ICARDA","NA","NA"
+"ILL_7716_AGL",0.00073544784475078,"Green","India","Southern Asia","Asia"
+"ILL_7716_AGL",0.00180150268403354,"Green","India","Southern Asia","Asia"
+"ILL_7747_AGL",0.000210756434168666,"Grey","Syria","Western Asia","Asia"
+"ILL_7747_AGL",0.000744002505220408,"Grey","Syria","Western Asia","Asia"
+"ILL_7946_AGL",0.000289210839502724,"Green","Syria","Western Asia","Asia"
+"ILL_7946_AGL",0.000890812701044442,"Green","Syria","Western Asia","Asia"
+"ILL_7978_AGL",0.000446417129155317,"Grey","Ethiopia","Eastern Africa","Africa"
+"ILL_7978_AGL",0.000990477241498518,"Grey","Ethiopia","Eastern Africa","Africa"
+"ILL_7979_AGL",0.000415537674876443,"Grey","ICARDA","NA","NA"
+"ILL_7979_AGL",0.000492480193267918,"Grey","ICARDA","NA","NA"
+"ILL_8007_AGL",0.000676571133838521,"Green","Bangladesh","Southern Asia","Asia"
+"ILL_8007_AGL",0.00242382356428367,"Green","Bangladesh","Southern Asia","Asia"
+"ILL_8009_AGL",0.000597239562948131,"Grey","Bangladesh","Southern Asia","Asia"
+"ILL_8009_AGL",0.00137140621791924,"Grey","Bangladesh","Southern Asia","Asia"
+"ILL_8010_AGL",0.000604895674507863,"Grey","Bangladesh","Southern Asia","Asia"
+"ILL_8010_AGL",0.00104947268756022,"Grey","Bangladesh","Southern Asia","Asia"
+"ILL_8072_AGL",0.000253519715042567,"Dark Green","India","Southern Asia","Asia"
+"ILL_8072_AGL",-0.000804555873851853,"Dark Green","India","Southern Asia","Asia"
+"ILL_8174_AGL",0.000555357893828496,"Green","ICARDA","NA","NA"
+"ILL_8174_AGL",6.66645782757576e-05,"Green","ICARDA","NA","NA"
+"ILL_8595_AGL",0.00068703265734545,"Green","Ecuador","South America","Americas"
+"ILL_8595_AGL",0.000352131176013133,"Green","Ecuador","South America","Americas"
+"ILL_9_AGL",0.000507503652300049,"Green","Jordan","Western Asia","Asia"
+"ILL_9_AGL",0.00140732282676014,"Green","Jordan","Western Asia","Asia"
+"ILL_975_AGL",0.000174525460799872,"Green","Chile","South America","Americas"
+"ILL_975_AGL",0.000486142416888785,"Green","Chile","South America","Americas"
+"ILL_9888_AGL",0.000399238050621253,"Green","ICARDA","NA","NA"
+"ILL_9888_AGL",0.000395588568057277,"Green","ICARDA","NA","NA"
+"ILL_9932_AGL",0.000436004571352772,"Brown","ICARDA","NA","NA"
+"ILL_9932_AGL",-0.000286249816495735,"Brown","ICARDA","NA","NA"
+"ILL_9945_AGL",0.000317663746469073,"Brown","ICARDA","NA","NA"
+"ILL_9945_AGL",-0.00014315609474158,"Brown","ICARDA","NA","NA"
+"ILL_9977_AGL",0.000476609572929524,"Brown","Jordan","Western Asia","Asia"
+"ILL_9977_AGL",0.000456160776437557,"Brown","Jordan","Western Asia","Asia"
+"ILL_9997_AGL",0.000558586412680757,"Dark Green","ICARDA","NA","NA"
+"ILL_9997_AGL",0.00184927271967733,"Dark Green","ICARDA","NA","NA"
+"ILWL_118_AGL",0.00047806833411343,"Green","Syria","Western Asia","Asia"
+"ILWL_118_AGL",0.000400221148021842,"Green","Syria","Western Asia","Asia"
+"Indianhead_AGL",0.000356492742805798,"Black","Canada","Northern America","Americas"
+"Indianhead_AGL",-0.000811855387834136,"Black","Canada","Northern America","Americas"
+"IPL_220_AGL",0.000596969761528934,"Grey","India","Southern Asia","Asia"
+"IPL_220_AGL",0.00157416599448442,"Grey","India","Southern Asia","Asia"
+"Laird_AGL",0.000501797727829543,"Green","Canada","Northern America","Americas"
+"Laird_AGL",-6.87932216268959e-05,"Green","Canada","Northern America","Americas"
+"LIRL.22.46_AGL",0.000888692512358925,"Green","India","Southern Asia","Asia"
+"LIRL.22.46_AGL",0.0017345000482019,"Green","India","Southern Asia","Asia"
+"PI_163589_AGL",0.000260078003331449,"Green","Guatemala","Central America","Americas"
+"PI_163589_AGL",-0.000917867771454608,"Green","Guatemala","Central America","Americas"
+"PI_169534_LSP_AGL",0.00050040983311653,"Grey","Turkey","Western Asia","Asia"
+"PI_169534_LSP_AGL",-0.00115211449036028,"Grey","Turkey","Western Asia","Asia"
+"PI_175754_LSP_AGL",0.000372136249109371,"Grey","Turkey","Western Asia","Asia"
+"PI_175754_LSP_AGL",-0.000468543670691984,"Grey","Turkey","Western Asia","Asia"
+"PI_177430_LSP_AGL",0.000283878956374933,"Brown","Turkey","Western Asia","Asia"
+"PI_177430_LSP_AGL",-0.000563477311858062,"Brown","Turkey","Western Asia","Asia"
+"PI_178939_LSP_AGL",0.000405749985819729,"Green","Turkey","Western Asia","Asia"
+"PI_178939_LSP_AGL",-0.00182861458254459,"Green","Turkey","Western Asia","Asia"
+"PI_178952_AGL",0.000469893465677063,"Grey","Turkey","Western Asia","Asia"
+"PI_178952_AGL",0.000100426564791852,"Grey","Turkey","Western Asia","Asia"
+"PI_178971_LSP_AGL",0.000385882490140457,"Green","Turkey","Western Asia","Asia"
+"PI_178971_LSP_AGL",-0.00150963329282017,"Green","Turkey","Western Asia","Asia"
+"PI_179324_LSP_AGL",0.00027379224721512,"Green","Turkey","Western Asia","Asia"
+"PI_179324_LSP_AGL",-0.000442716884969019,"Green","Turkey","Western Asia","Asia"
+"PI_179330_AGL",0.00033663780911213,"Green","Turkey","Western Asia","Asia"
+"PI_179330_AGL",-0.000873339529452017,"Green","Turkey","Western Asia","Asia"
+"PI_181771_LSP_AGL",0.000372932158931131,"Green","Lebanon","Western Asia","Asia"
+"PI_181771_LSP_AGL",-0.00107061422712017,"Green","Lebanon","Western Asia","Asia"
+"PI_181886_LSP_AGL",0.000218608580481479,"Green","Syria","Western Asia","Asia"
+"PI_181886_LSP_AGL",-0.000377892944331003,"Green","Syria","Western Asia","Asia"
+"PI_182217_LSP_AGL",0.000417838920279882,"Brown","Turkey","Western Asia","Asia"
+"PI_182217_LSP_AGL",-0.000215547908769756,"Brown","Turkey","Western Asia","Asia"
+"PI_193546_AGL",0.000218147111268062,"Grey","Ethiopia","Eastern Africa","Africa"
+"PI_193546_AGL",-3.39760244648053e-05,"Grey","Ethiopia","Eastern Africa","Africa"
+"PI_193547_LSP_AGL",0.000299888988729817,"Grey","Ethiopia","Eastern Africa","Africa"
+"PI_193547_LSP_AGL",-0.000146966045074631,"Grey","Ethiopia","Eastern Africa","Africa"
+"PI_193548_LSP_AGL",0.00046565376477778,"Brown","Ethiopia","Eastern Africa","Africa"
+"PI_193548_LSP_AGL",0.00122770838231832,"Brown","Ethiopia","Eastern Africa","Africa"
+"PI_193550_AGL",0.00057125943476231,"Brown","Ethiopia","Eastern Africa","Africa"
+"PI_193550_AGL",0.00171388150451248,"Brown","Ethiopia","Eastern Africa","Africa"
+"PI_207492_LSP_AGL",0.000380549002825659,"Green","Afghanistan","Southern Asia","Asia"
+"PI_207492_LSP_AGL",-0.0014064869711671,"Green","Afghanistan","Southern Asia","Asia"
+"PI_518731_LSP_AGL",0.000435753143295158,"Brown","Brazil","South America","Americas"
+"PI_518731_LSP_AGL",-0.000186321312285953,"Brown","Brazil","South America","Americas"
+"PI_209858_LSP_AGL",0.000255784135311815,"Green","Greece","Southern Europe","Europe"
+"PI_209858_LSP_AGL",-6.96735617509602e-05,"Green","Greece","Southern Europe","Europe"
+"PI_211052_LSP_AGL",0.000342913093672877,"Brown","Afghanistan","Southern Asia","Asia"
+"PI_211052_LSP_AGL",-0.000653081681120157,"Brown","Afghanistan","Southern Asia","Asia"
+"PI_212100_LSP_AGL",0.000341110997808189,"Grey","Afghanistan","Southern Asia","Asia"
+"PI_212100_LSP_AGL",-0.000545621345589128,"Grey","Afghanistan","Southern Asia","Asia"
+"PI_212610_LSP_AGL",0.000361377902393808,"Green","Afghanistan","Southern Asia","Asia"
+"PI_212610_LSP_AGL",-0.00166194191987027,"Green","Afghanistan","Southern Asia","Asia"
+"PI_217949_LSP_AGL",0.000324267035178855,"Grey","Pakistan","Southern Asia","Asia"
+"PI_217949_LSP_AGL",8.77181831806473e-05,"Grey","Pakistan","Southern Asia","Asia"
+"PI_238758_LSP_AGL",0.000610867755166073,"Green","Belgium","Western Europe","Europe"
+"PI_238758_LSP_AGL",0.000284695661248468,"Green","Belgium","Western Europe","Europe"
+"PI_244046_AGL",0.000755058934067144,"Brown","Yemen","Western Asia","Asia"
+"PI_244046_AGL",0.000711394796667309,"Brown","Yemen","Western Asia","Asia"
+"PI_250156_LSP_AGL",0.00029373037918212,"Brown","Pakistan","Southern Asia","Asia"
+"PI_250156_LSP_AGL",-0.00128707614390129,"Brown","Pakistan","Southern Asia","Asia"
+"PI_250158_LSP_AGL",0.000487599210040874,"Grey","Pakistan","Southern Asia","Asia"
+"PI_250158_LSP_AGL",0.000398360879762338,"Grey","Pakistan","Southern Asia","Asia"
+"PI_251248_LSP_AGL",0.000811217026719962,"Brown","Egypt","Northern Africa","Africa"
+"PI_251248_LSP_AGL",0.00184225088883707,"Brown","Egypt","Northern Africa","Africa"
+"PI_273664_LSP_AGL",0.000301793559044358,"Grey","Ethiopia","Eastern Africa","Africa"
+"PI_273664_LSP_AGL",-0.0010731240320809,"Grey","Ethiopia","Eastern Africa","Africa"
+"PI_280686_AGL",0.000544864327648067,"Grey","Egypt","Northern Africa","Africa"
+"PI_280686_AGL",0.00105353464752343,"Grey","Egypt","Northern Africa","Africa"
+"PI_283604_LSP_AGL",0.00025108122920829,"Green","Portugal","Southern Europe","Europe"
+"PI_283604_LSP_AGL",-0.0012052081671469,"Green","Portugal","Southern Europe","Europe"
+"PI_289066_AGL",0.00025905343162162,"Green","Czech Republic","Eastern Europe","Europe"
+"PI_289066_AGL",0.00082028530401445,"Green","Czech Republic","Eastern Europe","Europe"
+"PI_289073_LSP_AGL",0.000356380188291917,"Dark Green","Hungary","Eastern Europe","Europe"
+"PI_289073_LSP_AGL",-0.00124809675250729,"Dark Green","Hungary","Eastern Europe","Europe"
+"PI_289079_LSP_AGL",0.000318636789087645,"Dark Green","Egypt","Northern Africa","Africa"
+"PI_289079_LSP_AGL",-0.00209813375248814,"Dark Green","Egypt","Northern Africa","Africa"
+"PI_290716_LSP_AGL",0.000358526190944522,"Grey","Unknown","NA","NA"
+"PI_290716_LSP_AGL",-0.000754178983185892,"Grey","Unknown","NA","NA"
+"PI_297285_LSP_AGL",0.00036265712181028,"Green","Argentina","South America","Americas"
+"PI_297285_LSP_AGL",-0.00158066368287628,"Green","Argentina","South America","Americas"
+"PI_297287_AGL",0.000294935375245688,"Green","Argentina","South America","Americas"
+"PI_297287_AGL",-0.00158923535290017,"Green","Argentina","South America","Americas"
+"PI_297754_LSP_AGL",0.000410813743096056,"Green","Greece","Southern Europe","Europe"
+"PI_297754_LSP_AGL",-0.000524376156288919,"Green","Greece","Southern Europe","Europe"
+"PI_297767_AGL",0.000273315352829186,"Green","Greece","Southern Europe","Europe"
+"PI_297767_AGL",-0.000711403022938223,"Green","Greece","Southern Europe","Europe"
+"PI_297772_LSP_AGL",0.000211791371626599,"Grey","Greece","Southern Europe","Europe"
+"PI_297772_LSP_AGL",-0.000100489800422133,"Grey","Greece","Southern Europe","Europe"
+"PI_297783_AGL",0.000515072840489505,"Brown","Ethiopia","Eastern Africa","Africa"
+"PI_297783_AGL",0.000679109504761125,"Brown","Ethiopia","Eastern Africa","Africa"
+"PI_297787_LSP_AGL",0.000396197724650966,"Tan","Russia","Eastern Europe","Europe"
+"PI_297787_LSP_AGL",-0.000986285301679505,"Tan","Russia","Eastern Europe","Europe"
+"PI_298023_LSP_AGL",0.000478885393511562,"Green","Turkey","Western Asia","Asia"
+"PI_298023_LSP_AGL",-0.00033753394854087,"Green","Turkey","Western Asia","Asia"
+"PI_298121_LSP_AGL",0.00055259282968101,"Mixed","France","Western Europe","Europe"
+"PI_298121_LSP_AGL",0.000101104825142951,"Mixed","France","Western Europe","Europe"
+"PI_298122_LSP_AGL",0.000380550919530965,"Dark Green","France","Western Europe","Europe"
+"PI_298122_LSP_AGL",-0.00133946458368692,"Dark Green","France","Western Europe","Europe"
+"PI_298357_LSP_AGL",0.000532568482896143,"Brown","Egypt","Northern Africa","Africa"
+"PI_298357_LSP_AGL",-5.22344703367625e-05,"Brown","Egypt","Northern Africa","Africa"
+"PI_298631_LSP_AGL",0.000367053921273515,"Green","Peru","South America","Americas"
+"PI_298631_LSP_AGL",-0.000566120787607187,"Green","Peru","South America","Americas"
+"PI_298644_LSP_AGL",0.000351744816262047,"Green","Spain","Southern Europe","Europe"
+"PI_298644_LSP_AGL",-0.000300585830463951,"Green","Spain","Southern Europe","Europe"
+"PI_298645_AGL",0.000347169165180703,"Green","Spain","Southern Europe","Europe"
+"PI_298645_AGL",-0.0008045061636433,"Green","Spain","Southern Europe","Europe"
+"PI_298921_AGL",0.000221423964159534,"Green","Italy","Southern Europe","Europe"
+"PI_298921_AGL",0.00063160771358975,"Green","Italy","Southern Europe","Europe"
+"PI_298922_LSP_AGL",0.000324782439945891,"Grey","Italy","Southern Europe","Europe"
+"PI_298922_LSP_AGL",-0.000288780512867422,"Grey","Italy","Southern Europe","Europe"
+"PI_298923_LSP_AGL",0.000416405392003319,"Green","Italy","Southern Europe","Europe"
+"PI_298923_LSP_AGL",0.000147619717869223,"Green","Italy","Southern Europe","Europe"
+"PI_299116_LSP_AGL",0.000391399887804928,"Dark Green","Mexico","Central America","Americas"
+"PI_299116_LSP_AGL",-0.000189613919020727,"Dark Green","Mexico","Central America","Americas"
+"PI_299120_LSP_AGL",0.000508793543426432,"Green","Mexico","Central America","Americas"
+"PI_299120_LSP_AGL",0.000443033648820666,"Green","Mexico","Central America","Americas"
+"PI_299121_LSP_AGL",0.000417684138836701,"Green","Mexico","Central America","Americas"
+"PI_299121_LSP_AGL",0.000128413653671509,"Green","Mexico","Central America","Americas"
+"PI_299126_LSP_AGL",0.000275067795938862,"Green","Mexico","Central America","Americas"
+"PI_299126_LSP_AGL",0.00018962510586319,"Green","Mexico","Central America","Americas"
+"PI_299163_LSP_AGL",0.000281843673378812,"Green","Chile","South America","Americas"
+"PI_299163_LSP_AGL",-0.000146906026762026,"Green","Chile","South America","Americas"
+"PI_299164_LSP_AGL",0.000320228723425862,"Green","Chile","South America","Americas"
+"PI_299164_LSP_AGL",0.000221386676968786,"Green","Chile","South America","Americas"
+"PI_299165_AGL",0.000243019730866271,"Green","Chile","South America","Americas"
+"PI_299165_AGL",-0.000547500557582966,"Green","Chile","South America","Americas"
+"PI_299177_LSP_AGL",0.000279170907362239,"Green","Chile","South America","Americas"
+"PI_299177_LSP_AGL",-0.000758090903882516,"Green","Chile","South America","Americas"
+"PI_299237_LSP_AGL",0.000427456669180445,"Green","Chile","South America","Americas"
+"PI_299237_LSP_AGL",0.00080172888237511,"Green","Chile","South America","Americas"
+"PI_299289_AGL",0.000422839497538893,"Grey","Chile","South America","Americas"
+"PI_299289_AGL",-0.000197328177299655,"Grey","Chile","South America","Americas"
+"PI_299312_AGL",0.000340575457004576,"Green","Chile","South America","Americas"
+"PI_299312_AGL",-0.000502713668338111,"Green","Chile","South America","Americas"
+"PI_299345_AGL",0.00024697196541989,"Green","Chile","South America","Americas"
+"PI_299345_AGL",-0.0014634690236533,"Green","Chile","South America","Americas"
+"PI_299351_LSP_AGL",0.000388843300934709,"Grey","Chile","South America","Americas"
+"PI_299351_LSP_AGL",-0.000312901091752034,"Grey","Chile","South America","Americas"
+"PI_299366_LSP_AGL",0.000188532256248716,"Grey","Chile","South America","Americas"
+"PI_299366_LSP_AGL",-0.000195559384619238,"Grey","Chile","South America","Americas"
+"PI_299375_LSP_AGL",0.000285766229425127,"Green","Chile","South America","Americas"
+"PI_299375_LSP_AGL",-0.000420216933638112,"Green","Chile","South America","Americas"
+"PI_300250_LSP_AGL",0.000265833220891788,"Grey","Syria","Western Asia","Asia"
+"PI_300250_LSP_AGL",0.00106274914024041,"Grey","Syria","Western Asia","Asia"
+"PI_302398_LSP_AGL",0.000394657958300108,"Green","Jordan","Western Asia","Asia"
+"PI_302398_LSP_AGL",0.000872279544642205,"Green","Jordan","Western Asia","Asia"
+"PI_308614_LSP_AGL",0.000235124491032134,"Grey","Syria","Western Asia","Asia"
+"PI_308614_LSP_AGL",-0.000744824514423199,"Grey","Syria","Western Asia","Asia"
+"PI_311107_LSP_AGL",0.000233690644824706,"Green","Guatemala","Central America","Americas"
+"PI_311107_LSP_AGL",-0.000968611749261544,"Green","Guatemala","Central America","Americas"
+"PI_312175_LSP_AGL",0.000312239222470171,"Green","Mexico","Central America","Americas"
+"PI_312175_LSP_AGL",-0.00159534024472316,"Green","Mexico","Central America","Americas"
+"PI_320935_LSP_AGL",0.000387771726307191,"Green","Iran","Southern Asia","Asia"
+"PI_320935_LSP_AGL",-0.000214867240493832,"Green","Iran","Southern Asia","Asia"
+"PI_320936_LSP_AGL",0.0004722419521041,"Brown","Russia","Eastern Europe","Europe"
+"PI_320936_LSP_AGL",-0.000859900068299987,"Brown","Russia","Eastern Europe","Europe"
+"PI_320937_LSP_AGL",0.000510240650300471,"Black","Germany","Western Europe","Europe"
+"PI_320937_LSP_AGL",-0.000877489310389612,"Black","Germany","Western Europe","Europe"
+"CN_105866_AGL",0.000293172054016674,"Grey","Tunisia","Northern Africa","Africa"
+"CN_105866_AGL",-0.0013801948364885,"Grey","Tunisia","Northern Africa","Africa"
+"PI_320941_LSP_AGL",0.000321685902895088,"Brown","Ethiopia","Eastern Africa","Africa"
+"PI_320941_LSP_AGL",-0.00102873822056262,"Brown","Ethiopia","Eastern Africa","Africa"
+"PI_320945_LSP_AGL",0.000232163636600114,"Green","Bulgaria","Eastern Europe","Europe"
+"PI_320945_LSP_AGL",-0.000447645677392976,"Green","Bulgaria","Eastern Europe","Europe"
+"PI_320946_LSP_AGL",0.000234500812605575,"Green","Israel","Western Asia","Asia"
+"PI_320946_LSP_AGL",-0.00075877834629413,"Green","Israel","Western Asia","Asia"
+"PI_320952_LSP_AGL",0.000379844151916131,"Black","Czech Republic","Eastern Europe","Europe"
+"PI_320952_LSP_AGL",-0.000979752116592544,"Black","Czech Republic","Eastern Europe","Europe"
+"PI_320953_LSP_AGL",0.000340047623853823,"Black","Germany","Western Europe","Europe"
+"PI_320953_LSP_AGL",-0.00207402361662185,"Black","Germany","Western Europe","Europe"
+"PI_320954_LSP_AGL",0.000376054929217323,"Dark Green","Hungary","Eastern Europe","Europe"
+"PI_320954_LSP_AGL",-0.00160633980322432,"Dark Green","Hungary","Eastern Europe","Europe"
+"PI_329157_LSP_AGL",0.000431121642353008,"Green","Iran","Southern Asia","Asia"
+"PI_329157_LSP_AGL",0.000270449159358648,"Green","Iran","Southern Asia","Asia"
+"PI_329167_LSP_AGL",0.000416199311236104,"Green","Iran","Southern Asia","Asia"
+"PI_329167_LSP_AGL",3.66370991989933e-05,"Green","Iran","Southern Asia","Asia"
+"PI_339266_LSP_AGL",0.000518865212131349,"Green","Turkey","Western Asia","Asia"
+"PI_339266_LSP_AGL",0.00106450071089414,"Green","Turkey","Western Asia","Asia"
+"PI_339283_LSP_AGL",0.000222025275476148,"Brown","Turkey","Western Asia","Asia"
+"PI_339283_LSP_AGL",-0.000613657009382525,"Brown","Turkey","Western Asia","Asia"
+"PI_339285_AGL",0.000255333181683908,"Tan","Turkey","Western Asia","Asia"
+"PI_339285_AGL",-0.000306937975367093,"Tan","Turkey","Western Asia","Asia"
+"PI_339289_LSP_AGL",0.000445532988574996,"Grey","Turkey","Western Asia","Asia"
+"PI_339289_LSP_AGL",0.000611533580797843,"Grey","Turkey","Western Asia","Asia"
+"PI_339292_LSP_AGL",0.000466669736475183,"Green","Turkey","Western Asia","Asia"
+"PI_339292_LSP_AGL",-0.000400706311720429,"Green","Turkey","Western Asia","Asia"
+"PI_339296_AGL",0.000563635128882018,"Grey","Turkey","Western Asia","Asia"
+"PI_339296_AGL",-0.000808579753352464,"Grey","Turkey","Western Asia","Asia"
+"PI_343026_LSP_AGL",0.000467561159970088,"Tan","Tajikistan","Central Asia","Asia"
+"PI_343026_LSP_AGL",-0.000413227756240088,"Tan","Tajikistan","Central Asia","Asia"
+"PI_345627_LSP_AGL",0.000359631196967857,"Green","Ukraine","Eastern Europe","Europe"
+"PI_345627_LSP_AGL",-0.00147747059770359,"Green","Ukraine","Eastern Europe","Europe"
+"PI_358602_LSP_AGL",0.000396497484890805,"Grey","Ethiopia","Eastern Africa","Africa"
+"PI_358602_LSP_AGL",-0.00172729912412246,"Grey","Ethiopia","Eastern Africa","Africa"
+"PI_368647_LSP_AGL",0.000338747953771338,"Green","Macedonia","Southern Europe","Europe"
+"PI_368647_LSP_AGL",-0.00120763260128674,"Green","Macedonia","Southern Europe","Europe"
+"PI_368651_LSP_AGL",0.000368483236778211,"Grey","Macedonia","Southern Europe","Europe"
+"PI_368651_LSP_AGL",-0.00135012688139788,"Grey","Macedonia","Southern Europe","Europe"
+"PI_370481_LSP_AGL",0.000251849240549291,"Green","Serbia","Southern Europe","Europe"
+"PI_370481_LSP_AGL",-0.000820300730800788,"Green","Serbia","Southern Europe","Europe"
+"PI_374116_LSP_AGL",0.00039291349621114,"Dark Green","Morocco","Northern Africa","Africa"
+"PI_374116_LSP_AGL",-0.00139327985231867,"Dark Green","Morocco","Northern Africa","Africa"
+"PI_374117_LSP_AGL",0.000322639928507594,"Green","Morocco","Northern Africa","Africa"
+"PI_374117_LSP_AGL",-0.00102102362767318,"Green","Morocco","Northern Africa","Africa"
+"PI_374118_AGL",0.000262814190069011,"Brown","Morocco","Northern Africa","Africa"
+"PI_374118_AGL",5.29562173224813e-05,"Brown","Morocco","Northern Africa","Africa"
+"PI_374120_LSP_AGL",0.000259522255645648,"Green","Morocco","Northern Africa","Africa"
+"PI_374120_LSP_AGL",-0.00128928547334987,"Green","Morocco","Northern Africa","Africa"
+"PI_374121_AGL",0.000365275334482929,"Green","Morocco","Northern Africa","Africa"
+"PI_374121_AGL",-0.000846042766101385,"Green","Morocco","Northern Africa","Africa"
+"PI_379368_LSP_AGL",0.000329310032952091,"Green","Macedonia","Southern Europe","Europe"
+"PI_379368_LSP_AGL",-0.00097382010814725,"Green","Macedonia","Southern Europe","Europe"
+"PI_383682_LSP_AGL",0.000352742706975581,"Grey","Turkey","Western Asia","Asia"
+"PI_383682_LSP_AGL",-0.000971666496052196,"Grey","Turkey","Western Asia","Asia"
+"PI_420818_AGL",0.000225591924168624,"Green","Greece","Southern Europe","Europe"
+"PI_420818_AGL",-0.000601972408351569,"Green","Greece","Southern Europe","Europe"
+"PI_420924_LSP_AGL",0.000220474896938061,"Green","Jordan","Western Asia","Asia"
+"PI_420924_LSP_AGL",6.72866134343366e-05,"Green","Jordan","Western Asia","Asia"
+"PI_420925_LSP_AGL",0.000164466892632232,"Brown","Jordan","Western Asia","Asia"
+"PI_420925_LSP_AGL",0.00139271367075208,"Brown","Jordan","Western Asia","Asia"
+"PI_420929_LSP_AGL",0.000213834376030814,"Tan","Jordan","Western Asia","Asia"
+"PI_420929_LSP_AGL",0.000350115366934179,"Tan","Jordan","Western Asia","Asia"
+"PI_426202_LSP_AGL",0.000318014129285555,"Brown","Afghanistan","Southern Asia","Asia"
+"PI_426202_LSP_AGL",0.000630635513690187,"Brown","Afghanistan","Southern Asia","Asia"
+"PI_426778_LSP_AGL",0.000378837739607854,"Green","Pakistan","Southern Asia","Asia"
+"PI_426778_LSP_AGL",-0.000110732184935171,"Green","Pakistan","Southern Asia","Asia"
+"PI_426784_LSP_AGL",0.000482402399751121,"Grey","Pakistan","Southern Asia","Asia"
+"PI_426784_LSP_AGL",0.000237680580884862,"Grey","Pakistan","Southern Asia","Asia"
+"PI_426797_LSP_AGL",0.000428061329238385,"Grey","Pakistan","Southern Asia","Asia"
+"PI_426797_LSP_AGL",0.000464685473211559,"Grey","Pakistan","Southern Asia","Asia"
+"PI_426807_LSP_AGL",0.000287079431418081,"Grey","Pakistan","Southern Asia","Asia"
+"PI_426807_LSP_AGL",5.90793681064147e-05,"Grey","Pakistan","Southern Asia","Asia"
+"PI_431618_LSP_AGL",0.000467843896447385,"Green","Iran","Southern Asia","Asia"
+"PI_431618_LSP_AGL",7.93537317950041e-05,"Green","Iran","Southern Asia","Asia"
+"PI_431622_LSP_AGL",0.000329633494300333,"Grey","Iran","Southern Asia","Asia"
+"PI_431622_LSP_AGL",-0.000428920257577607,"Grey","Iran","Southern Asia","Asia"
+"PI_431630_LSP_AGL",0.000314093946499103,"Tan","Iran","Southern Asia","Asia"
+"PI_431630_LSP_AGL",-0.00101017038265032,"Tan","Iran","Southern Asia","Asia"
+"PI_431633_LSP_AGL",0.000470890967822975,"Green","Iran","Southern Asia","Asia"
+"PI_431633_LSP_AGL",0.000913727657842304,"Green","Iran","Southern Asia","Asia"
+"PI_431636_LSP_AGL",0.000400942569577988,"Green","Iran","Southern Asia","Asia"
+"PI_431636_LSP_AGL",0.000101930253762732,"Green","Iran","Southern Asia","Asia"
+"PI_431643_LSP_AGL",0.0004382364429448,"Green","Iran","Southern Asia","Asia"
+"PI_431643_LSP_AGL",0.000258444356706377,"Green","Iran","Southern Asia","Asia"
+"PI_431662_LSP_AGL",0.000388617188092295,"Grey","Iran","Southern Asia","Asia"
+"PI_431662_LSP_AGL",-0.000345231957232902,"Grey","Iran","Southern Asia","Asia"
+"PI_431663_LSP_AGL",0.000380535986934902,"Grey","Iran","Southern Asia","Asia"
+"PI_431663_LSP_AGL",0.000282295225788684,"Grey","Iran","Southern Asia","Asia"
+"PI_431679_LSP_AGL",0.0004526580571304,"Grey","Egypt","Northern Africa","Africa"
+"PI_431679_LSP_AGL",-0.000668560351793717,"Grey","Egypt","Northern Africa","Africa"
+"PI_431684_LSP_AGL",0.000370753033992508,"Green","Iran","Southern Asia","Asia"
+"PI_431684_LSP_AGL",-0.000878157254965402,"Green","Iran","Southern Asia","Asia"
+"PI_431705_LSP_AGL",0.000404801453942036,"Green","Iran","Southern Asia","Asia"
+"PI_431705_LSP_AGL",0.000492558238048449,"Green","Iran","Southern Asia","Asia"
+"PI_431710_LSP_AGL",0.000418188130905416,"Green","Iran","Southern Asia","Asia"
+"PI_431710_LSP_AGL",-0.000432931240783002,"Green","Iran","Southern Asia","Asia"
+"PI_431714_LSP_AGL",0.000368922299943608,"Green","Iran","Southern Asia","Asia"
+"PI_431714_LSP_AGL",-0.000634739223110779,"Green","Iran","Southern Asia","Asia"
+"PI_431717_LSP_AGL",0.000385646332404914,"Green","Iran","Southern Asia","Asia"
+"PI_431717_LSP_AGL",-0.00104743614789291,"Green","Iran","Southern Asia","Asia"
+"PI_431728_LSP_AGL",0.000445057343380072,"Green","Iran","Southern Asia","Asia"
+"PI_431728_LSP_AGL",-0.000605667800346594,"Green","Iran","Southern Asia","Asia"
+"PI_431731_LSP_AGL",0.000374100250417475,"Green","Iran","Southern Asia","Asia"
+"PI_431731_LSP_AGL",-0.000164329212429894,"Green","Iran","Southern Asia","Asia"
+"PI_431739_LSP_AGL",0.000443667472904737,"Green","Iran","Southern Asia","Asia"
+"PI_431739_LSP_AGL",0.000754559260806312,"Green","Iran","Southern Asia","Asia"
+"PI_431753_LSP_AGL",0.000427384144625457,"Green","Iran","Southern Asia","Asia"
+"PI_431753_LSP_AGL",0.000157685645258017,"Green","Iran","Southern Asia","Asia"
+"PI_431756_LSP_AGL",0.000370456856088442,"Green","Iran","Southern Asia","Asia"
+"PI_431756_LSP_AGL",-0.000365775143941807,"Green","Iran","Southern Asia","Asia"
+"PI_431809_LSP_AGL",0.000409855379512838,"Green","Iran","Southern Asia","Asia"
+"PI_431809_LSP_AGL",-0.000634745435223676,"Green","Iran","Southern Asia","Asia"
+"PI_431824_LSP_AGL",0.000401721452937403,"Green","Iran","Southern Asia","Asia"
+"PI_431824_LSP_AGL",0.000325133498431557,"Green","Iran","Southern Asia","Asia"
+"PI_431863_LSP_AGL",0.00037717774557076,"Green","Iran","Southern Asia","Asia"
+"PI_431863_LSP_AGL",0.000266425716331817,"Green","Iran","Southern Asia","Asia"
+"PI_431873_LSP_AGL",0.000330950699796144,"Green","Iran","Southern Asia","Asia"
+"PI_431873_LSP_AGL",-0.00106288473229576,"Green","Iran","Southern Asia","Asia"
+"PI_431884_LSP_AGL",0.000423278712088879,"Green","Iran","Southern Asia","Asia"
+"PI_431884_LSP_AGL",-0.000156079734860231,"Green","Iran","Southern Asia","Asia"
+"PI_431888_LSP_AGL",0.000340187794514436,"Grey","Iran","Southern Asia","Asia"
+"PI_431888_LSP_AGL",-0.0013767739222146,"Grey","Iran","Southern Asia","Asia"
+"PI_431923_LSP_AGL",0.000304924052458239,"Green","Iran","Southern Asia","Asia"
+"PI_431923_LSP_AGL",-0.000961075540867963,"Green","Iran","Southern Asia","Asia"
+"PI_431980_LSP_AGL",0.000455489112040309,"Green","Iran","Southern Asia","Asia"
+"PI_431980_LSP_AGL",-9.86107679446122e-05,"Green","Iran","Southern Asia","Asia"
+"PI_432000_LSP_AGL",0.000348804526259317,"Tan","Iran","Southern Asia","Asia"
+"PI_432000_LSP_AGL",-0.000947432138120499,"Tan","Iran","Southern Asia","Asia"
+"PI_432001_LSP_AGL",0.000363683842628332,"Green","Iran","Southern Asia","Asia"
+"PI_432001_LSP_AGL",0.00012093715669942,"Green","Iran","Southern Asia","Asia"
+"PI_432002_LSP_AGL",0.000307710728262864,"Grey","Iran","Southern Asia","Asia"
+"PI_432002_LSP_AGL",-0.00073372693633545,"Grey","Iran","Southern Asia","Asia"
+"PI_432005_LSP_AGL",0.000331899107262088,"Grey","Iran","Southern Asia","Asia"
+"PI_432005_LSP_AGL",0.00050937432019892,"Grey","Iran","Southern Asia","Asia"
+"PI_432028_LSP_AGL",0.000371659591270481,"Grey","Iran","Southern Asia","Asia"
+"PI_432028_LSP_AGL",-0.000187993808310247,"Grey","Iran","Southern Asia","Asia"
+"PI_432033_LSP_AGL",0.000438008325797561,"Grey","Iran","Southern Asia","Asia"
+"PI_432033_LSP_AGL",-0.00038688255948812,"Grey","Iran","Southern Asia","Asia"
+"PI_432085_LSP_AGL",0.00032006726640161,"Green","Iran","Southern Asia","Asia"
+"PI_432085_LSP_AGL",-0.000253794447748509,"Green","Iran","Southern Asia","Asia"
+"PI_432106_LSP_AGL",0.000398005395029675,"Green","Iran","Southern Asia","Asia"
+"PI_432106_LSP_AGL",-0.000290950950858783,"Green","Iran","Southern Asia","Asia"
+"PI_432124_LSP_AGL",0.000407699464675545,"Green","Iran","Southern Asia","Asia"
+"PI_432124_LSP_AGL",-0.000870042431357545,"Green","Iran","Southern Asia","Asia"
+"PI_432145_LSP_AGL",0.000383927183745162,"Green","Iran","Southern Asia","Asia"
+"PI_432145_LSP_AGL",-0.0013113797650351,"Green","Iran","Southern Asia","Asia"
+"PI_432147_LSP_AGL",0.000449421807591976,"Green","Iran","Southern Asia","Asia"
+"PI_432147_LSP_AGL",0.000291313359788143,"Green","Iran","Southern Asia","Asia"
+"PI_432184_LSP_AGL",0.000432653949304333,"Green","Iran","Southern Asia","Asia"
+"PI_432184_LSP_AGL",-0.000495453082094781,"Green","Iran","Southern Asia","Asia"
+"PI_432188_LSP_AGL",0.000467271743255189,"Green","Iran","Southern Asia","Asia"
+"PI_432188_LSP_AGL",0.000374595629830878,"Green","Iran","Southern Asia","Asia"
+"PI_432190_LSP_AGL",0.000426451759932094,"Green","Iran","Southern Asia","Asia"
+"PI_432190_LSP_AGL",-0.00067711200192809,"Green","Iran","Southern Asia","Asia"
+"PI_432201_LSP_AGL",0.000459143493827398,"Green","Iran","Southern Asia","Asia"
+"PI_432201_LSP_AGL",-0.00127448191814749,"Green","Iran","Southern Asia","Asia"
+"PI_432212_LSP_AGL",0.000402376229122109,"Brown","Iran","Southern Asia","Asia"
+"PI_432212_LSP_AGL",0.000383233132665538,"Brown","Iran","Southern Asia","Asia"
+"PI_432236_LSP_AGL",0.000392378996252553,"Brown","Jordan","Western Asia","Asia"
+"PI_432236_LSP_AGL",0.000189037523336151,"Brown","Jordan","Western Asia","Asia"
+"PI_432245_LSP_AGL",0.000445555483503658,"Green","Lebanon","Western Asia","Asia"
+"PI_432245_LSP_AGL",0.000530096782035709,"Green","Lebanon","Western Asia","Asia"
+"PI_432271_LSP_AGL",0.000462401467538564,"Grey","Turkey","Western Asia","Asia"
+"PI_432271_LSP_AGL",-0.00107123110708113,"Grey","Turkey","Western Asia","Asia"
+"PI_432286_LSP_AGL",0.000280402465123305,"Brown","Egypt","Northern Africa","Africa"
+"PI_432286_LSP_AGL",-0.000249854638290749,"Brown","Egypt","Northern Africa","Africa"
+"PI_451763_LSP_AGL",0.000659823696253592,"Green","USA","Northern America","Americas"
+"PI_451763_LSP_AGL",0.000447026000860844,"Green","USA","Northern America","Americas"
+"PI_458503_LSP_AGL",0.000336232687669455,"Green","Mexico","Central America","Americas"
+"PI_458503_LSP_AGL",-0.000341038364724107,"Green","Mexico","Central America","Americas"
+"PI_468900_LSP_AGL",0.000302635468588377,"Green","Brazil","South America","Americas"
+"PI_468900_LSP_AGL",-0.000773679133855621,"Green","Brazil","South America","Americas"
+"PI_468901_AGL",0.000308412800508787,"Green","Brazil","South America","Americas"
+"PI_468901_AGL",-0.00233519168470481,"Green","Brazil","South America","Americas"
+"PI_468902_LSP_AGL",0.00038959879960252,"Grey","Brazil","South America","Americas"
+"PI_468902_LSP_AGL",-0.000483313211611416,"Grey","Brazil","South America","Americas"
+"PI_472136_LSP_AGL",0.000606774896653699,"Grey","India","Southern Asia","Asia"
+"PI_472136_LSP_AGL",0.00146529272862732,"Grey","India","Southern Asia","Asia"
+"PI_472205_LSP_AGL",0.000721621770183185,"Grey","India","Southern Asia","Asia"
+"PI_472205_LSP_AGL",0.00206518601377587,"Grey","India","Southern Asia","Asia"
+"PI_472213_LSP_AGL",0.000440999683456307,"Green","India","Southern Asia","Asia"
+"PI_472213_LSP_AGL",-0.00036903679368517,"Green","India","Southern Asia","Asia"
+"PI_472327_LSP_AGL",0.000491271789805752,"Grey","India","Southern Asia","Asia"
+"PI_472327_LSP_AGL",0.000508652740580259,"Grey","India","Southern Asia","Asia"
+"PI_472380_LSP_AGL",0.000556905418702028,"Grey","India","Southern Asia","Asia"
+"PI_472380_LSP_AGL",0.00109936109020978,"Grey","India","Southern Asia","Asia"
+"PI_472416_LSP_AGL",0.00036042216910485,"Grey","India","Southern Asia","Asia"
+"PI_472416_LSP_AGL",-0.000453718586039911,"Grey","India","Southern Asia","Asia"
+"PI_472488_LSP_AGL",0.000439049616354197,"Black","India","Southern Asia","Asia"
+"PI_472488_LSP_AGL",0.0010115240551484,"Black","India","Southern Asia","Asia"
+"PI_472559_LSP_AGL",0.000351161321703371,"Grey","India","Southern Asia","Asia"
+"PI_472559_LSP_AGL",0.0007821370588255,"Grey","India","Southern Asia","Asia"
+"PI_472561_LSP_AGL",0.000399107682504677,"Grey","India","Southern Asia","Asia"
+"PI_472561_LSP_AGL",0.000115511054012572,"Grey","India","Southern Asia","Asia"
+"PI_472569_LSP_AGL",0.000444728289849537,"Grey","Egypt","Northern Africa","Africa"
+"PI_472569_LSP_AGL",0.00130749443433543,"Grey","Egypt","Northern Africa","Africa"
+"PI_472588_LSP_AGL",0.00039789000708728,"Green","Egypt","Northern Africa","Africa"
+"PI_472588_LSP_AGL",-0.000803117810135669,"Green","Egypt","Northern Africa","Africa"
+"PI_472590_LSP_AGL",0.000313840240119954,"Grey","Lebanon","Western Asia","Asia"
+"PI_472590_LSP_AGL",-0.000157666819225936,"Grey","Lebanon","Western Asia","Asia"
+"PI_472615_LSP_AGL",0.000378709160215949,"Green","Jordan","Western Asia","Asia"
+"PI_472615_LSP_AGL",5.60074753335901e-05,"Green","Jordan","Western Asia","Asia"
+"PI_472629_LSP_AGL",0.000517771690320821,"Green","Iran","Southern Asia","Asia"
+"PI_472629_LSP_AGL",-4.42056922317301e-05,"Green","Iran","Southern Asia","Asia"
+"PI_477921_LSP_AGL",0.00076137967500772,"Green","USA","Northern America","Americas"
+"PI_477921_LSP_AGL",0.000335932780204158,"Green","USA","Northern America","Americas"
+"PI_490288_LSP_AGL",0.000437796029153482,"Dark Green","France","Western Europe","Europe"
+"PI_490288_LSP_AGL",-0.00118808138901661,"Dark Green","France","Western Europe","Europe"
+"PI_490289_LSP_AGL",0.000342923446301381,"Dark Green","France","Western Europe","Europe"
+"PI_490289_LSP_AGL",-0.000167078535416456,"Dark Green","France","Western Europe","Europe"
+"PI_508090_AGL",0.000552606964518869,"Green","USA","Northern America","Americas"
+"PI_508090_AGL",0.000454234501684242,"Green","USA","Northern America","Americas"
+"PI_518733_LSP_AGL",0.000370740450005062,"Green","Brazil","South America","Americas"
+"PI_518733_LSP_AGL",-0.000975371594009963,"Green","Brazil","South America","Americas"
+"PI_518734_LSP_AGL",0.000349466722373866,"Green","Brazil","South America","Americas"
+"PI_518734_LSP_AGL",-0.00155090643065947,"Green","Brazil","South America","Americas"
+"PI_533688_LSP_AGL",0.000267993609165986,"Green","Spain","Southern Europe","Europe"
+"PI_533688_LSP_AGL",-0.000716339806762109,"Green","Spain","Southern Europe","Europe"
+"PI_533693_LSP_AGL",0.000391938719964303,"Dark Green","Spain","Southern Europe","Europe"
+"PI_533693_LSP_AGL",-0.000708086406247506,"Dark Green","Spain","Southern Europe","Europe"
+"PI_612875_AGL",0.000225216212510356,"Grey","Syria","Western Asia","Asia"
+"PI_612875_AGL",-0.000400666920088912,"Grey","Syria","Western Asia","Asia"
+"PI_643451_AGL",0.000350951770657532,"Grey","Ethiopia","Eastern Africa","Africa"
+"PI_643451_AGL",0.000336610793167226,"Grey","Ethiopia","Eastern Africa","Africa"
+"PI_643452_AGL",0.000314801805641738,"Grey","Syria","Western Asia","Asia"
+"PI_643452_AGL",0.000965539181340038,"Grey","Syria","Western Asia","Asia"
+"Shasta_AGL",0.000640245374777393,"Green","USA","Northern America","Americas"
+"Shasta_AGL",0.000591681406612434,"Green","USA","Northern America","Americas"
+"W6_27754_LSP_AGL",0.000347410544498504,"Green","USDA","Northern America","Americas"
+"W6_27754_LSP_AGL",-0.000222926478133993,"Green","USDA","Northern America","Americas"
+"W6_27760_LSP_AGL",0.000455583885033414,"Brown","USDA","Northern America","Americas"
+"W6_27760_LSP_AGL",-0.000720437759567712,"Brown","USDA","Northern America","Americas"
+"W6_27763_LSP_AGL",0.00021687219828786,"Tan","USDA","Northern America","Americas"
+"W6_27763_LSP_AGL",1.88849738693493e-05,"Tan","USDA","Northern America","Americas"
+"W6_27766_LSP_AGL",0.000448645173674161,"Grey","USDA","Northern America","Americas"
+"W6_27766_LSP_AGL",0.000493902665468379,"Grey","USDA","Northern America","Americas"
+"W6_27767_LSP_AGL",0.000235334096056771,"Grey","USDA","Northern America","Americas"
+"W6_27767_LSP_AGL",-0.000435448723352883,"Grey","USDA","Northern America","Americas"

@@ -6,8 +6,12 @@ title: "Run GWAS with GAPIT"
 knitr::opts_chunk$set(message = F, warning = F)
 ```
 
+```{r eval = F}
+devtools::install_github("jiabowang/GAPIT")
+```
+
 ```{r}
-library(gwaspr)
+library(GAPIT)
 ```
 
 Before the `gwaspr` package can be used, we first need to run GWAS with `GAPIT`.
@@ -21,6 +25,8 @@ Our population, the LDP, was genotyped using an *exome caputure array* and filte
 - Minor Allele Frequency    = >5%
 - Maximum Missing Frequency =  25%
 - Heterozygous              = <25%
+
+> Note: `header = T`
 
 ```{r eval = F}
 # Load our genotype file in hapmap format (note: header = F)
@@ -54,7 +60,7 @@ myY[1:20,]
 
 ```{r}
 # Load our covariate file
-myCV <- read.csv("gwaspr_myCV.csv")
+myCV <- read.csv("gwaspr_myCV.csv")[,c("Name","b")]
 ```
 
 ```{r}
@@ -66,12 +72,6 @@ myCV[1:20,]
 # Run GWAS
 
 Run GWAS on the 3 traits `myY`
-
-```{r eval = F}
-# install.packages("devtools")
-# devtools::install_github("jiabowang/GAPIT")
-library(GAPIT)
-```
 
 ```{r eval = F}
 # Run GWAS
