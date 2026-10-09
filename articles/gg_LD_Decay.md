@@ -115,5 +115,3 @@ ggsave("figures/gg_LD_Decay_03.png", mp, width = 12, height = 10 )
 ```
 
 ![](figures/gg_LD_Decay_03.png)
-
-------------------------------------------------------------------------
