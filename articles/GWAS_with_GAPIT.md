@@ -2,7 +2,12 @@
 
 ``` r
 
-library(gwaspr)
+devtools::install_github("jiabowang/GAPIT")
+```
+
+``` r
+
+library(GAPIT)
 ```
 
 Before the `gwaspr` package can be used, we first need to run GWAS with
@@ -19,6 +24,8 @@ SNPs, stored in our object `myG`.
 - Minor Allele Frequency = \>5%
 - Maximum Missing Frequency = 25%
 - Heterozygous = \<25%
+
+> Note: `header = T`
 
 ``` r
 
@@ -124,7 +131,7 @@ myY[1:20,]
 ``` r
 
 # Load our covariate file
-myCV <- read.csv("gwaspr_myCV.csv")
+myCV <- read.csv("gwaspr_myCV.csv")[,c("Name","b")]
 ```
 
 ``` r
@@ -132,40 +139,33 @@ myCV <- read.csv("gwaspr_myCV.csv")
 myCV[1:20,]
 ```
 
-    ##                 Name        b
-    ## 1    CDC_Asterix_AGL 0.000470
-    ## 2      CDC_Rosie_AGL 0.000335
-    ## 3       X3156.11_AGL 0.000369
-    ## 4  CDC_Greenstar_AGL 0.000521
-    ## 5     CDC_Cherie_AGL 0.000416
-    ## 6     CDC_Glamis_AGL 0.000498
-    ## 7       CDC_Gold_AGL 0.000543
-    ## 8       CDC_Imax_AGL 0.000259
-    ## 9    CDC_Impower_AGL 0.000497
-    ## 10      CDC_KR.1_AGL 0.000746
-    ## 11     CDC_LeMay_AGL 0.000411
-    ## 12     CDC_Maxim_AGL 0.000405
-    ## 13      CDC_QG.1_AGL 0.000468
-    ## 14 CDC_Red_Rider_AGL 0.000251
-    ## 15   CDC_Redcoat_AGL 0.000185
-    ## 16   CDC_Redwing_AGL 0.000225
-    ## 17     CDC_Robin_AGL 0.000461
-    ## 18   CDC_Rosebud_AGL 0.000730
-    ## 19  CDC_Rosetown_AGL 0.000230
-    ## 20   CDC_Rouleau_AGL 0.000348
+    ##                 Name             b
+    ## 1    CDC_Asterix_AGL  3.372184e-04
+    ## 2    CDC_Asterix_AGL -1.201707e-03
+    ## 3      CDC_Rosie_AGL  3.524706e-04
+    ## 4      CDC_Rosie_AGL -1.752062e-03
+    ## 5       X3156.11_AGL  3.562503e-04
+    ## 6       X3156.11_AGL -1.114926e-03
+    ## 7  CDC_Greenstar_AGL  4.293448e-04
+    ## 8  CDC_Greenstar_AGL -5.607040e-05
+    ## 9     CDC_Cherie_AGL  3.948181e-04
+    ## 10    CDC_Cherie_AGL -7.040853e-04
+    ## 11    CDC_Glamis_AGL  3.825062e-04
+    ## 12    CDC_Glamis_AGL -1.234765e-03
+    ## 13      CDC_Gold_AGL  4.147082e-04
+    ## 14      CDC_Gold_AGL -9.853332e-05
+    ## 15      CDC_Imax_AGL  2.797587e-04
+    ## 16      CDC_Imax_AGL -1.210779e-03
+    ## 17   CDC_Impower_AGL  3.827880e-04
+    ## 18   CDC_Impower_AGL -1.396606e-03
+    ## 19      CDC_KR.1_AGL  5.881404e-04
+    ## 20      CDC_KR.1_AGL -7.986330e-04
 
 ------------------------------------------------------------------------
 
 ## Run GWAS
 
 Run GWAS on the 3 traits `myY`
-
-``` r
-
-# install.packages("devtools")
-# devtools::install_github("jiabowang/GAPIT")
-library(GAPIT)
-```
 
 ``` r
 

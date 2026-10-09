@@ -99,7 +99,9 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://derekmichaelwright.github.io/gwaspr/">gwaspr</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"jiabowang/GAPIT"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">GAPIT</span><span class="op">)</span></span></code></pre></div>
 <p>Before the <code>gwaspr</code> package can be used, we first need to
 run GWAS with <code>GAPIT</code>.</p>
 <div class="section level2">
@@ -115,10 +117,13 @@ of 336,367 SNPs, stored in our object <code>myG</code>.</p>
 <li>Maximum Missing Frequency = 25%</li>
 <li>Heterozygous = &lt;25%</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<blockquote>
+<p>Note: <code>header = T</code></p>
+</blockquote>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load our genotype file in hapmap format (note: header = F)</span></span>
 <span><span class="va">myG</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myG_hmp.csv"</span>, header <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Map + marker Info</span></span>
 <span><span class="va">myG</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##                      V1      V2    V3     V4     V5       V6     V7       V8</span></span>
@@ -143,7 +148,7 @@ of 336,367 SNPs, stored in our object <code>myG</code>.</p>
 <span><span class="co">## 8       &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;</span></span>
 <span><span class="co">## 9       &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;</span></span>
 <span><span class="co">## 10      &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt;</span></span></code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># genotrype calls</span></span>
 <span><span class="va">myG</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">12</span><span class="op">:</span><span class="fl">17</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##             V12             V13            V14            V15          V16</span></span>
@@ -172,10 +177,10 @@ of 336,367 SNPs, stored in our object <code>myG</code>.</p>
 <div class="section level2">
 <h2 id="phenotype-data-myy">Phenotype data (myY)<a class="anchor" aria-label="anchor" href="#phenotype-data-myy"></a>
 </h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load our phenotype file</span></span>
 <span><span class="va">myY</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myY.csv"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myY</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##                 Name DTF_Sask_2017 DTF_Nepal_2017 Cotyledon_RedvsYellow</span></span>
 <span><span class="co">## 1    CDC_Asterix_AGL          54.7          128.0                     0</span></span>
@@ -202,42 +207,38 @@ of 336,367 SNPs, stored in our object <code>myG</code>.</p>
 <div class="section level2">
 <h2 id="covariate-data-mycv">Covariate data (myCV)<a class="anchor" aria-label="anchor" href="#covariate-data-mycv"></a>
 </h2>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Load our covariate file</span></span>
-<span><span class="va">myCV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myCV.csv"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Load our covariate file</span></span>
+<span><span class="va">myCV</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"gwaspr_myCV.csv"</span><span class="op">)</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Name"</span>,<span class="st">"b"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myCV</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">##                 Name        b</span></span>
-<span><span class="co">## 1    CDC_Asterix_AGL 0.000470</span></span>
-<span><span class="co">## 2      CDC_Rosie_AGL 0.000335</span></span>
-<span><span class="co">## 3       X3156.11_AGL 0.000369</span></span>
-<span><span class="co">## 4  CDC_Greenstar_AGL 0.000521</span></span>
-<span><span class="co">## 5     CDC_Cherie_AGL 0.000416</span></span>
-<span><span class="co">## 6     CDC_Glamis_AGL 0.000498</span></span>
-<span><span class="co">## 7       CDC_Gold_AGL 0.000543</span></span>
-<span><span class="co">## 8       CDC_Imax_AGL 0.000259</span></span>
-<span><span class="co">## 9    CDC_Impower_AGL 0.000497</span></span>
-<span><span class="co">## 10      CDC_KR.1_AGL 0.000746</span></span>
-<span><span class="co">## 11     CDC_LeMay_AGL 0.000411</span></span>
-<span><span class="co">## 12     CDC_Maxim_AGL 0.000405</span></span>
-<span><span class="co">## 13      CDC_QG.1_AGL 0.000468</span></span>
-<span><span class="co">## 14 CDC_Red_Rider_AGL 0.000251</span></span>
-<span><span class="co">## 15   CDC_Redcoat_AGL 0.000185</span></span>
-<span><span class="co">## 16   CDC_Redwing_AGL 0.000225</span></span>
-<span><span class="co">## 17     CDC_Robin_AGL 0.000461</span></span>
-<span><span class="co">## 18   CDC_Rosebud_AGL 0.000730</span></span>
-<span><span class="co">## 19  CDC_Rosetown_AGL 0.000230</span></span>
-<span><span class="co">## 20   CDC_Rouleau_AGL 0.000348</span></span></code></pre>
+<pre><code><span><span class="co">##                 Name             b</span></span>
+<span><span class="co">## 1    CDC_Asterix_AGL  3.372184e-04</span></span>
+<span><span class="co">## 2    CDC_Asterix_AGL -1.201707e-03</span></span>
+<span><span class="co">## 3      CDC_Rosie_AGL  3.524706e-04</span></span>
+<span><span class="co">## 4      CDC_Rosie_AGL -1.752062e-03</span></span>
+<span><span class="co">## 5       X3156.11_AGL  3.562503e-04</span></span>
+<span><span class="co">## 6       X3156.11_AGL -1.114926e-03</span></span>
+<span><span class="co">## 7  CDC_Greenstar_AGL  4.293448e-04</span></span>
+<span><span class="co">## 8  CDC_Greenstar_AGL -5.607040e-05</span></span>
+<span><span class="co">## 9     CDC_Cherie_AGL  3.948181e-04</span></span>
+<span><span class="co">## 10    CDC_Cherie_AGL -7.040853e-04</span></span>
+<span><span class="co">## 11    CDC_Glamis_AGL  3.825062e-04</span></span>
+<span><span class="co">## 12    CDC_Glamis_AGL -1.234765e-03</span></span>
+<span><span class="co">## 13      CDC_Gold_AGL  4.147082e-04</span></span>
+<span><span class="co">## 14      CDC_Gold_AGL -9.853332e-05</span></span>
+<span><span class="co">## 15      CDC_Imax_AGL  2.797587e-04</span></span>
+<span><span class="co">## 16      CDC_Imax_AGL -1.210779e-03</span></span>
+<span><span class="co">## 17   CDC_Impower_AGL  3.827880e-04</span></span>
+<span><span class="co">## 18   CDC_Impower_AGL -1.396606e-03</span></span>
+<span><span class="co">## 19      CDC_KR.1_AGL  5.881404e-04</span></span>
+<span><span class="co">## 20      CDC_KR.1_AGL -7.986330e-04</span></span></code></pre>
 <hr>
 </div>
 <div class="section level2">
 <h2 id="run-gwas">Run GWAS<a class="anchor" aria-label="anchor" href="#run-gwas"></a>
 </h2>
 <p>Run GWAS on the 3 traits <code>myY</code></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="co"># devtools::install_github("jiabowang/GAPIT")</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">GAPIT</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Run GWAS</span></span>
 <span><span class="va">myGAPIT</span> <span class="op">&lt;-</span> <span class="fu">GAPIT</span><span class="op">(</span> </span>
