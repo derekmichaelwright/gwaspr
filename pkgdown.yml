@@ -3,7 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   table_GWAS_Results: table_GWAS_Results.html
-last_built: 2026-10-09T18:48Z
+last_built: 2026-10-09T18:57Z
 urls:
   reference: https://derekmichaelwright.github.io/gwaspr/reference
   article: https://derekmichaelwright.github.io/gwaspr/articles
