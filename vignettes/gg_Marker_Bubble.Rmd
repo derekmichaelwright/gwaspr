@@ -44,15 +44,15 @@ myY <- read.csv("gwaspr_myY_full.csv")
 ```
 
 ```{r}
-myY[1:10,]
-```
-
-```{r}
 myCV <- read.csv("gwaspr_myCV.csv")
 ```
 
 ```{r}
 myY <- myY %>% left_join(myCV, by = "Name")
+```
+
+```{r}
+myY[1:10,]
 ```
 
 ---
