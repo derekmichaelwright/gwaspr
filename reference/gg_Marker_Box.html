@@ -33,7 +33,10 @@
     <li><a class="dropdown-item" href="../articles/gg_QTL_Summary.html">gg_QTL_Summary()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Marker Plots</h6></li>
-    <li><a class="dropdown-item" href="../articles/gg_Marker.html">gg_Marker_*()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_Marker_Box.html">gg_Marker_Box()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_Marker_Bar.html">gg_Marker_Box()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_Marker_Pie.html">gg_Marker_Box()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_Marker_Bubble.html">gg_Marker_Box()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Other GWAS Related Plots &amp; Functions</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_myG_Details.html">gg_myG_Details()</a></li>
@@ -66,7 +69,7 @@
     </div>
 
     <div class="ref-description section level2">
-    <p><a href="https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker.html">Creates a marker plot with myG and myY objects.</a></p>
+    <p><a href="https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker_Box.html">Creates a marker plot with myG and myY objects.</a></p>
     </div>
 
     <div class="section level2">
@@ -77,7 +80,8 @@
 <span>  <span class="va">traits</span>,</span>
 <span>  <span class="va">markers</span>,</span>
 <span>  marker.colors <span class="op">=</span> <span class="va">gwaspr_Colors</span>,</span>
-<span>  remove.hets <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  remove.hets <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  remove.N <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  plot.violin <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  plot.box <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  plot.points <span class="op">=</span> <span class="cn">T</span>,</span>
@@ -85,10 +89,9 @@
 <span>  point.size <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  point.beeswarm <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">markers</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span>,</span>
-<span>  yLab <span class="op">=</span> <span class="va">traits</span>,</span>
 <span>  cv.source <span class="op">=</span> <span class="st">"xG"</span>,</span>
 <span>  cv.name <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  cv.colors <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -125,6 +128,10 @@
 <dd><p>Logical, Whether to remove hets or not. advised if plotting multiple markers.</p></dd>
 
 
+<dt id="arg-remove-n">remove.N<a class="anchor" aria-label="anchor" href="#arg-remove-n"></a></dt>
+<dd><p>Logical, Whether to remove N or NN.</p></dd>
+
+
 <dt id="arg-plot-violin">plot.violin<a class="anchor" aria-label="anchor" href="#arg-plot-violin"></a></dt>
 <dd><p>Logical, whether or not to plot violins.</p></dd>
 
@@ -153,20 +160,16 @@
 <dd><p>Number of columns for facetting when plotting multiple traits.</p></dd>
 
 
-<dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
-<dd><p>Title for the plot.</p></dd>
-
-
 <dt id="arg-legend-rows">legend.rows<a class="anchor" aria-label="anchor" href="#arg-legend-rows"></a></dt>
 <dd><p>Number of rows for the legend.</p></dd>
 
 
+<dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
+<dd><p>Title for the plot.</p></dd>
+
+
 <dt id="arg-subtitle">subtitle<a class="anchor" aria-label="anchor" href="#arg-subtitle"></a></dt>
 <dd><p>Subtitle for the plot. Defaults to the list of markers.</p></dd>
-
-
-<dt id="arg-ylab">yLab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
-<dd><p>Label for the y-axis.</p></dd>
 
 
 <dt id="arg-cv-source">cv.source<a class="anchor" aria-label="anchor" href="#arg-cv-source"></a></dt>

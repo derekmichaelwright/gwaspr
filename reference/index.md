@@ -38,6 +38,8 @@
   : gg_Marker_Bar
 - [`gg_Marker_Box()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Box.md)
   : gg_Marker_Box
+- [`gg_Marker_Bubble()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Bubble.md)
+  : gg_Marker_Bubble
 - [`gg_Marker_Pie()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Pie.md)
   : gg_Marker_Pie
 - [`gg_Marker_Scatter()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Scatter.md)
