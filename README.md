@@ -20,17 +20,20 @@ library(gwaspr)
 
 # github
 
-> - **github link**:
->   <a href="https://github.com/derekmichaelwright/gwaspr/"
->   target="_blank">https://github.com/derekmichaelwright/gwaspr/</a>
+- **github link**:
+  <a href="https://github.com/derekmichaelwright/gwaspr/"
+  target="_blank">https://github.com/derekmichaelwright/gwaspr/</a>
 
 ------------------------------------------------------------------------
 
-# GWAS Tutorial
+# Tutorial
 
-> - **dblogr GWAS Tutorial**: <a
->   href="https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/"
->   target="_blank">https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/</a>
+- **dblogr GWAS Tutorial**: <a
+  href="https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/"
+  target="_blank">https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/</a>
+- [Phenotype data (gwaspr_myY.csv)](vignettes/gwaspr_myY.csv)
+- [Covariate data (gwaspr_myCV.csv)](vignettes/gwaspr_myCV.csv)
+- [Genotype data (gwaspr_myG_hmp.zip)](vignettes/gwaspr_myG_hmp.zip)
 
 ------------------------------------------------------------------------
 
@@ -46,6 +49,7 @@ library(gwaspr)
 
 ``` r
 devtools::install_github("jiabowang/GAPIT")
+library(GAPIT)
 ```
 
 ------------------------------------------------------------------------
@@ -57,15 +61,13 @@ devtools::install_github("jiabowang/GAPIT")
 
 ------------------------------------------------------------------------
 
-# Example Plots
+# Example plots
 
-![](vignettes/figures/gg_Manhattan_04_DTF_Nepal_2017.png)
+![](vignettes/figures/gg_Manhattan_02_2.png)
 
-![](vignettes/figures/gg_Manhattan_02_Cotyledon_RedvsYellow.png)
+![](vignettes/figures/gg_Manhattan_03_4.png)
 
-![](vignettes/figures/gg_Manhattan_xModels_03.png)
-
-![](vignettes/figures/gg_Manhattan_xTraits_02.png)
+![](vignettes/figures/gg_GWAS_Summary_04.png)
 
 ![](vignettes/figures/gg_Manhattan_Zoom_01.png)
 
@@ -78,6 +80,10 @@ devtools::install_github("jiabowang/GAPIT")
 ![](vignettes/figures/gg_myG_Details_03_myG_Details.png)
 
 ![](vignettes/figures/gg_LD_decay_02.png)
+
+![](vignettes/figures/gg_LD_Heatmap_01.png)
+
+![](vignettes/figures/gg_QTL_Summary_02.png)
 
 ------------------------------------------------------------------------
 

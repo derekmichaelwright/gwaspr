@@ -6,8 +6,8 @@
 \usage{
 gg_Manhattan(
   folder = "GWAS_Results/",
-  trait = list_Traits(folder)[1],
-  title = trait,
+  traits = list_Traits(folder)[1],
+  title = paste(traits, collapse = " "),
   threshold = NULL,
   sug.threshold = NULL,
   chr = NULL,
@@ -25,10 +25,10 @@ gg_Manhattan(
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
     "blue2", "magenta3"),
-  facet = F,
+  trait.colors = gwaspr_Colors,
+  facet.model = F,
   highlight.sig = F,
   sig.color = "black",
-  chr.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
   chr.unit = "100 Mbp",
   plotHBPvalues = F,
   skyline = "NYC",
@@ -38,7 +38,7 @@ gg_Manhattan(
 \arguments{
 \item{folder}{Folder containing GWAS results.}
 
-\item{trait}{The trait to read.}
+\item{traits}{The traits to read.}
 
 \item{title}{A title for the plot.}
 
@@ -72,15 +72,15 @@ gg_Manhattan(
 
 \item{models}{Models to read.}
 
-\item{model.colors}{Colors for each model. Used if \code{facet = F}.}
+\item{model.colors}{Colors for each model. Used if \code{facet.model = F}.}
 
-\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is \code{facet = F}.}
+\item{trait.colors}{Colors for each chromosome. Used if \code{facet.model = T}.}
 
-\item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if \code{facet = F}.}
+\item{facet.model}{Logical, whether or not to produce a facetted or multi-model plot. Default is \code{facet.model = F}.}
 
-\item{sig.color}{Color for significant assoctiations. Used if \code{facet = T}.}
+\item{highlight.sig}{Logical, whether or not to highlight significant associations with a black circle. Used if \code{facet.nodel = F}.}
 
-\item{chr.colors}{Colors for each chromosome. Used if \code{facet = T}.}
+\item{sig.color}{Color for significant assoctiations. Used if \code{facet.model = T}.}
 
 \item{chr.unit}{Unit for the x-axis. Can be one of c("kbp","100 kbp","Mbp","100 Mbp","Gbp").}
 

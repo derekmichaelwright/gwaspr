@@ -11,7 +11,8 @@ gg_Marker_Scatter(
   trait.y,
   markers,
   marker.colors = gwaspr_Colors,
-  remove.hets = T,
+  remove.hets = F,
+  remove.N = T,
   point.size = 1,
   title = NULL,
   legend.rows = 1,
@@ -32,6 +33,8 @@ gg_Marker_Scatter(
 \item{marker.colors}{Colors to fill in the violin and boxplots.}
 
 \item{remove.hets}{Logical, Whether to remove hets or not. advised if plotting multiple markers.}
+
+\item{remove.N}{Logical, Whether to remove N or NN.}
 
 \item{point.size}{Size for the points.}
 

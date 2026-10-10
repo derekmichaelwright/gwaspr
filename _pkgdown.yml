@@ -16,18 +16,14 @@ navbar:
      - text: GWAS
      - text: Run GWAS with GAPIT
        href: articles/GWAS_with_GAPIT.html
+     - text: Post GWAS
+       href: articles/Post_GWAS.html
      - text: -------
      - text: "Manhattan Plots"
      - text: gg_Manhattan()
        href: articles/gg_Manhattan.html
      - text: gg_Manhattan_Zoom()
        href: articles/gg_Manhattan_Zoom.html
-     - text: gg_Manhattan_xTraits()
-       href: articles/gg_Manhattan_xTraits.html
-     - text: gg_Manhattan_xModels()
-       href: articles/gg_Manhattan_xModels.html
-     - text: gg_Manhattan_Zoom_Traits()
-       href: articles/gg_Manhattan_Zoom_Traits.html
      - text: -------
      - text: "Summary Plots & Tables"
      - text: table_GWAS_Results()
@@ -46,6 +42,8 @@ navbar:
        href: articles/gg_Marker_Pie.html
      - text: gg_Marker_Bubble()
        href: articles/gg_Marker_Bubble.html
+     - text: gg_Marker_Scatter()
+       href: articles/gg_Marker_Scatter.html
      - text: -------
      - text: "Other GWAS Related Plots & Functions"
      - text: gg_myG_Details()

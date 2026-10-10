@@ -2,7 +2,7 @@
 #'
 #' [Create manhattan plots from GAPIT GWAS results zoomed into a specific region on a chromosome.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_Zoom.html)
 #' @param folder Folder containing GWAS results.
-#' @param trait The trait to read.
+#' @param traits The traits to read.
 #' @param title A title for the plot.
 #' @param chr Chromosome to plot.
 #' @param pos1 Start position on chromosome.
@@ -15,10 +15,11 @@
 #' @param vline.colors colors for each vertical line.
 #' @param vline.types lty for each vertical line.
 #' @param vline.legend Logical, whether or not to add a legend for the vlines.
-#' @param facet Logical, whether or not to produce a facetted or multi-model plot. Default is `facet = F`.
+#' @param facet.model Logical, whether or not to produce a facetted or multi-model plot. Default is `facet.model = F`.
 #' @param pmax A max value for the y-axis.
 #' @param models Models to read.
-#' @param model.colors Colors for each model. Used if `facet = F`.
+#' @param model.colors Colors for each model. Used if `facet.model = F`.
+#' @param trait.colors Colors for each chromosome. Used if `facet.model = T`.
 #' @param sig.color Color for significant assoctiations.
 #' @param legend.rows Number of rows for the legend.
 #' @param legend.box Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".
@@ -30,10 +31,10 @@
 
 gg_Manhattan_Zoom <- function(
     folder = "GWAS_Results/",
-    trait = list_Traits(folder)[1],
-    title = trait,
+    traits = list_Traits(folder)[1],
+    title = paste(traits, collapse = " "),
     chr = 1, pos1 = NULL, pos2 = NULL,
-    addGenome = T,
+    addGenome = F,
     threshold = NULL,
     sug.threshold = NULL,
     markers = NULL,
@@ -42,10 +43,11 @@ gg_Manhattan_Zoom <- function(
     vline.colors = rep("red", length(vlines)),
     vline.types = rep(1, length(vlines)),
     vline.legend = T,
-    facet = F,
+    facet.model = F,
     pmax = NULL,
     models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
     model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "blue2", "magenta3"),
+    trait.colors = gwaspr_Colors,
     sig.color = "black",
     legend.rows = 1,
     legend.box = "horizontal",
@@ -57,8 +59,8 @@ gg_Manhattan_Zoom <- function(
   # Read in files
   #
   fnames <- list_Result_Files(folder)
-  fnames <- fnames[grepl(paste0(models, ".", trait, collapse="|"), fnames)]
-  fnames <- fnames[grepl(paste0(trait, c(".csv","\\("), collapse="|"), fnames)]
+  fnames <- fnames[grepl(paste0(rep(models, each = length(traits)), ".", traits, collapse="|"), fnames)]
+  fnames <- fnames[grepl(paste0(rep(traits, each = 2), c(".csv","\\("), collapse="|"), fnames)]
   #
   if(!is.null(skyline)) {
     if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
@@ -71,21 +73,24 @@ gg_Manhattan_Zoom <- function(
   xx <- NULL
   #
   for(i in fnames) {
-    mod <- substr(i, gregexpr("GWAS_Results", i)[[1]][1]+13, gregexpr(".csv", i)[[1]][1]-1)
-    mod <- substr(mod, 1, gregexpr("\\.", mod)[[1]][1]-1)
+    trt <- substr(i, gregexpr("GWAS_Results", i)[[1]][1]+13,
+                  gregexpr(".csv", i)[[1]][1]-1 )
+    trt <- gsub("\\(Kansas\\)|\\(NYC\\)", "", trt)
+    mod <- substr(trt, 1, gregexpr("\\.", trt)[[1]][1] - 1)
+    trt <- substr(trt, gregexpr("\\.", trt)[[1]][1]+1, nchar(trt))
     sky <- substr(i, gregexpr("\\(", i)[[1]][1] + 1, gregexpr("\\)", i)[[1]][1] - 1)
+    #
     xi <- read.csv(paste0(folder, i))
     if(sum(colnames(xi)=="nobs")>0) { xi <- dplyr::select(xi, -nobs) }
-    xi <- xi %>% mutate(Model = mod, Type = sky, negLog10_P = -log10(P.value))
+    xi <- xi %>% mutate(Model = mod, Trait = trt, Type = sky, negLog10_P = -log10(P.value))
     xx <- bind_rows(xx, xi)
   }
   #
   xx <- xx %>% filter(P.value > 0) %>%
     arrange(desc(P.value)) %>%
-    filter(!duplicated(paste(SNP, Model)))
+    filter(!duplicated(paste(SNP, Model, Trait)))
   #
   # Prep data
-  #
   #
   if(is.null(pos1)) { pos1 <- 0 }
   if(is.null(pos2)) { pos2 <- max(xx %>% filter(Chr == chr) %>% pull(Pos)) }
@@ -100,7 +105,7 @@ gg_Manhattan_Zoom <- function(
   xx <- xx %>%
     mutate(Model = factor(Model, levels = models)) %>%
     filter(Chr == chr, Pos > pos1, Pos < pos2, !is.na(Model)) %>%
-    arrange(desc(Model))
+    arrange(desc(Model), desc(Trait))
   #
   models <- unique(xx$Model)
   if(paste(models,collapse=",") != "MLM,MLMM,FarmCPU,BLINK,GLM,CMLM,SUPER" &
@@ -126,8 +131,8 @@ gg_Manhattan_Zoom <- function(
   }
   #
   x2 <- xx %>% filter(negLog10_P >= threshold)
-  x3 <- xx %>% filter(SNP %in% markers) %>%
-    mutate(Label = plyr::mapvalues(SNP, markers, labels))
+  #x3 <- xx %>% filter(SNP %in% markers) %>%
+  #  mutate(Label = mv(SNP, markers, labels))
   x4 <- xx %>% filter(SNP %in% vlines) %>%
     filter(!duplicated(paste(SNP, Model)))
   #
@@ -181,48 +186,61 @@ gg_Manhattan_Zoom <- function(
     geom_hline(yintercept = threshold, color = "red", alpha = 0.8, linewidth = 0.5) +
     geom_hline(yintercept = sug.threshold, color = "blue", alpha = 0.8, linewidth = 0.5)
   #
-  # Plot the Rest
-  #
-  mp <- mp +
-    geom_point(aes(fill = Model, size = Sig.level, key1 = SNP), pch = 21, color = alpha("white",0)) +
-    scale_size_manual(values = point.sizes, guide = "none") +
-    guides(color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
-    theme_gwaspr(legend.position = "bottom", legend.box=legend.box, legend.margin=margin(),
-                 axis.title.y = element_markdown()) +
-    labs(title = trait, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
-  #
   # Add Marker labels
   #
   if(!is.null(markers)) {
-    mp <- mp + geom_text_repel(data = x3, aes(label = Label), size = 2)
+    xm <- xx %>%
+      mutate(SNP = ifelse(SNP %in% markers, SNP, NA),
+             Label = plyr::mapvalues(SNP, markers, labels)) %>%
+      filter(!is.na(Label), negLog10_P > min(threshold, sug.threshold))
+    mp <- mp +
+      geom_text_repel(data = xm, aes(label = Label), size = 2)
+    #mp <- mp + geom_text_repel(data = x3, aes(label = Label), size = 2)
   }
+  #
+  # Plot the Rest
+  #
+  mp <- mp +
+    labs(title = title, y = "-log<sub>10</sub>(*p*)", x = "Mbp")
   #
   # Facet plot
   #
-  if(facet == T) {
+  if(facet.model == T) {
     mp <- mp +
+      geom_point(aes(fill = Trait, size = Sig.level, key1 = SNP), pch = 21, color = alpha("white",0)) +
+      scale_size_manual(values = point.sizes, guide = "none") +
+      guides(color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1)),
+             fill = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
+      theme_gwaspr(legend.position = "bottom", legend.box=legend.box, legend.margin=margin(),
+                   axis.title.y = element_markdown()) +
       facet_grid(Model ~ paste("Chromosome", Chr), scales = "free") +
-      scale_fill_manual(values = alpha(model.colors,0.8), guide = "none")
+      scale_fill_manual(values = alpha(trait.colors,0.8))
     #if(nrow(x3)>0) { mp <- mp + geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) }
     if(addGenome == T) { mp <- ggarrange(mp, mp2, mp1, ncol = 1, nrow = 3, heights = c(3.5*length(models),1,0.8)) }
   } else {
     mp <- mp +
-      facet_grid(. ~ paste("Chromosome", Chr)) +
-      scale_fill_manual(values = alpha(model.colors,0.8)) +
-      guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)))
+      geom_point(aes(fill = Model, size = Sig.level, key1 = SNP), pch = 21, color = alpha("white",0)) +
+      scale_size_manual(values = point.sizes, guide = "none") +
+      guides(color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1)),
+             fill = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
+      theme_gwaspr(legend.position = "bottom", legend.box=legend.box, legend.margin=margin(),
+                   axis.title.y = element_markdown()) +
+      facet_grid(Trait ~ paste("Chromosome", Chr)) +
+      scale_fill_manual(values = alpha(model.colors,0.8))
     #if(nrow(x3)>0) { mp <- mp + geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) }
     if(addGenome == T) { mp <- ggarrange(mp, mp2, mp1, ncol = 1, nrow = 3, heights = c(7,1,0.8)) }
   }
+  #
   mp
 }
 
-#folder = "vignettes/GWAS_Results/"; trait = "Cotyledon_RedvsYellow"; title = trait
+#folder = "vignettes/GWAS_Results/"; traits = "Cotyledon_RedvsYellow"; title = paste(traits, collapse = " ")
 #chr = 1; pos1 = 350000000; pos2 = 400000000;
 #threshold = NULL; sug.threshold = NULL
 #markers = c("Lcu.1GRN.Chr1p365986872", "Lcu.1GRN.Chr1p361840399"); labels = c("365Mbp","361Mbp"); vlines = markers
 #vline.colors = rep("red", length(vlines)); vline.types = rep(1, length(vlines))
 #vline.legend = T; models = c("MLM", "FarmCPU", "BLINK")
 #model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4")
-#facet = T; sig.color = "red"; legend.rows = 1
+#facet.model = T; sig.color = "red"; legend.rows = 1
 #plotHBPvalues = F; pmax = NULL;legend.box = "horizontal";point.sizes = c(0.3,1,0.75);skyline = "Kansas"
 #addGenome = T

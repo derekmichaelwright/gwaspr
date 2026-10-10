@@ -6,15 +6,25 @@ title: "Run GWAS with GAPIT"
 knitr::opts_chunk$set(message = F, warning = F)
 ```
 
+# Instal `GAPIT`
+
 ```{r eval = F}
 devtools::install_github("jiabowang/GAPIT")
 ```
+
+# Load `GAPIT`
 
 ```{r eval = F}
 library(GAPIT)
 ```
 
 Before the `gwaspr` package can be used, we first need to run GWAS with `GAPIT`.
+
+# Data
+
+- [Genotype data (gwaspr_myG_hmp.zip)](gwaspr_myG_hmp.zip)
+- [Phenotype data (gwaspr_myY.csv)](gwaspr_myY.csv)
+- [Covariate data (gwaspr_myCV.csv)](gwaspr_myCV.csv)
 
 # Genotype data (myG)
 
@@ -53,7 +63,7 @@ myY <- read.csv("gwaspr_myY.csv")
 ```
 
 ```{r}
-myY[1:20,]
+myY[1:15,]
 ```
 
 # Covariate data (myCV)
@@ -64,7 +74,7 @@ myCV <- read.csv("gwaspr_myCV.csv")[,c("Name","b")]
 ```
 
 ```{r}
-myCV[1:20,]
+myCV[1:10,]
 ```
 
 ---
@@ -91,9 +101,7 @@ myGAPIT <- GAPIT(
 # Random.model = F, Phenotype.View = F )
 ```
 
----
-
-# GWAS with Covariate
+# GWAS with covariate
 
 Run GWAS on the `DTF_Sask_2017` trait with `b` as a covariate.
 

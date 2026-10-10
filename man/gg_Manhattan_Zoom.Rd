@@ -6,12 +6,12 @@
 \usage{
 gg_Manhattan_Zoom(
   folder = "GWAS_Results/",
-  trait = list_Traits(folder)[1],
-  title = trait,
+  traits = list_Traits(folder)[1],
+  title = paste(traits, collapse = " "),
   chr = 1,
   pos1 = NULL,
   pos2 = NULL,
-  addGenome = T,
+  addGenome = F,
   threshold = NULL,
   sug.threshold = NULL,
   markers = NULL,
@@ -20,11 +20,12 @@ gg_Manhattan_Zoom(
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
-  facet = F,
+  facet.model = F,
   pmax = NULL,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
     "blue2", "magenta3"),
+  trait.colors = gwaspr_Colors,
   sig.color = "black",
   legend.rows = 1,
   legend.box = "horizontal",
@@ -36,7 +37,7 @@ gg_Manhattan_Zoom(
 \arguments{
 \item{folder}{Folder containing GWAS results.}
 
-\item{trait}{The trait to read.}
+\item{traits}{The traits to read.}
 
 \item{title}{A title for the plot.}
 
@@ -62,13 +63,15 @@ gg_Manhattan_Zoom(
 
 \item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
 
-\item{facet}{Logical, whether or not to produce a facetted or multi-model plot. Default is \code{facet = F}.}
+\item{facet.model}{Logical, whether or not to produce a facetted or multi-model plot. Default is \code{facet.model = F}.}
 
 \item{pmax}{A max value for the y-axis.}
 
 \item{models}{Models to read.}
 
-\item{model.colors}{Colors for each model. Used if \code{facet = F}.}
+\item{model.colors}{Colors for each model. Used if \code{facet.model = F}.}
+
+\item{trait.colors}{Colors for each chromosome. Used if \code{facet.model = T}.}
 
 \item{sig.color}{Color for significant assoctiations.}
 

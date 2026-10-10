@@ -81,7 +81,7 @@ ggsave("figures/gg_Marker_Bubble_01.png",
 
 ---
 
-# All Options
+# All options
 
 `gg_Marker_Bubbles()` contains a number of different options for customizing the marker plots.
 
@@ -89,13 +89,13 @@ Note: one of `trait.x`, `trait.y`, `facet.rows`, `facet.cols` must be set to `= 
 
 ```{r eval = F}
 # Prep data
-myM <- c("Lcu.1GRN.Chr1p365986872")
+markers <- c("Lcu.1GRN.Chr1p365986872")
 # Plot
 mp <- gg_Marker_Bubble(
   xG = myG, 
   xY = myY,
   trait.x = "Cotyledon_Color",
-  markers = myM,
+  markers = markers,
   trait.y = "Alleles",
   facet.rows = NULL,
   facet.cols = NULL,
@@ -105,7 +105,7 @@ mp <- gg_Marker_Bubble(
   legend.pos = "bottom",
   legend.rows = 1,
   title = NULL,
-  subtitle = paste(myM, collapse = "\n") )
+  subtitle = paste(markers, collapse = "\n") )
 # Save
 ggsave("figures/gg_Marker_Bubble_02.png", 
        mp, width = 6, height = 4 )
@@ -115,9 +115,9 @@ ggsave("figures/gg_Marker_Bubble_02.png",
 
 ---
 
-# Facet Grouping
+# Facet grouping
 
-## Column Facetting
+## Column facetting
 
 ```{r eval = F}
 # Plot
@@ -141,7 +141,7 @@ ggsave("figures/gg_Marker_Bubble_03.png",
 
 ---
 
-## Row Facetting
+## Row facetting
 
 ```{r eval = F}
 # Plot
