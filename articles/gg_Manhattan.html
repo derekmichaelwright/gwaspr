@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gwaspr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,13 +34,11 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-vignettes">
 <li><h6 class="dropdown-header" data-toc-skip>GWAS</h6></li>
     <li><a class="dropdown-item" href="../articles/GWAS_with_GAPIT.html">Run GWAS with GAPIT</a></li>
+    <li><a class="dropdown-item" href="../articles/Post_GWAS.html">Post GWAS</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Manhattan Plots</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan.html">gg_Manhattan()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan_Zoom.html">gg_Manhattan_Zoom()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_xTraits.html">gg_Manhattan_xTraits()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_xModels.html">gg_Manhattan_xModels()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_Zoom_Traits.html">gg_Manhattan_Zoom_Traits()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Summary Plots &amp; Tables</h6></li>
     <li><a class="dropdown-item" href="../articles/table_GWAS_Results.html">table_GWAS_Results()</a></li>
@@ -52,6 +50,7 @@
     <li><a class="dropdown-item" href="../articles/gg_Marker_Bar.html">gg_Marker_Bar()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Marker_Pie.html">gg_Marker_Pie()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Marker_Bubble.html">gg_Marker_Bubble()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_Marker_Scatter.html">gg_Marker_Scatter()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Other GWAS Related Plots &amp; Functions</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_myG_Details.html">gg_myG_Details()</a></li>
@@ -100,6 +99,9 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://derekmichaelwright.github.io/gwaspr/">gwaspr</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="single-trait">Single Trait<a class="anchor" aria-label="anchor" href="#single-trait"></a>
+</h2>
 <p>The function <code><a href="../reference/gg_Manhattan.html">gg_Manhattan()</a></code> creates manhattan plots from
 GAPIT GWAS results.</p>
 <p>Specifying a <code>folder</code> and <code>trait</code> is all that
@@ -110,12 +112,13 @@ is needed to create manhattan plots.</p>
 <span>  <span class="co"># Specify a folder with GWAS results</span></span>
 <span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, </span>
 <span>  <span class="co"># Select a trait to plot</span></span>
-<span>  trait <span class="op">=</span> <span class="st">"DTF_Nepal_2017"</span> <span class="op">)</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"DTF_Nepal_2017"</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
 <span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_01_DTF_Nepal_2017.png"</span>, </span>
 <span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">3.5</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
 <p><img src="figures/gg_Manhattan_01_DTF_Nepal_2017.png"></p>
 <hr>
+</div>
 <div class="section level2">
 <h2 id="plot-all-traits-with-a-loop">Plot all traits with a loop<a class="anchor" aria-label="anchor" href="#plot-all-traits-with-a-loop"></a>
 </h2>
@@ -129,7 +132,7 @@ the specified <code>folder</code>.</p>
 <span>    <span class="co"># Specify a folder with GWAS results</span></span>
 <span>    folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, </span>
 <span>    <span class="co"># Select a trait to plot</span></span>
-<span>    trait <span class="op">=</span> <span class="va">i</span> <span class="op">)</span></span>
+<span>    traits <span class="op">=</span> <span class="va">i</span> <span class="op">)</span></span>
 <span>  <span class="co"># Save</span></span>
 <span>  <span class="fu">ggsave</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"figures/gg_Manhattan_01_"</span>, <span class="va">i</span>, <span class="st">".png"</span><span class="op">)</span>, </span>
 <span>         <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">3.5</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span>
@@ -140,84 +143,253 @@ the specified <code>folder</code>.</p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="facetting">Facetting<a class="anchor" aria-label="anchor" href="#facetting"></a>
+<h2 id="all-options">All options<a class="anchor" aria-label="anchor" href="#all-options"></a>
 </h2>
-<p>The default setting for <code><a href="../reference/gg_Manhattan.html">gg_Manhattan()</a></code> is to set
-<code>facet = F</code> which will plot all models together. By changing
-<code>facet = T</code> we can separate each GWAS model. When setting
-<code>facet = T</code>, points are now colored by chromosome, which can
-be changed with <code>chr.colors</code>. Significant associations can
-also be highlighted by setting <code>highlight.sig</code> and
-<code>sig.color</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<code class="sourceCode R"><span><span class="co"># Prep data</span></span>
+<span><span class="va">traits</span> <span class="op">&lt;-</span> <span class="st">"DTF_Nepal_2017"</span></span>
+<span><span class="va">markers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr2p44545877"</span>, <span class="st">"Lcu.1GRN.Chr5p1658484"</span><span class="op">)</span></span>
+<span><span class="va">vlines</span> <span class="op">&lt;-</span> <span class="va">markers</span></span>
+<span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span></span>
-<span>  <span class="co"># Specify a folder with GWAS results</span></span>
 <span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
-<span>  <span class="co"># Select a trait to plot</span></span>
-<span>  trait <span class="op">=</span> <span class="st">"Cotyledon_RedvsYellow"</span>, </span>
-<span>  <span class="co"># Facet out the different GWAS models</span></span>
-<span>  facet <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>  <span class="co"># Set chromosome colors</span></span>
-<span>  chr.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkgoldenrod3"</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span>,</span>
-<span>  <span class="co"># Highlight significant associations</span></span>
-<span>  highlight.sig <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>  <span class="co"># Choose the highlight color</span></span>
-<span>  sig.color <span class="op">=</span> <span class="st">"darkred"</span> <span class="op">)</span></span>
+<span>    traits <span class="op">=</span> <span class="va">traits</span>,</span>
+<span>    title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">traits</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>,</span>
+<span>    threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    sug.threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    chr <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    markers <span class="op">=</span> <span class="va">markers</span>,</span>
+<span>    labels <span class="op">=</span> <span class="va">markers</span>,</span>
+<span>    vlines <span class="op">=</span> <span class="va">markers</span>,</span>
+<span>    vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    legend <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>    legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    legend.box <span class="op">=</span> <span class="st">"horizontal"</span>,</span>
+<span>    point.sizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>,<span class="fl">1</span>,<span class="fl">0.75</span><span class="op">)</span>,</span>
+<span>    pmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    pmin <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>    models <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"GLM"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span>,</span>
+<span>    model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, </span>
+<span>                     <span class="st">"darkorchid4"</span>, <span class="st">"blue2"</span>, <span class="st">"magenta3"</span><span class="op">)</span>,</span>
+<span>    trait.colors <span class="op">=</span> <span class="va">gwaspr_Colors</span>,</span>
+<span>    facet.model <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>    highlight.sig <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>    sig.color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>    chr.unit <span class="op">=</span> <span class="st">"100 Mbp"</span>,</span>
+<span>    plotHBPvalues <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>    skyline <span class="op">=</span> <span class="st">"NYC"</span>,</span>
+<span>    addQQ <span class="op">=</span> <span class="cn">T</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
-<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_02_Cotyledon_RedvsYellow.png"</span>, </span>
-<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">8</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
-<p><img src="figures/gg_Manhattan_02_Cotyledon_RedvsYellow.png"></p>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_01_1.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">3.5</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Manhattan_01_1.png"></p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="single-chromosome">Single Chromosome<a class="anchor" aria-label="anchor" href="#single-chromosome"></a>
+<h2 id="multiple-traits">Multiple traits<a class="anchor" aria-label="anchor" href="#multiple-traits"></a>
 </h2>
-<p>A single chromosome can be plotted by setting <code>chr</code>. The
-x-axis can also be adjusted by setting <code>chr.unit</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Specify a folder with GWAS results</span></span>
-<span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, </span>
-<span>  <span class="co"># Select a trait to plot</span></span>
-<span>  trait <span class="op">=</span> <span class="st">"DTF_Nepal_2017"</span>,</span>
-<span>  <span class="co"># Select a chromosome to plot</span></span>
-<span>  chr <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  <span class="co"># Change chromosome units</span></span>
-<span>  chr.unit <span class="op">=</span> <span class="st">"50 Mbp"</span> <span class="op">)</span></span>
+<span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DTF_Nepal_2017"</span>, <span class="st">"DTF_Sask_2017"</span>, <span class="st">"DTF_Sask_2017_b"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Specify GWAS models to plot</span></span>
+<span>  models <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
-<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_03_DTF_Nepal_2017.png"</span>, </span>
-<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">7</span>, height <span class="op">=</span> <span class="fl">3.5</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
-<p><img src="figures/gg_Manhattan_03_DTF_Nepal_2017.png"></p>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_02_1.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">8</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Manhattan_02_1.png"></p>
 <hr>
-</div>
-<div class="section level2">
-<h2 id="customized-plot">Customized Plot<a class="anchor" aria-label="anchor" href="#customized-plot"></a>
-</h2>
-<p>The default for <code><a href="../reference/gg_Manhattan.html">gg_Manhattan()</a></code> is to set the plot
-<code>title = trait</code>, but this can be changed. You can also adjust
-the <code>threshold</code> and add a<code>sug.threshold</code>. If
-specified, <code>markers</code> can be highlighted and have their
-<code>labels</code> customized. Adding <code>vlines</code> can be used
-to aid in comparisons with other manhattan plots or accross GWAS
-<code>models</code>. <code>vlines</code> can be customized with
-<code>vline.colors</code> and <code>vline.types</code>. You can Select
-which GWAS <code>models</code> to plot and set the colors of each with
-<code>model.colors</code>. Significant associations can also be
-highlighted by setting <code>highlight.sig</code> and
-<code>sig.color</code>. The QQ plot can also be removed by setting
-<code>addQQ = F</code>.</p>
 <div class="section level3">
-<h3 id="dtf-nepal-2017">DTF Nepal 2017<a class="anchor" aria-label="anchor" href="#dtf-nepal-2017"></a>
+<h3 id="customized-plot">Customized plot<a class="anchor" aria-label="anchor" href="#customized-plot"></a>
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Specify a folder with GWAS results</span></span>
 <span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DTF_Nepal_2017"</span>, <span class="st">"DTF_Sask_2017"</span>, <span class="st">"DTF_Sask_2017_b"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Specify a title</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Days to Flower"</span>,</span>
+<span>  <span class="co"># Highlight specific markers</span></span>
+<span>  markers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr2p44545877"</span>,</span>
+<span>              <span class="st">"Lcu.1GRN.Chr5p1658484"</span>,</span>
+<span>              <span class="st">"Lcu.1GRN.Chr6p3269280"</span> <span class="op">)</span>,</span>
+<span>  <span class="co"># Create alt labels for the markers</span></span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"44Mbp"</span>, <span class="st">"16Mbp"</span>, <span class="st">"32Mbp"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Specify Color for each marker vline</span></span>
+<span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span>
+<span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Change the legend alignment</span></span>
+<span>  legend.box<span class="op">=</span><span class="st">"vertical"</span>,</span>
+<span>  <span class="co"># Specify GWAS models to plot</span></span>
+<span>  models <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span><span class="op">)</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_02_2.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">8</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Manhattan_02_2.png"></p>
+<hr>
+</div>
+</div>
+<div class="section level2">
+<h2 id="facet-by-model">Facet by Model<a class="anchor" aria-label="anchor" href="#facet-by-model"></a>
+</h2>
+<p>The default setting for <code><a href="../reference/gg_Manhattan.html">gg_Manhattan()</a></code> is to set
+<code>facet.model = F</code> which will plot all models together and
+facet by trait if multiple traits are selected. By changing
+<code>facet.model = T</code> we can separate each GWAS model. When
+setting <code>facet.model = T</code>, points are now colored by trait,
+which can be changed with <code>trait.colors</code>. Significant
+associations can also be highlighted by setting
+<code>highlight.sig</code> and <code>sig.color</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Specify a folder with GWAS results</span></span>
+<span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
 <span>  <span class="co"># Select a trait to plot</span></span>
-<span>  trait <span class="op">=</span> <span class="st">"DTF_Nepal_2017"</span>,</span>
+<span>  traits <span class="op">=</span> <span class="st">"Cotyledon_RedvsYellow"</span>, </span>
+<span>  <span class="co"># Facet out the different GWAS models</span></span>
+<span>  facet.model <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  <span class="co"># Set chromosome colors</span></span>
+<span>  trait.colors <span class="op">=</span> <span class="va">gwaspr_Colors</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_03_1.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">8</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Manhattan_03_1.png"></p>
+<hr>
+<div class="section level3">
+<h3 id="multiple-traits-1">Multiple traits<a class="anchor" aria-label="anchor" href="#multiple-traits-1"></a>
+</h3>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Specify a folder with GWAS results</span></span>
+<span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DTF_Nepal_2017"</span>, <span class="st">"DTF_Sask_2017"</span>, <span class="st">"DTF_Sask_2017_b"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Facet out the different GWAS models</span></span>
+<span>  facet.model <span class="op">=</span> <span class="cn">T</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_03_2.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">8</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Manhattan_03_2.png"></p>
+<hr>
+</div>
+<div class="section level3">
+<h3 id="customized-plot-1">Customized plot<a class="anchor" aria-label="anchor" href="#customized-plot-1"></a>
+</h3>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Specify a folder with GWAS results</span></span>
+<span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DTF_Nepal_2017"</span>, <span class="st">"DTF_Sask_2017"</span>, <span class="st">"DTF_Sask_2017_b"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Specify a title</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Days to Flower"</span>,</span>
+<span>  <span class="co"># Add vertical lines</span></span>
+<span>  vlines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr2p44545877"</span>,</span>
+<span>              <span class="st">"Lcu.1GRN.Chr5p1658484"</span>,</span>
+<span>              <span class="st">"Lcu.1GRN.Chr6p3269280"</span> <span class="op">)</span>,</span>
+<span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span>
+<span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Change the legend alignment</span></span>
+<span>  legend.box<span class="op">=</span><span class="st">"vertical"</span>,</span>
+<span>  <span class="co"># Choose a GWAS model</span></span>
+<span>  models <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>,<span class="st">"MLMM"</span>,<span class="st">"FarmCPU"</span>,<span class="st">"BLINK"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Facet out the different GWAS models</span></span>
+<span>  facet.model <span class="op">=</span> <span class="cn">T</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_03_3.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">8</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Manhattan_03_3.png"></p>
+<hr>
+</div>
+<div class="section level3">
+<h3 id="single-model-multiple-traits">Single model, multiple traits<a class="anchor" aria-label="anchor" href="#single-model-multiple-traits"></a>
+</h3>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Specify a folder with GWAS results</span></span>
+<span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
+<span>  <span class="co"># Select traits to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DTF_Nepal_2017"</span>, <span class="st">"DTF_Sask_2017"</span>, <span class="st">"DTF_Sask_2017_b"</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Specify a title</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Days to Flower"</span>,</span>
+<span>  <span class="co"># Set horizontal thresholds bars</span></span>
+<span>  threshold <span class="op">=</span> <span class="fl">6.7</span>,</span>
+<span>  sug.threshold <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  <span class="co"># Add vertical lines</span></span>
+<span>  vlines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr2p44545877"</span>,</span>
+<span>              <span class="st">"Lcu.1GRN.Chr5p1658484"</span>,</span>
+<span>              <span class="st">"Lcu.1GRN.Chr6p3269280"</span> <span class="op">)</span>,</span>
+<span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span>
+<span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  <span class="co"># Change the legend alignment</span></span>
+<span>  legend.box<span class="op">=</span><span class="st">"vertical"</span>,</span>
+<span>  <span class="co"># Choose a GWAS model</span></span>
+<span>  models <span class="op">=</span>  <span class="st">"MLM"</span>,</span>
+<span>  <span class="co"># Facet out the different GWAS models</span></span>
+<span>  facet.model <span class="op">=</span> <span class="cn">T</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_03_4.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">3.5</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Manhattan_03_4.png"></p>
+<hr>
+</div>
+</div>
+<div class="section level2">
+<h2 id="single-chromosome">Single Chromosome<a class="anchor" aria-label="anchor" href="#single-chromosome"></a>
+</h2>
+<p>A single chromosome can be plotted by setting <code>chr</code>. The
+x-axis can also be adjusted by setting <code>chr.unit</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Specify a folder with GWAS results</span></span>
+<span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>, </span>
+<span>  <span class="co"># Select a trait to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"DTF_Nepal_2017"</span>,</span>
+<span>  <span class="co"># Select a chromosome to plot</span></span>
+<span>  chr <span class="op">=</span> <span class="fl">2</span> <span class="op">)</span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_04_1.png"</span>, </span>
+<span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">7</span>, height <span class="op">=</span> <span class="fl">3.5</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
+<p><img src="figures/gg_Manhattan_04_1.png"></p>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="customized-plots">Customized plots<a class="anchor" aria-label="anchor" href="#customized-plots"></a>
+</h2>
+<p>The default for <code><a href="../reference/gg_Manhattan.html">gg_Manhattan()</a></code> is to set the plot
+<code>title = paste(traits, collapse = " ")</code>, but this can be
+changed. You can also adjust the <code>threshold</code> and add
+a<code>sug.threshold</code>. If specified, <code>markers</code> can be
+highlighted and have their <code>labels</code> customized. Adding
+<code>vlines</code> can be used to aid in comparisons with other
+manhattan plots or accross GWAS <code>models</code>. <code>vlines</code>
+can be customized with <code>vline.colors</code> and
+<code>vline.types</code>. You can Select which GWAS <code>models</code>
+to plot and set the colors of each with <code>model.colors</code>.
+Significant associations can also be highlighted by setting
+<code>highlight.sig</code> and <code>sig.color</code>. The QQ plot can
+also be removed by setting <code>addQQ = F</code>.</p>
+<div class="section level3">
+<h3 id="dtf-nepal-2017">DTF Nepal 2017<a class="anchor" aria-label="anchor" href="#dtf-nepal-2017"></a>
+</h3>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Plot</span></span>
+<span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span></span>
+<span>  <span class="co"># Specify a folder with GWAS results</span></span>
+<span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
+<span>  <span class="co"># Select a trait to plot</span></span>
+<span>  traits <span class="op">=</span> <span class="st">"DTF_Nepal_2017"</span>,</span>
 <span>  <span class="co"># Create a title for the plot</span></span>
 <span>  title <span class="op">=</span> <span class="st">"DTF Nepal 2017"</span>,</span>
 <span>  <span class="co"># Set horizontal thresholds bars</span></span>
@@ -225,9 +397,8 @@ highlighted by setting <code>highlight.sig</code> and
 <span>  sug.threshold <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  <span class="co"># Highlight specific markers</span></span>
 <span>  markers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr2p44545877"</span>,</span>
-<span>             <span class="st">"Lcu.1GRN.Chr5p1658484"</span><span class="op">)</span>,</span>
-<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"p44545877"</span>,</span>
-<span>             <span class="st">"p1658484"</span><span class="op">)</span>,</span>
+<span>              <span class="st">"Lcu.1GRN.Chr5p1658484"</span><span class="op">)</span>,</span>
+<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M1"</span>, <span class="st">"M2"</span><span class="op">)</span>,</span>
 <span>  <span class="co"># Add vertical lines</span></span>
 <span>  vlines <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr2p44545877"</span>,</span>
 <span>             <span class="st">"Lcu.1GRN.Chr5p1658484"</span>,</span>
@@ -247,21 +418,21 @@ highlighted by setting <code>highlight.sig</code> and
 <span>  <span class="co"># Remove the QQ plot</span></span>
 <span>  addQQ <span class="op">=</span> <span class="cn">F</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
-<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_04_DTF_Nepal_2017.png"</span>, </span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_05_1.png"</span>, </span>
 <span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">3.5</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
-<p><img src="figures/gg_Manhattan_04_DTF_Nepal_2017.png"></p>
+<p><img src="figures/gg_Manhattan_05_1.png"></p>
 <hr>
 </div>
 <div class="section level3">
 <h3 id="dtf-sask-2017-covariate-b">DTF Sask 2017 | Covariate = b<a class="anchor" aria-label="anchor" href="#dtf-sask-2017-covariate-b"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span></span>
 <span>  <span class="co"># Specify a folder with GWAS results</span></span>
 <span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
 <span>  <span class="co"># Select a trait to plot</span></span>
-<span>  trait <span class="op">=</span> <span class="st">"DTF_Sask_2017_b"</span>,</span>
+<span>  traits <span class="op">=</span> <span class="st">"DTF_Sask_2017_b"</span>,</span>
 <span>  <span class="co"># Create a title for the plot</span></span>
 <span>  title <span class="op">=</span> <span class="st">"DTF Sask 2017 | Covariate = b"</span>,</span>
 <span>  <span class="co"># Set horizontal thresholds bars</span></span>
@@ -289,9 +460,9 @@ highlighted by setting <code>highlight.sig</code> and
 <span>  <span class="co"># Remove the QQ plot</span></span>
 <span>  addQQ <span class="op">=</span> <span class="cn">F</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
-<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_04_DTF_Sask_2017_b.png"</span>, </span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_05_2.png"</span>, </span>
 <span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">3.5</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
-<p><img src="figures/gg_Manhattan_04_DTF_Sask_2017_b.png"></p>
+<p><img src="figures/gg_Manhattan_05_2.png"></p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -301,7 +472,7 @@ highlighted by setting <code>highlight.sig</code> and
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Derek Wright.</p>
+  <p>Developed by Derek M. Wright.</p>
 </div>
 
 <div class="pkgdown-footer-right">
