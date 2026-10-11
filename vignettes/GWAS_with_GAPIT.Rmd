@@ -66,6 +66,10 @@ myY <- read.csv("gwaspr_myY.csv")
 myY[1:15,]
 ```
 
+```{r}
+myY <- myY[,-2] 
+```
+
 # Covariate data (myCV)
 
 ```{r}
