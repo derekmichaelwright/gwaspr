@@ -9,12 +9,12 @@ chromosome.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_Z
 ``` r
 gg_Manhattan_Zoom(
   folder = "GWAS_Results/",
-  trait = list_Traits(folder)[1],
-  title = trait,
+  traits = list_Traits(folder)[1],
+  title = paste(traits, collapse = " "),
   chr = 1,
   pos1 = NULL,
   pos2 = NULL,
-  addGenome = T,
+  addGenome = F,
   threshold = NULL,
   sug.threshold = NULL,
   markers = NULL,
@@ -23,11 +23,12 @@ gg_Manhattan_Zoom(
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
-  facet = F,
+  facet.model = F,
   pmax = NULL,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
     "blue2", "magenta3"),
+  trait.colors = gwaspr_Colors,
   sig.color = "black",
   legend.rows = 1,
   legend.box = "horizontal",
@@ -43,9 +44,9 @@ gg_Manhattan_Zoom(
 
   Folder containing GWAS results.
 
-- trait:
+- traits:
 
-  The trait to read.
+  The traits to read.
 
 - title:
 
@@ -95,10 +96,10 @@ gg_Manhattan_Zoom(
 
   Logical, whether or not to add a legend for the vlines.
 
-- facet:
+- facet.model:
 
   Logical, whether or not to produce a facetted or multi-model plot.
-  Default is `facet = F`.
+  Default is `facet.model = F`.
 
 - pmax:
 
@@ -110,7 +111,11 @@ gg_Manhattan_Zoom(
 
 - model.colors:
 
-  Colors for each model. Used if `facet = F`.
+  Colors for each model. Used if `facet.model = F`.
+
+- trait.colors:
+
+  Colors for each chromosome. Used if `facet.model = T`.
 
 - sig.color:
 

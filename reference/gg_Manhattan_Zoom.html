@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gwaspr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,13 +19,11 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-vignettes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Vignettes</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-vignettes"><li><h6 class="dropdown-header" data-toc-skip>GWAS</h6></li>
     <li><a class="dropdown-item" href="../articles/GWAS_with_GAPIT.html">Run GWAS with GAPIT</a></li>
+    <li><a class="dropdown-item" href="../articles/Post_GWAS.html">Post GWAS</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Manhattan Plots</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan.html">gg_Manhattan()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan_Zoom.html">gg_Manhattan_Zoom()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_xTraits.html">gg_Manhattan_xTraits()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_xModels.html">gg_Manhattan_xModels()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_Zoom_Traits.html">gg_Manhattan_Zoom_Traits()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Summary Plots &amp; Tables</h6></li>
     <li><a class="dropdown-item" href="../articles/table_GWAS_Results.html">table_GWAS_Results()</a></li>
@@ -37,6 +35,7 @@
     <li><a class="dropdown-item" href="../articles/gg_Marker_Bar.html">gg_Marker_Bar()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Marker_Pie.html">gg_Marker_Pie()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Marker_Bubble.html">gg_Marker_Bubble()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_Marker_Scatter.html">gg_Marker_Scatter()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Other GWAS Related Plots &amp; Functions</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_myG_Details.html">gg_myG_Details()</a></li>
@@ -76,12 +75,12 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gg_Manhattan_Zoom</span><span class="op">(</span></span>
 <span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
-<span>  trait <span class="op">=</span> <span class="fu"><a href="list_Traits.html">list_Traits</a></span><span class="op">(</span><span class="va">folder</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
-<span>  title <span class="op">=</span> <span class="va">trait</span>,</span>
+<span>  traits <span class="op">=</span> <span class="fu"><a href="list_Traits.html">list_Traits</a></span><span class="op">(</span><span class="va">folder</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>  title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">traits</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>,</span>
 <span>  chr <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  pos1 <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pos2 <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  addGenome <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  addGenome <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sug.threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  markers <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -90,11 +89,12 @@
 <span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  vline.legend <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>  facet <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  facet.model <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  pmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"GLM"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span>,</span>
 <span>  model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkorchid4"</span>,</span>
 <span>    <span class="st">"blue2"</span>, <span class="st">"magenta3"</span><span class="op">)</span>,</span>
+<span>  trait.colors <span class="op">=</span> <span class="va">gwaspr_Colors</span>,</span>
 <span>  sig.color <span class="op">=</span> <span class="st">"black"</span>,</span>
 <span>  legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  legend.box <span class="op">=</span> <span class="st">"horizontal"</span>,</span>
@@ -112,8 +112,8 @@
 <dd><p>Folder containing GWAS results.</p></dd>
 
 
-<dt id="arg-trait">trait<a class="anchor" aria-label="anchor" href="#arg-trait"></a></dt>
-<dd><p>The trait to read.</p></dd>
+<dt id="arg-traits">traits<a class="anchor" aria-label="anchor" href="#arg-traits"></a></dt>
+<dd><p>The traits to read.</p></dd>
 
 
 <dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
@@ -164,8 +164,8 @@
 <dd><p>Logical, whether or not to add a legend for the vlines.</p></dd>
 
 
-<dt id="arg-facet">facet<a class="anchor" aria-label="anchor" href="#arg-facet"></a></dt>
-<dd><p>Logical, whether or not to produce a facetted or multi-model plot. Default is <code>facet = F</code>.</p></dd>
+<dt id="arg-facet-model">facet.model<a class="anchor" aria-label="anchor" href="#arg-facet-model"></a></dt>
+<dd><p>Logical, whether or not to produce a facetted or multi-model plot. Default is <code>facet.model = F</code>.</p></dd>
 
 
 <dt id="arg-pmax">pmax<a class="anchor" aria-label="anchor" href="#arg-pmax"></a></dt>
@@ -177,7 +177,11 @@
 
 
 <dt id="arg-model-colors">model.colors<a class="anchor" aria-label="anchor" href="#arg-model-colors"></a></dt>
-<dd><p>Colors for each model. Used if <code>facet = F</code>.</p></dd>
+<dd><p>Colors for each model. Used if <code>facet.model = F</code>.</p></dd>
+
+
+<dt id="arg-trait-colors">trait.colors<a class="anchor" aria-label="anchor" href="#arg-trait-colors"></a></dt>
+<dd><p>Colors for each chromosome. Used if <code>facet.model = T</code>.</p></dd>
 
 
 <dt id="arg-sig-color">sig.color<a class="anchor" aria-label="anchor" href="#arg-sig-color"></a></dt>
@@ -214,7 +218,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Derek Wright.</p>
+  <p>Developed by Derek M. Wright.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -13,7 +13,8 @@ gg_Marker_Scatter(
   trait.y,
   markers,
   marker.colors = gwaspr_Colors,
-  remove.hets = T,
+  remove.hets = F,
+  remove.N = T,
   point.size = 1,
   title = NULL,
   legend.rows = 1,
@@ -51,6 +52,10 @@ gg_Marker_Scatter(
 
   Logical, Whether to remove hets or not. advised if plotting multiple
   markers.
+
+- remove.N:
+
+  Logical, Whether to remove N or NN.
 
 - point.size:
 

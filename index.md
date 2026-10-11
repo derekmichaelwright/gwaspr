@@ -21,15 +21,21 @@ library(gwaspr)
 
 # github
 
-> - **github link**:
->   [https://github.com/derekmichaelwright/gwaspr/](https://github.com/derekmichaelwright/gwaspr/)
+- **github link**:
+  [https://github.com/derekmichaelwright/gwaspr/](https://github.com/derekmichaelwright/gwaspr/)
 
 ------------------------------------------------------------------------
 
-# GWAS Tutorial
+# Tutorial
 
-> - **dblogr GWAS Tutorial**:
->   [https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/](https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/)
+- **dblogr GWAS Tutorial**:
+  [https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/](https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/)
+- [Phenotype data
+  (gwaspr_myY.csv)](https://derekmichaelwright.github.io/gwaspr/vignettes/gwaspr_myY.csv)
+- [Covariate data
+  (gwaspr_myCV.csv)](https://derekmichaelwright.github.io/gwaspr/vignettes/gwaspr_myCV.csv)
+- [Genotype data
+  (gwaspr_myG_hmp.zip)](https://derekmichaelwright.github.io/gwaspr/vignettes/gwaspr_myG_hmp.zip)
 
 ------------------------------------------------------------------------
 
@@ -46,6 +52,7 @@ library(gwaspr)
 ``` r
 
 devtools::install_github("jiabowang/GAPIT")
+library(GAPIT)
 ```
 
 ------------------------------------------------------------------------
@@ -57,15 +64,13 @@ devtools::install_github("jiabowang/GAPIT")
 
 ------------------------------------------------------------------------
 
-# Example Plots
+# Example plots
 
-![](articles/figures/gg_Manhattan_04_DTF_Nepal_2017.png)
+![](articles/figures/gg_Manhattan_02_2.png)
 
-![](articles/figures/gg_Manhattan_02_Cotyledon_RedvsYellow.png)
+![](articles/figures/gg_Manhattan_03_4.png)
 
-![](articles/figures/gg_Manhattan_xModels_03.png)
-
-![](articles/figures/gg_Manhattan_xTraits_02.png)
+![](articles/figures/gg_GWAS_Summary_04.png)
 
 ![](articles/figures/gg_Manhattan_Zoom_01.png)
 
@@ -78,6 +83,10 @@ devtools::install_github("jiabowang/GAPIT")
 ![](articles/figures/gg_myG_Details_03_myG_Details.png)
 
 ![](articles/figures/gg_LD_decay_02.png)
+
+![](articles/figures/gg_LD_Heatmap_01.png)
+
+![](articles/figures/gg_QTL_Summary_02.png)
 
 ------------------------------------------------------------------------
 

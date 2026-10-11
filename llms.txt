@@ -21,15 +21,21 @@ library(gwaspr)
 
 # github
 
-> - **github link**:
->   [https://github.com/derekmichaelwright/gwaspr/](https://github.com/derekmichaelwright/gwaspr/)
+- **github link**:
+  [https://github.com/derekmichaelwright/gwaspr/](https://github.com/derekmichaelwright/gwaspr/)
 
 ------------------------------------------------------------------------
 
-# GWAS Tutorial
+# Tutorial
 
-> - **dblogr GWAS Tutorial**:
->   [https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/](https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/)
+- **dblogr GWAS Tutorial**:
+  [https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/](https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/)
+- [Phenotype data
+  (gwaspr_myY.csv)](https://derekmichaelwright.github.io/gwaspr/vignettes/gwaspr_myY.csv)
+- [Covariate data
+  (gwaspr_myCV.csv)](https://derekmichaelwright.github.io/gwaspr/vignettes/gwaspr_myCV.csv)
+- [Genotype data
+  (gwaspr_myG_hmp.zip)](https://derekmichaelwright.github.io/gwaspr/vignettes/gwaspr_myG_hmp.zip)
 
 ------------------------------------------------------------------------
 
@@ -46,6 +52,7 @@ library(gwaspr)
 ``` r
 
 devtools::install_github("jiabowang/GAPIT")
+library(GAPIT)
 ```
 
 ------------------------------------------------------------------------
@@ -57,15 +64,13 @@ devtools::install_github("jiabowang/GAPIT")
 
 ------------------------------------------------------------------------
 
-# Example Plots
+# Example plots
 
-![](articles/figures/gg_Manhattan_04_DTF_Nepal_2017.png)
+![](articles/figures/gg_Manhattan_02_2.png)
 
-![](articles/figures/gg_Manhattan_02_Cotyledon_RedvsYellow.png)
+![](articles/figures/gg_Manhattan_03_4.png)
 
-![](articles/figures/gg_Manhattan_xModels_03.png)
-
-![](articles/figures/gg_Manhattan_xTraits_02.png)
+![](articles/figures/gg_GWAS_Summary_04.png)
 
 ![](articles/figures/gg_Manhattan_Zoom_01.png)
 
@@ -78,6 +83,10 @@ devtools::install_github("jiabowang/GAPIT")
 ![](articles/figures/gg_myG_Details_03_myG_Details.png)
 
 ![](articles/figures/gg_LD_decay_02.png)
+
+![](articles/figures/gg_LD_Heatmap_01.png)
+
+![](articles/figures/gg_QTL_Summary_02.png)
 
 ------------------------------------------------------------------------
 
@@ -113,12 +122,6 @@ devtools::install_github("jiabowang/GAPIT")
   : gg_Manhattan
 - [`gg_Manhattan_Zoom()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom.md)
   : gg_Manhattan_Zoom
-- [`gg_Manhattan_Zoom_Traits()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom_Traits.md)
-  : gg_Manhattan_Zoom_Traits
-- [`gg_Manhattan_xModels()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_xModels.md)
-  : gg_Manhattan_xModels
-- [`gg_Manhattan_xTraits()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_xTraits.md)
-  : gg_Manhattan_xTraits
 - [`gg_Marker_Bar()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Bar.md)
   : gg_Marker_Bar
 - [`gg_Marker_Box()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Box.md)
@@ -180,28 +183,3 @@ devtools::install_github("jiabowang/GAPIT")
 - [`theme_gwaspr_pie()`](https://derekmichaelwright.github.io/gwaspr/reference/theme_gwaspr_pie.md)
   : theme_gwaspr_pie.
 
-# Articles
-
-### All vignettes
-
-- [gg_GWAS_Summary()](https://derekmichaelwright.github.io/gwaspr/articles/gg_GWAS_Summary.md):
-- [LD
-  Decay](https://derekmichaelwright.github.io/gwaspr/articles/gg_LD_Decay.md):
-- [gg_LDheatmap()](https://derekmichaelwright.github.io/gwaspr/articles/gg_LD_Heatmap.md):
-- [gg_Manhattan_xModels()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_xModels.md):
-- [gg_Manhattan_xTraits()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_xTraits.md):
-- [gg_Manhattan_Zoom_Traits()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_Zoom_Traits.md):
-- [gg_Manhattan_Zoom()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan_Zoom.md):
-- [gg_manhattan()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan.md):
-- [gg_Marker_Bar()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker_Bar.md):
-- [gg_Marker_Box()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker_Box.md):
-- [gg_Marker_Bubble()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker_Bubble.md):
-- [gg_Marker_Pie()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker_Pie.md):
-- [gg_myG_Details()](https://derekmichaelwright.github.io/gwaspr/articles/gg_myG_Details.md):
-- [gg_NYCvsKansas()](https://derekmichaelwright.github.io/gwaspr/articles/gg_NYCvsKansas.md):
-- [gg_QTL_Summary()](https://derekmichaelwright.github.io/gwaspr/articles/gg_QTL_Summary.md):
-- [gg_Volcano()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Volcano.md):
-- [Run GWAS with
-  GAPIT](https://derekmichaelwright.github.io/gwaspr/articles/GWAS_with_GAPIT.md):
-- [Summary
-  Tables](https://derekmichaelwright.github.io/gwaspr/articles/table_GWAS_Results.md):

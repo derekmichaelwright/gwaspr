@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">gwaspr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,13 +36,11 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-vignettes">
 <li><h6 class="dropdown-header" data-toc-skip>GWAS</h6></li>
     <li><a class="dropdown-item" href="articles/GWAS_with_GAPIT.html">Run GWAS with GAPIT</a></li>
+    <li><a class="dropdown-item" href="articles/Post_GWAS.html">Post GWAS</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Manhattan Plots</h6></li>
     <li><a class="dropdown-item" href="articles/gg_Manhattan.html">gg_Manhattan()</a></li>
     <li><a class="dropdown-item" href="articles/gg_Manhattan_Zoom.html">gg_Manhattan_Zoom()</a></li>
-    <li><a class="dropdown-item" href="articles/gg_Manhattan_xTraits.html">gg_Manhattan_xTraits()</a></li>
-    <li><a class="dropdown-item" href="articles/gg_Manhattan_xModels.html">gg_Manhattan_xModels()</a></li>
-    <li><a class="dropdown-item" href="articles/gg_Manhattan_Zoom_Traits.html">gg_Manhattan_Zoom_Traits()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Summary Plots &amp; Tables</h6></li>
     <li><a class="dropdown-item" href="articles/table_GWAS_Results.html">table_GWAS_Results()</a></li>
@@ -54,6 +52,7 @@
     <li><a class="dropdown-item" href="articles/gg_Marker_Bar.html">gg_Marker_Bar()</a></li>
     <li><a class="dropdown-item" href="articles/gg_Marker_Pie.html">gg_Marker_Pie()</a></li>
     <li><a class="dropdown-item" href="articles/gg_Marker_Bubble.html">gg_Marker_Bubble()</a></li>
+    <li><a class="dropdown-item" href="articles/gg_Marker_Scatter.html">gg_Marker_Scatter()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Other GWAS Related Plots &amp; Functions</h6></li>
     <li><a class="dropdown-item" href="articles/gg_myG_Details.html">gg_myG_Details()</a></li>
@@ -103,25 +102,24 @@
 <div class="section level1">
 <h1 id="github">github<a class="anchor" aria-label="anchor" href="#github"></a>
 </h1>
-<blockquote>
 <ul>
 <li>
 <strong>github link</strong>: <a href="https://github.com/derekmichaelwright/gwaspr/" target="_blank" class="external-link">https://github.com/derekmichaelwright/gwaspr/</a>
 </li>
 </ul>
-</blockquote>
 <hr>
 </div>
 <div class="section level1">
-<h1 id="gwas-tutorial">GWAS Tutorial<a class="anchor" aria-label="anchor" href="#gwas-tutorial"></a>
+<h1 id="tutorial">Tutorial<a class="anchor" aria-label="anchor" href="#tutorial"></a>
 </h1>
-<blockquote>
 <ul>
 <li>
 <strong>dblogr GWAS Tutorial</strong>: <a href="https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/" target="_blank" class="external-link">https://derekmichaelwright.github.io/dblogr/academic/gwas_tutorial/</a>
 </li>
+<li><a href="vignettes/gwaspr_myY.csv">Phenotype data (gwaspr_myY.csv)</a></li>
+<li><a href="vignettes/gwaspr_myCV.csv">Covariate data (gwaspr_myCV.csv)</a></li>
+<li><a href="vignettes/gwaspr_myG_hmp.zip">Genotype data (gwaspr_myG_hmp.zip)</a></li>
 </ul>
-</blockquote>
 <hr>
 </div>
 <div class="section level1">
@@ -139,7 +137,8 @@
 </ul>
 </blockquote>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"jiabowang/GAPIT"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"jiabowang/GAPIT"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">GAPIT</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level1">
@@ -149,18 +148,19 @@
 <hr>
 </div>
 <div class="section level1">
-<h1 id="example-plots">Example Plots<a class="anchor" aria-label="anchor" href="#example-plots"></a>
+<h1 id="example-plots">Example plots<a class="anchor" aria-label="anchor" href="#example-plots"></a>
 </h1>
-<p><img src="articles/figures/gg_Manhattan_04_DTF_Nepal_2017.png"></p>
-<p><img src="articles/figures/gg_Manhattan_02_Cotyledon_RedvsYellow.png"></p>
-<p><img src="articles/figures/gg_Manhattan_xModels_03.png"></p>
-<p><img src="articles/figures/gg_Manhattan_xTraits_02.png"></p>
+<p><img src="articles/figures/gg_Manhattan_02_2.png"></p>
+<p><img src="articles/figures/gg_Manhattan_03_4.png"></p>
+<p><img src="articles/figures/gg_GWAS_Summary_04.png"></p>
 <p><img src="articles/figures/gg_Manhattan_Zoom_01.png"></p>
 <p><img src="articles/figures/gg_Marker_Box_03.png"></p>
 <p><img src="articles/figures/gg_Marker_Pie_02.png"></p>
 <p><img src="articles/figures/gg_Marker_Bubble_03.png"></p>
 <p><img src="articles/figures/gg_myG_Details_03_myG_Details.png"></p>
 <p><img src="articles/figures/gg_LD_decay_02.png"></p>
+<p><img src="articles/figures/gg_LD_Heatmap_01.png"></p>
+<p><img src="articles/figures/gg_QTL_Summary_02.png"></p>
 <hr>
 <p><img src="reference/figures/logo_gwaspr.png"></p>
 </div>
@@ -190,7 +190,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Derek Wright <br><small class="roles"> Author, maintainer </small>   </li>
+<li>Derek M. Wright <br><small class="roles"> Author, maintainer </small>   </li>
 </ul>
 </div>
 
@@ -201,7 +201,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Derek Wright.</p>
+  <p>Developed by Derek M. Wright.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -8,8 +8,8 @@ results.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan.html
 ``` r
 gg_Manhattan(
   folder = "GWAS_Results/",
-  trait = list_Traits(folder)[1],
-  title = trait,
+  traits = list_Traits(folder)[1],
+  title = paste(traits, collapse = " "),
   threshold = NULL,
   sug.threshold = NULL,
   chr = NULL,
@@ -27,10 +27,10 @@ gg_Manhattan(
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
   model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
     "blue2", "magenta3"),
-  facet = F,
+  trait.colors = gwaspr_Colors,
+  facet.model = F,
   highlight.sig = F,
   sig.color = "black",
-  chr.colors = rep(c("darkgreen", "darkgoldenrod3"), 30),
   chr.unit = "100 Mbp",
   plotHBPvalues = F,
   skyline = "NYC",
@@ -44,9 +44,9 @@ gg_Manhattan(
 
   Folder containing GWAS results.
 
-- trait:
+- traits:
 
-  The trait to read.
+  The traits to read.
 
 - title:
 
@@ -116,25 +116,25 @@ gg_Manhattan(
 
 - model.colors:
 
-  Colors for each model. Used if `facet = F`.
+  Colors for each model. Used if `facet.model = F`.
 
-- facet:
+- trait.colors:
+
+  Colors for each chromosome. Used if `facet.model = T`.
+
+- facet.model:
 
   Logical, whether or not to produce a facetted or multi-model plot.
-  Default is `facet = F`.
+  Default is `facet.model = F`.
 
 - highlight.sig:
 
   Logical, whether or not to highlight significant associations with a
-  black circle. Used if `facet = F`.
+  black circle. Used if `facet.nodel = F`.
 
 - sig.color:
 
-  Color for significant assoctiations. Used if `facet = T`.
-
-- chr.colors:
-
-  Colors for each chromosome. Used if `facet = T`.
+  Color for significant assoctiations. Used if `facet.model = T`.
 
 - chr.unit:
 
