@@ -117,22 +117,43 @@ myY <- read.csv("gwaspr_myY.csv")
 myY[1:15,]
 ```
 
-    ##                 Name DTF_Sask_2017 DTF_Nepal_2017 Cotyledon_RedvsYellow
-    ## 1    CDC_Asterix_AGL          54.7          128.0                     0
-    ## 2      CDC_Rosie_AGL          59.0          123.3                     1
-    ## 3       X3156.11_AGL          60.7          125.3                     1
-    ## 4  CDC_Greenstar_AGL          56.7          121.0                     0
-    ## 5     CDC_Cherie_AGL          54.3          125.3                     1
-    ## 6     CDC_Glamis_AGL          59.0          123.0                     0
-    ## 7       CDC_Gold_AGL          54.0          125.3                     0
-    ## 8       CDC_Imax_AGL          53.0          128.7                     1
-    ## 9    CDC_Impower_AGL          57.0          123.3                     0
-    ## 10      CDC_KR.1_AGL          57.0          121.7                     1
-    ## 11     CDC_LeMay_AGL          55.7          126.7                     0
-    ## 12     CDC_Maxim_AGL          54.3          125.7                     1
-    ## 13      CDC_QG.1_AGL          57.7          126.7                    NA
-    ## 14 CDC_Red_Rider_AGL          57.0          123.5                     1
-    ## 15   CDC_Redcoat_AGL          57.7          126.7                     1
+    ##                 Name Cotyledon_Color Cotyledon_RedvsYellow DTF_Sask_2017
+    ## 1    CDC_Asterix_AGL          Yellow                     0          54.7
+    ## 2      CDC_Rosie_AGL             Red                     1          59.0
+    ## 3       X3156.11_AGL             Red                     1          60.7
+    ## 4  CDC_Greenstar_AGL          Yellow                     0          56.7
+    ## 5     CDC_Cherie_AGL             Red                     1          54.3
+    ## 6     CDC_Glamis_AGL          Yellow                     0          59.0
+    ## 7       CDC_Gold_AGL          Yellow                     0          54.0
+    ## 8       CDC_Imax_AGL             Red                     1          53.0
+    ## 9    CDC_Impower_AGL          Yellow                     0          57.0
+    ## 10      CDC_KR.1_AGL             Red                     1          57.0
+    ## 11     CDC_LeMay_AGL          Yellow                     0          55.7
+    ## 12     CDC_Maxim_AGL             Red                     1          54.3
+    ## 13      CDC_QG.1_AGL           Green                    NA          57.7
+    ## 14 CDC_Red_Rider_AGL             Red                     1          57.0
+    ## 15   CDC_Redcoat_AGL             Red                     1          57.7
+    ##    DTF_Nepal_2017
+    ## 1           128.0
+    ## 2           123.3
+    ## 3           125.3
+    ## 4           121.0
+    ## 5           125.3
+    ## 6           123.0
+    ## 7           125.3
+    ## 8           128.7
+    ## 9           123.3
+    ## 10          121.7
+    ## 11          126.7
+    ## 12          125.7
+    ## 13          126.7
+    ## 14          123.5
+    ## 15          126.7
+
+``` r
+
+myY <- myY[,-2] 
+```
 
 ## Covariate data (myCV)
 
@@ -148,16 +169,16 @@ myCV[1:10,]
 ```
 
     ##                 Name             b
-    ## 1    CDC_Asterix_AGL  0.0003372184
-    ## 2    CDC_Asterix_AGL -0.0012017067
-    ## 3      CDC_Rosie_AGL  0.0003524706
-    ## 4      CDC_Rosie_AGL -0.0017520624
-    ## 5       X3156.11_AGL  0.0003562503
-    ## 6       X3156.11_AGL -0.0011149255
-    ## 7  CDC_Greenstar_AGL  0.0004293448
-    ## 8  CDC_Greenstar_AGL -0.0000560704
-    ## 9     CDC_Cherie_AGL  0.0003948181
-    ## 10    CDC_Cherie_AGL -0.0007040853
+    ## 1    CDC_Asterix_AGL -1.201707e-03
+    ## 2      CDC_Rosie_AGL -1.752062e-03
+    ## 3       X3156.11_AGL -1.114926e-03
+    ## 4  CDC_Greenstar_AGL -5.607040e-05
+    ## 5     CDC_Cherie_AGL -7.040853e-04
+    ## 6     CDC_Glamis_AGL -1.234765e-03
+    ## 7       CDC_Gold_AGL -9.853332e-05
+    ## 8       CDC_Imax_AGL -1.210779e-03
+    ## 9    CDC_Impower_AGL -1.396606e-03
+    ## 10      CDC_KR.1_AGL -7.986330e-04
 
 ------------------------------------------------------------------------
 

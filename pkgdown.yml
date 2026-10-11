@@ -5,6 +5,7 @@ articles:
   gg_GWAS_Summary: gg_GWAS_Summary.html
   gg_LD_Decay: gg_LD_Decay.html
   gg_LD_Heatmap: gg_LD_Heatmap.html
+  gg_Manhattan_Zoom: gg_Manhattan_Zoom.html
   gg_Manhattan: gg_Manhattan.html
   gg_myG_Details: gg_myG_Details.html
   gg_NYCvsKansas: gg_NYCvsKansas.html
@@ -12,7 +13,7 @@ articles:
   gg_Volcano: gg_Volcano.html
   GWAS_with_GAPIT: GWAS_with_GAPIT.html
   table_GWAS_Results: table_GWAS_Results.html
-last_built: 2026-10-11T16:14Z
+last_built: 2026-10-11T17:40Z
 urls:
   reference: https://derekmichaelwright.github.io/gwaspr/reference
   article: https://derekmichaelwright.github.io/gwaspr/articles

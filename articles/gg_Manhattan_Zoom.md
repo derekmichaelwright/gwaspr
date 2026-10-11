@@ -13,8 +13,12 @@ The function
 creates manhattan plots from GAPIT GWAS results zoomed into a specific
 region on a chromosome.
 
-Specifying a `folder`, a `trait` and a `chr` (defaults to 1 if not
+Specifying a `folder`, `traits` and a `chr` (defaults to 1 if not
 specified) is all that is needed to create zoomed in manhattan plots.
+
+------------------------------------------------------------------------
+
+## Single trait
 
 ``` r
 
@@ -22,25 +26,128 @@ specified) is all that is needed to create zoomed in manhattan plots.
 mp <- gg_Manhattan_Zoom(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/", 
-  # Select a trait to plot
-  trait = "Cotyledon_RedvsYellow", 
+  # Select traits to plot
+  traits = "Cotyledon_RedvsYellow", 
   # Plot just Chromosome 1
   chr = 1 )
 # Save
-ggsave("figures/gg_Manhattan_Zoom_01.png", 
-       mp, width = 6, height = 4, bg = "white" )
+ggsave("figures/gg_Manhattan_Zoom_01_1.png", 
+       mp, width = 8, height = 4, bg = "white" )
 ```
 
-![](figures/gg_Manhattan_Zoom_01.png)
+![](figures/gg_Manhattan_Zoom_01_1.png)
 
 ------------------------------------------------------------------------
 
-## Facet by Model
+## All Options
+
+``` r
+
+# Prep data
+traits <- "Cotyledon_RedvsYellow"
+markers <- "Lcu.1GRN.Chr1p365986872"
+vlines <- markers
+# Plot
+mp <- gg_Manhattan_Zoom(
+  folder = "GWAS_Results/", 
+  traits = traits, 
+  chr = 1,
+  pos1 = NULL, pos2 = NULL,
+  title = paste(traits, collapse = " "),
+  addGenome = F,
+  threshold = NULL,
+  sug.threshold = NULL,
+  markers = NULL,
+  labels = markers,
+  vlines = markers,
+  vline.colors = rep("red", length(vlines)),
+  vline.types = rep(1, length(vlines)),
+  vline.legend = T,
+  facet.model = F,
+  pmax = NULL,
+  models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
+  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "blue2", "magenta3"),
+  trait.colors = gwaspr_Colors,
+  sig.color = "black",
+  legend.rows = 1,
+  legend.box = "horizontal",
+  point.sizes = c(0.3,1,0.75),
+  plotHBPvalues = F,
+  skyline = "NYC" )
+# Save
+ggsave("figures/gg_Manhattan_Zoom_01_2.png", 
+       mp, width = 8, height = 4, bg = "white" )
+```
+
+![](figures/gg_Manhattan_Zoom_01_2.png)
+
+------------------------------------------------------------------------
+
+## Zoomed in
+
+Any Region within a chromosome can be plotted by specifying `pos1` and
+`pos2`. Additionally, the genome can be added with `addGenome = T`
+
+``` r
+
+# Plot
+mp <- gg_Manhattan_Zoom(
+  # Specify a folder with GWAS results
+  folder = "GWAS_Results/", 
+  # Select a trait to plot
+  traits = "Cotyledon_RedvsYellow", 
+  # Plot just Chromosome 1
+  chr = 1,
+  pos1 = 300000000,
+  pos2 = 400000000,
+  # Highlight specific markers
+  markers = "Lcu.1GRN.Chr1p365986872",
+  # Create alt labels for the markers
+  labels = "365Mbp",
+  # Specify Color for each marker vline
+  vline.colors = "red",
+  # Should models be facetted
+  addGenome = T )
+# Save
+ggsave("figures/gg_Manhattan_Zoom_01_3.png",
+       mp, width = 8, height = 6, bg = "white" )
+```
+
+![](figures/gg_Manhattan_Zoom_01_3.png)
+
+------------------------------------------------------------------------
+
+## Multiple traits
+
+``` r
+
+# Plot
+mp <- gg_Manhattan_Zoom(
+  # Specify a folder with GWAS results
+  folder = "GWAS_Results/",
+  # Select traits to plot
+  traits = c("DTF_Sask_2017","DTF_Sask_2017_b","DTF_Nepal_2017"),
+  # Plot just Chromosome 2
+  chr = 2,
+  # Highlight specific markers
+  vlines = "Lcu.1GRN.Chr2p44545877",
+  # Plot only certain GWAS models
+  models = c("MLM", "MLMM", "FarmCPU", "BLINK") ) 
+# Save
+ggsave("figures/gg_Manhattan_Zoom_02_1.png", 
+       mp, width = 8, height = 6 )
+```
+
+![](figures/gg_Manhattan_Zoom_02_1.png)
+
+------------------------------------------------------------------------
+
+## Facet by model
 
 The default for
 [`gg_Manhattan_Zoom()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Manhattan_Zoom.md)
-is to set `facet = F` and plot all GWAS models together. However, if
-`facet = T`, then the different GWAS models can be separated.
+is to set `facet.model = F` and plot all GWAS models together. However,
+if `facet.model = T`, then the different GWAS models can be separated.
 
 ``` r
 
@@ -48,121 +155,78 @@ is to set `facet = F` and plot all GWAS models together. However, if
 mp <- gg_Manhattan_Zoom(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/", 
-  # Select a trait to plot
-  trait = "Cotyledon_RedvsYellow", 
+  # Select traits to plot
+  traits = "Cotyledon_RedvsYellow", 
   # Plot just Chromosome 1
   chr = 1,
   # Should models be facetted
-  facet = T )
+  facet.model = T )
 # Save
-ggsave("figures/gg_Manhattan_Zoom_02.png", 
-       mp, width = 6, height = 8, bg = "white" )
+ggsave("figures/gg_Manhattan_Zoom_03_1.png", 
+       mp, width = 8, height = 8, bg = "white" )
 ```
 
-![](figures/gg_Manhattan_Zoom_02.png)
+![](figures/gg_Manhattan_Zoom_03_1.png)
 
 ------------------------------------------------------------------------
 
-## Customized Plots
-
-Any Region within a chromosome can be plotted by specifying `pos1` and
-`pos2`.
+### Multiple traits
 
 ``` r
 
 # Plot
 mp <- gg_Manhattan_Zoom(
   # Specify a folder with GWAS results
-  folder = "GWAS_Results/", 
-  # Select a trait to plot
-  trait = "Cotyledon_RedvsYellow", 
-  # Plot just Chromosome 1
-  chr = 1,
-  pos1 = 350000000,
-  pos2 = 400000000,
+  folder = "GWAS_Results/",
+  # Select traits to plot
+  traits = c("DTF_Sask_2017", "DTF_Sask_2017_b", "DTF_Nepal_2017"),
   # Highlight specific markers
-  markers = c("Lcu.1GRN.Chr1p365986872",
-              "Lcu.1GRN.Chr1p361840399"),
-  # Create alt labels for the markers
-  labels = c("365Mbp", "361Mbp"),
-  # Specify Color for each marker vline
-  vline.colors = c("red", "blue"),
-  # Should models be facetted
-  facet = T )
-# Save
-ggsave("figures/gg_Manhattan_Zoom_03.png",
-       mp, width = 6, height = 8, bg = "white" )
-```
-
-![](figures/gg_Manhattan_Zoom_03.png)
-
-------------------------------------------------------------------------
-
-``` r
-
-# Plot
-mp <- gg_Manhattan_Zoom(
-  # Specify a folder with GWAS results
-  folder = "GWAS_Results/", 
-  # Select a trait to plot
-  trait = "Cotyledon_RedvsYellow", 
-  # Plot just Chromosome 1
-  chr = 1,
-  pos1 = 360000000,
-  pos2 = 370000000,
-  # Highlight specific markers
-  markers = c("Lcu.1GRN.Chr1p365986872",
-              "Lcu.1GRN.Chr1p361840399"),
-  # Create alt labels for the markers
-  labels = c("365Mbp", "361Mbp"),
-  # Specify Color for each marker vline
-  vline.colors = c("red", "blue"),
-  # Should models be facetted
-  facet = T )
-# Save
-ggsave("figures/gg_Manhattan_Zoom_04.png", 
-       mp, width = 6, height = 8, bg = "white" )
-```
-
-![](figures/gg_Manhattan_Zoom_04.png)
-
-------------------------------------------------------------------------
-
-If there are markers with extremely high *-log10(p)* values, `pmax` can
-be set to make plots more readable.
-
-``` r
-
-# Plot
-mp <- gg_Manhattan_Zoom(
-  # Specify a folder with GWAS results
-  folder = "GWAS_Results/", 
-  # Select a trait to plot
-  trait = "Cotyledon_RedvsYellow", 
-  # Plot just Chromosome 1
-  chr = 1,
-  pos1 = 360000000,
-  pos2 = 370000000,
+  vlines = "Lcu.1GRN.Chr2p44545877",
+  # Plot just Chromosome 2
+  chr = 2, #pos1 = 40000000, pos2 = 50000000,
   # Plot only certain GWAS models
-  models = c("MLM", "MLMM", "FarmCPU", "BLINK"),
-  # Set colors for each GWAS model
-  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue"),
-  # Highlight specific markers
-  markers = c("Lcu.1GRN.Chr1p365986872",
-              "Lcu.1GRN.Chr1p361840399"),
-  # Create alt labels for the markers
-  labels = c("365Mbp", "361Mbp"),
-  # Specify Color for each marker vline
-  vline.colors = c("red", "blue"),
-  # Set the number of rows in the legend
-  legend.rows = 2,
+  models =  c("MLM", "MLMM", "FarmCPU", "BLINK"),
   # Should models be facetted
-  facet = F,
-  # set a max P value
-  pmax = 40 )
+  facet.model = T ) 
 # Save
-ggsave("figures/gg_Manhattan_Zoom_05.png", 
-       mp, width = 6, height = 4.5, bg = "white" )
+ggsave("figures/gg_Manhattan_Zoom_03_2.png", 
+       mp, width = 8, height = 8 )
 ```
 
-![](figures/gg_Manhattan_Zoom_05.png)
+![](figures/gg_Manhattan_Zoom_03_2.png)
+
+------------------------------------------------------------------------
+
+## Customized plot
+
+``` r
+
+# Plot
+mp <- gg_Manhattan_Zoom(
+  # Specify a folder with GWAS results
+  folder = "GWAS_Results/",
+  # Select traits to plot
+  traits = c("DTF_Sask_2017", "DTF_Sask_2017_b", "DTF_Nepal_2017"),
+  # Highlight specific markers
+  vlines = "Lcu.1GRN.Chr2p44545877",
+  # Plot just Chromosome 2
+  chr = 2, pos1 = 40000000, pos2 = 50000000,
+  # Plot only certain GWAS models
+  models =  c("MLM", "MLMM", "FarmCPU", "BLINK") ) 
+# Save
+ggsave("figures/gg_Manhattan_Zoom_03_2.png", 
+       mp, width = 8, height = 8 )
+```
+
+![](figures/gg_Manhattan_Zoom_03_2.png)
+
+### Plotly
+
+Make it an interactive plot with the following code
+
+``` r
+
+gg_plotly(mp, filename = "figures/gg_Manhattan_Zoom_03_2.html")
+```
+
+<https://derekmichaelwright.github.io/gwaspr/vignettes/figures/gg_Manhattan_Zoom_03_2.html>
