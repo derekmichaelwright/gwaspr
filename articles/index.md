@@ -8,6 +8,7 @@
 - [gg_myG_Details()](https://derekmichaelwright.github.io/gwaspr/articles/gg_myG_Details.md):
 - [gg_NYCvsKansas()](https://derekmichaelwright.github.io/gwaspr/articles/gg_NYCvsKansas.md):
 - [gg_QTL_Summary()](https://derekmichaelwright.github.io/gwaspr/articles/gg_QTL_Summary.md):
+- [gg_Volcano()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Volcano.md):
 - [Run GWAS with
   GAPIT](https://derekmichaelwright.github.io/gwaspr/articles/GWAS_with_GAPIT.md):
 - [Summary

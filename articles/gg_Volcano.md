@@ -23,7 +23,7 @@ ggsave("figures/gg_Volcano_01.png", mp, width = 12, height = 4)
 
 ------------------------------------------------------------------------
 
-## Customized Plot
+## Customized plot
 
 ``` r
 
