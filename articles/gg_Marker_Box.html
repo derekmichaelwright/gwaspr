@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gwaspr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,13 +34,11 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-vignettes">
 <li><h6 class="dropdown-header" data-toc-skip>GWAS</h6></li>
     <li><a class="dropdown-item" href="../articles/GWAS_with_GAPIT.html">Run GWAS with GAPIT</a></li>
+    <li><a class="dropdown-item" href="../articles/Post_GWAS.html">Post GWAS</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Manhattan Plots</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan.html">gg_Manhattan()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan_Zoom.html">gg_Manhattan_Zoom()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_xTraits.html">gg_Manhattan_xTraits()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_xModels.html">gg_Manhattan_xModels()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_Zoom_Traits.html">gg_Manhattan_Zoom_Traits()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Summary Plots &amp; Tables</h6></li>
     <li><a class="dropdown-item" href="../articles/table_GWAS_Results.html">table_GWAS_Results()</a></li>
@@ -52,6 +50,7 @@
     <li><a class="dropdown-item" href="../articles/gg_Marker_Bar.html">gg_Marker_Bar()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Marker_Pie.html">gg_Marker_Pie()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Marker_Bubble.html">gg_Marker_Bubble()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_Marker_Scatter.html">gg_Marker_Scatter()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Other GWAS Related Plots &amp; Functions</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_myG_Details.html">gg_myG_Details()</a></li>
@@ -168,19 +167,19 @@ is needed to create marker plots.</p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="all-options">All Options<a class="anchor" aria-label="anchor" href="#all-options"></a>
+<h2 id="all-options">All options<a class="anchor" aria-label="anchor" href="#all-options"></a>
 </h2>
 <p><code><a href="../reference/gg_Marker_Bar.html">gg_Marker_Bar()</a></code> contains a number of different options
 for customizing the marker plots.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Prep data</span></span>
-<span><span class="va">myM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr6p3269280"</span><span class="op">)</span></span>
+<span><span class="va">markers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr6p3269280"</span><span class="op">)</span></span>
 <span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Box.html">gg_Marker_Box</a></span><span class="op">(</span></span>
 <span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
 <span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
 <span>  traits <span class="op">=</span> <span class="st">"DTF_Sask_2017"</span>,</span>
-<span>  markers <span class="op">=</span> <span class="va">myM</span>,</span>
+<span>  markers <span class="op">=</span> <span class="va">markers</span>,</span>
 <span>  marker.colors <span class="op">=</span> <span class="va">gwaspr_Colors</span>,</span>
 <span>  remove.hets <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>  remove.N <span class="op">=</span> <span class="cn">T</span>,</span>
@@ -193,7 +192,7 @@ for customizing the marker plots.</p>
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">myM</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span>,</span>
+<span>  subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">markers</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span>,</span>
 <span>  cv.source <span class="op">=</span> <span class="st">"xG"</span>,</span>
 <span>  cv.name <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  cv.colors <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -284,7 +283,7 @@ for customizing the marker plots.</p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="myg-covariable">myG Covariable<a class="anchor" aria-label="anchor" href="#myg-covariable"></a>
+<h2 id="myg-covariable">myG covariable<a class="anchor" aria-label="anchor" href="#myg-covariable"></a>
 </h2>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
@@ -320,7 +319,7 @@ for customizing the marker plots.</p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="myy-covariable">myY Covariable<a class="anchor" aria-label="anchor" href="#myy-covariable"></a>
+<h2 id="myy-covariable">myY covariable<a class="anchor" aria-label="anchor" href="#myy-covariable"></a>
 </h2>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
@@ -358,7 +357,7 @@ for customizing the marker plots.</p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="grouped-by-myy-covariable">Grouped by myY Covariable<a class="anchor" aria-label="anchor" href="#grouped-by-myy-covariable"></a>
+<h2 id="grouped-by-myy-covariable">Grouped by myY covariable<a class="anchor" aria-label="anchor" href="#grouped-by-myy-covariable"></a>
 </h2>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
@@ -403,7 +402,7 @@ for customizing the marker plots.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Derek Wright.</p>
+  <p>Developed by Derek M. Wright.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gwaspr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,13 +34,11 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-vignettes">
 <li><h6 class="dropdown-header" data-toc-skip>GWAS</h6></li>
     <li><a class="dropdown-item" href="../articles/GWAS_with_GAPIT.html">Run GWAS with GAPIT</a></li>
+    <li><a class="dropdown-item" href="../articles/Post_GWAS.html">Post GWAS</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Manhattan Plots</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan.html">gg_Manhattan()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Manhattan_Zoom.html">gg_Manhattan_Zoom()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_xTraits.html">gg_Manhattan_xTraits()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_xModels.html">gg_Manhattan_xModels()</a></li>
-    <li><a class="dropdown-item" href="../articles/gg_Manhattan_Zoom_Traits.html">gg_Manhattan_Zoom_Traits()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Summary Plots &amp; Tables</h6></li>
     <li><a class="dropdown-item" href="../articles/table_GWAS_Results.html">table_GWAS_Results()</a></li>
@@ -52,6 +50,7 @@
     <li><a class="dropdown-item" href="../articles/gg_Marker_Bar.html">gg_Marker_Bar()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Marker_Pie.html">gg_Marker_Pie()</a></li>
     <li><a class="dropdown-item" href="../articles/gg_Marker_Bubble.html">gg_Marker_Bubble()</a></li>
+    <li><a class="dropdown-item" href="../articles/gg_Marker_Scatter.html">gg_Marker_Scatter()</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Other GWAS Related Plots &amp; Functions</h6></li>
     <li><a class="dropdown-item" href="../articles/gg_myG_Details.html">gg_myG_Details()</a></li>
@@ -126,26 +125,48 @@ with your <code>myY</code> and <code>myG</code> GWAS input files.</p>
 <code class="sourceCode R"><span><span class="va">myY</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##                 Name DTF_Sask_2017 DTF_Nepal_2017 Cotyledon_RedvsYellow</span></span>
 <span><span class="co">## 1    CDC_Asterix_AGL          54.7          128.0                     0</span></span>
-<span><span class="co">## 2    CDC_Asterix_AGL          54.7          128.0                     0</span></span>
-<span><span class="co">## 3      CDC_Rosie_AGL          59.0          123.3                     1</span></span>
-<span><span class="co">## 4      CDC_Rosie_AGL          59.0          123.3                     1</span></span>
-<span><span class="co">## 5       X3156.11_AGL          60.7          125.3                     1</span></span>
-<span><span class="co">## 6       X3156.11_AGL          60.7          125.3                     1</span></span>
-<span><span class="co">## 7  CDC_Greenstar_AGL          56.7          121.0                     0</span></span>
-<span><span class="co">## 8  CDC_Greenstar_AGL          56.7          121.0                     0</span></span>
-<span><span class="co">## 9     CDC_Cherie_AGL          54.3          125.3                     1</span></span>
-<span><span class="co">## 10    CDC_Cherie_AGL          54.3          125.3                     1</span></span>
-<span><span class="co">##    Cotyledon_Color             b Testa.Color Origin        SubRegion   Region</span></span>
-<span><span class="co">## 1           Yellow  0.0003372184       Green Canada Northern America Americas</span></span>
-<span><span class="co">## 2           Yellow -0.0012017067       Green Canada Northern America Americas</span></span>
-<span><span class="co">## 3              Red  0.0003524706        Grey Canada Northern America Americas</span></span>
-<span><span class="co">## 4              Red -0.0017520624        Grey Canada Northern America Americas</span></span>
-<span><span class="co">## 5              Red  0.0003562503        Grey Canada Northern America Americas</span></span>
-<span><span class="co">## 6              Red -0.0011149255        Grey Canada Northern America Americas</span></span>
-<span><span class="co">## 7           Yellow  0.0004293448       Green Canada Northern America Americas</span></span>
-<span><span class="co">## 8           Yellow -0.0000560704       Green Canada Northern America Americas</span></span>
-<span><span class="co">## 9              Red  0.0003948181        Grey Canada Northern America Americas</span></span>
-<span><span class="co">## 10             Red -0.0007040853        Grey Canada Northern America Americas</span></span></code></pre>
+<span><span class="co">## 2      CDC_Rosie_AGL          59.0          123.3                     1</span></span>
+<span><span class="co">## 3       X3156.11_AGL          60.7          125.3                     1</span></span>
+<span><span class="co">## 4  CDC_Greenstar_AGL          56.7          121.0                     0</span></span>
+<span><span class="co">## 5     CDC_Cherie_AGL          54.3          125.3                     1</span></span>
+<span><span class="co">## 6     CDC_Glamis_AGL          59.0          123.0                     0</span></span>
+<span><span class="co">## 7       CDC_Gold_AGL          54.0          125.3                     0</span></span>
+<span><span class="co">## 8       CDC_Imax_AGL          53.0          128.7                     1</span></span>
+<span><span class="co">## 9    CDC_Impower_AGL          57.0          123.3                     0</span></span>
+<span><span class="co">## 10      CDC_KR.1_AGL          57.0          121.7                     1</span></span>
+<span><span class="co">##    Cotyledon_Color Entry            a             b             c Origin</span></span>
+<span><span class="co">## 1           Yellow     1  0.007269310 -1.201707e-03 -0.0003173782 Canada</span></span>
+<span><span class="co">## 2              Red     2  0.020925213 -1.752062e-03 -0.0015340225 Canada</span></span>
+<span><span class="co">## 3              Red     3  0.011019354 -1.114926e-03 -0.0006771650 Canada</span></span>
+<span><span class="co">## 4           Yellow     4 -0.007194842 -5.607040e-05  0.0009439957 Canada</span></span>
+<span><span class="co">## 5              Red     5  0.001167160 -7.040853e-04  0.0002219715 Canada</span></span>
+<span><span class="co">## 6           Yellow     6  0.011720647 -1.234765e-03 -0.0007444896 Canada</span></span>
+<span><span class="co">## 7           Yellow     7 -0.009512816 -9.853332e-05  0.0011238201 Canada</span></span>
+<span><span class="co">## 8              Red     8  0.005803829 -1.210779e-03 -0.0001005016 Canada</span></span>
+<span><span class="co">## 9           Yellow     9  0.012545983 -1.396606e-03 -0.0008239436 Canada</span></span>
+<span><span class="co">## 10             Red    10  0.008388588 -7.986330e-04 -0.0006355631 Canada</span></span>
+<span><span class="co">##      Region Testa.Color DTF.Culter       P1 P2 P3 P4       P5      P6       P7</span></span>
+<span><span class="co">## 1  Americas       Green          7 0.000000  0  0  0 0.000000 0.00000 0.048938</span></span>
+<span><span class="co">## 2  Americas        Grey          8 0.000000  0  0  0 0.000000 0.00000 0.000000</span></span>
+<span><span class="co">## 3  Americas        Grey          8 0.000000  0  0  0 0.000000 0.00000 0.169824</span></span>
+<span><span class="co">## 4  Americas       Green          7 0.000000  0  0  0 0.000000 0.00000 0.258426</span></span>
+<span><span class="co">## 5  Americas        Grey          7 0.000000  0  0  0 0.090267 0.00000 0.111004</span></span>
+<span><span class="co">## 6  Americas       Green          8 0.000000  0  0  0 0.003119 0.00000 0.182356</span></span>
+<span><span class="co">## 7  Americas       Green          7 0.088823  0  0  0 0.000000 0.01545 0.116633</span></span>
+<span><span class="co">## 8  Americas        Grey          7 0.000000  0  0  0 0.118120 0.00000 0.202169</span></span>
+<span><span class="co">## 9  Americas       Green          7 0.000000  0  0  0 0.000000 0.00000 0.220574</span></span>
+<span><span class="co">## 10 Americas       Brown          3 0.000000  0  0  0 0.030931 0.00000 0.284686</span></span>
+<span><span class="co">##          P8 STR_Group</span></span>
+<span><span class="co">## 1  0.951062        P8</span></span>
+<span><span class="co">## 2  1.000000        P8</span></span>
+<span><span class="co">## 3  0.830176        P8</span></span>
+<span><span class="co">## 4  0.741574       Mix</span></span>
+<span><span class="co">## 5  0.798729       Mix</span></span>
+<span><span class="co">## 6  0.814525        P8</span></span>
+<span><span class="co">## 7  0.779093       Mix</span></span>
+<span><span class="co">## 8  0.679711       Mix</span></span>
+<span><span class="co">## 9  0.779426       Mix</span></span>
+<span><span class="co">## 10 0.684383       Mix</span></span></code></pre>
 <hr>
 </div>
 <div class="section level2">
@@ -172,7 +193,7 @@ is needed to create marker plots.</p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="all-options">All Options<a class="anchor" aria-label="anchor" href="#all-options"></a>
+<h2 id="all-options">All options<a class="anchor" aria-label="anchor" href="#all-options"></a>
 </h2>
 <p><code>gg_Marker_Bubbles()</code> contains a number of different
 options for customizing the marker plots.</p>
@@ -181,13 +202,13 @@ options for customizing the marker plots.</p>
 <code>= "Alleles"</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Prep data</span></span>
-<span><span class="va">myM</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr1p365986872"</span><span class="op">)</span></span>
+<span><span class="va">markers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lcu.1GRN.Chr1p365986872"</span><span class="op">)</span></span>
 <span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bubble.html">gg_Marker_Bubble</a></span><span class="op">(</span></span>
 <span>  xG <span class="op">=</span> <span class="va">myG</span>, </span>
 <span>  xY <span class="op">=</span> <span class="va">myY</span>,</span>
 <span>  trait.x <span class="op">=</span> <span class="st">"Cotyledon_Color"</span>,</span>
-<span>  markers <span class="op">=</span> <span class="va">myM</span>,</span>
+<span>  markers <span class="op">=</span> <span class="va">markers</span>,</span>
 <span>  trait.y <span class="op">=</span> <span class="st">"Alleles"</span>,</span>
 <span>  facet.rows <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  facet.cols <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -197,7 +218,7 @@ options for customizing the marker plots.</p>
 <span>  legend.pos <span class="op">=</span> <span class="st">"bottom"</span>,</span>
 <span>  legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">myM</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span> <span class="op">)</span></span>
+<span>  subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">markers</span>, collapse <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
 <span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Marker_Bubble_02.png"</span>, </span>
 <span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">6</span>, height <span class="op">=</span> <span class="fl">4</span> <span class="op">)</span></span></code></pre></div>
@@ -205,10 +226,10 @@ options for customizing the marker plots.</p>
 <hr>
 </div>
 <div class="section level2">
-<h2 id="facet-grouping">Facet Grouping<a class="anchor" aria-label="anchor" href="#facet-grouping"></a>
+<h2 id="facet-grouping">Facet grouping<a class="anchor" aria-label="anchor" href="#facet-grouping"></a>
 </h2>
 <div class="section level3">
-<h3 id="column-facetting">Column Facetting<a class="anchor" aria-label="anchor" href="#column-facetting"></a>
+<h3 id="column-facetting">Column facetting<a class="anchor" aria-label="anchor" href="#column-facetting"></a>
 </h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
@@ -230,7 +251,7 @@ options for customizing the marker plots.</p>
 <hr>
 </div>
 <div class="section level3">
-<h3 id="row-facetting">Row Facetting<a class="anchor" aria-label="anchor" href="#row-facetting"></a>
+<h3 id="row-facetting">Row facetting<a class="anchor" aria-label="anchor" href="#row-facetting"></a>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
@@ -260,7 +281,7 @@ options for customizing the marker plots.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Derek Wright.</p>
+  <p>Developed by Derek M. Wright.</p>
 </div>
 
 <div class="pkgdown-footer-right">

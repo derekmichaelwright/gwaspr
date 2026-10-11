@@ -85,7 +85,7 @@ ggsave("figures/gg_Marker_Box_01.png",
 
 ------------------------------------------------------------------------
 
-## All Options
+## All options
 
 [`gg_Marker_Bar()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Bar.md)
 contains a number of different options for customizing the marker plots.
@@ -93,13 +93,13 @@ contains a number of different options for customizing the marker plots.
 ``` r
 
 # Prep data
-myM <- c("Lcu.1GRN.Chr6p3269280")
+markers <- c("Lcu.1GRN.Chr6p3269280")
 # Plot
 mp <- gg_Marker_Box(
   xG = myG, 
   xY = myY,
   traits = "DTF_Sask_2017",
-  markers = myM,
+  markers = markers,
   marker.colors = gwaspr_Colors,
   remove.hets = F,
   remove.N = T,
@@ -112,7 +112,7 @@ mp <- gg_Marker_Box(
   ncol = NULL,
   legend.rows = 1,
   title = NULL,
-  subtitle = paste(myM, collapse = "\n"),
+  subtitle = paste(markers, collapse = "\n"),
   cv.source = "xG",
   cv.name = NULL,
   cv.colors = NULL,
@@ -214,7 +214,7 @@ ggsave("figures/gg_Marker_Box_05.png",
 
 ------------------------------------------------------------------------
 
-## myG Covariable
+## myG covariable
 
 ``` r
 
@@ -253,7 +253,7 @@ ggsave("figures/gg_Marker_Box_06.png",
 
 ------------------------------------------------------------------------
 
-## myY Covariable
+## myY covariable
 
 ``` r
 
@@ -294,7 +294,7 @@ ggsave("figures/gg_Marker_Box_07.png",
 
 ------------------------------------------------------------------------
 
-## Grouped by myY Covariable
+## Grouped by myY covariable
 
 ``` r
 

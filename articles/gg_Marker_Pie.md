@@ -87,7 +87,7 @@ ggsave("figures/gg_Marker_Pie_01.png",
 
 ------------------------------------------------------------------------
 
-## All Options
+## All options
 
 [`gg_Marker_Bar()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_Marker_Bar.md)
 contains a number of different options for customizing the marker plots.
@@ -95,20 +95,20 @@ contains a number of different options for customizing the marker plots.
 ``` r
 
 # Prep data
-myM <- c("Lcu.1GRN.Chr1p365986872")
+markers <- c("Lcu.1GRN.Chr1p365986872")
 # Plot 
 mp <- gg_Marker_Pie(
   xG = myG, 
   xY = myY,
   trait = "Cotyledon_Color",
-  markers = myM,
+  markers = markers,
   marker.colors = c("darkred", "darkgoldenrod2", "darkgreen"),
   trait.label = "Cotyledon Color",
   trait.levels = NULL,
   remove.hets = F,
   remove.N = T,
   title = NULL,
-  subtitle = paste(myM, collapse = "\n"),
+  subtitle = paste(markers, collapse = "\n"),
   ncol = NULL,
   legend.rows = 1,
   removeHets = T,
@@ -122,7 +122,7 @@ ggsave("figures/gg_Marker_Pie_02.png",
 
 ------------------------------------------------------------------------
 
-## Switch Facetting
+## Switch facetting
 
 Set `groupByTrait = T` to switch from facetting by markers to facetting
 by trait.
