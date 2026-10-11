@@ -183,3 +183,9 @@ library(GAPIT)
 - [`theme_gwaspr_pie()`](https://derekmichaelwright.github.io/gwaspr/reference/theme_gwaspr_pie.md)
   : theme_gwaspr_pie.
 
+# Articles
+
+### All vignettes
+
+- [Run GWAS with
+  GAPIT](https://derekmichaelwright.github.io/gwaspr/articles/GWAS_with_GAPIT.md):

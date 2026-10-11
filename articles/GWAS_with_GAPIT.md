@@ -1,9 +1,13 @@
 # Run GWAS with GAPIT
 
+## Instal `GAPIT`
+
 ``` r
 
 devtools::install_github("jiabowang/GAPIT")
 ```
+
+## Load `GAPIT`
 
 ``` r
 
@@ -12,6 +16,15 @@ library(GAPIT)
 
 Before the `gwaspr` package can be used, we first need to run GWAS with
 `GAPIT`.
+
+## Data
+
+- [Genotype data
+  (gwaspr_myG_hmp.zip)](https://derekmichaelwright.github.io/gwaspr/articles/gwaspr_myG_hmp.zip)
+- [Phenotype data
+  (gwaspr_myY.csv)](https://derekmichaelwright.github.io/gwaspr/articles/gwaspr_myY.csv)
+- [Covariate data
+  (gwaspr_myCV.csv)](https://derekmichaelwright.github.io/gwaspr/articles/gwaspr_myCV.csv)
 
 ## Genotype data (myG)
 
@@ -101,7 +114,7 @@ myY <- read.csv("gwaspr_myY.csv")
 
 ``` r
 
-myY[1:20,]
+myY[1:15,]
 ```
 
     ##                 Name DTF_Sask_2017 DTF_Nepal_2017 Cotyledon_RedvsYellow
@@ -120,11 +133,6 @@ myY[1:20,]
     ## 13      CDC_QG.1_AGL          57.7          126.7                    NA
     ## 14 CDC_Red_Rider_AGL          57.0          123.5                     1
     ## 15   CDC_Redcoat_AGL          57.7          126.7                     1
-    ## 16   CDC_Redwing_AGL          57.3          128.7                     1
-    ## 17     CDC_Robin_AGL          52.0          124.7                     1
-    ## 18   CDC_Rosebud_AGL          54.7          121.3                     1
-    ## 19  CDC_Rosetown_AGL          57.7          123.7                     1
-    ## 20   CDC_Rouleau_AGL          55.3          123.7                     1
 
 ## Covariate data (myCV)
 
@@ -136,30 +144,20 @@ myCV <- read.csv("gwaspr_myCV.csv")[,c("Name","b")]
 
 ``` r
 
-myCV[1:20,]
+myCV[1:10,]
 ```
 
     ##                 Name             b
-    ## 1    CDC_Asterix_AGL  3.372184e-04
-    ## 2    CDC_Asterix_AGL -1.201707e-03
-    ## 3      CDC_Rosie_AGL  3.524706e-04
-    ## 4      CDC_Rosie_AGL -1.752062e-03
-    ## 5       X3156.11_AGL  3.562503e-04
-    ## 6       X3156.11_AGL -1.114926e-03
-    ## 7  CDC_Greenstar_AGL  4.293448e-04
-    ## 8  CDC_Greenstar_AGL -5.607040e-05
-    ## 9     CDC_Cherie_AGL  3.948181e-04
-    ## 10    CDC_Cherie_AGL -7.040853e-04
-    ## 11    CDC_Glamis_AGL  3.825062e-04
-    ## 12    CDC_Glamis_AGL -1.234765e-03
-    ## 13      CDC_Gold_AGL  4.147082e-04
-    ## 14      CDC_Gold_AGL -9.853332e-05
-    ## 15      CDC_Imax_AGL  2.797587e-04
-    ## 16      CDC_Imax_AGL -1.210779e-03
-    ## 17   CDC_Impower_AGL  3.827880e-04
-    ## 18   CDC_Impower_AGL -1.396606e-03
-    ## 19      CDC_KR.1_AGL  5.881404e-04
-    ## 20      CDC_KR.1_AGL -7.986330e-04
+    ## 1    CDC_Asterix_AGL  0.0003372184
+    ## 2    CDC_Asterix_AGL -0.0012017067
+    ## 3      CDC_Rosie_AGL  0.0003524706
+    ## 4      CDC_Rosie_AGL -0.0017520624
+    ## 5       X3156.11_AGL  0.0003562503
+    ## 6       X3156.11_AGL -0.0011149255
+    ## 7  CDC_Greenstar_AGL  0.0004293448
+    ## 8  CDC_Greenstar_AGL -0.0000560704
+    ## 9     CDC_Cherie_AGL  0.0003948181
+    ## 10    CDC_Cherie_AGL -0.0007040853
 
 ------------------------------------------------------------------------
 
@@ -181,9 +179,7 @@ myGAPIT <- GAPIT(
   model = c("GLM","MLM","MLMM","FarmCPU","BLINK") )
 ```
 
-------------------------------------------------------------------------
-
-## GWAS with Covariate
+## GWAS with covariate
 
 Run GWAS on the `DTF_Sask_2017` trait with `b` as a covariate.
 

@@ -1,8 +1,9 @@
 pandoc: 3.8.3
 pkgdown: 2.2.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2026-10-11T14:11Z
+articles:
+  GWAS_with_GAPIT: GWAS_with_GAPIT.html
+last_built: 2026-10-11T14:21Z
 urls:
   reference: https://derekmichaelwright.github.io/gwaspr/reference
   article: https://derekmichaelwright.github.io/gwaspr/articles
