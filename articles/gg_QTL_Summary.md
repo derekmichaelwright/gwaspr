@@ -73,7 +73,7 @@ ggsave("figures/gg_QTL_Summary_01.png",
 
 ------------------------------------------------------------------------
 
-## Customized Plot
+## Customized plot
 
 ``` r
 
@@ -181,7 +181,7 @@ ggsave("figures/gg_QTL_Summary_03.png",
 
 ------------------------------------------------------------------------
 
-## Physical Positions
+## Physical positions
 
 QTL analyses are generally done with linkage groups and their genetic
 positions. However, we may want to convert these into physical positions
@@ -297,7 +297,7 @@ ggsave("figures/gg_QTL_Summary_04.png",
 
 ------------------------------------------------------------------------
 
-## Multiple Populations & Groups
+## Multiple populations & groups
 
 ``` r
 

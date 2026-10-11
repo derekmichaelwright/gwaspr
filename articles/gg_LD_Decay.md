@@ -86,6 +86,12 @@ ggsave("figures/gg_LD_Decay_02.png", mp, width = 12, height = 10 )
 
 ------------------------------------------------------------------------
 
+## LD Table
+
+The function
+[`table_LD_Decay()`](https://derekmichaelwright.github.io/gwaspr/reference/table_LD_Decay.md)
+creates a table
+
 ``` r
 
 xx <- table_LD_Decay(
@@ -107,11 +113,14 @@ write.csv(xx, "LD_Summary_Table.csv", row.names = F)
 
 xx <- xx %>% gather(Num, Value, 2:ncol(.))
 # Plot
-mp <- ggplot(xx, aes(x = Chr, y = Value, fill = Num)) +
+mp <- ggplot(xx, aes(x = Num, y = Value / 1000, fill = Num)) +
   geom_col(position = "dodge", alpha = 0.8) +
-  theme_gwaspr_col(legend.position = "bottom") +
-  labs(title = "LD decay", y = "Pos")
-ggsave("figures/gg_LD_Decay_03.png", mp, width = 12, height = 10 )
+  facet_grid(. ~ Chr) +
+  scale_fill_manual(values = gwaspr_Colors) +
+  theme_gwaspr_col(legend.position = "bottom",
+                   axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "LD decay", y = "Kbp", x = "Maker Number")
+ggsave("figures/gg_LD_Decay_03.png", mp, width = 6, height = 4 )
 ```
 
 ![](figures/gg_LD_Decay_03.png)
