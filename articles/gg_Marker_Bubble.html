@@ -175,6 +175,11 @@ with your <code>myY</code> and <code>myG</code> GWAS input files.</p>
 <p>Specifying a <code>trait.x</code> and <code>markers</code> along with
 your genotype and phenotype data as <code>xG</code> and <code>xY</code>
 is needed to create marker plots.</p>
+<blockquote>
+<p>Note: one of <code>trait.x</code>, <code>trait.y</code>,
+<code>facet.rows</code>, <code>facet.cols</code> must be set to
+<code>= "Alleles"</code></p>
+</blockquote>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Marker_Bubble.html">gg_Marker_Bubble</a></span><span class="op">(</span></span>

@@ -2,6 +2,8 @@
 
 [Creates a marker scatter plot with myG and myY
 objects.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker_Bubble.html)
+Note: one of `trait.x`, `trait.y`, `facet.rows`, `facet.cols` must be
+set to `= "Alleles"`
 
 ## Usage
 
@@ -10,7 +12,7 @@ gg_Marker_Bubble(
   xG,
   xY,
   trait.x = NULL,
-  trait.y = "Alleles",
+  trait.y = NULL,
   facet.rows = NULL,
   facet.cols = NULL,
   markers,

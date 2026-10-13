@@ -96,6 +96,9 @@ myY[1:10,]
 Specifying a `trait.x` and `markers` along with your genotype and
 phenotype data as `xG` and `xY` is needed to create marker plots.
 
+> Note: one of `trait.x`, `trait.y`, `facet.rows`, `facet.cols` must be
+> set to `= "Alleles"`
+
 ``` r
 
 # Plot
