@@ -36,7 +36,7 @@ gg_Marker_Pie <- function (
     groupByTrait = F
     ) {
  #
- xY <- xY %>% rename(Name=1)
+ #xY <- xY %>% rename(Name=1)
  xY <- xY %>% select(Name, myTrait=trait)
  xx <- xG %>% rename(SNP=1) %>%
    filter(SNP %in% markers) %>%
@@ -79,7 +79,7 @@ gg_Marker_Pie <- function (
    mp <- ggplot(xx, aes(x = "x", y = AllelePercent, fill = myTrait)) +
      geom_col(alpha = 0.7) +
      geom_text(aes(label = TraitAlleleCount), position = position_stack(vjust = 0.5)) +
-     geom_text(aes(label = paste("n =", AlleleCount), x = "x_empty"), y = 50) +
+     geom_text(aes(label = paste("n =", AlleleCount), x = "x_empty"), y = 50, size = 2) +
      coord_polar("y", start = 0) +
      facet_wrap(. ~ Alleles, scales = "free", ncol = ncol) +
      scale_fill_manual(name = trait.label, values = marker.colors) +
@@ -92,7 +92,7 @@ gg_Marker_Pie <- function (
    mp <- ggplot(xx, aes(x = "x", y = TraitPercent, fill = Alleles)) +
      geom_col(alpha = 0.7) +
      geom_text(aes(label = TraitAlleleCount), position = position_stack(vjust = 0.5)) +
-     geom_text(aes(label = paste("n =", TraitCount), x = "x_empty"), y = 50) +
+     geom_text(aes(label = paste("n =", TraitCount), x = "x_empty"), y = 50, size = 2) +
      coord_polar("y", start = 0) +
      facet_wrap(. ~ myTrait, scales = "free", ncol = ncol) +
      scale_fill_manual(values = marker.colors) +

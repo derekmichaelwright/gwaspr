@@ -195,7 +195,8 @@ gg_GWAS_Summary <- function(
     theme_gwaspr(legend.position = legend.position) +
     guides(shape = guide_legend(nrow = legend.rows, override.aes = list(size = 4)),
            color = guide_legend(nrow = legend.rows),
-           fill = guide_legend(nrow = legend.rows)) +
+           fill = guide_legend(nrow = legend.rows),
+           size = guide_legend(nrow = legend.rows) ) +
     labs(title = title, y = NULL, x = chr.unit, caption = caption)
   #
   if(vline.legend == F) {

@@ -1,6 +1,7 @@
 #' gg_Marker_Bubble
 #'
 #' [Creates a marker scatter plot with myG and myY objects.](https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker_Bubble.html)
+#' Note: one of `trait.x`, `trait.y`, `facet.rows`, `facet.cols` must be set to `= "Alleles"`
 #' @param xG GWAS genotype object. Note: needs to be in hapmap format.
 #' @param xY GWAS phenotype object.
 #' @param trait.x Trait for the x-axis.
@@ -22,7 +23,7 @@ gg_Marker_Bubble <- function (
     xG,
     xY,
     trait.x = NULL,
-    trait.y = "Alleles",
+    trait.y = NULL,
     facet.rows = NULL,
     facet.cols = NULL,
     markers,
@@ -63,7 +64,8 @@ gg_Marker_Bubble <- function (
     rename(Alleles=Alleles2) %>%
     group_by(Alleles, Tx, Ty, Fr, Fc) %>%
     summarise(Count = n()) %>%
-    ungroup()
+    ungroup() %>%
+    filter(!is.na(Tx), !is.na(Ty), !is.na(Fr), !is.na(Fc))
   #
   ggplot(xx, aes(x = Tx, y = Ty)) +
     geom_point(aes(fill = Alleles, size = Count), pch = 21, alpha = 0.7) +
@@ -71,7 +73,7 @@ gg_Marker_Bubble <- function (
     facet_grid(Fr ~ Fc, scales= "free_x", space = "free_x", drop = T) +
     scale_y_discrete(sec.axis = dup_axis(name = facet.rows)) +
     scale_x_discrete(sec.axis = dup_axis(name = facet.cols)) +
-    scale_fill_manual(values = gwaspr_Colors) +
+    scale_fill_manual(values = marker.colors) +
     scale_size_continuous(range = c(1,15), guide = "none") +
     theme_gwaspr(legend.position = legend.pos,
                  axis.text.x.bottom = element_text(angle = 45, hjust = 1),

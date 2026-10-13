@@ -134,7 +134,8 @@ gg_Manhattan_Zoom <- function(
   #x3 <- xx %>% filter(SNP %in% markers) %>%
   #  mutate(Label = mv(SNP, markers, labels))
   x4 <- xx %>% filter(SNP %in% vlines) %>%
-    filter(!duplicated(paste(SNP, Model)))
+    filter(!duplicated(paste(SNP, Model, Trait))) %>%
+    mutate(SNP = factor(SNP, levels = vlines))
   #
   # Start Plots
   #
@@ -175,7 +176,7 @@ gg_Manhattan_Zoom <- function(
   #
   if(!is.null(vlines)) {
     mp <- mp +
-      geom_vline(data = x4, aes(xintercept = Pos / 1000000, color = SNP), alpha = 0.5) +
+      geom_vline(data = x4, aes(xintercept = Pos / 1000000, color = SNP, lty = SNP), alpha = 0.5) +
       scale_color_manual(name = "Marker", values = vline.colors)
   }
   #
@@ -214,7 +215,8 @@ gg_Manhattan_Zoom <- function(
       theme_gwaspr(legend.position = "bottom", legend.box=legend.box, legend.margin=margin(),
                    axis.title.y = element_markdown()) +
       facet_grid(Model ~ paste("Chromosome", Chr), scales = "free") +
-      scale_fill_manual(values = alpha(trait.colors,0.8))
+      scale_fill_manual(values = alpha(trait.colors,0.8)) +
+      scale_linetype_manual(name = "Marker", values = vline.types)
     #if(nrow(x3)>0) { mp <- mp + geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) }
     if(addGenome == T) { mp <- ggarrange(mp, mp2, mp1, ncol = 1, nrow = 3, heights = c(3.5*length(models),1,0.8)) }
   } else {
@@ -226,7 +228,8 @@ gg_Manhattan_Zoom <- function(
       theme_gwaspr(legend.position = "bottom", legend.box=legend.box, legend.margin=margin(),
                    axis.title.y = element_markdown()) +
       facet_grid(Trait ~ paste("Chromosome", Chr)) +
-      scale_fill_manual(values = alpha(model.colors,0.8))
+      scale_fill_manual(values = alpha(model.colors,0.8)) +
+      scale_linetype_manual(name = "Marker", values = vline.types)
     #if(nrow(x3)>0) { mp <- mp + geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) }
     if(addGenome == T) { mp <- ggarrange(mp, mp2, mp1, ncol = 1, nrow = 3, heights = c(7,1,0.8)) }
   }

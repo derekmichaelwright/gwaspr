@@ -8,7 +8,7 @@ gg_Marker_Bubble(
   xG,
   xY,
   trait.x = NULL,
-  trait.y = "Alleles",
+  trait.y = NULL,
   facet.rows = NULL,
   facet.cols = NULL,
   markers,
@@ -55,4 +55,5 @@ Marker plot.
 }
 \description{
 \href{https://derekmichaelwright.github.io/gwaspr/articles/gg_Marker_Bubble.html}{Creates a marker scatter plot with myG and myY objects.}
+Note: one of \code{trait.x}, \code{trait.y}, \code{facet.rows}, \code{facet.cols} must be set to \verb{= "Alleles"}
 }
