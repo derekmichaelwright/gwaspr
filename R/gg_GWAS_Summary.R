@@ -57,7 +57,7 @@ gg_GWAS_Summary <- function(
   #
   check1 <- run_Summary(folder = folder) %>% dropNAcol()
   check2 <- is_Ordered(folder = folder) %>%
-    dplyr::select(colnames(check1))
+    select(colnames(check1))
   if(sum(is.na(check2)) > 0) {
     warning("Some of your GWAS results files might not be ordered by pvalue")
     warning("use order_GWAS_Results() before making these summary plots")
@@ -149,15 +149,15 @@ gg_GWAS_Summary <- function(
            Threshold = ifelse(Threshold == "Suggestive", paste("Suggestive =",sug.threshold), Threshold),
            Threshold = factor(Threshold))
   #
-  myBreaks <- 0:(round(max(myP$Pos)/x.unit))
+  if(is.null(pos2)) { myBreaks <- 0:(round(max(myP$Pos)/x.unit))
+  } else { myBreaks <- (round(pos1/x.unit)):(round(pos2/x.unit)) }
   #
   mp <- ggplot(myP, aes(x = Pos / x.unit)) + geom_blank(data = myG)
   #
   if(!is.null(vlines)) {
     myGM <- myG %>% filter(SNP %in% vlines) %>%
       mutate(SNP = factor(SNP, levels = vlines)) %>%
-      dplyr::select(SNP, Chr, Pos) %>%
-      arrange(SNP)
+      select(SNP, Chr, Pos)# %>% arrange(SNP)
     #
     mp <- mp +
       geom_vline(data = myGM, alpha = 0.5,
