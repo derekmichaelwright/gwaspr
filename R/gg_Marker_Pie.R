@@ -95,7 +95,7 @@ gg_Marker_Pie <- function (
      geom_text(aes(label = paste("n =", TraitCount), x = "x_empty"), y = 50, size = 3) +
      coord_polar("y", start = 0) +
      facet_wrap(. ~ myTrait, scales = "free", ncol = ncol) +
-     scale_fill_manual(values = marker.colors) +
+     scale_fill_manual(name = trait.label, values = marker.colors) +
      scale_x_discrete(limits = c("x_empty", "x")) +
      theme_gwaspr_pie(legend.position = "bottom") +
      guides(fill = guide_legend(nrow = legend.rows)) +

@@ -41,7 +41,7 @@ gg_Marker_Bubble <- function (
     dplyr::select(-2,-3,-4,-5,-6,-7,-8,-9,-10,-11) %>%
     column_to_rownames("SNP") %>%
     t() %>% as.data.frame() %>%
-    #select(markers) %>%
+    select(markers) %>%
     mutate(Alleles = NA)
   #
   if(remove.hets == T) { for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] } }
@@ -67,7 +67,7 @@ gg_Marker_Bubble <- function (
     ungroup() %>%
     filter(!is.na(Tx), !is.na(Ty), !is.na(Fr), !is.na(Fc))
   #
-  ggplot(xx, aes(x = Tx, y = Ty)) +
+  mp <- ggplot(xx, aes(x = Tx, y = Ty)) +
     geom_point(aes(fill = Alleles, size = Count), pch = 21, alpha = 0.7) +
     geom_text(aes(label = Count)) +
     facet_grid(Fr ~ Fc, scales= "free_x", space = "free_x", drop = T) +
@@ -83,6 +83,9 @@ gg_Marker_Bubble <- function (
                  axis.ticks.y.right = element_blank()) +
     labs(x = trait.x, y = trait.y,
          title = title, subtitle = subtitle)
+  if(xx$Fr[1]=="") { mp <- mp + theme(strip.text.y = element_blank(), strip.background.y = element_blank()) }
+  if(xx$Fc[1]=="") { mp <- mp + theme(strip.text.x = element_blank(), strip.background.x = element_blank()) }
+  mp
 }
 
 #xG = myG; xY = myY

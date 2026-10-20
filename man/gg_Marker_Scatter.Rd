@@ -9,6 +9,8 @@ gg_Marker_Scatter(
   xY,
   trait.x,
   trait.y,
+  facet.rows = NULL,
+  facet.cols = NULL,
   markers,
   marker.colors = gwaspr_Colors,
   remove.hets = F,
@@ -27,6 +29,10 @@ gg_Marker_Scatter(
 \item{trait.x}{Trait for the x-axis.}
 
 \item{trait.y}{Trait for the y-axis.}
+
+\item{facet.rows}{Trait for the row facetting.}
+
+\item{facet.cols}{Trait for the col facetting.}
 
 \item{markers}{Markers to plot.}
 

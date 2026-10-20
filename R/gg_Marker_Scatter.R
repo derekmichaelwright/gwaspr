@@ -5,6 +5,8 @@
 #' @param xY GWAS phenotype object.
 #' @param trait.x Trait for the x-axis.
 #' @param trait.y Trait for the y-axis.
+#' @param facet.rows Trait for the row facetting.
+#' @param facet.cols Trait for the col facetting.
 #' @param markers Markers to plot.
 #' @param marker.colors Colors to fill in the violin and boxplots.
 #' @param remove.hets Logical, Whether to remove hets or not. advised if plotting multiple markers.
@@ -22,6 +24,8 @@ gg_Marker_Scatter <- function (
     xY,
     trait.x,
     trait.y,
+    facet.rows = NULL,
+    facet.cols = NULL,
     markers,
     marker.colors = gwaspr_Colors,
     remove.hets = F,
@@ -32,7 +36,7 @@ gg_Marker_Scatter <- function (
     subtitle = paste(markers, collapse = "\n")
     ) {
   #
-  xT <- xY %>% select(Name=1, trait.x, trait.y)
+  xT <- xY %>% select(Name=1, trait.x, trait.y, facet.cols, facet.rows)
   #
   xx <- xG %>% rename(SNP=1) %>%
     filter(SNP %in% markers) %>%
@@ -52,14 +56,20 @@ gg_Marker_Scatter <- function (
     filter(!is.na(get(trait.x))) %>%
     filter(!is.na(get(trait.y))) %>%
     mutate(Alleles = factor(Alleles))
+  #
+  ifelse(is.null(facet.rows), xx <- xx %>% mutate(Fr = ""), xx <- xx %>% rename(Fr=facet.rows))
+  ifelse(is.null(facet.cols), xx <- xx %>% mutate(Fc = ""), xx <- xx %>% rename(Fc=facet.cols))
   # Plot
   mp <- ggplot(xx, aes(x = get(trait.x), y = get(trait.y))) +
     geom_point(aes(color = Alleles), pch = 16, alpha = 0.7, size = point.size) +
+    facet_grid(Fr ~ Fc, drop = T) +
     scale_color_manual(values = marker.colors) +
     theme_gwaspr(legend.position = "bottom",
                  axis.text.x = element_text(angle = 45, hjust = 1) ) +
     guides(color = guide_legend(nrow = legend.rows, override.aes = list(size = 2))) +
     labs(title = title, subtitle = subtitle, x = trait.x, y = trait.y)
+  if(xx$Fr[1]=="") { mp <- mp + theme(strip.text.y = element_blank(), strip.background.y = element_blank()) }
+  if(xx$Fc[1]=="") { mp <- mp + theme(strip.text.x = element_blank(), strip.background.x = element_blank()) }
   mp
 }
 
