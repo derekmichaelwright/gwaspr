@@ -11,6 +11,8 @@ gg_Marker_Scatter(
   xY,
   trait.x,
   trait.y,
+  facet.rows = NULL,
+  facet.cols = NULL,
   markers,
   marker.colors = gwaspr_Colors,
   remove.hets = F,
@@ -39,6 +41,14 @@ gg_Marker_Scatter(
 - trait.y:
 
   Trait for the y-axis.
+
+- facet.rows:
+
+  Trait for the row facetting.
+
+- facet.cols:
+
+  Trait for the col facetting.
 
 - markers:
 
