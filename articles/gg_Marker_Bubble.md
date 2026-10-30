@@ -93,8 +93,9 @@ myY[1:10,]
 
 ## Single marker, single trait
 
-Specifying a `trait.x` and `markers` along with your genotype and
-phenotype data as `xG` and `xY` is needed to create marker plots.
+Specifying a `trait.x` or `trait.y` and `markers` along with your
+genotype and phenotype data as `xG` and `xY` is needed to create marker
+plots.
 
 > Note: one of `trait.x`, `trait.y`, `facet.rows`, `facet.cols` must be
 > set to `= "Alleles"`
@@ -109,6 +110,7 @@ mp <- gg_Marker_Bubble(
   xY = myY,
   # Select traits to plot
   trait.x = "Cotyledon_Color",
+  trait.y = "Alleles",
   # Select markers to plot
   markers = "Lcu.1GRN.Chr1p365986872" )
 # Save
@@ -171,6 +173,7 @@ mp <- gg_Marker_Bubble(
   xY = myY,
   # Select traits to plot
   trait.x = "Testa.Color",
+  trait.y = "Alleles",
   # Select markers to plot
   markers = "Lcu.1GRN.Chr1p365986872",
   # Select a trait for col facetting
@@ -196,6 +199,7 @@ mp <- gg_Marker_Bubble(
   xY = myY,
   # Select traits to plot
   trait.x = "Testa.Color",
+  trait.y = "Alleles",
   # Select markers to plot
   markers = "Lcu.1GRN.Chr1p365986872",
   # Select a trait for col facetting

@@ -23,16 +23,16 @@ gg_Manhattan_Zoom(
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
+  genes = NULL,
   facet.model = F,
-  pmax = NULL,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
-  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
-    "blue2", "magenta3"),
+  model.colors = gwaspr_ModelColors,
   trait.colors = gwaspr_Colors,
   sig.color = "black",
   legend.rows = 1,
   legend.box = "horizontal",
   point.sizes = c(0.3, 1, 0.75),
+  pmax = NULL,
   plotHBPvalues = F,
   skyline = "NYC"
 )
@@ -96,14 +96,14 @@ gg_Manhattan_Zoom(
 
   Logical, whether or not to add a legend for the vlines.
 
+- genes:
+
+  Table of genes with "Chr", Start" and "End" columns.
+
 - facet.model:
 
   Logical, whether or not to produce a facetted or multi-model plot.
   Default is `facet.model = F`.
-
-- pmax:
-
-  A max value for the y-axis.
 
 - models:
 
@@ -133,6 +133,10 @@ gg_Manhattan_Zoom(
 - point.sizes:
 
   Sizes for the points. c("Not Sig", "Sig", "Sug").
+
+- pmax:
+
+  A max value for the y-axis.
 
 - plotHBPvalues:
 

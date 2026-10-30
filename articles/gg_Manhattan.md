@@ -71,39 +71,40 @@ vlines <- markers
 # Plot
 mp <- gg_Manhattan(
   folder = "GWAS_Results/",
-    traits = traits,
-    title = paste(traits, collapse = " "),
-    threshold = NULL,
-    sug.threshold = NULL,
-    chr = NULL,
-    markers = markers,
-    labels = markers,
-    vlines = markers,
-    vline.colors = rep("red", length(vlines)),
-    vline.types = rep(1, length(vlines)),
-    legend = T,
-    legend.rows = 1,
-    legend.box = "horizontal",
-    point.sizes = c(0.3,1,0.75),
-    pmax = NULL,
-    pmin = 0,
-    models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
-    model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", 
-                     "darkorchid4", "blue2", "magenta3"),
-    trait.colors = gwaspr_Colors,
-    facet.model = F,
-    highlight.sig = F,
-    sig.color = "black",
-    chr.unit = "100 Mbp",
-    plotHBPvalues = F,
-    skyline = "NYC",
-    addQQ = T )
+  traits = traits,
+  title = paste(traits, collapse = " "),
+  threshold = NULL,
+  sug.threshold = NULL,
+  chr = NULL,
+  markers = markers,
+  labels = markers,
+  vlines = markers,
+  vline.colors = rep("red", length(vlines)),
+  vline.types = rep(1, length(vlines)),
+  genes = NULL,
+  genes.y = -1,
+  legend = T,
+  legend.rows = 1,
+  legend.box = "horizontal",
+  point.sizes = c(0.3,1,0.75),
+  pmax = NULL,
+  pmin = 0,
+  models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
+  model.colors = gwaspr_ModelColors,
+  trait.colors = gwaspr_Colors,
+  facet.model = F,
+  highlight.sig = F,
+  sig.color = "black",
+  chr.unit = "100 Mbp",
+  plotHBPvalues = F,
+  skyline = "NYC",
+  addQQ = T )
 # Save
-ggsave("figures/gg_Manhattan_01_1.png", 
+ggsave("figures/gg_Manhattan_01_2.png", 
        mp, width = 12, height = 3.5, bg = "white" )
 ```
 
-![](figures/gg_Manhattan_01_1.png)
+![](figures/gg_Manhattan_01_2.png)
 
 ------------------------------------------------------------------------
 

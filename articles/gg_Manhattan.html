@@ -153,37 +153,38 @@ the specified <code>folder</code>.</p>
 <span><span class="co"># Plot</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gg_Manhattan.html">gg_Manhattan</a></span><span class="op">(</span></span>
 <span>  folder <span class="op">=</span> <span class="st">"GWAS_Results/"</span>,</span>
-<span>    traits <span class="op">=</span> <span class="va">traits</span>,</span>
-<span>    title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">traits</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>,</span>
-<span>    threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>    sug.threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>    chr <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>    markers <span class="op">=</span> <span class="va">markers</span>,</span>
-<span>    labels <span class="op">=</span> <span class="va">markers</span>,</span>
-<span>    vlines <span class="op">=</span> <span class="va">markers</span>,</span>
-<span>    vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    legend <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>    legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>    legend.box <span class="op">=</span> <span class="st">"horizontal"</span>,</span>
-<span>    point.sizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>,<span class="fl">1</span>,<span class="fl">0.75</span><span class="op">)</span>,</span>
-<span>    pmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>    pmin <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>    models <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"GLM"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span>,</span>
-<span>    model.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"darkgreen"</span>, <span class="st">"darkred"</span>, <span class="st">"darkorange3"</span>, <span class="st">"steelblue"</span>, </span>
-<span>                     <span class="st">"darkorchid4"</span>, <span class="st">"blue2"</span>, <span class="st">"magenta3"</span><span class="op">)</span>,</span>
-<span>    trait.colors <span class="op">=</span> <span class="va">gwaspr_Colors</span>,</span>
-<span>    facet.model <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>    highlight.sig <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>    sig.color <span class="op">=</span> <span class="st">"black"</span>,</span>
-<span>    chr.unit <span class="op">=</span> <span class="st">"100 Mbp"</span>,</span>
-<span>    plotHBPvalues <span class="op">=</span> <span class="cn">F</span>,</span>
-<span>    skyline <span class="op">=</span> <span class="st">"NYC"</span>,</span>
-<span>    addQQ <span class="op">=</span> <span class="cn">T</span> <span class="op">)</span></span>
+<span>  traits <span class="op">=</span> <span class="va">traits</span>,</span>
+<span>  title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">traits</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>,</span>
+<span>  threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sug.threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  chr <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  markers <span class="op">=</span> <span class="va">markers</span>,</span>
+<span>  labels <span class="op">=</span> <span class="va">markers</span>,</span>
+<span>  vlines <span class="op">=</span> <span class="va">markers</span>,</span>
+<span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  genes <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  genes.y <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,</span>
+<span>  legend <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  legend.rows <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  legend.box <span class="op">=</span> <span class="st">"horizontal"</span>,</span>
+<span>  point.sizes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>,<span class="fl">1</span>,<span class="fl">0.75</span><span class="op">)</span>,</span>
+<span>  pmax <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pmin <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  models <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"GLM"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span>,</span>
+<span>  model.colors <span class="op">=</span> <span class="va">gwaspr_ModelColors</span>,</span>
+<span>  trait.colors <span class="op">=</span> <span class="va">gwaspr_Colors</span>,</span>
+<span>  facet.model <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  highlight.sig <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  sig.color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  chr.unit <span class="op">=</span> <span class="st">"100 Mbp"</span>,</span>
+<span>  plotHBPvalues <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  skyline <span class="op">=</span> <span class="st">"NYC"</span>,</span>
+<span>  addQQ <span class="op">=</span> <span class="cn">T</span> <span class="op">)</span></span>
 <span><span class="co"># Save</span></span>
-<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_01_1.png"</span>, </span>
+<span><span class="fu">ggsave</span><span class="op">(</span><span class="st">"figures/gg_Manhattan_01_2.png"</span>, </span>
 <span>       <span class="va">mp</span>, width <span class="op">=</span> <span class="fl">12</span>, height <span class="op">=</span> <span class="fl">3.5</span>, bg <span class="op">=</span> <span class="st">"white"</span> <span class="op">)</span></span></code></pre></div>
-<p><img src="figures/gg_Manhattan_01_1.png"></p>
+<p><img src="figures/gg_Manhattan_01_2.png"></p>
 <hr>
 </div>
 <div class="section level2">

@@ -146,6 +146,8 @@ library(GAPIT)
   : gg_plotly
 - [`gwaspr_Colors`](https://derekmichaelwright.github.io/gwaspr/reference/gwaspr_Colors.md)
   : gwaspr_Colors
+- [`gwaspr_ModelColors`](https://derekmichaelwright.github.io/gwaspr/reference/gwaspr_ModelColors.md)
+  : gwaspr_ModelColors
 - [`gwaspr_dna`](https://derekmichaelwright.github.io/gwaspr/reference/gwaspr_dna.md)
   : gwaspr_dna
 - [`is_Ordered()`](https://derekmichaelwright.github.io/gwaspr/reference/is_Ordered.md)

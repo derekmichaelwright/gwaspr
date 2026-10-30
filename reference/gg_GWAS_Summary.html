@@ -86,13 +86,14 @@ Note: this function requires the GWAS results files to be ordered</p>
 <span>  pos1 <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  pos2 <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  models <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MLM"</span>, <span class="st">"MLMM"</span>, <span class="st">"FarmCPU"</span>, <span class="st">"BLINK"</span>, <span class="st">"CMLM"</span>, <span class="st">"SUPER"</span><span class="op">)</span>,</span>
-<span>  model.colors <span class="op">=</span> <span class="va">gwaspr_Colors</span>,</span>
+<span>  model.colors <span class="op">=</span> <span class="va">gwaspr_ModelColors</span>,</span>
 <span>  shapes <span class="op">=</span> <span class="fl">21</span><span class="op">:</span><span class="fl">25</span>,</span>
 <span>  hlines <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  vlines <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  vline.colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  vline.types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">vlines</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  vline.legend <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  genes <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threshold.legend <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Summary of Significant GWAS Results"</span>,</span>
 <span>  caption <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -171,6 +172,10 @@ Note: this function requires the GWAS results files to be ordered</p>
 
 <dt id="arg-vline-legend">vline.legend<a class="anchor" aria-label="anchor" href="#arg-vline-legend"></a></dt>
 <dd><p>Logical, display of vline color legend.</p></dd>
+
+
+<dt id="arg-genes">genes<a class="anchor" aria-label="anchor" href="#arg-genes"></a></dt>
+<dd><p>Table of genes with "Chr", Start" and "End" columns.</p></dd>
 
 
 <dt id="arg-threshold-legend">threshold.legend<a class="anchor" aria-label="anchor" href="#arg-threshold-legend"></a></dt>

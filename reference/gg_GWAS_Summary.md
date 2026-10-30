@@ -17,13 +17,14 @@ gg_GWAS_Summary(
   pos1 = NULL,
   pos2 = NULL,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "CMLM", "SUPER"),
-  model.colors = gwaspr_Colors,
+  model.colors = gwaspr_ModelColors,
   shapes = 21:25,
   hlines = NULL,
   vlines = NULL,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
+  genes = NULL,
   threshold.legend = T,
   title = "Summary of Significant GWAS Results",
   caption = NULL,
@@ -101,6 +102,10 @@ gg_GWAS_Summary(
 - vline.legend:
 
   Logical, display of vline color legend.
+
+- genes:
+
+  Table of genes with "Chr", Start" and "End" columns.
 
 - threshold.legend:
 
