@@ -20,16 +20,16 @@ gg_Manhattan_Zoom(
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
   vline.legend = T,
+  genes = NULL,
   facet.model = F,
-  pmax = NULL,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
-  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
-    "blue2", "magenta3"),
+  model.colors = gwaspr_ModelColors,
   trait.colors = gwaspr_Colors,
   sig.color = "black",
   legend.rows = 1,
   legend.box = "horizontal",
   point.sizes = c(0.3, 1, 0.75),
+  pmax = NULL,
   plotHBPvalues = F,
   skyline = "NYC"
 )
@@ -63,9 +63,9 @@ gg_Manhattan_Zoom(
 
 \item{vline.legend}{Logical, whether or not to add a legend for the vlines.}
 
-\item{facet.model}{Logical, whether or not to produce a facetted or multi-model plot. Default is \code{facet.model = F}.}
+\item{genes}{Table of genes with "Chr", Start" and "End" columns.}
 
-\item{pmax}{A max value for the y-axis.}
+\item{facet.model}{Logical, whether or not to produce a facetted or multi-model plot. Default is \code{facet.model = F}.}
 
 \item{models}{Models to read.}
 
@@ -80,6 +80,8 @@ gg_Manhattan_Zoom(
 \item{legend.box}{Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".}
 
 \item{point.sizes}{Sizes for the points. c("Not Sig", "Sig", "Sug").}
+
+\item{pmax}{A max value for the y-axis.}
 
 \item{plotHBPvalues}{Logical, should H.B.P.Values be uses.}
 

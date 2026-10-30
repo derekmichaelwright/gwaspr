@@ -16,6 +16,8 @@ gg_Manhattan(
   vlines = markers,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
+  genes = NULL,
+  genes.y = -1,
   legend = T,
   legend.rows = 1,
   legend.box = "horizontal",
@@ -23,8 +25,7 @@ gg_Manhattan(
   pmax = NULL,
   pmin = 0,
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
-  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4",
-    "blue2", "magenta3"),
+  model.colors = gwaspr_ModelColors,
   trait.colors = gwaspr_Colors,
   facet.model = F,
   highlight.sig = F,
@@ -57,6 +58,10 @@ gg_Manhattan(
 \item{vline.colors}{colors for each vertical line.}
 
 \item{vline.types}{lty for each vertical line.}
+
+\item{genes}{Table of genes with "Chr", Start" and "End" columns.}
+
+\item{genes.y}{How far to draw the lines for candidate genes. Default is set to -1. Adjust if you have very large p.values.}
 
 \item{legend}{Logical, whether or not to add a legend.}
 

@@ -64,7 +64,7 @@ mp <- gg_GWAS_Summary(
   sug.threshold = round(-log10(0.000005),1),
   chr = NULL, pos1 = NULL, pos2 = NULL,
   models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "CMLM", "SUPER"),
-  model.colors = gwaspr_Colors,
+  model.colors = gwaspr_ModelColors,
   shapes = 21:25,
   hlines = NULL,
   vlines = NULL,

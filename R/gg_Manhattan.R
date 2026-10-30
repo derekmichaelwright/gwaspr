@@ -12,6 +12,8 @@
 #' @param vlines Markers which will be used as a location for a vertical lines.
 #' @param vline.colors colors for each vertical line.
 #' @param vline.types lty for each vertical line.
+#' @param genes Table of genes with "Chr", Start" and "End" columns.
+#' @param genes.y How far to draw the lines for candidate genes. Default is set to -1. Adjust if you have very large p.values.
 #' @param legend Logical, whether or not to add a legend.
 #' @param legend.rows Number of rows for the legend.
 #' @param legend.box Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".
@@ -43,6 +45,7 @@ gg_Manhattan <- function(
     vlines = markers,
     vline.colors = rep("red", length(vlines)),
     vline.types = rep(1, length(vlines)),
+    genes = NULL, genes.y = -1,
     legend = T,
     legend.rows = 1,
     legend.box = "horizontal",
@@ -50,7 +53,7 @@ gg_Manhattan <- function(
     pmax = NULL,
     pmin = 0,
     models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER"),
-    model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "blue2", "magenta3"),
+    model.colors = gwaspr_ModelColors,
     trait.colors = gwaspr_Colors,
     facet.model = F,
     highlight.sig = F,
@@ -156,8 +159,7 @@ gg_Manhattan <- function(
     vv <- xx %>%
       filter(SNP %in% vlines) %>%
       filter(!duplicated(paste(SNP, Model, Trait))) %>%
-      mutate(SNP = factor(SNP, levels = vlines)) #%>%
-      #select(SNP, Chr, Pos)
+      mutate(SNP = factor(SNP, levels = vlines))
   }
   #
   myBreaks <- 0:(round(max(xx$Pos)/x.unit))
@@ -166,9 +168,15 @@ gg_Manhattan <- function(
   #
   if(is.null(pmax)) { pmax <- max(xx$negLog10_P) }
   #
+  # Genes file
+  #
+  if(!is.null(genes)) {
+    if(!is.null(chr)) { genes <- genes %>% filter(Chr == chr) }
+  }
+  #
   # Start Plots
   #
-  mp1 <- ggplot(xx, aes(x = Pos/x.unit, y = Pvalue)) +
+  mp1 <- ggplot(xx) +
     theme_gwaspr(axis.title.y = element_markdown()) +
     labs(title = title, y = ylabel, x = chr.unit)
   #
@@ -198,14 +206,18 @@ gg_Manhattan <- function(
     xm <- xx %>% filter(SNP %in% markers) %>%
       mutate(Label = mv(SNP, markers, labels)) %>%
       filter(negLog10_P > min(threshold, sug.threshold))
-    if(nrow(xm) > 0) { mp1 <- mp1 + geom_text_repel(data = xm, aes(label = Label), size = 2) }
+    if(nrow(xm) > 0) {
+      mp1 <- mp1 +
+        geom_text_repel(data = xm, aes(x = Pos/x.unit, y = Pvalue, label = Label), size = 2)
+    }
   }
   #
   # Plot facetted by model
   #
   if(facet.model == T) {
     mp1 <- mp1 +
-      geom_point(aes(fill = Trait, size = Sig.level, key1 = SNP), pch = 21, color = alpha("white", 0)) +
+      geom_point(aes(x = Pos/x.unit, y = Pvalue, fill = Trait, size = Sig.level, key1 = SNP),
+                 pch = 21, color = alpha("white", 0)) +
       facet_grid(Model ~ paste("Chr", Chr), scales = "free", space = "free_x") +
       scale_fill_manual(values = trait.colors) +
       scale_size_manual(values = point.sizes, guide = "none") +
@@ -216,6 +228,10 @@ gg_Manhattan <- function(
       guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)),
              color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
       theme(legend.position = "bottom", legend.box=legend.box, legend.margin=margin())
+    if(!is.null(genes)) {
+      mp1 <- mp1 + geom_rect(data = genes, ymin = 0, ymax = genes.y, color = "black",
+                           aes(xmin = Start/x.unit, xmax = End/x.unit) )
+    }
     #
     if(highlight.sig == T) { mp1 <- mp1 + geom_point(data = x2, aes(key1 = SNP), pch = 21, size = point.sizes[2], fill = sig.color) }
     # legends
@@ -241,7 +257,8 @@ gg_Manhattan <- function(
     # Plot models together
     #
     mp1 <- mp1 +
-      geom_point(aes(fill = Model, size = Sig.level, key1 = SNP), pch = 21, color = alpha("white", 0)) +
+      geom_point(aes(x = Pos/x.unit, y = Pvalue, fill = Model, size = Sig.level, key1 = SNP),
+                 pch = 21, color = alpha("white", 0)) +
       facet_grid(Trait ~ paste("Chr", Chr), scales = "free", space = "free_x") +
       scale_fill_manual(values = model.colors) +
       scale_size_manual(values = point.sizes, guide = "none") +
@@ -252,7 +269,14 @@ gg_Manhattan <- function(
       guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)),
              color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
       theme(legend.position = "bottom", legend.box=legend.box, legend.margin=margin())
-    if(highlight.sig == T) { mp1 <- mp1 + geom_point(data = x2, aes(key1 = SNP), pch = 21, size = point.sizes[2], color = sig.color) }
+    if(!is.null(genes)) {
+      mp1 <- mp1 + geom_rect(data = genes, ymin = 0, ymax = genes.y, color = "black",
+                           aes(xmin = Start/x.unit, xmax = End/x.unit) )
+    }
+    if(highlight.sig == T) {
+      mp1 <- mp1 + geom_point(data = x2, aes(x = Pos/x.unit, y = Pvalue, key1 = SNP),
+                              pch = 21, size = point.sizes[2], color = sig.color)
+    }
     #
     if(legend == F) { mp1 <- mp1 + theme(legend.position = "none") }
     #
@@ -267,7 +291,10 @@ gg_Manhattan <- function(
         #scale_y_continuous(limits = c(pmin, (pmax+pmax*0.03))) +#, expand = c(0,0)
         guides(fill = guide_legend(nrow = legend.rows, override.aes = list(size = 2)),
                color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1)))
-      if(highlight.sig == T) { mp2 <- mp2 + geom_point(data = x2, aes(key1 = SNP), pch = 21, size = point.sizes[2], color = sig.color) }
+      if(highlight.sig == T) {
+        mp2 <- mp2 + geom_point(data = x2, aes(x = Pos/x.unit, y = Pvalue, key1 = SNP),
+                                pch = 21, size = point.sizes[2], color = sig.color)
+      }
       #
       mp <- ggarrange(mp1, mp2, ncol = 2, widths = c(4,1), align = "h",
                       legend = "bottom", common.legend = T)
@@ -288,5 +315,6 @@ gg_Manhattan <- function(
 #model.colors = c("darkgreen", "darkorange3", "steelblue", "darkred", "darkorchid4", "burlywood4", "darkseagreen4")
 #highlight.sig = F; sig.color = "darkred"; trait.colors = rep(c("darkgreen", "darkgoldenrod3"), 30)
 #chr.unit = "100 Mbp"; legend.rows = 1; legend.box = "horizontal"
-#plotHBPvalues = F; skyline = "NYC"
+#plotHBPvalues = F; skyline = "NYC"; genes = myGenes; genes.y = -5
 #point.sizes = c(0.3,1.25,0.75)
+

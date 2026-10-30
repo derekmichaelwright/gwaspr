@@ -7,6 +7,14 @@ NULL
 #' @keywords data
 #' @name gwaspr_Colors
 NULL
+#' gwaspr_ModelColors
+#'
+#' Color pallette
+#' @section gwaspr_ModelColors
+#' @docType data
+#' @keywords data
+#' @name gwaspr_ModelColors
+NULL
 #' gwaspr_dna
 #'
 #' DNA codes

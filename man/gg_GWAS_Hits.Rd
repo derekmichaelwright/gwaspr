@@ -13,7 +13,7 @@ gg_GWAS_Hits(
   title = "",
   sigMin = 0,
   models = c("BLINK", "FarmCPU", "MLMM", "MLM", "GLM", "CMLM", "SUPER"),
-  model.colors = gwaspr_Colors,
+  model.colors = gwaspr_ModelColors,
   model.shapes = c(21:25, 21:22),
   vlines = NULL,
   vline.colors = rep("red", length(vlines)),

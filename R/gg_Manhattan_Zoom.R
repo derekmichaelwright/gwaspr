@@ -15,8 +15,8 @@
 #' @param vline.colors colors for each vertical line.
 #' @param vline.types lty for each vertical line.
 #' @param vline.legend Logical, whether or not to add a legend for the vlines.
+#' @param genes Table of genes with "Chr", Start" and "End" columns.
 #' @param facet.model Logical, whether or not to produce a facetted or multi-model plot. Default is `facet.model = F`.
-#' @param pmax A max value for the y-axis.
 #' @param models Models to read.
 #' @param model.colors Colors for each model. Used if `facet.model = F`.
 #' @param trait.colors Colors for each chromosome. Used if `facet.model = T`.
@@ -24,6 +24,7 @@
 #' @param legend.rows Number of rows for the legend.
 #' @param legend.box Alignment of the legend. Default is "horizontal", but it can be changed to "vertical".
 #' @param point.sizes Sizes for the points. c("Not Sig", "Sig", "Sug").
+#' @param pmax A max value for the y-axis.
 #' @param plotHBPvalues Logical, should H.B.P.Values be uses.
 #' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @return A manhattan plot.
@@ -43,15 +44,16 @@ gg_Manhattan_Zoom <- function(
     vline.colors = rep("red", length(vlines)),
     vline.types = rep(1, length(vlines)),
     vline.legend = T,
+    genes = NULL,
     facet.model = F,
-    pmax = NULL,
     models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
-    model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "blue2", "magenta3"),
+    model.colors = gwaspr_ModelColors,
     trait.colors = gwaspr_Colors,
     sig.color = "black",
     legend.rows = 1,
     legend.box = "horizontal",
     point.sizes = c(0.3,1,0.75),
+    pmax = NULL,
     plotHBPvalues = F,
     skyline = "NYC"
     ) {
@@ -149,11 +151,13 @@ gg_Manhattan_Zoom <- function(
               fill = "black", alpha = 0.2) +
     #region
     geom_rect(aes(xmin = pos1, xmax = pos2), ymin = 0, ymax = 1,
-              fill = "black", alpha = 0.2, color = "black") +
+              fill = "darkorange", alpha = 0.2, color = "darkorange") +
+    #
     facet_grid(. ~ paste("Chr", Chr), space = "free_x", scales = "free_x") +
     theme_void() +
     theme(text = element_text(size = 6)) +
     labs(subtitle = "Genome")
+  if(!is.null(genes)) { mp1 <- mp1 + geom_rect(data = genes, aes(xmin = Start, xmax = End), ymin = 0, ymax = 1, fill = "black", color = "black") }
   #
   mp2 <- ggplot(myChroms %>% filter(!is.na(pos1))) +
     #chr
@@ -161,23 +165,34 @@ gg_Manhattan_Zoom <- function(
               fill = "black", alpha = 0.2, color = "black") +
     #region
     geom_rect(aes(xmin = pos1 / 100000000, xmax = pos2 / 100000000), ymin = 0, ymax = 1,
-              fill = "black", alpha = 0.2, color = "black") +
+              fill = "darkorange", alpha = 0.2, color = "darkorange") +
     theme_void() +
     theme(text = element_text(size = 6),
           axis.text.x.top = element_text(),
           axis.title.x.top = element_text()) +
     scale_x_continuous(breaks = 0:20, position = "top") +
     labs(subtitle = paste("Selected Region - Chromsome",chr), x = "100 Mbp")
-    #mp2
+  if(!is.null(genes)) {
+    genesR <- genes %>% filter(Chr == chr)
+    mp2 <- mp2 + geom_rect(data = genesR, aes(xmin = Start / 100000000, xmax = End / 100000000), ymin = 0, ymax = 1, fill = "black", color = "black")
+  }
   #
-  mp <- ggplot(xx, aes(x = Pos / 1000000, y = Pvalue))
+  # Genes file
+  #
+  if(!is.null(genes)) {
+    genesZ <- genes %>% filter(Chr == chr)
+    if(!is.null(pos1)) { genesZ <- genesZ %>% filter(Start > pos1, End < pos2) }
+  }
+  #
+  mp <- ggplot(xx)
   #
   # Add vlines
   #
   if(!is.null(vlines)) {
     mp <- mp +
       geom_vline(data = x4, aes(xintercept = Pos / 1000000, color = SNP, lty = SNP), alpha = 0.5) +
-      scale_color_manual(name = "Marker", values = vline.colors)
+      scale_color_manual(name = "Marker", values = vline.colors) +
+      scale_linetype_manual(name = "Marker", values = vline.types)
   }
   #
   # Add threshold lines
@@ -191,12 +206,14 @@ gg_Manhattan_Zoom <- function(
   #
   if(!is.null(markers)) {
     xm <- xx %>%
-      mutate(SNP = ifelse(SNP %in% markers, SNP, NA),
-             Label = plyr::mapvalues(SNP, markers, labels)) %>%
-      filter(!is.na(Label), negLog10_P > min(threshold, sug.threshold))
-    mp <- mp +
-      geom_text_repel(data = xm, aes(label = Label), size = 2)
-    #mp <- mp + geom_text_repel(data = x3, aes(label = Label), size = 2)
+      filter(SNP %in% markers) %>%
+      mutate(Label = plyr::mapvalues(SNP, markers, labels))# %>%
+      #filter(negLog10_P > min(threshold, sug.threshold))
+    if(nrow(xm) > 0) {
+      mp <- mp +
+        geom_text_repel(data = xm, aes(x = Pos / 1000000, y = Pvalue, label = Label), size = 2)
+      #mp <- mp + geom_text_repel(data = x3, aes(label = Label), size = 2)
+    }
   }
   #
   # Plot the Rest
@@ -208,28 +225,38 @@ gg_Manhattan_Zoom <- function(
   #
   if(facet.model == T) {
     mp <- mp +
-      geom_point(aes(fill = Trait, size = Sig.level, key1 = SNP), pch = 21, color = alpha("white",0)) +
+      geom_point(aes(x = Pos / 1000000, y = Pvalue, fill = Trait, size = Sig.level, key1 = SNP),
+                 pch = 21, color = alpha("white",0)) +
       scale_size_manual(values = point.sizes, guide = "none") +
       guides(color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1)),
              fill = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
       theme_gwaspr(legend.position = "bottom", legend.box=legend.box, legend.margin=margin(),
                    axis.title.y = element_markdown()) +
       facet_grid(Model ~ paste("Chromosome", Chr), scales = "free") +
-      scale_fill_manual(values = alpha(trait.colors,0.8)) +
-      scale_linetype_manual(name = "Marker", values = vline.types)
+      scale_fill_manual(values = alpha(trait.colors,0.8))
+    if(!is.null(genes)) {
+      mp <- mp +
+        geom_rect(data = genesZ, ymin = 0, ymax = -1, color = "black",
+                  aes(xmin = Start / 1000000, xmax = End / 1000000) )
+    }
     #if(nrow(x3)>0) { mp <- mp + geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) }
     if(addGenome == T) { mp <- ggarrange(mp, mp2, mp1, ncol = 1, nrow = 3, heights = c(3.5*length(models),1,0.8)) }
   } else {
     mp <- mp +
-      geom_point(aes(fill = Model, size = Sig.level, key1 = SNP), pch = 21, color = alpha("white",0)) +
+      geom_point(aes(x = Pos / 1000000, y = Pvalue, fill = Model, size = Sig.level, key1 = SNP),
+                 pch = 21, color = alpha("white",0)) +
       scale_size_manual(values = point.sizes, guide = "none") +
       guides(color = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1)),
              fill = guide_legend(nrow = legend.rows, byrow = T, override.aes = list(alpha = 1))) +
       theme_gwaspr(legend.position = "bottom", legend.box=legend.box, legend.margin=margin(),
                    axis.title.y = element_markdown()) +
-      facet_grid(Trait ~ paste("Chromosome", Chr)) +
-      scale_fill_manual(values = alpha(model.colors,0.8)) +
-      scale_linetype_manual(name = "Marker", values = vline.types)
+      facet_grid(Trait ~ paste("Chromosome", Chr), scales = "free") +
+      scale_fill_manual(values = alpha(model.colors,0.8))
+    if(!is.null(genes)) {
+      mp <- mp +
+        geom_rect(data = genesZ, ymin = 0, ymax = -1, color = "black",
+                  aes(xmin = Start / 1000000, xmax = End / 1000000) )
+    }
     #if(nrow(x3)>0) { mp <- mp + geom_point(data = x3, aes(fill = Model, size = Sig.level), color = sig.color, pch = 21) }
     if(addGenome == T) { mp <- ggarrange(mp, mp2, mp1, ncol = 1, nrow = 3, heights = c(7,1,0.8)) }
   }
@@ -237,7 +264,8 @@ gg_Manhattan_Zoom <- function(
   mp
 }
 
-#folder = "vignettes/GWAS_Results/"; traits = "Cotyledon_RedvsYellow"; title = paste(traits, collapse = " ")
+#folder = "vignettes/GWAS_Results/"; traits = "Cotyledon_RedvsYellow";
+#title = paste(traits, collapse = " "); trait.colors = gwaspr_Colors
 #chr = 1; pos1 = 350000000; pos2 = 400000000;
 #threshold = NULL; sug.threshold = NULL
 #markers = c("Lcu.1GRN.Chr1p365986872", "Lcu.1GRN.Chr1p361840399"); labels = c("365Mbp","361Mbp"); vlines = markers

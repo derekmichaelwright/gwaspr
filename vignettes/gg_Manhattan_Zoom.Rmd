@@ -64,7 +64,7 @@ mp <- gg_Manhattan_Zoom(
   facet.model = F,
   pmax = NULL,
   models =  c("MLM", "MLMM", "FarmCPU", "BLINK",  "GLM", "CMLM", "SUPER"),
-  model.colors = c("darkgreen", "darkred", "darkorange3", "steelblue", "darkorchid4", "blue2", "magenta3"),
+  model.colors = gwaspr_ModelColors,
   trait.colors = gwaspr_Colors,
   sig.color = "black",
   legend.rows = 1,

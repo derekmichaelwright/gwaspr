@@ -17,6 +17,7 @@
 #' @param vline.colors colors for each vertical line.
 #' @param vline.types lty for each vertical line.
 #' @param vline.legend Logical, display of vline color legend.
+#' @param genes Table of genes with "Chr", Start" and "End" columns.
 #' @param threshold.legend Logical, display of vline color legend.
 #' @param hlines Locations for horizontal lines. e.g., hlines = c(1.5,2.5).
 #' @param title A title for the plot.
@@ -37,13 +38,14 @@ gg_GWAS_Summary <- function(
     sug.threshold = round(-log10(0.000005),1),
     chr = NULL, pos1 = NULL, pos2 = NULL,
     models =  c("MLM", "MLMM", "FarmCPU", "BLINK", "CMLM", "SUPER"),
-    model.colors = gwaspr_Colors,
+    model.colors = gwaspr_ModelColors,
     shapes = 21:25,
     hlines = NULL,
     vlines = NULL,
     vline.colors = rep("red",length(vlines)),
     vline.types = rep(1, length(vlines)),
     vline.legend = T,
+    genes = NULL,
     threshold.legend = T,
     title = "Summary of Significant GWAS Results",
     caption = NULL,
@@ -108,7 +110,8 @@ gg_GWAS_Summary <- function(
   if(chr.unit == "50 Mbp")  { x.unit = 50000000 }
   if(chr.unit == "100 Mbp") { x.unit = 100000000 }
   if(chr.unit == "1 Gbp")   { x.unit = 1000000000 }
-  if(!chr.unit %in% c("1 kbp", "10 kbp", "50 kbp", "100 kbp", "1 Mbp", "10 Mbp", "50 Mbp", "100 Mbp", "1 Gbp")) { print("error in chr.unit") }
+  if(!chr.unit %in% c("1 kbp", "10 kbp", "50 kbp", "100 kbp",
+                      "1 Mbp", "10 Mbp", "50 Mbp", "100 Mbp", "1 Gbp")) { print("error in chr.unit") }
   #
   myP <- myP %>%
     filter(!is.na(SNP)) %>%
@@ -127,12 +130,12 @@ gg_GWAS_Summary <- function(
   if(!is.null(chr)) {
     myG <- myG %>% filter(Chr %in% chr)
     myP <- myP %>% filter(Chr %in% chr)
+    if(!is.null(genes)) { genes <- genes %>% filter(Chr %in% chr) }
 
     if(!is.null(pos1)) {
       myG <- myG %>% filter(Pos > pos1, Pos < pos2)
       myP <- myP %>% filter(Pos > pos1, Pos < pos2)
-      #x1 <- x1 %>% filter(Pos > pos1, Pos < pos2)
-      #x2 <- x2 %>% filter(Pos > pos1, Pos < pos2)
+      if(!is.null(genes)) { genes <- genes %>% filter(Start > pos1, End < pos2) }
     }
   }
   #
@@ -145,19 +148,21 @@ gg_GWAS_Summary <- function(
              Group = factor(Group, levels = unique(groups)))
   }
   myP <- myP %>%
-    mutate(Threshold = ifelse(Threshold == "Significant", paste("Significant =",threshold), Threshold),
-           Threshold = ifelse(Threshold == "Suggestive", paste("Suggestive =",sug.threshold), Threshold),
+    mutate(Threshold = ifelse(Threshold == "Significant",
+                              paste("Significant =",threshold), Threshold),
+           Threshold = ifelse(Threshold == "Suggestive",
+                              paste("Suggestive =",sug.threshold), Threshold),
            Threshold = factor(Threshold))
   #
   if(is.null(pos2)) { myBreaks <- 0:(round(max(myP$Pos)/x.unit))
   } else { myBreaks <- (round(pos1/x.unit)):(round(pos2/x.unit)) }
   #
-  mp <- ggplot(myP, aes(x = Pos / x.unit)) + geom_blank(data = myG)
+  mp <- ggplot(myP) + geom_blank(data = myG)
   #
   if(!is.null(vlines)) {
     myGM <- myG %>% filter(SNP %in% vlines) %>%
       mutate(SNP = factor(SNP, levels = vlines)) %>%
-      select(SNP, Chr, Pos)# %>% arrange(SNP)
+      select(SNP, Chr, Pos)
     #
     mp <- mp +
       geom_vline(data = myGM, alpha = 0.5,
@@ -172,15 +177,10 @@ gg_GWAS_Summary <- function(
   #
   mp <- mp +
     geom_point(color = "black", alpha = 0.5,
-               aes(y = Trait, shape = Model, fill = Model, size = Threshold,
+               aes(x = Pos / x.unit, y = Trait, shape = Model,
+                   fill = Model, size = Threshold,
                    key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP))
-  #geom_point(data = x2,
-   #            size = 0.75, color = "black", alpha = 0.5,
-    #           aes(y = Trait, shape = Model, fill = Model,
-     #              key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP)) +
-    #geom_point(size = 2.25, color = "black", alpha = 0.5,
-    #           aes(y = Trait, shape = Model, fill = Model,
-    #               key1 = SNP, key2 = negLog10_P, key3 = negLog10_HBP))
+  #
   if(!is.null(groups)) {
     mp <- mp + facet_grid(Group ~ Chr, scales = "free", space = "free")
   } else { mp <- mp + facet_grid(. ~ Chr, scales = "free", space = "free") }
@@ -189,8 +189,7 @@ gg_GWAS_Summary <- function(
     scale_fill_manual(values = model.colors, breaks = models) +
     scale_shape_manual(values = shapes, breaks = models) +
     scale_size_manual(name = NULL, values = c(2.25,0.75)) +
-    scale_y_discrete(limits = rev) + # drop = F
-    #scale_x_continuous(breaks = 0:20, minor_breaks = 0:20) +
+    scale_y_discrete(limits = rev) +
     scale_x_continuous(breaks = myBreaks, minor_breaks = myBreaks) +
     theme_gwaspr(legend.position = legend.position) +
     guides(shape = guide_legend(nrow = legend.rows, override.aes = list(size = 4)),
@@ -207,6 +206,11 @@ gg_GWAS_Summary <- function(
     mp <- mp + guides(color = threshold.legend)
   }
   #
+  if(!is.null(genes)) {
+    mp <- mp +
+      geom_rect(data = genes, ymin = -0.5, ymax = 0.5, color = "black",
+                aes(xmin = Start/x.unit, xmax = End/x.unit, key = Name) )
+  }
   mp
 }
 
@@ -219,3 +223,4 @@ gg_GWAS_Summary <- function(
 #vline.types = rep(1, length(vlines)); vline.legend = T; title = "Summary of Significant GWAS Results";
 #caption = paste0("Significant Threshold = ", threshold, " = Large\nSuggestive Threshold = ", sug.threshold," = Small")
 #rowread = 2000; legend.position = "bottom"; legend.rows = 1; plotHBPvalues = F; skyline = F
+#threshold.legend = T
