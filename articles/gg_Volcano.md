@@ -46,3 +46,24 @@ ggsave("figures/gg_Volcano_02.png", mp, width = 12, height = 4)
 ```
 
 ![](figures/gg_Volcano_02.png)
+
+------------------------------------------------------------------------
+
+## facet.chr
+
+``` r
+
+# Plot
+mp <- gg_Volcano(
+  # Specify a folder with GWAS results
+  folder = "GWAS_Results/", 
+  # Select a trait to plot
+  trait = "DTF_Nepal_2017",
+  # Facet by Chr
+  facet.chr = T
+  )
+# Save
+ggsave("figures/gg_Volcano_03.png", mp, width = 12, height = 8)
+```
+
+![](figures/gg_Volcano_03.png)

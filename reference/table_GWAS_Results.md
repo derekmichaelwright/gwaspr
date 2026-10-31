@@ -10,7 +10,7 @@ table_GWAS_Results(
   fnames = list_Result_Files(folder),
   threshold = 6,
   sug.threshold = NULL,
-  nrowstoread = 1000,
+  nrows = 10000,
   skyline = "NYC",
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER")
 )
@@ -34,7 +34,7 @@ table_GWAS_Results(
 
   Suggestive threshold.
 
-- nrowstoread:
+- nrows:
 
   Number of rows to read.
 

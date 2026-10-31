@@ -11,7 +11,7 @@ can be used to check which models have been ran on each trait.
 
 ``` r
 
-run_Summary(folder = "GWAS_Results")
+run_Summary(folder = "GWAS_Results/")
 ```
 
 The function `is_ran()` can be used to check if all if your triats in
@@ -19,7 +19,7 @@ your myY object have been run successfully.
 
 ``` r
 
-is_Ran(folder = "GWAS_Results", myY = read.csv("gwaspr_myY.csv"))
+is_Ran(folder = "GWAS_Results/", myY = read.csv("gwaspr_myY.csv"))
 ```
 
 ------------------------------------------------------------------------
