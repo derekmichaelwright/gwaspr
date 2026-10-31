@@ -4,10 +4,12 @@
 \alias{is_Ordered}
 \title{is_Ordered}
 \usage{
-is_Ordered(folder = "GWAS_Results/")
+is_Ordered(folder = "GWAS_Results/", nrows = 10000)
 }
 \arguments{
 \item{folder}{Folder containing GWAS results.}
+
+\item{nrows}{Number of rows to read.}
 }
 \value{
 A table of which models have been run on each trait.

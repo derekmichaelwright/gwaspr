@@ -9,7 +9,7 @@ table_GWAS_Results(
   fnames = list_Result_Files(folder),
   threshold = 6,
   sug.threshold = NULL,
-  nrowstoread = 1000,
+  nrows = 10000,
   skyline = "NYC",
   models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER")
 )
@@ -23,7 +23,7 @@ table_GWAS_Results(
 
 \item{sug.threshold}{Suggestive threshold.}
 
-\item{nrowstoread}{Number of rows to read.}
+\item{nrows}{Number of rows to read.}
 
 \item{skyline}{Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.}
 

@@ -5,7 +5,7 @@
 #' @param fnames The files to read.
 #' @param threshold Significant threshold.
 #' @param sug.threshold Suggestive threshold.
-#' @param nrowstoread Number of rows to read.
+#' @param nrows Number of rows to read.
 #' @param skyline Which skyline type to use. Can be "NYC" or "Kansas". If NULL, it will use the highest P.value.
 #' @param models GWAS models to use.
 #' @return A table of significant GWAS results.
@@ -16,12 +16,12 @@ table_GWAS_Results <- function(
     fnames = list_Result_Files(folder),
     threshold = 6,
     sug.threshold = NULL,
-    nrowstoread = 1000,
+    nrows = 10000,
     skyline = "NYC",
     models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER")
     ) {
   #
-  output <- NULL
+  xx <- NULL
   #
   for(i in fnames){
     trait <- substr(i, gregexpr("GWAS_Results", i)[[1]][1]+13,
@@ -31,35 +31,37 @@ table_GWAS_Results <- function(
     trait <- substr(trait, gregexpr("\\.", trait)[[1]][1]+1, nchar(trait) )
     sky <- substr(i, gregexpr("\\(", i)[[1]][1] + 1, gregexpr("\\)", i)[[1]][1] - 1)
     #
-    oi <- read.csv(paste0(folder, i), nrows = nrowstoread) %>%
+    xi <- read.csv(paste0(folder, i), nrows = nrows) %>%
       mutate(Model = model, Type = sky, Trait = trait,
              negLog10_P = -log10(P.value),
              negLog10_HBP = -log10(H.B.P.Value))
     #
-    oi <- oi %>% mutate(Threshold = ifelse(negLog10_P < threshold, "Suggestive", "Significant"))
+    xi <- xi %>% mutate(Threshold = ifelse(negLog10_P < threshold, "Suggestive", "Significant"))
     #
     if (!is.null(sug.threshold)) {
-      oi <- oi %>% filter(negLog10_P >= sug.threshold)
+      xi <- xi %>% filter(negLog10_P >= sug.threshold)
     } else {
-      oi <- oi %>% filter(negLog10_P > threshold)
+      xi <- xi %>% filter(negLog10_P > threshold)
     }
     #
-    output <- bind_rows(output, oi)
+    xx <- bind_rows(xx, xi)
   }
   #
-  if(sum(colnames(output)=="nobs")>0) { output <- dplyr::select(output, -nobs) }
+  if(sum(colnames(xx)=="nobs")>0) { xx <- dplyr::select(xx, -nobs) }
   #
   if(!is.null(skyline)) {
-    if(skyline == "NYC")    { output <- output %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
-    if(skyline == "Kansas") { output <- output %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
+    if(skyline == "NYC")    { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU Kansas", "BLINK Kansas")) }
+    if(skyline == "Kansas") { xx <- xx %>% filter(!paste(Model, Type) %in% c("FarmCPU NYC", "BLINK NYC")) }
   }
   #
-  output  <- output %>%
+  xx  <- xx %>%
     arrange(desc(negLog10_P)) %>%
     filter(!duplicated(paste(SNP, Model, P.value))) %>%
-    filter(Model %in% models)
+    filter(Model %in% models) %>%
+    select(SNP, Chr, Pos, negLog10_P, Trait, Model, Threshold, everything()) %>%
+    arrange(desc(negLog10_P))
   #
-  output %>% arrange(desc(negLog10_P))
+  xx
 }
 
 #folder = "GWAS_Results/"; fnames = list_Result_Files(folder); nrowstoread = 1000

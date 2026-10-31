@@ -4,6 +4,7 @@
 #' @param folder Folder containing GWAS results.
 #' @param trait The trait to read.
 #' @param title A title for the plot.
+#' @param facet.chr Should each chr be facetted.
 #' @param markers Markers to be labelled.
 #' @param labels Labels to be used for markers.
 #' @param models Models to read.
@@ -16,6 +17,7 @@ gg_Volcano <- function(
     folder = "GWAS_Results/",
     trait = list_Traits(folder)[1],
     title = trait,
+    facet.chr = F,
     markers = NULL,
     labels = markers,
     models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
@@ -61,18 +63,20 @@ gg_Volcano <- function(
   #
   if(is.null(threshold)) { threshold <- -log10(0.05/nrow(xi)) }
   # Volcano plot
-  ggplot(xx, aes(x = Effect, y = `-log10(p)`)) +
+  mp <- ggplot(xx, aes(x = Effect, y = `-log10(p)`)) +
     geom_hline(yintercept = threshold, color = "red") +
     geom_point(aes(color = Sig, shape = factor(Chr)), alpha = 0.7) +
     geom_text_repel(data = xm, size = 2, aes(label = SNP)) +
-    facet_wrap(Model ~ ., scales = "free", ncol = length(unique(xx$Model))) +
     scale_color_manual(values = c("darkgreen", "black")) +
     scale_shape_manual(name = "Chr", values = c(1:7)) +
     guides(color = F) +
     theme_gwaspr(axis.title.y = element_markdown()) +
     labs(title = title, y = "-log<sub>10</sub>(*p*)")
+  if(facet.chr == F) { mp <- mp + facet_wrap(Model ~ ., scales = "free", ncol = length(unique(xx$Model))) }
+  if(facet.chr == T) { mp <- mp + facet_grid(Model ~ Chr, scales = "free") }
+  mp
 }
 
 #folder = "vignettes/GWAS_Results/"; trait = list_Traits(folder)[1];
-#title = trait; markers = NULL; labels = markers;
+#title = trait; markers = NULL; labels = markers; threshold = 6; facet.chr = T
 #models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"); skyline = "NYC"

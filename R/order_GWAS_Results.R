@@ -3,28 +3,33 @@
 #' Read in GWAS results, then arrange by P.value and write as csv..
 #' @param folder Folder containing GWAS results.
 #' @param files The files to read. Default will read all files.
+#' @param nrows Number of rows to read.
 #' @return Rearranged files of GWAS results.
 #' @export
 
 order_GWAS_Results <- function(
     folder = "GWAS_Results/",
-    files = list_Result_Files(folder)) {
+    files = list_Result_Files(folder),
+    nrows = 10000) {
   #
-  x1 <- run_Summary(folder = folder)
-  x1[x1==""] <- NA
-  x1 <- x1 %>% dropNAcol()
-  x2 <- is_Ordered(folder = folder)
-  x2 <- x2[,colnames(x1)]
-  x2 <- x2[rowSums(x2=="") > 0,]
+  xx <- is_Ordered(folder = folder, nrows = nrows)
+  xx[xx==""] <- NA
+  xx <- xx %>% dropNAcol()
+  xx[is.na(xx)] <- ""
+  xx <- xx[rowSums(xx=="") > 0,]
   #
-  if(nrow(x2) > 0) {
-    files <- files[grepl(paste(x2$Trait, collapse="|"), files)]
+  if(nrow(xx) > 0) {
+    files <- files[grepl(paste(xx$Trait, collapse="|"), files)]
     #
     for(i in files){
-      xx <- read.csv(paste0(folder, i)) %>%
-        arrange(P.value)
-      write.csv(xx, paste0(folder, i), row.names = F)
+      xi <- read.csv(paste0(folder, i)) %>%
+        arrange(P.value) #%>% mutate(pval = -log10(P.value))
+      xi1 <- xi %>% filter(P.value != 0)
+      xi2 <- xi %>% filter(P.value == 0)
+      xi <- bind_rows(xi1, xi2)
+      write.csv(xi, paste0(folder, i), row.names = F)
     }
   }
   message("GWAS Results files are ordered")
 }
+#files<- "GAPIT.Association.GWAS_Results.FarmCPU.TP.Dotted_LDP(Kansas).csv"

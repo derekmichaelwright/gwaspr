@@ -5,10 +5,15 @@
 \title{gg_GWAS_Hits}
 \usage{
 gg_GWAS_Hits(
+  folder = "GWAS_Results/",
   xx,
   xG,
   xCV = NULL,
-  traits,
+  traits = list_Traits(folder),
+  groups = NULL,
+  chr = NULL,
+  pos1 = NULL,
+  pos2 = NULL,
   range = 2e+06,
   title = "",
   sigMin = 0,
@@ -18,9 +23,12 @@ gg_GWAS_Hits(
   vlines = NULL,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
+  vline.legend = T,
   legend.rows = 1,
+  chr.unit = "100 Mbp",
   facet = F,
-  caption = T
+  caption = T,
+  skyline = "NYC"
 )
 }
 \arguments{

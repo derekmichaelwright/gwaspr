@@ -4,12 +4,18 @@
 \alias{order_GWAS_Results}
 \title{order_GWAS_Results}
 \usage{
-order_GWAS_Results(folder = "GWAS_Results/", files = list_Result_Files(folder))
+order_GWAS_Results(
+  folder = "GWAS_Results/",
+  files = list_Result_Files(folder),
+  nrows = 10000
+)
 }
 \arguments{
 \item{folder}{Folder containing GWAS results.}
 
 \item{files}{The files to read. Default will read all files.}
+
+\item{nrows}{Number of rows to read.}
 }
 \value{
 Rearranged files of GWAS results.

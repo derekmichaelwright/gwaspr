@@ -13,7 +13,7 @@ table_GWAS_Results_Summary <- function(xx, binMarkers = F, binSize = 5000000, on
   if(onlySig == T) { xx <- xx %>% filter(Threshold == "Significant") }
   xx <- xx %>% arrange(desc(negLog10_P))
   #
-  output <- NULL
+  yy <- NULL
   #
   if(binMarkers == T) {
     while(nrow(xx) > 0) {
@@ -42,7 +42,7 @@ table_GWAS_Results_Summary <- function(xx, binMarkers = F, binSize = 5000000, on
                max_negLog10_HBP, min_negLog10_HBP,
                min_P, max_P, min_HBP, max_HBP)
       #
-      output <- rbind(output, x1)
+      yy <- rbind(yy, x1)
       #
       xx <- xx %>% filter(!SNP %in% xi$SNP)
     }
@@ -73,13 +73,15 @@ table_GWAS_Results_Summary <- function(xx, binMarkers = F, binSize = 5000000, on
                max_negLog10_HBP, min_negLog10_HBP,
                min_P, max_P, min_HBP, max_HBP)
       #
-      output <- rbind(output, x1)
+      yy <- rbind(yy, x1)
       #
       xx <- xx %>% filter(SNP != xi$SNP)
     }
   }
   #
-  output %>% arrange(desc(max_negLog10_P))
+  yy %>%
+    select(SNP, Chr, Pos, Hits, max_negLog10_P, Traits, Models) %>%
+    arrange(desc(max_negLog10_P))
 }
 
 #folder = "GWAS_Results/"; fnames = list_Result_Files(folder); nrowstoread = 1000

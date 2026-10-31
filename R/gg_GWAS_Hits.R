@@ -20,8 +20,11 @@
 #' @export
 
 gg_GWAS_Hits <- function(
+    folder = "GWAS_Results/",
     xx, xG, xCV = NULL,
-    traits,
+    traits = list_Traits(folder),
+    groups = NULL,
+    chr = NULL, pos1 = NULL, pos2 = NULL,
     range = 2000000,
     title = "",
     sigMin = 0,
@@ -31,20 +34,105 @@ gg_GWAS_Hits <- function(
     vlines = NULL,
     vline.colors = rep("red", length(vlines)),
     vline.types = rep(1, length(vlines)),
+    vline.legend = T,
     legend.rows = 1,
+    chr.unit = "100 Mbp",
     facet = F,
-    caption = T
+    caption = T,
+    skyline = "NYC"
     ) {
   #
-  xx <- xx %>% filter(Trait %in% traits, Model %in% models) %>% mutate(Hits = NA)
-  xG <- xG %>% dplyr::select(SNP=1, Chr=3, Pos=4)
+  check1 <- run_Summary(folder = folder) %>% dropNAcol()
+  check2 <- is_Ordered(folder = folder) %>%
+    select(colnames(check1))
+  if(sum(is.na(check2)) > 0) {
+    warning("Some of your GWAS results files might not be ordered by pvalue")
+    warning("use order_GWAS_Results() before making these summary plots")
+    warning("use is_ordered() to check if GWAS results are properly ordered for use with this function")
+  }
   #
+  fnames <- list_Result_Files(folder)
+  fnames <- fnames[grepl(paste(models,collapse="|"),fnames)]
+  fnames <- fnames[grepl(paste(c(paste0(traits, ".csv"), paste0(traits, "\\(")), collapse="|"), fnames)]
+  #
+  if(!is.null(skyline)) {
+    if(skyline == "NYC") { fnames <- fnames[!grepl("\\(Kansas\\)", fnames)] }
+    if(skyline == "Kansas") {
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("FarmCPU", fnames))]
+      fnames <- fnames[!(grepl("\\(NYC\\)", fnames) & grepl("BLINK",   fnames))]
+    }
+  }
+  #
+  #
+  xP <- NULL
+  # i<- fnames[1]
+  for(i in fnames) {
+    xPi <- table_GWAS_Results(folder = folder, fnames = i, skyline = skyline)
+    #
+    if(nrow(xPi)>0) { xP <- bind_rows(xP, xPi) }
+  }
+  #
+  xP <- xP %>% mutate(Pvalue = negLog10_P)
+  #
+  if(chr.unit == "1 kbp")   { x.unit = 1000 }
+  if(chr.unit == "10 kbp")  { x.unit = 10000 }
+  if(chr.unit == "50 kbp")  { x.unit = 50000 }
+  if(chr.unit == "100 kbp") { x.unit = 100000 }
+  if(chr.unit == "1 Mbp")   { x.unit = 1000000 }
+  if(chr.unit == "10 Mbp")  { x.unit = 10000000 }
+  if(chr.unit == "50 Mbp")  { x.unit = 50000000 }
+  if(chr.unit == "100 Mbp") { x.unit = 100000000 }
+  if(chr.unit == "1 Gbp")   { x.unit = 1000000000 }
+  if(!chr.unit %in% c("1 kbp", "10 kbp", "50 kbp", "100 kbp",
+                      "1 Mbp", "10 Mbp", "50 Mbp", "100 Mbp", "1 Gbp")) { print("error in chr.unit") }
+  #
+  xP <- xP %>%
+    filter(!is.na(SNP)) %>%
+    arrange(Chr, Pos, P.value, Trait) %>%
+    mutate(Model = factor(Model, levels = models),
+           Trait = factor(Trait, levels = traits),
+           Group = "") %>%
+    filter(!is.na(Trait)) %>%
+    arrange(desc(Model))
+  #
+  xG <- read.csv(paste0(folder, fnames[grepl(traits[1],fnames)][1])) %>%
+    mutate(Trait = xP$Trait[1],
+           Trait = factor(Trait, levels = traits),
+           Group = "", Model = NULL)
+  #
+  if(!is.null(chr)) {
+    xG <- xG %>% filter(Chr %in% chr)
+    xP <- xP %>% filter(Chr %in% chr)
+    if(!is.null(genes)) { genes <- genes %>% filter(Chr %in% chr) }
+
+    if(!is.null(pos1)) {
+      xG <- xG %>% filter(Pos > pos1, Pos < pos2)
+      xP <- xP %>% filter(Pos > pos1, Pos < pos2)
+      if(!is.null(genes)) { genes <- genes %>% filter(Start > pos1, End < pos2) }
+    }
+  }
+  #
+  if(!is.null(groups)) {
+    xP <- xP %>%
+      mutate(Group = plyr::mapvalues(Trait, traits, groups),
+             Group = factor(Group, levels = unique(groups)))
+    xG <- xG %>%
+      mutate(Group = plyr::mapvalues(Trait, traits, groups),
+             Group = factor(Group, levels = unique(groups)))
+  }
+  #
+  #
+  #
+  xx <- xP %>% filter(Trait %in% traits, Model %in% models) %>% mutate(Hits = NA)
+  xG <- xG %>% dplyr::select(SNP=1, Chr=3, Pos=4)
+  # i<-1
   for(i in 1:nrow(xx)) {
     myChr <- xx$Chr[i]
     myPos <- xx$Pos[i]
     myMod <- xx$Model[i]
+    myGrp <- xx$Group[i]
     xi <- xx %>%
-      filter(Chr == myChr, Model == myMod,
+      filter(Chr == myChr, Model == myMod, Group == myGrp,
              Pos > myPos-range, Pos < myPos+range)
     xx$Hits[i] <- nrow(xi)
     xi <- xi %>% filter(!(SNP == xx$SNP[i] & Trait == xx$Trait[i]))

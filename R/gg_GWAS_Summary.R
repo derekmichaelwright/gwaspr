@@ -83,22 +83,22 @@ gg_GWAS_Summary <- function(
     }
   }
   #
-  myP <- NULL
+  xP <- NULL
   #
   for(i in fnames) {
-    myPi <- table_GWAS_Results(folder = folder,
+    xPi <- table_GWAS_Results(folder = folder,
                                fnames = i,
                                threshold = threshold,
                                sug.threshold = sug.threshold,
                                skyline = skyline)
     #
-    if(nrow(myPi)>0) { myP <- bind_rows(myP, myPi) }
+    if(nrow(xPi)>0) { xP <- bind_rows(xP, xPi) }
   }
   #
   if(plotHBPvalues == T) {
-    myP <- myP %>% mutate(Pvalue = negLog10_HBP)
+    xP <- xP %>% mutate(Pvalue = negLog10_HBP)
   } else {
-    myP <- myP %>% mutate(Pvalue = negLog10_P)
+    xP <- xP %>% mutate(Pvalue = negLog10_P)
   }
   #
   if(chr.unit == "1 kbp")   { x.unit = 1000 }
@@ -113,7 +113,7 @@ gg_GWAS_Summary <- function(
   if(!chr.unit %in% c("1 kbp", "10 kbp", "50 kbp", "100 kbp",
                       "1 Mbp", "10 Mbp", "50 Mbp", "100 Mbp", "1 Gbp")) { print("error in chr.unit") }
   #
-  myP <- myP %>%
+  xP <- xP %>%
     filter(!is.na(SNP)) %>%
     arrange(Chr, Pos, P.value, Trait) %>%
     mutate(Model = factor(Model, levels = models),
@@ -122,50 +122,50 @@ gg_GWAS_Summary <- function(
     filter(!is.na(Trait)) %>%
     arrange(desc(Model))
   #
-  myG <- read.csv(paste0(folder, fnames[grepl(traits[1],fnames)][1])) %>%
-    mutate(Trait = myP$Trait[1],
+  xG <- read.csv(paste0(folder, fnames[grepl(traits[1],fnames)][1])) %>%
+    mutate(Trait = xP$Trait[1],
            Trait = factor(Trait, levels = traits),
            Group = NULL, Model = NULL)
   #
   if(!is.null(chr)) {
-    myG <- myG %>% filter(Chr %in% chr)
-    myP <- myP %>% filter(Chr %in% chr)
+    xG <- xG %>% filter(Chr %in% chr)
+    xP <- xP %>% filter(Chr %in% chr)
     if(!is.null(genes)) { genes <- genes %>% filter(Chr %in% chr) }
 
     if(!is.null(pos1)) {
-      myG <- myG %>% filter(Pos > pos1, Pos < pos2)
-      myP <- myP %>% filter(Pos > pos1, Pos < pos2)
+      xG <- xG %>% filter(Pos > pos1, Pos < pos2)
+      xP <- xP %>% filter(Pos > pos1, Pos < pos2)
       if(!is.null(genes)) { genes <- genes %>% filter(Start > pos1, End < pos2) }
     }
   }
   #
   if(!is.null(groups)) {
-    myP <- myP %>%
+    xP <- xP %>%
       mutate(Group = plyr::mapvalues(Trait, traits, groups),
              Group = factor(Group, levels = unique(groups)))
-    myG <- myG %>%
+    xG <- xG %>%
       mutate(Group = plyr::mapvalues(Trait, traits, groups),
              Group = factor(Group, levels = unique(groups)))
   }
-  myP <- myP %>%
+  xP <- xP %>%
     mutate(Threshold = ifelse(Threshold == "Significant",
                               paste("Significant =",threshold), Threshold),
            Threshold = ifelse(Threshold == "Suggestive",
                               paste("Suggestive =",sug.threshold), Threshold),
            Threshold = factor(Threshold))
   #
-  if(is.null(pos2)) { myBreaks <- 0:(round(max(myP$Pos)/x.unit))
+  if(is.null(pos2)) { myBreaks <- 0:(round(max(xP$Pos)/x.unit))
   } else { myBreaks <- (round(pos1/x.unit)):(round(pos2/x.unit)) }
   #
-  mp <- ggplot(myP) + geom_blank(data = myG)
+  mp <- ggplot(xP) + geom_blank(data = xG)
   #
   if(!is.null(vlines)) {
-    myGM <- myG %>% filter(SNP %in% vlines) %>%
+    xGM <- xG %>% filter(SNP %in% vlines) %>%
       mutate(SNP = factor(SNP, levels = vlines)) %>%
       select(SNP, Chr, Pos)
     #
     mp <- mp +
-      geom_vline(data = myGM, alpha = 0.5,
+      geom_vline(data = xGM, alpha = 0.5,
                  aes(xintercept = Pos / x.unit, color = SNP)) +
       scale_color_manual(name = "Marker", values = vline.colors) +
       scale_linetype_manual(name = "Marker", values = vline.types)

@@ -8,6 +8,7 @@ gg_Volcano(
   folder = "GWAS_Results/",
   trait = list_Traits(folder)[1],
   title = trait,
+  facet.chr = F,
   markers = NULL,
   labels = markers,
   models = c("MLM", "FarmCPU", "BLINK", "MLMM", "GLM", "CMLM", "SUPER"),
@@ -21,6 +22,8 @@ gg_Volcano(
 \item{trait}{The trait to read.}
 
 \item{title}{A title for the plot.}
+
+\item{facet.chr}{Should each chr be facetted.}
 
 \item{markers}{Markers to be labelled.}
 
