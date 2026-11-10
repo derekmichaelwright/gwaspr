@@ -11,7 +11,7 @@ table_GWAS_Results_Summary(xx, binMarkers = F, binSize = 5e+06, onlySig = F)
 
 \item{binMarkers}{Logical, if TRUE, markers will be bined based on \code{binSize}.}
 
-\item{binSize}{range on each side of marker to bin. default = 1,000,000.}
+\item{binSize}{range on each side of marker to bin. default = 5,000,000.}
 
 \item{onlySig}{Logical, if TRUE, any suggested associations will be removed.}
 }

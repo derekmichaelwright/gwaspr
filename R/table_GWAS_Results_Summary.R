@@ -3,7 +3,7 @@
 #' Create a summary using the output from `table_GWAS_Results()`.
 #' @param xx Object from `table_GWAS_Results()`.
 #' @param binMarkers Logical, if TRUE, markers will be bined based on `binSize`.
-#' @param binSize range on each side of marker to bin. default = 1,000,000.
+#' @param binSize range on each side of marker to bin. default = 5,000,000.
 #' @param onlySig Logical, if TRUE, any suggested associations will be removed.
 #' @return A table of significant GWAS results.
 #' @export
@@ -36,7 +36,7 @@ table_GWAS_Results_Summary <- function(xx, binMarkers = F, binSize = 5000000, on
                max_negLog10_HBP = -log10(min_HBP) )
       #
       x1 <- x1 %>%
-        dplyr::select(SNP, Chr, Pos, Hits, MAF,
+        select(SNP, Chr, Pos, Hits, MAF,
                max_negLog10_P, min_negLog10_P,
                Models, Traits,
                max_negLog10_HBP, min_negLog10_HBP,
@@ -67,7 +67,7 @@ table_GWAS_Results_Summary <- function(xx, binMarkers = F, binSize = 5000000, on
                max_negLog10_HBP = -log10(min_HBP) )
       #
       x1 <- x1 %>%
-        dplyr::select(SNP, Chr, Pos, Hits, MAF,
+        select(SNP, Chr, Pos, Hits, MAF,
                max_negLog10_P, min_negLog10_P,
                Models, Traits,
                max_negLog10_HBP, min_negLog10_HBP,
@@ -75,7 +75,7 @@ table_GWAS_Results_Summary <- function(xx, binMarkers = F, binSize = 5000000, on
       #
       yy <- rbind(yy, x1)
       #
-      xx <- xx %>% filter(SNP != xi$SNP)
+      xx <- xx %>% filter(SNP != x1$SNP)
     }
   }
   #

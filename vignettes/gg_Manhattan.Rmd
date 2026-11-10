@@ -51,6 +51,16 @@ for(i in list_Traits(folder = "GWAS_Results/")) {
 }
 ```
 
+or use the gwaspr batch plotting function
+
+```{r}
+gwaspr_batch_Man(
+  # Specify a folder with GWAS results
+  folder = "GWAS_Results/",
+  # Specify a folder to save plots
+  output = "figures/" )
+```
+
 
 
 ![](figures/gg_Manhattan_01_DTF_Sask_2017.png)

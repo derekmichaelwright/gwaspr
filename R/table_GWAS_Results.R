@@ -2,7 +2,6 @@
 #'
 #' Create a table of significant GWAS results.
 #' @param folder Folder containing GWAS results.
-#' @param fnames The files to read.
 #' @param threshold Significant threshold.
 #' @param sug.threshold Suggestive threshold.
 #' @param nrows Number of rows to read.
@@ -13,7 +12,7 @@
 
 table_GWAS_Results <- function(
     folder = "GWAS_Results/",
-    fnames = list_Result_Files(folder),
+    traits = list_Traits(folder),
     threshold = 6,
     sug.threshold = NULL,
     nrows = 10000,
@@ -23,6 +22,8 @@ table_GWAS_Results <- function(
   #
   xx <- NULL
   #
+  fnames <- list_Result_Files(folder)
+  fnames <- fnames[grepl(paste(traits,collapse="|"), fnames)]
   for(i in fnames){
     trait <- substr(i, gregexpr("GWAS_Results", i)[[1]][1]+13,
                     gregexpr(".csv", i)[[1]][1]-1 )

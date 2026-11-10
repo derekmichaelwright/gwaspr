@@ -32,4 +32,4 @@ is_Ordered <- function(folder = "GWAS_Results/", nrows = 10000) {
   #
   yy
 }
-#i<-"GAPIT.Association.GWAS_Results.MLMM.TP.DM.Mar_LDP(NYC).csv"
+#i<-"GAPIT.Association.GWAS_Results.FarmCPU.TP.Dotted_LDP(NYC).csv"

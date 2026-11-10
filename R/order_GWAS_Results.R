@@ -20,10 +20,10 @@ order_GWAS_Results <- function(
   #
   if(nrow(xx) > 0) {
     files <- files[grepl(paste(xx$Trait, collapse="|"), files)]
-    #
+    #i<-files[1]
     for(i in files){
       xi <- read.csv(paste0(folder, i)) %>%
-        arrange(P.value) #%>% mutate(pval = -log10(P.value))
+        arrange(P.value) %>% mutate(pval = -log10(P.value))
       xi1 <- xi %>% filter(P.value != 0)
       xi2 <- xi %>% filter(P.value == 0)
       xi <- bind_rows(xi1, xi2)
@@ -32,4 +32,4 @@ order_GWAS_Results <- function(
   }
   message("GWAS Results files are ordered")
 }
-#files<- "GAPIT.Association.GWAS_Results.FarmCPU.TP.Dotted_LDP(Kansas).csv"
+#i<- "GAPIT.Association.GWAS_Results.FarmCPU.TP.Dotted_LDP(Kansas).csv"

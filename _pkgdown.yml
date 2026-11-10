@@ -30,6 +30,8 @@ navbar:
        href: articles/table_GWAS_Results.html
      - text: gg_GWAS_Summary()
        href: articles/gg_GWAS_Summary.html
+     - text: gg_GWAS_Hits()
+       href: articles/gg_GWAS_Hits.html
      - text: gg_QTL_Summary()
        href: articles/gg_QTL_Summary.html
      - text: -------

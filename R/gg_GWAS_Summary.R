@@ -85,12 +85,12 @@ gg_GWAS_Summary <- function(
   #
   xP <- NULL
   #
-  for(i in fnames) {
+  for(i in traits) {
     xPi <- table_GWAS_Results(folder = folder,
-                               fnames = i,
-                               threshold = threshold,
-                               sug.threshold = sug.threshold,
-                               skyline = skyline)
+                              traits = i,
+                              threshold = threshold,
+                              sug.threshold = sug.threshold,
+                              skyline = skyline )
     #
     if(nrow(xPi)>0) { xP <- bind_rows(xP, xPi) }
   }
@@ -114,12 +114,11 @@ gg_GWAS_Summary <- function(
                       "1 Mbp", "10 Mbp", "50 Mbp", "100 Mbp", "1 Gbp")) { print("error in chr.unit") }
   #
   xP <- xP %>%
-    filter(!is.na(SNP)) %>%
     arrange(Chr, Pos, P.value, Trait) %>%
     mutate(Model = factor(Model, levels = models),
            Trait = factor(Trait, levels = traits),
            Group = NULL) %>%
-    filter(!is.na(Trait)) %>%
+    filter(!is.na(Trait), !is.na(SNP)) %>%
     arrange(desc(Model))
   #
   xG <- read.csv(paste0(folder, fnames[grepl(traits[1],fnames)][1])) %>%

@@ -6,10 +6,10 @@
 \usage{
 gg_GWAS_Hits(
   folder = "GWAS_Results/",
-  xx,
-  xG,
-  xCV = NULL,
   traits = list_Traits(folder),
+  models = c("BLINK", "FarmCPU", "MLMM", "MLM", "GLM", "CMLM", "SUPER"),
+  model.colors = gwaspr_ModelColors,
+  model.shapes = c(21:25, 21:22),
   groups = NULL,
   chr = NULL,
   pos1 = NULL,
@@ -17,9 +17,6 @@ gg_GWAS_Hits(
   range = 2e+06,
   title = "",
   sigMin = 0,
-  models = c("BLINK", "FarmCPU", "MLMM", "MLM", "GLM", "CMLM", "SUPER"),
-  model.colors = gwaspr_ModelColors,
-  model.shapes = c(21:25, 21:22),
   vlines = NULL,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
@@ -32,23 +29,17 @@ gg_GWAS_Hits(
 )
 }
 \arguments{
-\item{xx}{Table of significant GWAS results. See ?table_GWAS_Results().}
-
-\item{xG}{Genotype data in hapmap format.}
-
-\item{xCV}{Optional, for filtering if you have a "CV" column.}
-
 \item{traits}{List of traits to use.}
+
+\item{models}{Models to read.}
+
+\item{model.colors}{Colors for each model.}
 
 \item{range}{Range for binning GWAS hits.}
 
 \item{title}{Title for horizontal facet.}
 
 \item{sigMin}{Minimum number of hits to plot.}
-
-\item{models}{Models to read.}
-
-\item{model.colors}{Colors for each model.}
 
 \item{vlines}{Markers to be labelled with a vertical red line.}
 
@@ -61,10 +52,16 @@ gg_GWAS_Hits(
 \item{facet}{Logical. facet by GWAS model.}
 
 \item{caption}{Logical. should a caption be added.}
+
+\item{xx}{Table of significant GWAS results. See ?table_GWAS_Results().}
+
+\item{xG}{Genotype data in hapmap format.}
+
+\item{xCV}{Optional, for filtering if you have a "CV" column.}
 }
 \value{
 A GWAS Hits plot.
 }
 \description{
-Creates a summary GWAS plot of significant associations.
+\href{https://derekmichaelwright.github.io/gwaspr/articles/gg_GWAS_Hits.html}{Creates a summary GWAS plot of significant associations.}
 }
