@@ -7,8 +7,8 @@ docs
 
 vignettes/GWAS_Results/
 vignettes/LD_Decay/
-vignettes/gwaspr_myG_hmp.csv
-vignettes/gwaspr_myY_old.csv
+vignettes/Data/gwaspr_myG_hmp.csv
+
 
 vignettes/figures/gg_myG_Details_01_myG_Markers.csv
 
