@@ -63,20 +63,23 @@ gg_myG_Details <- function(filename, myPrefix = "", filetype = "csv") {
   write.csv(xg, paste0(myPrefix, "_01_myG_Markers.csv"), row.names = F)
   # Plot
   mp1 <- ggplot(xx, aes(x = Het * 100)) +
-    geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
+    geom_histogram(fill = "steelblue", alpha = 0.8) +
     theme_gwaspr() +
-    labs(title = "Details by Marker",
-         subtitle = "A) Heterozygosity", x = "Percent", y = "Number of Markers")
+    labs(title = "myG Details by Marker",
+         subtitle = "A) Marker Heterozygosity",
+         x = "Percent", y = "Number of Markers")
   mp2 <- ggplot(xx, aes(x = MAF * 100)) +
-    geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
+    geom_histogram(fill = "steelblue", alpha = 0.8) +
     scale_x_continuous(breaks = seq(5,100, by = 5),
                        minor_breaks = seq(5,100, by = 5)) +
     theme_gwaspr() +
-    labs(subtitle = "B) Minor Allele Frequency", x = "Percent", y = NULL)
+    labs(subtitle = "B) Marker Minor Allele Frequency",
+         x = "Percent", y = "Number of Markers")
   mp3 <- ggplot(xx, aes(x = MCF * 100)) +
-    geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
+    geom_histogram(fill = "steelblue", alpha = 0.8) +
     theme_gwaspr() +
-    labs(subtitle = "C) Missing Call Frequency", x = "Percent", y = "Number of Markers")
+    labs(subtitle = "C) Marker Missing Call Frequency",
+         x = "Percent", y = "Number of Markers")
   mpA <- ggarrange(mp1, mp2, mp3, ncol = 3, nrow = 1, align = "h")
   ggsave(paste0(myPrefix, "_04_myG_Markers.png"), mpA, width = 12, height = 4)
   #
@@ -105,23 +108,21 @@ gg_myG_Details <- function(filename, myPrefix = "", filetype = "csv") {
   write.csv(yy, paste0(myPrefix, "_02_myG_Genotypes.csv"), row.names = F)
   # Plot
   mp4 <- ggplot(yy, aes(x = Het * 100)) +
-    geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
+    geom_histogram(fill = "darkgreen", alpha = 0.8) +
     theme_gwaspr() +
-    labs(title = "Details by Genotype",
-         subtitle = "A) Heterozygosity", x = "Percent", y = "Number of Genotypes")
+    labs(title = "myG Details by Genotype",
+         subtitle = "A) Genotype Heterozygosity", x = "Percent", y = "Number of Genotypes")
   mp5 <- ggplot(yy, aes(x = MAF * 100)) +
-    geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
+    geom_histogram(fill = "darkgreen", alpha = 0.8) +
     theme_gwaspr() +
-    labs(subtitle = "B) Minor Allele Frequency", x = "Percent", y = "Number of Genotypes")
+    labs(subtitle = "B) Genotype Minor Allele Frequency", x = "Percent", y = "Number of Genotypes")
   mp6 <- ggplot(yy, aes(x = MCF * 100)) +
-    geom_histogram(color = "black", fill = "darkgreen", alpha = 0.7) +
+    geom_histogram(fill = "darkgreen", alpha = 0.8) +
     theme_gwaspr() +
-    labs(subtitle = "C) Missing Call Frequency", x = "Percent", y = "Number of Genotypes")
+    labs(subtitle = "C) Genotype Missing Call Frequency", x = "Percent", y = "Number of Genotypes")
   mpB <- ggarrange(mp4, mp5, mp6, ncol = 3, nrow = 1, align = "h")
   ggsave(paste0(myPrefix,"_05_myG_Genotypes.png"), mpB, width = 12, height = 4)
   #
   mp <- ggarrange(mpA, mpB, ncol = 1, nrow = 2, align = "v")
   ggsave(paste0(myPrefix,"_03_myG_Details.png"), mp, width = 12, height = 8)
 }
-
-#xx <- myG

@@ -71,7 +71,7 @@ gg_LD_Decay <- function(xG = myG, outputFolder, markerNum = 200) {
     geom_vline(data = myGeno, lty = 2, linewidth = 0.3,
                aes(xintercept = Threshold_0.2/1000)) +
     scale_x_continuous(breaks = seq(0, 1000, by = 100)) +#, expand = c(0,10)
-    scale_y_continous(breaks = seq(0, 1, by = 0.2)) +
+    scale_y_continuous(breaks = seq(0, 1, by = 0.2)) +
     facet_wrap(paste("Threshold = ", myGeno$Threshold_0.2) ~ .) +
     theme_gwaspr(legend.position = "none",
                  axis.title.y = ggtext::element_markdown()) +

@@ -115,7 +115,7 @@ The option `groups` can be used to facet the traits. The requirement is that the
 
 ```{r eval = F}
 # Prep data
-traits <- c("Cotyledon_RedvsYellow","DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b")
+traits <- c("Cot_RvY", "DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_CV_b")
 groups <- c("Seed", "DTF", "DTF", "DTF")
 # Plot
 mp <- gg_GWAS_Summary(

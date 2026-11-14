@@ -8,15 +8,15 @@
 #' @export
 
 order_GWAS_Results <- function(
-    folder = "GWAS_Results/",
+    folder = "academic/gwas_tutorial/GWAS_Results/",
     files = list_Result_Files(folder),
     nrows = 10000) {
   #
   xx <- is_Ordered(folder = folder, nrows = nrows)
-  xx[xx==""] <- NA
-  xx <- xx %>% dropNAcol()
-  xx[is.na(xx)] <- ""
-  xx <- xx[rowSums(xx=="") > 0,]
+  #xx[xx==""] <- NA
+  #xx <- xx %>% dropNAcol() %>% as.data.frame()
+  #xx[is.na(xx)] <- ""
+  #xx <- xx[rowSums(xx=="") > 0,]
   #
   if(nrow(xx) > 0) {
     files <- files[grepl(paste(xx$Trait, collapse="|"), files)]

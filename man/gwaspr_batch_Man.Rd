@@ -7,7 +7,8 @@
 gwaspr_batch_Man(
   folder = "vignettes/GWAS_Results/",
   output = "vignettes/figures/",
-  traits = list_Traits(folder)
+  traits = list_Traits(folder),
+  models = c("MLM", "MLMM", "FarmCPU", "BLINK", "GLM", "CMLM", "SUPER")
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ gwaspr_batch_Man(
 \item{output}{Output folder for Manhattan plots.}
 
 \item{traits}{The traits to read.}
+
+\item{models}{Models to read.}
 }
 \value{
 Manhattan plots.

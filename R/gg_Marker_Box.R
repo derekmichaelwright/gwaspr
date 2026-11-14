@@ -37,6 +37,7 @@ gg_Marker_Box <- function (
     plot.violin = T,
     plot.box = T,
     plot.points = T,
+    geno.labels = NULL,
     box.width = 0.1,
     point.size = 1,
     point.beeswarm = F,
@@ -122,14 +123,18 @@ gg_Marker_Box <- function (
       if(is.null(cv.name)) {
         if(point.beeswarm == T) {
           mp <- mp + geom_beeswarm(size = point.size, alpha = 0.8, pch = 16, method = "center")
-          } else {
+          if(!is.null(geno.labels)) { mp <- mp + geom_text_repel(data = xx %>% filter(Name %in% geno.labels), aes(label = Name), size = 2, nudge_x = 0.25) }
+        } else {
             mp <- mp + geom_quasirandom(size = point.size, alpha = 0.8, pch = 16)
+            if(!is.null(geno.labels)) { mp <- mp + geom_text_repel(data = xx %>% filter(Name %in% geno.labels), aes(label = Name), size = 2, nudge_x = 0.25) }
             }
         } else {
           if(point.beeswarm == T) {
             mp <- mp + geom_beeswarm(aes(color = get(cv.name)), size = point.size, alpha = 0.8, pch = 16, method = "center")
+            if(!is.null(geno.labels)) { mp <- mp + geom_text_repel(data = xx %>% filter(Name %in% geno.labels), aes(label = Name), size = 2, nudge_x = 0.25) }
             } else {
               mp <- mp + geom_quasirandom(aes(color = get(cv.name)), size = point.size, alpha = 0.8, pch = 16)
+              if(!is.null(geno.labels)) { mp <- mp + geom_text_repel(data = xx %>% filter(Name %in% geno.labels), aes(label = Name), size = 2, nudge_x = 0.25) }
               }
           mp <- mp +
             scale_color_manual(name = cv.label, values = cv.colors) +
@@ -159,8 +164,10 @@ gg_Marker_Box <- function (
     if (plot.points == T) {
       if(point.beeswarm == T) {
         mp <- mp + geom_beeswarm(aes(color = Alleles), size = point.size, alpha = 0.8, pch = 16, dodge.width=0.9)
+        if(!is.null(geno.labels)) { mp <- mp + geom_text_repel(data = xx %>% filter(Name %in% geno.labels), aes(label = Name), size = 2, nudge_x = 0.25) }
         } else {
           mp <- mp + geom_quasirandom(aes(color = Alleles), size = point.size, alpha = 0.8, pch = 16, dodge.width=0.9)
+          if(!is.null(geno.labels)) { mp <- mp + geom_text_repel(data = xx %>% filter(Name %in% geno.labels), aes(label = Name), size = 2, nudge_x = 0.25) }
         }
       mp <- mp +
         scale_color_manual(values = marker.colors) +

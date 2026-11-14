@@ -18,12 +18,12 @@ The function `gg_Marker_Scatter()` creates marker plots with your `myY` and `myG
 
 ```{r eval = F}
 # Load genotype file (note: header = T)
-myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
+myG <- read.csv("Data/gwaspr_myG_hmp.csv", header = T)
 ```
 
 ```{r eval = F}
 # Load phenotype file
-myY <- read.csv("gwaspr_myY.csv")
+myY <- read.csv("Data/gwaspr_myY.csv")
 ```
 
 ---

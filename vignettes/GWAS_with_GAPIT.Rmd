@@ -38,14 +38,9 @@ Our population, the LDP, was genotyped using an *exome caputure array* and filte
 
 > Note: `header = T`
 
-```{r eval = F}
+```{r}
 # Load our genotype file in hapmap format (note: header = F)
-myG <- read.csv("gwaspr_myG_hmp.csv", header = F)
-```
-
-```{r echo = F}
-myG <- read.csv("gwaspr_myG_hmp_10.csv", header = F)
-#write.csv(myG, "myG_hmp_10.csv", row.names = F)
+myG <- read.csv("Data/gwaspr_myG_hmp.csv", header = F)
 ```
 
 ```{r}
@@ -59,26 +54,11 @@ myG[1:10,12:17]
 
 ```{r}
 # Load our phenotype file
-myY <- read.csv("gwaspr_myY.csv")
+myY <- read.csv("Data/gwaspr_myY.csv")
 ```
 
 ```{r}
-myY[1:15,]
-```
-
-```{r}
-myY <- myY[,-2] 
-```
-
-# Covariate data (myCV)
-
-```{r}
-# Load our covariate file
-myCV <- read.csv("gwaspr_myCV.csv")[,c("Name","b")]
-```
-
-```{r}
-myCV[1:10,]
+myY[1:15,c("myG_Name","Cot_RvY","DTF_Nepal_2017","DTF_Sask_2017")]
 ```
 
 ---
@@ -91,7 +71,7 @@ Run GWAS on the 3 traits `myY`
 # Run GWAS
 myGAPIT <- GAPIT( 
   # Phenotype data
-  Y = myY,
+  Y = myY[,c("myG_Name","Cot_RvY","DTF_Nepal_2017","DTF_Sask_2017")],
   # Genotype data
   G = myG, 
   # Set PCA number
@@ -100,10 +80,7 @@ myGAPIT <- GAPIT(
   model = c("GLM","MLM","MLMM","FarmCPU","BLINK") )
 ```
 
-```{r echo = F, eval = F}
-# Extra functions to prevent errors
-# Random.model = F, Phenotype.View = F )
-```
+---
 
 # GWAS with covariate
 
@@ -113,37 +90,17 @@ Run GWAS on the `DTF_Sask_2017` trait with `b` as a covariate.
 # Prep data
 myY2 <- myY[,c("Name","DTF_Sask_2017")]
 # Rename the trait to be rerun with a covariate
-colnames(myY2)[2] <- "DTF_Sask_2017_b"
+colnames(myY2)[2] <- "DTF_Sask_2017_CV_b"
 # Run GWAS with a covariate
 myGAPIT <- GAPIT(
   # Phenotype data
-  Y = myY2,
+  Y = myY2[,c("myG_Name","DTF_Sask_2017_CV_b")],
   # Genotype data
   G = myG,
   # Covariate data
-  CV = myCV,
+  CV = myY[,c("myG_Name","b_coef")],
   # Set PCA number
   PCA.total = 0,
   # Select Models
   model = c("GLM","MLM","MLMM","FarmCPU","BLINK") )
 ```
-
-```{r eval = F, echo = F}
-# Run GWAS
-myGAPIT <- GAPIT( Y = myY[,c(1,4)], G = myG, 
-                  PCA.total = 4, model = c("BLINK"),
-                  Random.model = F, Phenotype.View = F )
-```
-
-```{r eval = F, echo = F}
-# Order GWAS result files by p value
-order_GWAS_Results(folder = "GWAS_Results/")
-# Remove all non-GWAS result files (pdf files)
-clean_GWAS_Results(folder = "GWAS_Results/") 
-```
-
-```{r eval = F, echo = F}
-setdiff(myY$Name, t(myG[1,])) # should be character(0)
-setdiff(t(myG[1,12:ncol(xG)]), myY$Name) # should show just the first 11 columns of myG
-```
-

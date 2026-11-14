@@ -18,41 +18,12 @@ The function `gg_Marker_Bubble()` creates marker plots with your `myY` and `myG`
 
 ```{r eval = F}
 # Load genotype file (note: header = T)
-myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
-```
-
-```{r echo = F}
-myG <- read.csv("gwaspr_myG_hmp_10.csv", header = T)
-#write.csv(myG, "myG_hmp_10.csv", row.names = F)
+myG <- read.csv("Data/gwaspr_myG_hmp.csv", header = T)
 ```
 
 ```{r eval = F}
 # Load phenotype file
-myY <- read.csv("gwaspr_myY.csv")
-# Convert our nominal trait from numeric to factor.
-myY <- myY %>% 
-  mutate(Cotyledon_Color = mv(Cotyledon_RedvsYellow, c(1, 0, NA), c("Red", "Yellow", "Green")),
-         Cotyledon_Color = factor(Cotyledon_Color, levels = c("Red", "Yellow", "Green")))
-```
-
-```{r echo = F, eval = F}
-write.csv(myY, "gwaspr_myY_full.csv", row.names = F)
-```
-
-```{r echo = F}
-myY <- read.csv("gwaspr_myY_full.csv")
-```
-
-```{r}
-myCV <- read.csv("gwaspr_myCV.csv")
-```
-
-```{r}
-myY <- myY %>% left_join(myCV, by = "Name")
-```
-
-```{r}
-myY[1:10,]
+myY <- read.csv("Data/gwaspr_myY.csv")
 ```
 
 ---
@@ -130,7 +101,7 @@ mp <- gg_Marker_Bubble(
   # Phenotype data
   xY = myY,
   # Select traits to plot
-  trait.x = "Testa.Color",
+  trait.x = "Testa_Color",
   trait.y = "Alleles",
   # Select markers to plot
   markers = "Lcu.1GRN.Chr1p365986872",
@@ -155,7 +126,7 @@ mp <- gg_Marker_Bubble(
   # Phenotype data
   xY = myY,
   # Select traits to plot
-  trait.x = "Testa.Color",
+  trait.x = "Testa_Color",
   trait.y = "Alleles",
   # Select markers to plot
   markers = "Lcu.1GRN.Chr1p365986872",

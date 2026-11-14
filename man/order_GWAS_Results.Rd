@@ -5,7 +5,7 @@
 \title{order_GWAS_Results}
 \usage{
 order_GWAS_Results(
-  folder = "GWAS_Results/",
+  folder = "academic/gwas_tutorial/GWAS_Results/",
   files = list_Result_Files(folder),
   nrows = 10000
 )

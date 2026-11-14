@@ -36,6 +36,9 @@ gg_Marker_Bubble <- function (
     subtitle = paste(markers, collapse = "\n")
     ) {
   # Prep data
+  if(sum(colnames(xY)[-1]=="Name")==1) { xY <- xY %>% rename(Name2=Name) }
+  xY <- xY %>% rename(Name=1)
+  #
   xx <- xG %>% rename(SNP=1) %>%
     filter(SNP %in% markers) %>%
     dplyr::select(-2,-3,-4,-5,-6,-7,-8,-9,-10,-11) %>%
@@ -45,7 +48,7 @@ gg_Marker_Bubble <- function (
     mutate(Alleles = NA)
   #
   if(remove.hets == T) { for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] } }
-  if(remove.hets == T) { for(i in 1:length(markers)) { xx <- xx[!xx[,i] %in% c("N","NN"),] } }
+  if(remove.N == T) { for(i in 1:length(markers)) { xx <- xx[!xx[,i] %in% c("N","NN"),] } }
   #
   for(k in 1:nrow(xx)) { xx$Alleles[k] <- paste(xx[k,1:length(markers)], collapse = "-") }
   #
@@ -64,8 +67,8 @@ gg_Marker_Bubble <- function (
     rename(Alleles=Alleles2) %>%
     group_by(Alleles, Tx, Ty, Fr, Fc) %>%
     summarise(Count = n()) %>%
-    ungroup() %>%
-    filter(!is.na(Tx), !is.na(Ty), !is.na(Fr), !is.na(Fc))
+    ungroup() #%>%
+    #filter(!is.na(Tx), !is.na(Ty), !is.na(Fr), !is.na(Fc))
   #
   mp <- ggplot(xx, aes(x = Tx, y = Ty)) +
     geom_point(aes(fill = Alleles, size = Count), pch = 21, alpha = 0.7) +

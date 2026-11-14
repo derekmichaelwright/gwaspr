@@ -18,7 +18,7 @@ Specifying a `myG` object, an `outputFolder`, and a `markerNum` is all that is n
 
 ```{r eval = F}
 # Load genotype file (note: header = T)
-myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
+myG <- read.csv("Data/gwaspr_myG_hmp.csv", header = T)
 ```
 
 # `markerNum` = 200

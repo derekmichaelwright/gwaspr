@@ -6,11 +6,11 @@ title: "gg_GWAS_Hits()"
 knitr::opts_chunk$set(echo = T, message = F, warning = F)
 ```
 
-```{r echo = F}
+```{r}
 library(gwaspr)
 ```
 
-## gg_GWAS_Hits()
+The function `gg_GWAS_Hits()` creates summary plots showing significant association from your GWAS analyses. 
 
 ```{r eval = F}
 # Plot

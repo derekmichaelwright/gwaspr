@@ -37,7 +37,7 @@ gg_Marker_Pie <- function (
     ) {
  #
  #xY <- xY %>% rename(Name=1)
- xY <- xY %>% select(Name, myTrait=trait)
+ xY <- xY %>% select(Name=1, myTrait=trait)
  xx <- xG %>% rename(SNP=1) %>%
    filter(SNP %in% markers) %>%
    dplyr::select(-2,-3,-4,-5,-6,-7,-8,-9,-10,-11) %>%
@@ -47,7 +47,7 @@ gg_Marker_Pie <- function (
    mutate(Alleles = NA)
  #
  if(remove.hets == T) { for(i in 1:length(markers)) { xx <- xx[xx[,i] %in% c("A","T","G","C","AA","TT","GG","CC"),] } }
- if(remove.hets == T) { for(i in 1:length(markers)) { xx <- xx[!xx[,i] %in% c("N","NN"),] } }
+ if(remove.N == T) { for(i in 1:length(markers)) { xx <- xx[!xx[,i] %in% c("N","NN"),] } }
  #
  for(i in 1:nrow(xx)) { xx$Alleles[i] <- paste(xx[i,1:length(markers)], collapse = "-") }
  #
