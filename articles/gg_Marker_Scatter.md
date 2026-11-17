@@ -16,13 +16,13 @@ creates marker plots with your `myY` and `myG` GWAS input files.
 ``` r
 
 # Load genotype file (note: header = T)
-myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
+myG <- read.csv("Data/gwaspr_myG_hmp.csv", header = T)
 ```
 
 ``` r
 
 # Load phenotype file
-myY <- read.csv("gwaspr_myY.csv")
+myY <- read.csv("Data/gwaspr_myY.csv")
 ```
 
 ------------------------------------------------------------------------

@@ -27,7 +27,7 @@ mp <- gg_Manhattan_Zoom(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/", 
   # Select traits to plot
-  traits = "Cotyledon_RedvsYellow", 
+  traits = "Cot_RvY", 
   # Plot just Chromosome 1
   chr = 1 )
 # Save
@@ -44,7 +44,7 @@ ggsave("figures/gg_Manhattan_Zoom_01_1.png",
 ``` r
 
 # Prep data
-traits <- "Cotyledon_RedvsYellow"
+traits <- "Cot_RvY"
 markers <- "Lcu.1GRN.Chr1p365986872"
 vlines <- markers
 # Plot
@@ -95,7 +95,7 @@ mp <- gg_Manhattan_Zoom(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/", 
   # Select a trait to plot
-  traits = "Cotyledon_RedvsYellow", 
+  traits = "Cot_RvY", 
   # Plot just Chromosome 1
   chr = 1,
   pos1 = 300000000,
@@ -126,7 +126,7 @@ mp <- gg_Manhattan_Zoom(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select traits to plot
-  traits = c("DTF_Sask_2017","DTF_Sask_2017_b","DTF_Nepal_2017"),
+  traits = c("DTF_Sask_2017","DTF_Sask_2017_CV_b","DTF_Nepal_2017"),
   # Plot just Chromosome 2
   chr = 2,
   # Highlight specific markers
@@ -156,7 +156,7 @@ mp <- gg_Manhattan_Zoom(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/", 
   # Select traits to plot
-  traits = "Cotyledon_RedvsYellow", 
+  traits = "Cot_RvY", 
   # Plot just Chromosome 1
   chr = 1,
   # Should models be facetted
@@ -179,7 +179,7 @@ mp <- gg_Manhattan_Zoom(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select traits to plot
-  traits = c("DTF_Sask_2017", "DTF_Sask_2017_b", "DTF_Nepal_2017"),
+  traits = c("DTF_Sask_2017", "DTF_Sask_2017_CV_b", "DTF_Nepal_2017"),
   # Highlight specific markers
   vlines = "Lcu.1GRN.Chr2p44545877",
   # Plot just Chromosome 2
@@ -206,7 +206,7 @@ mp <- gg_Manhattan_Zoom(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select traits to plot
-  traits = c("DTF_Sask_2017", "DTF_Sask_2017_b", "DTF_Nepal_2017"),
+  traits = c("DTF_Sask_2017", "DTF_Sask_2017_CV_b", "DTF_Nepal_2017"),
   # Highlight specific markers
   vlines = "Lcu.1GRN.Chr2p44545877",
   # Plot just Chromosome 2

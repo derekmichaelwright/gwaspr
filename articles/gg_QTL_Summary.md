@@ -24,9 +24,9 @@ needed to create QTL summary plots.
 ``` r
 
 # Prep data
-myG <- read.csv("LR-68_gmap.csv") %>% 
+myG <- read.csv("Data/LR-68_gmap.csv") %>% 
   select(Marker=SNP, Chr=lg, Pos=Position)
-myQ <- read.csv("myQTL_LR-68_lab_peaks.csv") %>% 
+myQ <- read.csv("Data/myQTL_LR-68_lab_peaks.csv") %>% 
   select(Trait=lodcolumn, Chr=chr, Pos=pos, lod, Pos_lo=ci_lo, Pos_hi=ci_hi)
 ```
 
@@ -106,9 +106,9 @@ ggsave("figures/gg_QTL_Summary_02.png",
 ``` r
 
 # Prep data
-myG <- read.csv("LR-68_gmap.csv") %>% 
+myG <- read.csv("Data/LR-68_gmap.csv") %>% 
   select(Marker=SNP, Chr=lg, Pos=Position)
-myQ <- read.csv("myQTL_LR-68_lab_peaks.csv") %>% 
+myQ <- read.csv("Data/myQTL_LR-68_lab_peaks.csv") %>% 
   select(Trait=lodcolumn, Chr=chr, Pos=pos, lod, Pos_lo=ci_lo, Pos_hi=ci_hi) %>%
   mutate(y_Group = substr(Trait, regexpr(".BELT", Trait)+6, regexpr("_", Trait)-1 ),
          facet_Group = substr(Trait, 1, regexpr(".BELT", Trait)-1),
@@ -190,9 +190,9 @@ so we can compare with other analyses.
 ``` r
 
 # Prep data
-myG <- read.csv("LR-68_gmap.csv") %>% 
+myG <- read.csv("Data/LR-68_gmap.csv") %>% 
   select(Marker=SNP, lg, cM=Position)
-myQ <- read.csv("myQTL_LR-68_lab_peaks.csv") %>% 
+myQ <- read.csv("Data/myQTL_LR-68_lab_peaks.csv") %>% 
   rename(Trait=lodcolumn, lg=chr, cM=pos) %>%
   select(Trait, lg, cM, lod, ci_lo, ci_hi) %>%
   left_join(myG, by = c("lg", "cM")) %>%
@@ -302,7 +302,8 @@ ggsave("figures/gg_QTL_Summary_04.png",
 ``` r
 
 # Create function to get physical position
-convertPosition <- function(myG_Name = "LR-68_gmap.csv", myQ_Name = "myQTL_LR-68_lab_peaks.csv") {
+convertPosition <- function(myG_Name = "Data/LR-68_gmap.csv", 
+                            myQ_Name = "Data/myQTL_LR-68_lab_peaks.csv") {
   #
   myG <- read.csv(myG_Name) %>% 
     select(Marker=SNP, lg, cM=Position)
@@ -352,15 +353,18 @@ convertPosition <- function(myG_Name = "LR-68_gmap.csv", myQ_Name = "myQTL_LR-68
   list(myG, myQ)
 }
 # Prep data for Population #1 - LR-68
-my68 <- convertPosition(myG_Name = "LR-68_gmap.csv", myQ_Name = "myQTL_LR-68_lab_peaks.csv") 
+my68 <- convertPosition(myG_Name = "Data/LR-68_gmap.csv", 
+                        myQ_Name = "Data/myQTL_LR-68_lab_peaks.csv") 
 myG_68 <- my68[[1]]
 myQ_68 <- my68[[2]]
 # Prep data for Population #2 - LR-70
-my70 <- convertPosition(myG_Name = "LR-70_gmap.csv", myQ_Name = "myQTL_LR-70_lab_peaks.csv") 
+my70 <- convertPosition(myG_Name = "Data/LR-70_gmap.csv", 
+                        myQ_Name = "Data/myQTL_LR-70_lab_peaks.csv") 
 myG_70 <- my70[[1]]
 myQ_70 <- my70[[2]]
 # Prep data for Population #3 - LR-86
-my86 <- convertPosition(myG_Name = "LR-86_gmap.csv", myQ_Name = "myQTL_LR-86_lab_peaks.csv") 
+my86 <- convertPosition(myG_Name = "Data/LR-86_gmap.csv", 
+                        myQ_Name = "Data/myQTL_LR-86_lab_peaks.csv") 
 myG_86 <- my86[[1]]
 myQ_86 <- my86[[2]]
 # Combine Results for plotting

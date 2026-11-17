@@ -16,46 +16,14 @@ creates marker plots with your `myY` and `myG` GWAS input files.
 ``` r
 
 # Load genotype file (note: header = T)
-myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
+myG <- read.csv("Data/gwaspr_myG_hmp.csv", header = T)
 ```
 
 ``` r
 
 # Load phenotype file
-myY <- read.csv("gwaspr_myY.csv")
-# Convert our nominal trait from numeric to factor.
-myY <- myY %>% 
-  mutate(Cotyledon_Color = mv(Cotyledon_RedvsYellow, c(1, 0, NA), c("Red", "Yellow", "Green")),
-         Cotyledon_Color = factor(Cotyledon_Color, levels = c("Red", "Yellow", "Green")))
+myY <- read.csv("Data/gwaspr_myY.csv")
 ```
-
-``` r
-
-myY[1:10,]
-```
-
-    ##                 Name DTF_Sask_2017 DTF_Nepal_2017 Cotyledon_RedvsYellow
-    ## 1    CDC_Asterix_AGL          54.7          128.0                     0
-    ## 2      CDC_Rosie_AGL          59.0          123.3                     1
-    ## 3       X3156.11_AGL          60.7          125.3                     1
-    ## 4  CDC_Greenstar_AGL          56.7          121.0                     0
-    ## 5     CDC_Cherie_AGL          54.3          125.3                     1
-    ## 6     CDC_Glamis_AGL          59.0          123.0                     0
-    ## 7       CDC_Gold_AGL          54.0          125.3                     0
-    ## 8       CDC_Imax_AGL          53.0          128.7                     1
-    ## 9    CDC_Impower_AGL          57.0          123.3                     0
-    ## 10      CDC_KR.1_AGL          57.0          121.7                     1
-    ##    Cotyledon_Color
-    ## 1           Yellow
-    ## 2              Red
-    ## 3              Red
-    ## 4           Yellow
-    ## 5              Red
-    ## 6           Yellow
-    ## 7           Yellow
-    ## 8              Red
-    ## 9           Yellow
-    ## 10             Red
 
 ------------------------------------------------------------------------
 
@@ -212,7 +180,7 @@ mp <- gg_Marker_Bar(
   # Phenotype data
   xY = myY,
   # Select traits to plot
-  traits = "Cotyledon_RedvsYellow",
+  traits = "Cot_RvY",
   # Select markers to plot
   markers = "Lcu.1GRN.Chr1p365986872",
   # Select marker colors
