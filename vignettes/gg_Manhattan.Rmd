@@ -36,7 +36,7 @@ ggsave("figures/gg_Manhattan_01_DTF_Nepal_2017.png",
 
 All traits can be plotted with the `gwaspr_batch_Man()` function.  
 
-```{r}
+```{r eval = F}
 gwaspr_batch_Man(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
