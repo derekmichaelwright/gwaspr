@@ -1,0 +1,23 @@
+---
+title: "gg_GWAS_Hits()"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = T, message = F, warning = F)
+```
+
+```{r}
+library(gwaspr)
+```
+
+The function `gg_GWAS_Hits()` creates summary plots showing significant association from your GWAS analyses. 
+
+```{r eval = F}
+# Plot
+mp <- gg_GWAS_Hits(
+  folder = "GWAS_Results/" )
+# Save
+ggsave("figures/gg_GWAS_Hits_01.png", mp, width = 12, height = 3.5)
+```
+
+![](figures/gg_GWAS_Hits_01.png)
