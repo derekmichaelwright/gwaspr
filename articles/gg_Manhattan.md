@@ -31,32 +31,26 @@ ggsave("figures/gg_Manhattan_01_DTF_Nepal_2017.png",
 
 ------------------------------------------------------------------------
 
-## Plot all traits with a loop
+## Batch Plot All GWAS Results
 
-A simple loop can be used to plot GWAS results for each trait within the
-specified `folder`.
+All traits can be plotted with the
+[`gwaspr_batch_Man()`](https://derekmichaelwright.github.io/gwaspr/reference/gwaspr_batch_Man.md)
+function.
 
 ``` r
 
-# Create for loop
-for(i in list_Traits(folder = "GWAS_Results/")) {
-  # Plot
-  mp <- gg_Manhattan(
-    # Specify a folder with GWAS results
-    folder = "GWAS_Results/", 
-    # Select a trait to plot
-    traits = i )
-  # Save
-  ggsave(paste0("figures/gg_Manhattan_01_", i, ".png"), 
-         mp, width = 12, height = 3.5, bg = "white" )
-}
+gwaspr_batch_Man(
+  # Specify a folder with GWAS results
+  folder = "GWAS_Results/",
+  # Specify a folder to save plots
+  output = "figures/" )
 ```
 
-![](figures/gg_Manhattan_01_DTF_Sask_2017.png)
+![](figures/gwaspr_bm_DTF_Sask_2017.png)
 
-![](figures/gg_Manhattan_01_DTF_Sask_2017_b.png)
+![](figures/gwaspr_bm_DTF_Sask_2017_CV_b.png)
 
-![](figures/gg_Manhattan_01_Cotyledon_RedvsYellow.png)
+![](figures/gwaspr_bm_Cot_RvY.png)
 
 ------------------------------------------------------------------------
 
@@ -117,7 +111,7 @@ mp <- gg_Manhattan(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select traits to plot
-  traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b"),
+  traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_CV_b"),
   # Specify GWAS models to plot
   models =  c("MLM", "MLMM", "FarmCPU", "BLINK") )
 # Save
@@ -138,7 +132,7 @@ mp <- gg_Manhattan(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select traits to plot
-  traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b"),
+  traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_CV_b"),
   # Specify a title
   title = "Days to Flower",
   # Highlight specific markers
@@ -181,7 +175,7 @@ mp <- gg_Manhattan(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select a trait to plot
-  traits = "Cotyledon_RedvsYellow", 
+  traits = "Cot_RvY", 
   # Facet out the different GWAS models
   facet.model = T,
   # Set chromosome colors
@@ -204,7 +198,7 @@ mp <- gg_Manhattan(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select traits to plot
-  traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b"),
+  traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_CV_b"),
   # Facet out the different GWAS models
   facet.model = T )
 # Save
@@ -225,7 +219,7 @@ mp <- gg_Manhattan(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select traits to plot
-  traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b"),
+  traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_CV_b"),
   # Specify a title
   title = "Days to Flower",
   # Add vertical lines
@@ -258,7 +252,7 @@ mp <- gg_Manhattan(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select traits to plot
-  traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b"),
+  traits = c("DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_CV_b"),
   # Specify a title
   title = "Days to Flower",
   # Set horizontal thresholds bars
@@ -379,7 +373,7 @@ mp <- gg_Manhattan(
   # Specify a folder with GWAS results
   folder = "GWAS_Results/",
   # Select a trait to plot
-  traits = "DTF_Sask_2017_b",
+  traits = "DTF_Sask_2017_CV_b",
   # Create a title for the plot
   title = "DTF Sask 2017 | Covariate = b",
   # Set horizontal thresholds bars

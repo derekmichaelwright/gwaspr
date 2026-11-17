@@ -215,3 +215,8 @@ library(GAPIT)
 - [`theme_gwaspr_pie()`](https://derekmichaelwright.github.io/gwaspr/reference/theme_gwaspr_pie.md)
   : theme_gwaspr_pie.
 
+# Articles
+
+### All vignettes
+
+- [gg_manhattan()](https://derekmichaelwright.github.io/gwaspr/articles/gg_Manhattan.md):
