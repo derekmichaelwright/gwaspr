@@ -6,7 +6,7 @@ Read in GWAS results, then arrange by P.value and write as csv..
 
 ``` r
 order_GWAS_Results(
-  folder = "GWAS_Results/",
+  folder = "academic/gwas_tutorial/GWAS_Results/",
   files = list_Result_Files(folder),
   nrows = 10000
 )

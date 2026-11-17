@@ -54,6 +54,8 @@
   : gwaspr_Colors
 - [`gwaspr_ModelColors`](https://derekmichaelwright.github.io/gwaspr/reference/gwaspr_ModelColors.md)
   : gwaspr_ModelColors
+- [`gwaspr_batch_Man()`](https://derekmichaelwright.github.io/gwaspr/reference/gwaspr_batch_Man.md)
+  : gwaspr_batch_Man
 - [`gwaspr_dna`](https://derekmichaelwright.github.io/gwaspr/reference/gwaspr_dna.md)
   : gwaspr_dna
 - [`is_Ordered()`](https://derekmichaelwright.github.io/gwaspr/reference/is_Ordered.md)

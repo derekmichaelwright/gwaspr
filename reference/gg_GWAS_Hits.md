@@ -1,16 +1,17 @@
 # gg_GWAS_Hits
 
-Creates a summary GWAS plot of significant associations.
+[Creates a summary GWAS plot of significant
+associations.](https://derekmichaelwright.github.io/gwaspr/articles/gg_GWAS_Hits.html)
 
 ## Usage
 
 ``` r
 gg_GWAS_Hits(
   folder = "GWAS_Results/",
-  xx,
-  xG,
-  xCV = NULL,
   traits = list_Traits(folder),
+  models = c("BLINK", "FarmCPU", "MLMM", "MLM", "GLM", "CMLM", "SUPER"),
+  model.colors = gwaspr_ModelColors,
+  model.shapes = c(21:25, 21:22),
   groups = NULL,
   chr = NULL,
   pos1 = NULL,
@@ -18,9 +19,6 @@ gg_GWAS_Hits(
   range = 2e+06,
   title = "",
   sigMin = 0,
-  models = c("BLINK", "FarmCPU", "MLMM", "MLM", "GLM", "CMLM", "SUPER"),
-  model.colors = gwaspr_ModelColors,
-  model.shapes = c(21:25, 21:22),
   vlines = NULL,
   vline.colors = rep("red", length(vlines)),
   vline.types = rep(1, length(vlines)),
@@ -35,21 +33,17 @@ gg_GWAS_Hits(
 
 ## Arguments
 
-- xx:
-
-  Table of significant GWAS results. See ?table_GWAS_Results().
-
-- xG:
-
-  Genotype data in hapmap format.
-
-- xCV:
-
-  Optional, for filtering if you have a "CV" column.
-
 - traits:
 
   List of traits to use.
+
+- models:
+
+  Models to read.
+
+- model.colors:
+
+  Colors for each model.
 
 - range:
 
@@ -62,14 +56,6 @@ gg_GWAS_Hits(
 - sigMin:
 
   Minimum number of hits to plot.
-
-- models:
-
-  Models to read.
-
-- model.colors:
-
-  Colors for each model.
 
 - vlines:
 
@@ -94,6 +80,18 @@ gg_GWAS_Hits(
 - caption:
 
   Logical. should a caption be added.
+
+- xx:
+
+  Table of significant GWAS results. See ?table_GWAS_Results().
+
+- xG:
+
+  Genotype data in hapmap format.
+
+- xCV:
+
+  Optional, for filtering if you have a "CV" column.
 
 ## Value
 

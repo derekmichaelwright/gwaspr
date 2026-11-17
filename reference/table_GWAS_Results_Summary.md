@@ -22,7 +22,7 @@ table_GWAS_Results_Summary(xx, binMarkers = F, binSize = 5e+06, onlySig = F)
 
 - binSize:
 
-  range on each side of marker to bin. default = 1,000,000.
+  range on each side of marker to bin. default = 5,000,000.
 
 - onlySig:
 

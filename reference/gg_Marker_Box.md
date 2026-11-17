@@ -17,6 +17,7 @@ gg_Marker_Box(
   plot.violin = T,
   plot.box = T,
   plot.points = T,
+  geno.labels = NULL,
   box.width = 0.1,
   point.size = 1,
   point.beeswarm = F,
