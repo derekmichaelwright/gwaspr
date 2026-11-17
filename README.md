@@ -4,6 +4,10 @@
 `gwaspr`: an `R` package for plotting GWAS results from the `GAPIT`
 package
 
+> Note: this pakage is currently in development. If you’re having issues
+> first try reinstalling the package. If that doesn’t work, contact the
+> author. <derek.wright@usask.ca>
+
 ------------------------------------------------------------------------
 
 # Instal `gwaspr`
