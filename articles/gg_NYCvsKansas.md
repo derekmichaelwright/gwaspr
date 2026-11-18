@@ -26,11 +26,11 @@ checkNYCvsKansas(
   deleteKansas = F )
 ```
 
-    ##                   Trait FarmCPU BLINK
-    ## 1 Cotyledon_RedvsYellow      76     1
-    ## 2        DTF_Nepal_2017     731     0
-    ## 3         DTF_Sask_2017     584     0
-    ## 4       DTF_Sask_2017_b     543     0
+    ##                Trait FarmCPU BLINK
+    ## 1            Cot_RvY      76     1
+    ## 2     DTF_Nepal_2017     731     0
+    ## 3      DTF_Sask_2017     584     0
+    ## 4 DTF_Sask_2017_CV_b     929     0
 
 ------------------------------------------------------------------------
 

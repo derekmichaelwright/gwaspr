@@ -19,7 +19,7 @@ that is needed to calculate and plot LD decay.
 ``` r
 
 # Load genotype file (note: header = T)
-myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
+myG <- read.csv("Data/gwaspr_myG_hmp.csv", header = T)
 ```
 
 ## `markerNum` = 200
@@ -101,13 +101,13 @@ write.csv(xx, "LD_Summary_Table.csv", row.names = F)
 ```
 
     ##   Chr   X200  X2000
-    ## 1   1  79592 104896
-    ## 2   2 130852 113954
-    ## 3   3 273983 128719
-    ## 4   4 349679 157730
-    ## 5   5  63173  74786
-    ## 6   6 215886 152284
-    ## 7   7  62221  56477
+    ## 1   1    336  82708
+    ## 2   2 126562 112794
+    ## 3   3 134865  86962
+    ## 4   4 309602 159300
+    ## 5   5  84156  74786
+    ## 6   6 528647 152284
+    ## 7   7  43850  56477
 
 ``` r
 

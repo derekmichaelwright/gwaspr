@@ -127,7 +127,7 @@ that the list of for `groups` must be equal in length with `traits`
 ``` r
 
 # Prep data
-traits <- c("Cotyledon_RedvsYellow","DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_b")
+traits <- c("Cot_RvY", "DTF_Nepal_2017", "DTF_Sask_2017", "DTF_Sask_2017_CV_b")
 groups <- c("Seed", "DTF", "DTF", "DTF")
 # Plot
 mp <- gg_GWAS_Summary(

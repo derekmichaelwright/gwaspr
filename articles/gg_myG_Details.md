@@ -7,16 +7,15 @@ library(gwaspr)
 
 The function
 [`gg_myG_Details()`](https://derekmichaelwright.github.io/gwaspr/reference/gg_myG_Details.md)
-creates plots and .csv files with details about your genotype data.
-
-… (under construction)
+creates plots and .csv files with details about your genotype (myG)
+data.
 
 ``` r
 
 # Run function
 gg_myG_Details(
   # Specify the name of your myG file
-  filename = "myG_hmp.csv", 
+  filename = "Data/gwaspr_myG_hmp.csv", 
   # Select a prefix to give the output files
   myPrefix = "figures/gg_myG_Details" )
 ```

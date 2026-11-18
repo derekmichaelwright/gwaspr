@@ -10,12 +10,10 @@ The function
 creates a linkage disequilibrium (LD) heatmap plot for a specific region
 on a chromosome.
 
-… (under construction)
-
 ``` r
 
 # Load genotype file (note: header = T)
-myG <- read.csv("gwaspr_myG_hmp.csv", header = T)
+myG <- read.csv("Data/gwaspr_myG_hmp.csv", header = T)
 # Plot
 mp <- gg_LD_Heatmap(
   # Load genotype data
